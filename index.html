@@ -2577,6 +2577,396 @@
       .phys-reviews-grid { grid-template-columns: 1fr; }
     }
 
+
+    /* =========================================
+       FORMULAR ÎNSCRIERE — TOATE MATERIILE
+       Trimitere prin FormSubmit către formulax05@gmail.com
+    ========================================== */
+    .enrollment-card {
+      --enroll-accent: #2563eb;
+      --enroll-accent-2: #0f172a;
+      --enroll-soft: #eff6ff;
+      --enroll-border: #bfdbfe;
+      --enroll-text: #0f172a;
+      --enroll-muted: #64748b;
+    }
+
+    #view-romana .enrollment-card {
+      --enroll-accent: #db2777;
+      --enroll-accent-2: #7e22ce;
+      --enroll-soft: #fdf2f8;
+      --enroll-border: #fbcfe8;
+      --enroll-text: #4a044e;
+      --enroll-muted: #7c3aed;
+    }
+
+    #view-mate .enrollment-card {
+      --enroll-accent: #2563eb;
+      --enroll-accent-2: #0b2a5b;
+      --enroll-soft: #eff6ff;
+      --enroll-border: #bfdbfe;
+      --enroll-text: #071b38;
+      --enroll-muted: #475569;
+    }
+
+    #view-bio .enrollment-card {
+      --enroll-accent: #15803d;
+      --enroll-accent-2: #0b5139;
+      --enroll-soft: #f0fdf4;
+      --enroll-border: #bbf7d0;
+      --enroll-text: #0b5139;
+      --enroll-muted: #4b6b5a;
+    }
+
+    #view-fizica .enrollment-card {
+      --enroll-accent: #a855f7;
+      --enroll-accent-2: #6d28d9;
+      --enroll-soft: rgba(168,85,247,.10);
+      --enroll-border: rgba(216,180,254,.35);
+      --enroll-text: #ffffff;
+      --enroll-muted: #ddd6fe;
+    }
+
+    #view-chimie .enrollment-card {
+      --enroll-accent: #0b67b2;
+      --enroll-accent-2: #0b4c99;
+      --enroll-soft: #ecf8ff;
+      --enroll-border: #b8e2fb;
+      --enroll-text: #06275e;
+      --enroll-muted: #456785;
+    }
+
+    .enrollment-head {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .enrollment-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 16px;
+      border-radius: 999px;
+      background: var(--enroll-soft);
+      border: 1px solid var(--enroll-border);
+      color: var(--enroll-accent-2);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 13px;
+    }
+
+    .enrollment-head h2 {
+      color: var(--enroll-text);
+      font-size: 32px;
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .enrollment-head p {
+      max-width: 720px;
+      margin: 0 auto;
+      color: var(--enroll-muted);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .enrollment-summary {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 0 auto 24px;
+    }
+
+    .enrollment-summary span {
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--enroll-soft);
+      border: 1px solid var(--enroll-border);
+      color: var(--enroll-accent-2);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .enrollment-form {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .enrollment-field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .enrollment-field.full { grid-column: 1 / -1; }
+
+    .enrollment-field label {
+      color: var(--enroll-text);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .enrollment-field input,
+    .enrollment-field select,
+    .enrollment-field textarea {
+      width: 100%;
+      border: 1.5px solid var(--enroll-border);
+      background: #ffffff;
+      color: #0f172a;
+      border-radius: 14px;
+      padding: 13px 14px;
+      font-size: 14px;
+      outline: none;
+      transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+    }
+
+    .enrollment-field textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .enrollment-field input:focus,
+    .enrollment-field select:focus,
+    .enrollment-field textarea:focus {
+      border-color: var(--enroll-accent);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--enroll-accent) 14%, transparent);
+    }
+
+    .enrollment-consent {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--enroll-muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .enrollment-consent input {
+      margin-top: 3px;
+      accent-color: var(--enroll-accent);
+      flex: 0 0 auto;
+    }
+
+    .enrollment-submit {
+      grid-column: 1 / -1;
+      justify-self: center;
+      min-width: 250px;
+      border: 0;
+      border-radius: 999px;
+      padding: 15px 26px;
+      background: linear-gradient(135deg, var(--enroll-accent), var(--enroll-accent-2));
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: .4px;
+      cursor: pointer;
+      box-shadow: 0 12px 26px color-mix(in srgb, var(--enroll-accent) 24%, transparent);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .enrollment-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 30px color-mix(in srgb, var(--enroll-accent) 31%, transparent);
+    }
+
+    .enrollment-note {
+      grid-column: 1 / -1;
+      text-align: center;
+      color: var(--enroll-muted);
+      font-size: 12px;
+      line-height: 1.55;
+      margin-top: -2px;
+    }
+
+    @media (max-width: 760px) {
+      .enrollment-head h2 { font-size: 27px; }
+      .enrollment-form { grid-template-columns: 1fr; gap: 13px; }
+      .enrollment-field.full,
+      .enrollment-consent,
+      .enrollment-submit,
+      .enrollment-note { grid-column: 1; }
+      .enrollment-submit { width: 100%; min-width: 0; }
+    }
+
+
+    /* =========================================
+       ÎNSCRIERE RAPIDĂ DE PE PAGINA PRINCIPALĂ
+    ========================================== */
+    .hero-cta-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-enroll-home {
+      background: transparent;
+      color: #ffca28;
+      font-size: 19px;
+      font-weight: 900;
+      padding: 18px 34px;
+      border: 2px solid #ffca28;
+      border-radius: 50px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: 0.25s ease;
+      box-shadow: inset 0 0 0 1px rgba(255, 202, 40, 0.08);
+    }
+
+    .btn-enroll-home:hover {
+      background: rgba(255, 202, 40, 0.10);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(255, 202, 40, 0.18);
+    }
+
+    .enroll-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(3, 10, 25, 0.72);
+      backdrop-filter: blur(9px);
+      -webkit-backdrop-filter: blur(9px);
+    }
+
+    .enroll-modal.open { display: flex; }
+
+    .enroll-modal-panel {
+      position: relative;
+      width: min(560px, 100%);
+      background: #ffffff;
+      color: #0f172a;
+      border: 1px solid rgba(255, 202, 40, 0.42);
+      border-radius: 28px;
+      padding: 34px;
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.36);
+    }
+
+    .enroll-modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 40px;
+      height: 40px;
+      border: 0;
+      border-radius: 50%;
+      background: #f1f5f9;
+      color: #0f172a;
+      font-size: 24px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .enroll-modal-logo {
+      display: inline-block;
+      color: #081229;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #ffe066, #ffca28);
+      border-radius: 999px;
+      padding: 7px 14px;
+      margin-bottom: 15px;
+    }
+
+    .enroll-modal-panel h2 {
+      color: #081229;
+      font-size: 30px;
+      line-height: 1.2;
+      font-weight: 900;
+      margin-bottom: 9px;
+    }
+
+    .enroll-modal-panel > p {
+      color: #64748b;
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 23px;
+    }
+
+    .quick-enroll-form {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .quick-enroll-form label {
+      color: #0f172a;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .quick-enroll-form select {
+      width: 100%;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 14px;
+      background: #ffffff;
+      color: #0f172a;
+      padding: 14px 15px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    .quick-enroll-form select:focus {
+      border-color: #f59e0b;
+      box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.12);
+    }
+
+    .quick-enroll-submit {
+      margin-top: 10px;
+      border: 0;
+      border-radius: 999px;
+      padding: 15px 22px;
+      background: linear-gradient(90deg, #ffca28, #f59e0b);
+      color: #081229;
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: .5px;
+      cursor: pointer;
+      box-shadow: 0 12px 28px rgba(245, 158, 11, 0.23);
+    }
+
+    .quick-enroll-help {
+      margin-top: 14px;
+      color: #64748b;
+      font-size: 12px;
+      line-height: 1.55;
+      text-align: center;
+    }
+
+    @media (max-width: 760px) {
+      .hero-cta-row {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .hero-cta-row .btn-banner,
+      .btn-enroll-home {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+        padding-left: 22px;
+        padding-right: 22px;
+        font-size: 17px;
+      }
+      .enroll-modal { padding: 14px; }
+      .enroll-modal-panel { padding: 30px 18px 22px; border-radius: 22px; }
+      .enroll-modal-panel h2 { font-size: 26px; padding-right: 34px; }
+    }
+
   </style>
 </head>
 <body>
@@ -2594,6 +2984,31 @@
     <a id="nav-chimie" onclick="schimbaPagina('chimie')">Chimie</a>
   </nav>
 </header>
+
+<!-- ÎNSCRIERE RAPIDĂ DE PE PAGINA PRINCIPALĂ -->
+<div id="enroll-modal" class="enroll-modal" role="dialog" aria-modal="true" aria-labelledby="enroll-modal-title" onclick="inchideInscriereDinFundal(event)">
+  <div class="enroll-modal-panel">
+    <button type="button" class="enroll-modal-close" aria-label="Închide formularul" onclick="inchideInscriereRapida()">×</button>
+    <span class="enroll-modal-logo">Formula X • Înscriere</span>
+    <h2 id="enroll-modal-title">La ce materie vrei să te înscrii?</h2>
+    <p>Alege materia, iar noi te ducem direct la formularul mentorului, unde poți selecta săptămâna la care vrei să participi.</p>
+
+    <form class="quick-enroll-form" onsubmit="continuaInscriere(event)">
+      <label for="quick-subject">Materia *</label>
+      <select id="quick-subject" required>
+        <option value="" selected disabled>Alege materia</option>
+        <option value="romana">Limba Română — Bianca</option>
+        <option value="mate">Matematică — Marius</option>
+        <option value="bio">Biologie — Theodora</option>
+        <option value="fizica">Fizică — Ioana</option>
+        <option value="chimie">Chimie Organică — Ilaria</option>
+      </select>
+      <button type="submit" class="quick-enroll-submit">CONTINUĂ ÎNSCRIEREA →</button>
+    </form>
+
+    <div class="quick-enroll-help">După alegerea materiei vei completa datele de contact și săptămâna dorită. Cererea va fi trimisă către formulax05@gmail.com.</div>
+  </div>
+</div>
 
 <!-- ================= VIEW: ACASĂ ================= -->
 <div id="view-acasa" class="page-view active">
@@ -2613,9 +3028,14 @@
         <button type="button" class="subject-text-link" onclick="schimbaPagina('chimie')">Chimie</button>
       </div>
 
-      <button class="btn-banner" onclick="document.getElementById('sectiune-materii').scrollIntoView({ behavior: 'smooth' })">
-        DESCOPERĂ PROGRAMUL &rarr;
-      </button>
+      <div class="hero-cta-row">
+        <button class="btn-banner" onclick="document.getElementById('sectiune-materii').scrollIntoView({ behavior: 'smooth' })">
+          DESCOPERĂ PROGRAMUL &rarr;
+        </button>
+        <button type="button" class="btn-enroll-home" onclick="deschideInscriereRapida()">
+          ÎNSCRIE-TE
+        </button>
+      </div>
 
       <div class="hero-footer-info">
         BAC 2027 <span>|</span> LIVE ONLINE
@@ -2665,6 +3085,106 @@
             <p>Metoda ei pornește de la ideea că pregătirea la română nu trebuie să însemne memorarea mecanică a unor pagini întregi, ci înțelegerea structurii fiecărui răspuns, a baremului și a modului în care informația poate fi aplicată indiferent de subiect.</p>
           </div>
         </div>
+      </div>
+
+
+      <!-- ÎNSCRIERE / PROGRAMARE -->
+      <div class="light-card enrollment-card">
+        <div class="enrollment-head">
+          <span class="enrollment-kicker">📩 Înscriere Formula X</span>
+          <h2>Rezervă săptămâna la care vrei să participi</h2>
+          <p>Completează formularul, iar cererea ajunge direct la echipa Formula X. Vei fi contactat ulterior pentru confirmarea locului și detaliile ședinței.</p>
+        </div>
+
+        <div class="enrollment-summary">
+          <span>📚 Limba Română</span>
+          <span>👩‍🏫 Mentor: Bianca Varvaroi</span>
+          <span>💻 Online</span>
+        </div>
+
+        <form class="enrollment-form" action="https://formsubmit.co/formulax05@gmail.com" method="POST">
+          <input type="hidden" name="Materie" value="Limba Română">
+          <input type="hidden" name="Mentor" value="Bianca Varvaroi">
+          <input type="hidden" name="_subject" value="Cerere nouă Formula X — Limba Română — Bianca Varvaroi">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_autoresponse" value="Am primit cererea ta pentru Formula X. Revenim cât mai curând cu detaliile despre înscriere. Mulțumim! — Echipa Formula X">
+          <input type="text" name="_honey" style="display:none">
+
+          <div class="enrollment-field">
+            <label>Nume și prenume *</label>
+            <input type="text" name="Nume elev" placeholder="Ex: Maria Popescu" required>
+          </div>
+
+          <div class="enrollment-field">
+            <label>Email *</label>
+            <input type="email" name="email" placeholder="exemplu@gmail.com" required>
+          </div>
+
+          <div class="enrollment-field">
+            <label>Telefon / WhatsApp *</label>
+            <input type="tel" name="Telefon / WhatsApp" placeholder="07xx xxx xxx" required>
+          </div>
+
+          <div class="enrollment-field">
+            <label>Clasa</label>
+            <select name="Clasa">
+              <option value="">Alege clasa</option>
+              <option>Clasa a IX-a</option>
+              <option>Clasa a X-a</option>
+              <option>Clasa a XI-a</option>
+              <option>Clasa a XII-a</option>
+              <option>Absolvent</option>
+            </select>
+          </div>
+
+          <div class="enrollment-field full">
+            <label>Săptămâna la care vrei să participi *</label>
+            <select name="Săptămâna aleasă" required>
+              <option value="" selected disabled>Alege săptămâna din program</option>
+              <option value="Săpt. 1 • 15–21 sept. — Subiectul I + text argumentativ">Săpt. 1 • 15–21 sept. — Subiectul I + text argumentativ</option>
+              <option value="Săpt. 2 • 22–28 sept. — Perspectiva narativă + rolul notațiilor">Săpt. 2 • 22–28 sept. — Perspectiva narativă + rolul notațiilor</option>
+              <option value="Săpt. 3 • 29 sept.–5 oct. — Caracterizare + ideea poetică">Săpt. 3 • 29 sept.–5 oct. — Caracterizare + ideea poetică</option>
+              <option value="Săpt. 4 • 6–12 oct. — Povestea lui Harap-Alb">Săpt. 4 • 6–12 oct. — Povestea lui Harap-Alb</option>
+              <option value="Săpt. 5 • 13–19 oct. — Moara cu noroc">Săpt. 5 • 13–19 oct. — Moara cu noroc</option>
+              <option value="Săpt. 6 • 20–26 oct. — Baltagul">Săpt. 6 • 20–26 oct. — Baltagul</option>
+              <option value="Săpt. 7 • 27 oct.–2 nov. — Ion">Săpt. 7 • 27 oct.–2 nov. — Ion</option>
+              <option value="Săpt. 8 • 3–9 nov. — Ultima noapte de dragoste, întâia noapte de război">Săpt. 8 • 3–9 nov. — Ultima noapte de dragoste, întâia noapte de război</option>
+              <option value="Săpt. 9 • 10–16 nov. — Enigma Otiliei">Săpt. 9 • 10–16 nov. — Enigma Otiliei</option>
+              <option value="Săpt. 10 • 17–23 nov. — Moromeții + recapitulare epic">Săpt. 10 • 17–23 nov. — Moromeții + recapitulare epic</option>
+              <option value="Săpt. 11 • 24–30 nov. — Luceafărul + Plumb">Săpt. 11 • 24–30 nov. — Luceafărul + Plumb</option>
+              <option value="Săpt. 12 • 1–7 dec. — Testament + Eu nu strivesc corola...">Săpt. 12 • 1–7 dec. — Testament + Eu nu strivesc corola...</option>
+              <option value="Săpt. 13 • 8–14 dec. — Riga Crypto + Aci sosi pe vremuri">Săpt. 13 • 8–14 dec. — Riga Crypto + Aci sosi pe vremuri</option>
+              <option value="Săpt. 14 • 15–21 dec. — Leoaică tânără, iubirea + recapitulare liric">Săpt. 14 • 15–21 dec. — Leoaică tânără, iubirea + recapitulare liric</option>
+              <option value="Săpt. 15 • 5–11 ian. — Iona + O scrisoare pierdută">Săpt. 15 • 5–11 ian. — Iona + O scrisoare pierdută</option>
+              <option value="Săpt. 16 • 12–18 ian. — Recapitulare complexă">Săpt. 16 • 12–18 ian. — Recapitulare complexă</option>
+              <option value="Săpt. 17 • 19–25 ian. — Simulare completă">Săpt. 17 • 19–25 ian. — Simulare completă</option>
+              <option value="Nu sunt sigur/ă — doresc recomandare">Nu sunt sigur/ă — doresc o recomandare</option>
+            </select>
+          </div>
+
+          <div class="enrollment-field">
+            <label>Nivel / notă actuală</label>
+            <input type="text" name="Nivel actual" placeholder="Ex: 6,50 / nivel mediu">
+          </div>
+
+          <div class="enrollment-field">
+            <label>Nota dorită la BAC</label>
+            <input type="text" name="Nota dorită" placeholder="Ex: 9+">
+          </div>
+
+          <div class="enrollment-field full">
+            <label>Mesaj pentru mentor</label>
+            <textarea name="Mesaj" placeholder="Spune-ne pe scurt ce ai vrea să aprofundezi sau ce dificultăți ai."></textarea>
+          </div>
+
+          <label class="enrollment-consent">
+            <input type="checkbox" required>
+            <span>Sunt de acord ca datele completate să fie folosite de Formula X exclusiv pentru a mă contacta în legătură cu această cerere de înscriere.</span>
+          </label>
+
+          <button class="enrollment-submit" type="submit">TRIMITE CEREREA →</button>
+          <div class="enrollment-note">După trimitere, vei primi confirmarea că formularul a fost înregistrat. Cererea nu reprezintă automat confirmarea unui loc.</div>
+        </form>
       </div>
 
       <!-- 2. CALENDAR DETALIAT 17 SĂPTĂMÂNI -->
@@ -2904,6 +3424,112 @@
         </div>
       </div>
 
+
+      <!-- ÎNSCRIERE / PROGRAMARE -->
+      <div class="math-card enrollment-card">
+        <div class="enrollment-head">
+          <span class="enrollment-kicker">📩 Înscriere Formula X</span>
+          <h2>Rezervă săptămâna la care vrei să participi</h2>
+          <p>Completează formularul, iar cererea ajunge direct la echipa Formula X. Vei fi contactat ulterior pentru confirmarea locului și detaliile ședinței.</p>
+        </div>
+
+        <div class="enrollment-summary">
+          <span>📚 Matematică</span>
+          <span>👩‍🏫 Mentor: Marius</span>
+          <span>💻 Online</span>
+        </div>
+
+        <form class="enrollment-form" action="https://formsubmit.co/formulax05@gmail.com" method="POST">
+          <input type="hidden" name="Materie" value="Matematică">
+          <input type="hidden" name="Mentor" value="Marius">
+          <input type="hidden" name="_subject" value="Cerere nouă Formula X — Matematică — Marius">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_autoresponse" value="Am primit cererea ta pentru Formula X. Revenim cât mai curând cu detaliile despre înscriere. Mulțumim! — Echipa Formula X">
+          <input type="text" name="_honey" style="display:none">
+
+          <div class="enrollment-field">
+            <label>Nume și prenume *</label>
+            <input type="text" name="Nume elev" placeholder="Ex: Maria Popescu" required>
+          </div>
+
+          <div class="enrollment-field">
+            <label>Email *</label>
+            <input type="email" name="email" placeholder="exemplu@gmail.com" required>
+          </div>
+
+          <div class="enrollment-field">
+            <label>Telefon / WhatsApp *</label>
+            <input type="tel" name="Telefon / WhatsApp" placeholder="07xx xxx xxx" required>
+          </div>
+
+          <div class="enrollment-field">
+            <label>Clasa</label>
+            <select name="Clasa">
+              <option value="">Alege clasa</option>
+              <option>Clasa a IX-a</option>
+              <option>Clasa a X-a</option>
+              <option>Clasa a XI-a</option>
+              <option>Clasa a XII-a</option>
+              <option>Absolvent</option>
+            </select>
+          </div>
+
+          <div class="enrollment-field full">
+            <label>Săptămâna la care vrei să participi *</label>
+            <select name="Săptămâna aleasă" required>
+              <option value="" selected disabled>Alege săptămâna din program</option>
+              <option value="Săpt. 1 • 15–21 sept. — Progresii + numere complexe">Săpt. 1 • 15–21 sept. — Progresii + numere complexe</option>
+              <option value="Săpt. 2 • 22–28 sept. — Funcții">Săpt. 2 • 22–28 sept. — Funcții</option>
+              <option value="Săpt. 3 • 29 sept.–5 oct. — Ecuații iraționale, logaritmice și exponențiale">Săpt. 3 • 29 sept.–5 oct. — Ecuații iraționale, logaritmice și exponențiale</option>
+              <option value="Săpt. 4 • 6–12 oct. — Probabilități, procente și numărare">Săpt. 4 • 6–12 oct. — Probabilități, procente și numărare</option>
+              <option value="Săpt. 5 • 13–19 oct. — Geometrie analitică + vectori (I)">Săpt. 5 • 13–19 oct. — Geometrie analitică + vectori (I)</option>
+              <option value="Săpt. 6 • 20–26 oct. — Geometrie analitică + vectori (II)">Săpt. 6 • 20–26 oct. — Geometrie analitică + vectori (II)</option>
+              <option value="Săpt. 7 • 27 oct.–2 nov. — Trigonometrie (I)">Săpt. 7 • 27 oct.–2 nov. — Trigonometrie (I)</option>
+              <option value="Săpt. 8 • 3–9 nov. — Trigonometrie (II)">Săpt. 8 • 3–9 nov. — Trigonometrie (II)</option>
+              <option value="Săpt. 9 • 10–16 nov. — Matrice și determinanți">Săpt. 9 • 10–16 nov. — Matrice și determinanți</option>
+              <option value="Săpt. 10 • 17–23 nov. — Sisteme de ecuații liniare">Săpt. 10 • 17–23 nov. — Sisteme de ecuații liniare</option>
+              <option value="Săpt. 11 • 24–30 nov. — Legi de compoziție (I)">Săpt. 11 • 24–30 nov. — Legi de compoziție (I)</option>
+              <option value="Săpt. 12 • 1–7 dec. — Legi de compoziție (II)">Săpt. 12 • 1–7 dec. — Legi de compoziție (II)</option>
+              <option value="Săpt. 13 • 8–14 dec. — Polinoame">Săpt. 13 • 8–14 dec. — Polinoame</option>
+              <option value="Săpt. 14 • 15–21 dec. — Derivate: introducere">Săpt. 14 • 15–21 dec. — Derivate: introducere</option>
+              <option value="Săpt. 15 • 22–28 dec. — Rolul primei derivate (I)">Săpt. 15 • 22–28 dec. — Rolul primei derivate (I)</option>
+              <option value="Săpt. 16 • 29 dec.–4 ian. — Rolul primei derivate (II)">Săpt. 16 • 29 dec.–4 ian. — Rolul primei derivate (II)</option>
+              <option value="Săpt. 17 • 5–11 ian. — Rolul celei de-a doua derivate">Săpt. 17 • 5–11 ian. — Rolul celei de-a doua derivate</option>
+              <option value="Săpt. 18 • 12–18 ian. — Asimptote + ecuații tangente">Săpt. 18 • 12–18 ian. — Asimptote + ecuații tangente</option>
+              <option value="Săpt. 19 • 19–25 ian. — Limite">Săpt. 19 • 19–25 ian. — Limite</option>
+              <option value="Săpt. 20 • 26 ian.–1 feb. — Integrale: introducere + aplicații">Săpt. 20 • 26 ian.–1 feb. — Integrale: introducere + aplicații</option>
+              <option value="Nu sunt sigur/ă — doresc recomandare">Nu sunt sigur/ă — doresc o recomandare</option>
+            </select>
+          </div>
+
+          <div class="enrollment-field">
+            <label>Nivel / notă actuală</label>
+            <input type="text" name="Nivel actual" placeholder="Ex: 6,50 / nivel mediu">
+          </div>
+
+          <div class="enrollment-field">
+            <label>Nota dorită la BAC</label>
+            <input type="text" name="Nota dorită" placeholder="Ex: 9+">
+          </div>
+
+          <div class="enrollment-field full">
+            <label>Mesaj pentru mentor</label>
+            <textarea name="Mesaj" placeholder="Spune-ne pe scurt ce ai vrea să aprofundezi sau ce dificultăți ai."></textarea>
+          </div>
+
+          <label class="enrollment-consent">
+            <input type="checkbox" required>
+            <span>Sunt de acord ca datele completate să fie folosite de Formula X exclusiv pentru a mă contacta în legătură cu această cerere de înscriere.</span>
+          </label>
+
+          <button class="enrollment-submit" type="submit">TRIMITE CEREREA →</button>
+          <div class="enrollment-note">După trimitere, vei primi confirmarea că formularul a fost înregistrat. Cererea nu reprezintă automat confirmarea unui loc.</div>
+        </form>
+      </div>
+
+
+
+
       <!-- 2. CALENDAR -->
       <div class="math-card">
         <div class="math-poster-header">
@@ -3054,6 +3680,108 @@
         </div>
       </div>
 
+      <!-- ÎNSCRIERE / PROGRAMARE -->
+      <div class="bio-card enrollment-card">
+        <div class="enrollment-head">
+          <span class="enrollment-kicker">📩 Înscriere Formula X</span>
+          <h2>Rezervă săptămâna la care vrei să participi</h2>
+          <p>Completează formularul, iar cererea ajunge direct la echipa Formula X. Vei fi contactat ulterior pentru confirmarea locului și detaliile ședinței.</p>
+        </div>
+
+        <div class="enrollment-summary">
+          <span>📚 Biologie</span>
+          <span>👩‍🏫 Mentor: Theodora</span>
+          <span>💻 Online</span>
+        </div>
+
+        <form class="enrollment-form" action="https://formsubmit.co/formulax05@gmail.com" method="POST">
+          <input type="hidden" name="Materie" value="Biologie">
+          <input type="hidden" name="Mentor" value="Theodora">
+          <input type="hidden" name="_subject" value="Cerere nouă Formula X — Biologie — Theodora">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_autoresponse" value="Am primit cererea ta pentru Formula X. Revenim cât mai curând cu detaliile despre înscriere. Mulțumim! — Echipa Formula X">
+          <input type="text" name="_honey" style="display:none">
+
+          <div class="enrollment-field">
+            <label>Nume și prenume *</label>
+            <input type="text" name="Nume elev" placeholder="Ex: Maria Popescu" required>
+          </div>
+
+          <div class="enrollment-field">
+            <label>Email *</label>
+            <input type="email" name="email" placeholder="exemplu@gmail.com" required>
+          </div>
+
+          <div class="enrollment-field">
+            <label>Telefon / WhatsApp *</label>
+            <input type="tel" name="Telefon / WhatsApp" placeholder="07xx xxx xxx" required>
+          </div>
+
+          <div class="enrollment-field">
+            <label>Clasa</label>
+            <select name="Clasa">
+              <option value="">Alege clasa</option>
+              <option>Clasa a IX-a</option>
+              <option>Clasa a X-a</option>
+              <option>Clasa a XI-a</option>
+              <option>Clasa a XII-a</option>
+              <option>Absolvent</option>
+            </select>
+          </div>
+
+          <div class="enrollment-field full">
+            <label>Săptămâna la care vrei să participi *</label>
+            <select name="Săptămâna aleasă" required>
+              <option value="" selected disabled>Alege săptămâna din program</option>
+              <option value="Săpt. 1 — Alcătuirea corpului uman">Săpt. 1 — Alcătuirea corpului uman</option>
+              <option value="Săpt. 2 — Sistemul nervos (partea I)">Săpt. 2 — Sistemul nervos (partea I)</option>
+              <option value="Săpt. 3 — Sistemul nervos (partea II)">Săpt. 3 — Sistemul nervos (partea II)</option>
+              <option value="Săpt. 4 — Sistemul nervos (partea III)">Săpt. 4 — Sistemul nervos (partea III)</option>
+              <option value="Săpt. 5 — Analizatori (partea I)">Săpt. 5 — Analizatori (partea I)</option>
+              <option value="Săpt. 6 — Analizatori (partea II)">Săpt. 6 — Analizatori (partea II)</option>
+              <option value="Săpt. 7 — Glande endocrine">Săpt. 7 — Glande endocrine</option>
+              <option value="Săpt. 8 — Locomotor: oase (partea I)">Săpt. 8 — Locomotor: oase (partea I)</option>
+              <option value="Săpt. 9 — Locomotor: oase (partea II) + mușchi">Săpt. 9 — Locomotor: oase (partea II) + mușchi</option>
+              <option value="Săpt. 10 — Digestiv (partea I)">Săpt. 10 — Digestiv (partea I)</option>
+              <option value="Săpt. 11 — Digestiv (partea II)">Săpt. 11 — Digestiv (partea II)</option>
+              <option value="Săpt. 12 — Circulator (partea I)">Săpt. 12 — Circulator (partea I)</option>
+              <option value="Săpt. 13 — Circulator (partea II)">Săpt. 13 — Circulator (partea II)</option>
+              <option value="Săpt. 14 — Respirator">Săpt. 14 — Respirator</option>
+              <option value="Săpt. 15 — Respirator (partea II)">Săpt. 15 — Respirator (partea II)</option>
+              <option value="Săpt. 16 — Excretor">Săpt. 16 — Excretor</option>
+              <option value="Săpt. 17 — Reproducător (partea I)">Săpt. 17 — Reproducător (partea I)</option>
+              <option value="Săpt. 18 — Reproducător (partea II)">Săpt. 18 — Reproducător (partea II)</option>
+              <option value="Săpt. 19 — Genetică (clasa a XII-a)">Săpt. 19 — Genetică (clasa a XII-a)</option>
+              <option value="Săpt. 20 — Ecologie (clasa a XII-a)">Săpt. 20 — Ecologie (clasa a XII-a)</option>
+              <option value="Nu sunt sigur/ă — doresc recomandare">Nu sunt sigur/ă — doresc o recomandare</option>
+            </select>
+          </div>
+
+          <div class="enrollment-field">
+            <label>Nivel / notă actuală</label>
+            <input type="text" name="Nivel actual" placeholder="Ex: 6,50 / nivel mediu">
+          </div>
+
+          <div class="enrollment-field">
+            <label>Nota dorită la BAC</label>
+            <input type="text" name="Nota dorită" placeholder="Ex: 9+">
+          </div>
+
+          <div class="enrollment-field full">
+            <label>Mesaj pentru mentor</label>
+            <textarea name="Mesaj" placeholder="Spune-ne pe scurt ce ai vrea să aprofundezi sau ce dificultăți ai."></textarea>
+          </div>
+
+          <label class="enrollment-consent">
+            <input type="checkbox" required>
+            <span>Sunt de acord ca datele completate să fie folosite de Formula X exclusiv pentru a mă contacta în legătură cu această cerere de înscriere.</span>
+          </label>
+
+          <button class="enrollment-submit" type="submit">TRIMITE CEREREA →</button>
+          <div class="enrollment-note">După trimitere, vei primi confirmarea că formularul a fost înregistrat. Cererea nu reprezintă automat confirmarea unui loc.</div>
+        </form>
+      </div>
+
       <!-- 2. CALENDAR -->
       <div class="bio-card">
         <div class="bio-calendar-header">
@@ -3190,6 +3918,109 @@
         </div>
       </div>
 
+
+      <!-- ÎNSCRIERE / PROGRAMARE -->
+      <div class="phys-card enrollment-card">
+        <div class="enrollment-head">
+          <span class="enrollment-kicker">📩 Înscriere Formula X</span>
+          <h2>Rezervă săptămâna la care vrei să participi</h2>
+          <p>Completează formularul, iar cererea ajunge direct la echipa Formula X. Vei fi contactat ulterior pentru confirmarea locului și detaliile ședinței.</p>
+        </div>
+
+        <div class="enrollment-summary">
+          <span>📚 Fizică</span>
+          <span>👩‍🏫 Mentor: Ioana</span>
+          <span>💻 Online</span>
+        </div>
+
+        <form class="enrollment-form" action="https://formsubmit.co/formulax05@gmail.com" method="POST">
+          <input type="hidden" name="Materie" value="Fizică">
+          <input type="hidden" name="Mentor" value="Ioana">
+          <input type="hidden" name="_subject" value="Cerere nouă Formula X — Fizică — Ioana">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_autoresponse" value="Am primit cererea ta pentru Formula X. Revenim cât mai curând cu detaliile despre înscriere. Mulțumim! — Echipa Formula X">
+          <input type="text" name="_honey" style="display:none">
+
+          <div class="enrollment-field">
+            <label>Nume și prenume *</label>
+            <input type="text" name="Nume elev" placeholder="Ex: Maria Popescu" required>
+          </div>
+
+          <div class="enrollment-field">
+            <label>Email *</label>
+            <input type="email" name="email" placeholder="exemplu@gmail.com" required>
+          </div>
+
+          <div class="enrollment-field">
+            <label>Telefon / WhatsApp *</label>
+            <input type="tel" name="Telefon / WhatsApp" placeholder="07xx xxx xxx" required>
+          </div>
+
+          <div class="enrollment-field">
+            <label>Clasa</label>
+            <select name="Clasa">
+              <option value="">Alege clasa</option>
+              <option>Clasa a IX-a</option>
+              <option>Clasa a X-a</option>
+              <option>Clasa a XI-a</option>
+              <option>Clasa a XII-a</option>
+              <option>Absolvent</option>
+            </select>
+          </div>
+
+          <div class="enrollment-field full">
+            <label>Săptămâna la care vrei să participi *</label>
+            <select name="Săptămâna aleasă" required>
+              <option value="" selected disabled>Alege săptămâna din program</option>
+              <option value="Săpt. 1 • 15–21 sept. — Curent electric, intensitate, tensiune electromotoare">Săpt. 1 • 15–21 sept. — Curent electric, intensitate, tensiune electromotoare</option>
+              <option value="Săpt. 2 • 22–28 sept. — Legea lui Ohm, rezistivitatea">Săpt. 2 • 22–28 sept. — Legea lui Ohm, rezistivitatea</option>
+              <option value="Săpt. 3 • 29 sept.–5 oct. — Scurtcircuitul, mersul în gol">Săpt. 3 • 29 sept.–5 oct. — Scurtcircuitul, mersul în gol</option>
+              <option value="Săpt. 4 • 6–12 oct. — Montaje serie/paralel, ampermetru și voltmetru">Săpt. 4 • 6–12 oct. — Montaje serie/paralel, ampermetru și voltmetru</option>
+              <option value="Săpt. 5 • 13–19 oct. — Legile lui Kirchhoff">Săpt. 5 • 13–19 oct. — Legile lui Kirchhoff</option>
+              <option value="Săpt. 6 • 20–26 oct. — Gruparea rezistoarelor">Săpt. 6 • 20–26 oct. — Gruparea rezistoarelor</option>
+              <option value="Săpt. 7 • 27 oct.–2 nov. — Gruparea generatoarelor electrice">Săpt. 7 • 27 oct.–2 nov. — Gruparea generatoarelor electrice</option>
+              <option value="Săpt. 8 • 3–9 nov. — Transformarea triunghi–stea">Săpt. 8 • 3–9 nov. — Transformarea triunghi–stea</option>
+              <option value="Săpt. 9 • 10–16 nov. — Energia electrică și puterea electrică">Săpt. 9 • 10–16 nov. — Energia electrică și puterea electrică</option>
+              <option value="Săpt. 10 • 17–23 nov. — Puterea maximă și randamentul">Săpt. 10 • 17–23 nov. — Puterea maximă și randamentul</option>
+              <option value="Săpt. 11 • 24–30 nov. — Unități de măsură și grafice">Săpt. 11 • 24–30 nov. — Unități de măsură și grafice</option>
+              <option value="Săpt. 12 • 1–7 dec. — Recapitulare electricitate">Săpt. 12 • 1–7 dec. — Recapitulare electricitate</option>
+              <option value="Săpt. 13 • 8–14 dec. — Noțiuni termodinamice de bază">Săpt. 13 • 8–14 dec. — Noțiuni termodinamice de bază</option>
+              <option value="Săpt. 14 • 15–21 dec. — Principiul I al termodinamicii">Săpt. 14 • 15–21 dec. — Principiul I al termodinamicii</option>
+              <option value="Săpt. 15 • 22–28 dec. — L, U și Q — probleme">Săpt. 15 • 22–28 dec. — L, U și Q — probleme</option>
+              <option value="Săpt. 16 • 29 dec.–4 ian. — Coeficienți calorici + Robert Mayer">Săpt. 16 • 29 dec.–4 ian. — Coeficienți calorici + Robert Mayer</option>
+              <option value="Săpt. 17 • 5–11 ian. — Principiul I la gazul ideal">Săpt. 17 • 5–11 ian. — Principiul I la gazul ideal</option>
+              <option value="Săpt. 18 • 12–18 ian. — Transformările gazului ideal + grafice">Săpt. 18 • 12–18 ian. — Transformările gazului ideal + grafice</option>
+              <option value="Săpt. 19 • 19–25 ian. — Principiul al II-lea al termodinamicii">Săpt. 19 • 19–25 ian. — Principiul al II-lea al termodinamicii</option>
+              <option value="Săpt. 20 • 26 ian.–1 feb. — Ciclul Carnot + motoare termice">Săpt. 20 • 26 ian.–1 feb. — Ciclul Carnot + motoare termice</option>
+              <option value="Nu sunt sigur/ă — doresc recomandare">Nu sunt sigur/ă — doresc o recomandare</option>
+            </select>
+          </div>
+
+          <div class="enrollment-field">
+            <label>Nivel / notă actuală</label>
+            <input type="text" name="Nivel actual" placeholder="Ex: 6,50 / nivel mediu">
+          </div>
+
+          <div class="enrollment-field">
+            <label>Nota dorită la BAC</label>
+            <input type="text" name="Nota dorită" placeholder="Ex: 9+">
+          </div>
+
+          <div class="enrollment-field full">
+            <label>Mesaj pentru mentor</label>
+            <textarea name="Mesaj" placeholder="Spune-ne pe scurt ce ai vrea să aprofundezi sau ce dificultăți ai."></textarea>
+          </div>
+
+          <label class="enrollment-consent">
+            <input type="checkbox" required>
+            <span>Sunt de acord ca datele completate să fie folosite de Formula X exclusiv pentru a mă contacta în legătură cu această cerere de înscriere.</span>
+          </label>
+
+          <button class="enrollment-submit" type="submit">TRIMITE CEREREA →</button>
+          <div class="enrollment-note">După trimitere, vei primi confirmarea că formularul a fost înregistrat. Cererea nu reprezintă automat confirmarea unui loc.</div>
+        </form>
+      </div>
+
       <div class="phys-card">
         <div class="phys-calendar-header">
           <div class="phys-calendar-badge">⚛️ BAC 2026</div>
@@ -3322,6 +4153,109 @@
             </div>
           </div>
         </div>
+      </div>
+
+
+      <!-- ÎNSCRIERE / PROGRAMARE -->
+      <div class="chem-card enrollment-card">
+        <div class="enrollment-head">
+          <span class="enrollment-kicker">📩 Înscriere Formula X</span>
+          <h2>Rezervă săptămâna la care vrei să participi</h2>
+          <p>Completează formularul, iar cererea ajunge direct la echipa Formula X. Vei fi contactat ulterior pentru confirmarea locului și detaliile ședinței.</p>
+        </div>
+
+        <div class="enrollment-summary">
+          <span>📚 Chimie Organică</span>
+          <span>👩‍🏫 Mentor: Ilaria</span>
+          <span>💻 Online</span>
+        </div>
+
+        <form class="enrollment-form" action="https://formsubmit.co/formulax05@gmail.com" method="POST">
+          <input type="hidden" name="Materie" value="Chimie Organică">
+          <input type="hidden" name="Mentor" value="Ilaria">
+          <input type="hidden" name="_subject" value="Cerere nouă Formula X — Chimie Organică — Ilaria">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_autoresponse" value="Am primit cererea ta pentru Formula X. Revenim cât mai curând cu detaliile despre înscriere. Mulțumim! — Echipa Formula X">
+          <input type="text" name="_honey" style="display:none">
+
+          <div class="enrollment-field">
+            <label>Nume și prenume *</label>
+            <input type="text" name="Nume elev" placeholder="Ex: Maria Popescu" required>
+          </div>
+
+          <div class="enrollment-field">
+            <label>Email *</label>
+            <input type="email" name="email" placeholder="exemplu@gmail.com" required>
+          </div>
+
+          <div class="enrollment-field">
+            <label>Telefon / WhatsApp *</label>
+            <input type="tel" name="Telefon / WhatsApp" placeholder="07xx xxx xxx" required>
+          </div>
+
+          <div class="enrollment-field">
+            <label>Clasa</label>
+            <select name="Clasa">
+              <option value="">Alege clasa</option>
+              <option>Clasa a IX-a</option>
+              <option>Clasa a X-a</option>
+              <option>Clasa a XI-a</option>
+              <option>Clasa a XII-a</option>
+              <option>Absolvent</option>
+            </select>
+          </div>
+
+          <div class="enrollment-field full">
+            <label>Săptămâna la care vrei să participi *</label>
+            <select name="Săptămâna aleasă" required>
+              <option value="" selected disabled>Alege săptămâna din program</option>
+              <option value="Săpt. 1 • 15–21 sept. — Introducere în chimia organică">Săpt. 1 • 15–21 sept. — Introducere în chimia organică</option>
+              <option value="Săpt. 2 • 22–28 sept. — Exerciții din introducere">Săpt. 2 • 22–28 sept. — Exerciții din introducere</option>
+              <option value="Săpt. 3 • 29 sept.–5 oct. — Alcani și benzine">Săpt. 3 • 29 sept.–5 oct. — Alcani și benzine</option>
+              <option value="Săpt. 4 • 6–12 oct. — Exerciții alcani și benzine">Săpt. 4 • 6–12 oct. — Exerciții alcani și benzine</option>
+              <option value="Săpt. 5 • 13–19 oct. — Alchene">Săpt. 5 • 13–19 oct. — Alchene</option>
+              <option value="Săpt. 6 • 20–26 oct. — Exerciții alchene">Săpt. 6 • 20–26 oct. — Exerciții alchene</option>
+              <option value="Săpt. 7 • 27 oct.–2 nov. — Alchine">Săpt. 7 • 27 oct.–2 nov. — Alchine</option>
+              <option value="Săpt. 8 • 3–9 nov. — Exerciții alchine">Săpt. 8 • 3–9 nov. — Exerciții alchine</option>
+              <option value="Săpt. 9 • 10–16 nov. — Arene">Săpt. 9 • 10–16 nov. — Arene</option>
+              <option value="Săpt. 10 • 17–23 nov. — Exerciții arene">Săpt. 10 • 17–23 nov. — Exerciții arene</option>
+              <option value="Săpt. 11 • 24–30 nov. — Alcooli">Săpt. 11 • 24–30 nov. — Alcooli</option>
+              <option value="Săpt. 12 • 1–7 dec. — Exerciții alcooli">Săpt. 12 • 1–7 dec. — Exerciții alcooli</option>
+              <option value="Săpt. 13 • 8–14 dec. — Acizi carboxilici">Săpt. 13 • 8–14 dec. — Acizi carboxilici</option>
+              <option value="Săpt. 14 • 15–21 dec. — Exerciții acizi carboxilici">Săpt. 14 • 15–21 dec. — Exerciții acizi carboxilici</option>
+              <option value="Săpt. 15 • 22–28 dec. — Grăsimi și agenți tensioactivi">Săpt. 15 • 22–28 dec. — Grăsimi și agenți tensioactivi</option>
+              <option value="Săpt. 16 • 29 dec.–4 ian. — Exerciții grăsimi și agenți tensioactivi">Săpt. 16 • 29 dec.–4 ian. — Exerciții grăsimi și agenți tensioactivi</option>
+              <option value="Săpt. 17 • 5–11 ian. — Aminoacizi și proteine">Săpt. 17 • 5–11 ian. — Aminoacizi și proteine</option>
+              <option value="Săpt. 18 • 12–18 ian. — Exerciții aminoacizi și proteine">Săpt. 18 • 12–18 ian. — Exerciții aminoacizi și proteine</option>
+              <option value="Săpt. 19 • 19–25 ian. — Zaharide">Săpt. 19 • 19–25 ian. — Zaharide</option>
+              <option value="Săpt. 20 • 26 ian.–1 feb. — Exerciții zaharide">Săpt. 20 • 26 ian.–1 feb. — Exerciții zaharide</option>
+              <option value="Nu sunt sigur/ă — doresc recomandare">Nu sunt sigur/ă — doresc o recomandare</option>
+            </select>
+          </div>
+
+          <div class="enrollment-field">
+            <label>Nivel / notă actuală</label>
+            <input type="text" name="Nivel actual" placeholder="Ex: 6,50 / nivel mediu">
+          </div>
+
+          <div class="enrollment-field">
+            <label>Nota dorită la BAC</label>
+            <input type="text" name="Nota dorită" placeholder="Ex: 9+">
+          </div>
+
+          <div class="enrollment-field full">
+            <label>Mesaj pentru mentor</label>
+            <textarea name="Mesaj" placeholder="Spune-ne pe scurt ce ai vrea să aprofundezi sau ce dificultăți ai."></textarea>
+          </div>
+
+          <label class="enrollment-consent">
+            <input type="checkbox" required>
+            <span>Sunt de acord ca datele completate să fie folosite de Formula X exclusiv pentru a mă contacta în legătură cu această cerere de înscriere.</span>
+          </label>
+
+          <button class="enrollment-submit" type="submit">TRIMITE CEREREA →</button>
+          <div class="enrollment-note">După trimitere, vei primi confirmarea că formularul a fost înregistrat. Cererea nu reprezintă automat confirmarea unui loc.</div>
+        </form>
       </div>
 
       <!-- 2. CALENDAR DETALIAT 20 SĂPTĂMÂNI -->
@@ -3469,6 +4403,47 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+
+  function deschideInscriereRapida() {
+    const modal = document.getElementById('enroll-modal');
+    const select = document.getElementById('quick-subject');
+    if (!modal) return;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => { if (select) select.focus(); }, 50);
+  }
+
+  function inchideInscriereRapida() {
+    const modal = document.getElementById('enroll-modal');
+    if (!modal) return;
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function inchideInscriereDinFundal(event) {
+    if (event.target && event.target.id === 'enroll-modal') {
+      inchideInscriereRapida();
+    }
+  }
+
+  function continuaInscriere(event) {
+    event.preventDefault();
+    const select = document.getElementById('quick-subject');
+    if (!select || !select.value) return;
+
+    const pagina = select.value;
+    inchideInscriereRapida();
+    schimbaPagina(pagina);
+
+    // Așteptăm afișarea paginii, apoi mergem direct la formularul materiei.
+    setTimeout(() => {
+      const formular = document.querySelector('#view-' + pagina + ' .enrollment-card');
+      if (formular) {
+        formular.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 180);
+  }
+
   function toggleMenuMobile() {
     const nav = document.getElementById('main-nav');
     const button = document.querySelector('.mobile-menu-toggle');
@@ -3478,6 +4453,11 @@
     button.setAttribute('aria-expanded', deschis ? 'true' : 'false');
     button.textContent = deschis ? '×' : '☰';
   }
+
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') inchideInscriereRapida();
+  });
 
   window.addEventListener('resize', () => {
     if (window.innerWidth > 760) {
