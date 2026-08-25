@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formula X - Pregătire BAC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy-dark: #081229;
+      --yellow-badge: #ffca28;
+      --yellow-btn: linear-gradient(90deg, #ffca28, #f59e0b);
+      --bg-white: #ffffff;
+      --text-dark: #0f172a;
+
+      /* Paletă deschisă, luminoasă și pastelată pentru Română */
+      --romana-bg: linear-gradient(135deg, #fdf2f8 0%, #f5f3ff 50%, #fff1f2 100%);
+      --card-bg: #ffffff;
+      --card-border: #e9d5ff;
+      --accent-pink: #db2777;
+      --accent-purple: #7e22ce;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Outfit', sans-serif; }
+
+    body {
+      background-color: var(--navy-dark);
+      color: #ffffff;
+      overflow-x: hidden;
+      background-image: radial-gradient(circle at 80% 20%, rgba(255, 202, 40, 0.05), transparent 40%);
+    }
+
+    /* === NAVIGARE & LOGO ARTISTIC === */
+    header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 60px; background: rgba(8, 18, 41, 0.95);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: fixed; width: 100%; top: 0; z-index: 1000;
+    }
+
+    .logo-nav {
+      font-size: 38px;
+      font-weight: 900;
+      font-style: italic;
+      letter-spacing: 3px;
+      background: linear-gradient(135deg, #ffe066 20%, #ffca28 60%, #f59e0b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      cursor: pointer;
+      text-transform: uppercase;
+      filter: drop-shadow(0 0 15px rgba(255, 202, 40, 0.5));
+      transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .logo-nav:hover {
+      transform: scale(1.03) skewX(-3deg);
+      filter: drop-shadow(0 0 25px rgba(255, 202, 40, 0.8));
+    }
+
+    nav { display: flex; gap: 35px; }
+    nav a {
+      color: #94a3b8; text-decoration: none; font-size: 15px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: 0.3s;
+    }
+    nav a:hover, nav a.active { color: var(--yellow-badge); }
+
+    .page-view { display: none; padding-top: 90px; }
+    .page-view.active { display: block; }
+
+    /* =========================================
+       PAGINA PRINCIPALĂ (ACASĂ)
+    ========================================== */
+    .hero-banner-section {
+      min-height: calc(100vh - 90px);
+      display: grid;
+      grid-template-columns: 1.1fr 1.3fr;
+      align-items: center;
+      padding: 40px 60px;
+      gap: 30px;
+      position: relative;
+    }
+
+    .hero-left-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding-left: 20px;
+    }
+
+    .badge-yellow {
+      background-color: var(--yellow-badge);
+      color: #081229;
+      font-size: 18px;
+      font-weight: 900;
+      padding: 12px 28px;
+      border-radius: 40px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 20px rgba(255, 202, 40, 0.4);
+    }
+
+    .hero-main-title {
+      font-size: 68px;
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 25px;
+      color: #ffffff;
+      letter-spacing: -1px;
+    }
+
+    .hero-subjects-list {
+      font-size: 19px;
+      color: #e2e8f0;
+      font-weight: 600;
+      margin-bottom: 40px;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-banner {
+      background: var(--yellow-btn);
+      color: #081229;
+      font-size: 22px;
+      font-weight: 900;
+      padding: 22px 48px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 10px 30px rgba(255, 202, 40, 0.4);
+      transition: 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn-banner:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(255, 202, 40, 0.6);
+    }
+
+    .hero-footer-info {
+      margin-top: 50px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #94a3b8;
+      text-transform: uppercase;
+    }
+    .hero-footer-info span {
+      color: var(--yellow-badge);
+      margin: 0 10px;
+    }
+
+    .hero-right-logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo-frame-wrapper {
+      position: relative;
+      padding: 20px;
+      background: linear-gradient(145deg, rgba(255, 202, 40, 0.15), rgba(8, 18, 41, 0.8));
+      border-radius: 50%;
+      border: 3px solid rgba(255, 202, 40, 0.6);
+      box-shadow: 0 0 70px rgba(255, 202, 40, 0.3), inset 0 0 40px rgba(255, 202, 40, 0.2);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-logo-img {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      border-radius: 50%;
+      display: block;
+      border: 4px solid #ffca28;
+    }
+
+    .materii-container {
+      background-color: var(--bg-white);
+      color: var(--text-dark);
+      padding: 80px 40px;
+      border-top-left-radius: 60px;
+      border-top-right-radius: 60px;
+    }
+    .sect-title { text-align: center; font-size: 42px; font-weight: 900; margin-bottom: 50px; color: var(--text-dark); }
+    .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 25px; max-width: 1400px; margin: 0 auto; }
+
+    .card-mat {
+      background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 24px;
+      padding: 40px 20px; text-align: center; cursor: pointer; transition: 0.4s;
+    }
+    .card-mat .icon { font-size: 55px; margin-bottom: 15px; display: block; }
+    .card-mat h3 { font-size: 18px; font-weight: 800; color: var(--text-dark); letter-spacing: 1px; }
+    .card-mat:hover {
+      transform: translateY(-10px); border-color: var(--yellow-badge); background: #ffffff;
+      box-shadow: 0 15px 30px rgba(255, 202, 40, 0.2);
+    }
+
+
+    /* =========================================
+       PAGINA DE ROMÂNĂ (LIGHT & BRIGHT DESIGN)
+    ========================================== */
+    .romana-page-bg {
+      background: var(--romana-bg);
+      min-height: 100vh;
+      padding-bottom: 80px;
+      position: relative;
+    }
+
+    .romana-wrapper { max-width: 1200px; margin: 0 auto; padding: 40px 20px; position: relative; z-index: 2; }
+
+    .romana-hero-banner {
+      text-align: center; padding: 50px 20px; margin-bottom: 25px;
+    }
+    .romana-hero-banner h1 {
+      font-size: 50px;
+      font-weight: 900;
+      margin-bottom: 15px;
+      line-height: 1.2;
+      color: #4a044e;
+    }
+    .romana-hero-banner h1 span {
+      background: linear-gradient(135deg, #db2777, #9333ea);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .romana-hero-banner p {
+      font-size: 19px;
+      color: #7e22ce;
+      max-width: 700px;
+      margin: 0 auto;
+      font-weight: 500;
+    }
+
+    .light-card {
+      background: var(--card-bg);
+      border: 2px solid var(--card-border);
+      border-radius: 32px;
+      padding: 50px;
+      margin-bottom: 40px;
+      box-shadow: 0 20px 50px rgba(126, 34, 206, 0.08);
+    }
+
+    /* 1. MENTORUL TĂU */
+    .mentor-box {
+      display: grid; grid-template-columns: 300px 1fr; gap: 40px; align-items: center;
+    }
+    .mentor-photo {
+      width: 100%; height: 360px; object-fit: cover;
+      border-radius: 24px;
+      border: 4px solid var(--accent-pink);
+      box-shadow: 0 10px 30px rgba(219, 39, 119, 0.2);
+    }
+    .r-tag {
+      background: #fdf2f8;
+      color: var(--accent-pink);
+      border: 1.5px solid #fbcfe8;
+      font-size: 13px; font-weight: 800; padding: 6px 20px;
+      border-radius: 20px;
+      text-transform: uppercase; letter-spacing: 1.5px; display: inline-block; margin-bottom: 18px;
+    }
+    .mentor-text h2 { font-size: 34px; font-weight: 900; margin-bottom: 18px; color: #4a044e; }
+    .mentor-text p { font-size: 16px; color: var(--text-main); line-height: 1.8; margin-bottom: 15px; font-weight: 400; }
+
+    /* Poster Header Calendar - Titlu centrat, badge pe stânga */
+    .poster-header {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 2px solid #f3e8ff;
+      padding-bottom: 25px;
+      margin-bottom: 30px;
+    }
+    .poster-badge-bac {
+      position: absolute;
+      left: 0;
+      background: linear-gradient(135deg, #db2777, #9333ea);
+      color: #ffffff;
+      padding: 10px 22px;
+      border-radius: 20px;
+      font-weight: 900;
+      font-size: 16px;
+      box-shadow: 0 4px 15px rgba(219, 39, 119, 0.3);
+    }
+    .poster-main-title-box {
+      text-align: center;
+      width: 100%;
+    }
+    .poster-main-title-box h2 {
+      font-size: 34px;
+      font-weight: 900;
+      color: #4a044e;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+      text-align: center;
+    }
+    .poster-main-title-box h2 span {
+      color: var(--accent-pink);
+      display: block;
+      font-size: 20px;
+      font-weight: 700;
+      font-style: italic;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    /* Top Info Bar */
+    .poster-info-bar {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+    .info-pill {
+      background: #fdf4ff;
+      border: 1px solid #f5d0fe;
+      padding: 8px 22px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 14px;
+      color: #7e22ce;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* CALENDAR TABLE STYLING (LIGHT) */
+    .calendar-table {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .calendar-row {
+      display: grid;
+      grid-template-columns: 180px 50px 1fr;
+      background: #faf5ff;
+      border: 1px solid #f3e8ff;
+      border-radius: 16px;
+      padding: 16px 20px;
+      align-items: center;
+      transition: 0.3s;
+    }
+    .calendar-row:hover {
+      background: #fdf2f8;
+      border-color: #fbcfe8;
+      transform: translateX(3px);
+    }
+
+    .cal-week-col {
+      display: flex;
+      flex-direction: column;
+    }
+    .cal-week-name {
+      font-size: 15px;
+      font-weight: 900;
+      color: var(--accent-pink);
+      text-transform: uppercase;
+    }
+    .cal-week-date {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .cal-icon-col {
+      font-size: 22px;
+      text-align: center;
+    }
+
+    .cal-content-col {
+      font-size: 14px;
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+    .cal-content-col strong {
+      color: #4a044e;
+      font-weight: 800;
+    }
+
+    .calendar-section-header {
+      grid-column: span 3;
+      background: linear-gradient(90deg, #fce7f3, #f3e8ff);
+      border-left: 5px solid var(--accent-pink);
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 900;
+      color: #4a044e;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 8px;
+    }
+
+    .calendar-winter-break {
+      grid-column: span 3;
+      background: #f8fafc;
+      border: 2px dashed #cbd5e1;
+      text-align: center;
+      padding: 12px;
+      border-radius: 12px;
+      font-weight: 800;
+      color: #64748b;
+      font-size: 15px;
+      letter-spacing: 1px;
+    }
+
+    .calendar-bonus-row {
+      background: #fefce8 !important;
+      border-color: #fef08a !important;
+    }
+
+    /* 3. RECENZII */
+    .chat-reviews-container {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 25px;
+    }
+    .chat-bubble {
+      background: #faf5ff;
+      border: 1px solid #f3e8ff;
+      border-radius: 20px;
+      padding: 25px;
+      position: relative;
+      box-shadow: 0 10px 25px rgba(126, 34, 206, 0.05);
+      transition: 0.3s;
+    }
+    .chat-bubble:hover {
+      background: #fdf2f8;
+      border-color: #fbcfe8;
+      transform: translateY(-2px);
+    }
+    .chat-author {
+      font-size: 13px; font-weight: 800; color: var(--accent-purple); text-transform: uppercase;
+      margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between;
+      letter-spacing: 1px;
+    }
+    .chat-bubble p {
+      font-size: 15px; color: var(--text-main); line-height: 1.7; font-style: italic; font-weight: 400;
+    }
+    .chat-bubble::after {
+      content: '⭐ 5/5'; position: absolute; bottom: 12px; right: 18px;
+      font-size: 12px; color: #d97706; font-weight: bold;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-banner-section { grid-template-columns: 1fr; text-align: center; padding: 40px 20px; }
+      .hero-left-content { align-items: center; padding-left: 0; }
+      .mentor-box { grid-template-columns: 1fr; text-align: center; }
+      .mentor-photo { height: 320px; max-width: 280px; margin: 0 auto; }
+      .chat-reviews-container { grid-template-columns: 1fr; }
+      .poster-header { position: static; flex-direction: column; gap: 15px; }
+      .poster-badge-bac { position: static; }
+      .calendar-row { grid-template-columns: 1fr; gap: 10px; }
+      .calendar-section-header, .calendar-winter-break { grid-column: span 1; }
+      .hero-main-title { font-size: 45px; }
+      .grid-5 { grid-template-columns: 1fr 1fr; }
+      .light-card { padding: 30px 15px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGARE -->
+<header>
+  <div class="logo-nav" onclick="schimbaPagina('acasa')">FORMULA X</div>
+  <nav>
+    <a id="nav-acasa" class="active" onclick="schimbaPagina('acasa')">Acasă</a>
+    <a id="nav-romana" onclick="schimbaPagina('romana')">Română</a>
+    <a>Matematică</a>
+    <a>Biologie</a>
+    <a>Fizică</a>
+    <a>Chimie</a>
+  </nav>
+</header>
+
+<!-- ================= VIEW: ACASĂ ================= -->
+<div id="view-acasa" class="page-view active">
+  <section class="hero-banner-section">
+    <div class="hero-left-content">
+      <span class="badge-yellow">Program de Pregătire</span>
+      <h1 class="hero-main-title">Formula potrivită pentru BAC.</h1>
+      <div class="hero-subjects-list">Matematică &nbsp;•&nbsp; Română &nbsp;•&nbsp; Biologie &nbsp;•&nbsp; Fizică &nbsp;•&nbsp; Chimie</div>
+
+      <button class="btn-banner" onclick="document.getElementById('sectiune-materii').scrollIntoView({ behavior: 'smooth' })">
+        DESCOPERĂ PROGRAMUL &rarr;
+      </button>
+
+      <div class="hero-footer-info">
+        BAC 2027 <span>|</span> LIVE ONLINE
+      </div>
+    </div>
+
+    <div class="hero-right-logo">
+      <div class="logo-frame-wrapper">
+        <img src="WhatsApp Image 2026-08-25 at 11.35.35.jpeg" alt="Formula X Logo" class="hero-logo-img">
+      </div>
+    </div>
+  </section>
+
+  <!-- SECȚIUNEA MATERII JOS -->
+  <section id="sectiune-materii" class="materii-container">
+    <h2 class="sect-title">Alege Materia</h2>
+    <div class="grid-5">
+      <div class="card-mat"><span class="icon">📐</span><h3>Matematică</h3></div>
+      <div class="card-mat" onclick="schimbaPagina('romana')"><span class="icon">✒️</span><h3>Română</h3></div>
+      <div class="card-mat"><span class="icon">🧬</span><h3>Biologie</h3></div>
+      <div class="card-mat"><span class="icon">⚛️</span><h3>Fizică</h3></div>
+      <div class="card-mat"><span class="icon">🧪</span><h3>Chimie</h3></div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ================= VIEW: ROMÂNĂ (LIGHT & MENTOR ON TOP) ================= -->
+<div id="view-romana" class="page-view">
+  <div class="romana-page-bg">
+    <div class="romana-wrapper">
+
+      <div class="romana-hero-banner">
+        <h1>De ce să alegi pregătirea la Română <span>cu Bianca?</span></h1>
+        <p>Nu îți spunem noi. Îți spun chiar elevii ei.</p>
+      </div>
+
+      <!-- 1. MENTORUL TĂU (SUS) -->
+      <div class="light-card">
+        <div class="mentor-box">
+          <img src="WhatsApp Image 2026-08-25 at 00.16.42.jpeg" alt="Bianca Varvaroi" class="mentor-photo">
+          <div class="mentor-text">
+            <span class="r-tag">Mentorul Tău</span>
+            <h2>Bianca Varvaroi</h2>
+            <p>Bună! Sunt Bianca Varvaroi și sunt studentă în anul I la Facultatea de Automatică și Calculatoare din cadrul Universității Tehnice din Cluj-Napoca.</p>
+            <p>Sunt o persoană calmă și răbdătoare și îmi place să explic lucrurile cât mai logic, fără să complic inutil materia. La ședințe merg mult pe structuri clare, scheme, imagini și explicații vizuale, pentru ca informația să fie mai ușor de înțeles și de reținut.</p>
+            <p>Pentru mine, pregătirea la română nu înseamnă să înveți mecanic pagini întregi, ci să înțelegi ce ai de făcut, cum este construit fiecare răspuns și cum poți aplica ceea ce ai învățat indiferent de subiect.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. CALENDAR DETALIAT 17 SĂPTĂMÂNI -->
+      <div class="light-card">
+        <div class="poster-header">
+          <div class="poster-badge-bac">🎓 BAC 2026</div>
+          <div class="poster-main-title-box">
+            <h2>Calendar de Pregătire Intensivă
+              <span>la Limba Română</span></h2>
+          </div>
+        </div>
+
+        <div class="poster-info-bar">
+          <div class="info-pill">📅 17 Săptămâni</div>
+          <div class="info-pill">💡 Învățare logică și structurată</div>
+        </div>
+
+        <!-- TABEL CALENDAR -->
+        <div class="calendar-table">
+
+          <!-- SECȚIUNE SUBIECTUL I -->
+          <div class="calendar-section-header">Subiectul I</div>
+
+          <div class="calendar-row">
+            <div class="cal-week-col">
+              <span class="cal-week-name">Săptămâna 1</span>
+              <span class="cal-week-date">15 - 21 septembrie</span>
+            </div>
+            <div class="cal-icon-col">📅</div>
+            <div class="cal-content-col">
+              <strong>A.</strong> Cum luăm punctaj maxim la subiectul I? (Fiecare exercițiu detaliat)<br>
+              <strong>B.</strong> Structura generală a textului argumentativ (conform baremului)
+            </div>
+          </div>
+
+          <!-- SECȚIUNE SUBIECTUL AL II-LEA -->
+          <div class="calendar-section-header">Subiectul al II-lea – Partea 1 & 2</div>
+
+          <div class="calendar-row">
+            <div class="cal-week-col">
+              <span class="cal-week-name">Săptămâna 2</span>
+              <span class="cal-week-date">22 - 28 septembrie</span>
+            </div>
+            <div class="cal-icon-col">🔍</div>
+            <div class="cal-content-col">
+              1. Perspectiva narativă obiectivă<br>
+              2. Perspectiva narativă subiectivă<br>
+              3. Rolul notațiilor autorului
+            </div>
+          </div>
+
+          <div class="calendar-row">
+            <div class="cal-week-col">
+              <span class="cal-week-name">Săptămâna 3</span>
+              <span class="cal-week-date">29 sept. - 5 oct.</span>
+            </div>
+            <div class="cal-icon-col">👤</div>
+            <div class="cal-content-col">
+              4. Două modalități de caracterizare<br>
+              5. Ideea poetică
+            </div>
+          </div>
+
+          <!-- SECȚIUNE SUBIECTUL AL III-LEA - EPIC -->
+          <div class="calendar-section-header">Subiectul al III-lea – Epic</div>
+
+          <div class="calendar-row">
+            <div class="cal-week-col"><span class="cal-week-name">Săptămâna 4</span><span class="cal-week-date">6 - 12 octombrie</span></div>
+            <div class="cal-icon-col">🏰</div>
+            <div class="cal-content-col"><strong>1.</strong> Povestea lui Harap-Alb, Ion Creangă</div>
+          </div>
+
+          <div class="calendar-row">
+            <div class="cal-week-col"><span class="cal-week-name">Săptămâna 5</span><span class="cal-week-date">13 - 19 octombrie</span></div>
+            <div class="cal-icon-col">⚔️</div>
+            <div class="cal-content-col"><strong>2.</strong> Moara cu noroc, Ioan Slavici</div>
+          </div>
+
+          <div class="calendar-row">
+            <div class="cal-week-col"><span class="cal-week-name">Săptămâna 6</span><span class="cal-week-date">20 - 26 octombrie</span></div>
+            <div class="cal-icon-col">🪓</div>
+            <div class="cal-content-col"><strong>3.</strong> Baltagul, Mihail Sadoveanu</div>
+          </div>
+
+          <div class="calendar-row">
+            <div class="cal-week-col"><span class="cal-week-name">Săptămâna 7</span><span class="cal-week-date">27 oct. - 2 nov.</span></div>
+            <div class="cal-icon-col">✒️</div>
+            <div class="cal-content-col"><strong>4.</strong> Ion, Liviu Rebreanu</div>
+          </div>
+
+          <div class="calendar-row">
+            <div class="cal-week-col"><span class="cal-week-name">Săptămâna 8</span><span class="cal-week-date">3 - 9 noiembrie</span></div>
+            <div class="cal-icon-col">🌙</div>
+            <div class="cal-content-col"><strong>5.</strong> Ultima noapte de dragoste, întâia noapte de război, Camil Petrescu</div>
+          </div>
+
+          <div class="calendar-row">
+            <div class="cal-week-col"><span class="cal-week-name">Săptămâna 9</span><span class="cal-week-date">10 - 16 noiembrie</span></div>
+            <div class="cal-icon-col">👤</div>
+            <div class="cal-content-col"><strong>6.</strong> Enigma Otiliei, George Călinescu</div>
+          </div>
+
+          <div class="calendar-row">
+            <div class="cal-week-col"><span class="cal-week-name">Săptămâna 10</span><span class="cal-week-date">17 - 23 noiembrie</span></div>
+            <div class="cal-icon-col">👥</div>
+            <div class="cal-content-col"><strong>7.</strong> Moromeții, Marin Preda<br><strong style="color: var(--accent-pink);">RECAPITULARE EPIC + KAHOOT 🏆</strong></div>
+          </div>
+
+          <!-- SECȚIUNE LIRIC -->
+          <div class="calendar-section-header">Liric</div>
+
+          <div class="calendar-row">
+            <div class="cal-week-col"><span class="cal-week-name">Săptămâna 11</span><span class="cal-week-date">24 - 30 noiembrie</span></div>
+            <div class="cal-icon-col">🎵</div>
+            <div class="cal-content-col"><strong>1.</strong> Luceafărul - Mihai Eminescu &nbsp;|&nbsp; <strong>2.</strong> Plumb - George Bacovia</div>
+          </div>
+
+          <div class="calendar-row">
+            <div class="cal-week-col"><span class="cal-week-name">Săptămâna 12</span><span class="cal-week-date">1 - 7 decembrie</span></div>
+            <div class="cal-icon-col">🌿</div>
+            <div class="cal-content-col"><strong>3.</strong> Testament - Tudor Arghezi &nbsp;|&nbsp; <strong>4.</strong> Eu nu strivesc corola de minuni a lumii - Lucian Blaga</div>
+          </div>
+
+          <div class="calendar-row">
+            <div class="cal-week-col"><span class="cal-week-name">Săptămâna 13</span><span class="cal-week-date">8 - 14 decembrie</span></div>
+            <div class="cal-icon-col">⭐</div>
+            <div class="cal-content-col"><strong>5.</strong> Riga Crypto și Lapona Enigel - Ion Barbu &nbsp;|&nbsp; <strong>6.</strong> Aci sosí pe vremuri - Ion Pillat</div>
+          </div>
+
+          <div class="calendar-row">
+            <div class="cal-week-col"><span class="cal-week-name">Săptămâna 14</span><span class="cal-week-date">15 - 21 decembrie</span></div>
+            <div class="cal-icon-col">✒️</div>
+            <div class="cal-content-col"><strong>7.</strong> Leoaică tânără, iubirea - Nichita Stănescu<br><strong style="color: var(--accent-pink);">RECAPITULARE LIRIC + KAHOOT 🏆</strong></div>
+          </div>
+
+          <!-- PAUZĂ DE IARNĂ -->
+          <div class="calendar-winter-break">❄️ PAUZĂ DE IARNĂ ❄️</div>
+
+          <!-- SECȚIUNE DRAMATIC -->
+          <div class="calendar-section-header">Dramatic</div>
+
+          <div class="calendar-row">
+            <div class="cal-week-col"><span class="cal-week-name">Săptămâna 15</span><span class="cal-week-date">5 - 11 ianuarie</span></div>
+            <div class="cal-icon-col">🎭</div>
+            <div class="cal-content-col"><strong>1.</strong> Iona, Marin Sorescu &nbsp;|&nbsp; <strong>2.</strong> O scrisoare pierdută, Ion Luca Caragiale</div>
+          </div>
+
+          <div class="calendar-row">
+            <div class="cal-week-col"><span class="cal-week-name">Săptămâna 16</span><span class="cal-week-date">12 - 18 ianuarie</span></div>
+            <div class="cal-icon-col">📋</div>
+            <div class="cal-content-col">
+              <strong>RECAPITULARE COMPLEXĂ – TOATE SUBIECTELE:</strong><br>
+              • Sinteze și scheme esențiale &nbsp;• Exerciții aplicate &nbsp;• Clarificări &nbsp;• <strong>KAHOOT 🏆</strong>
+            </div>
+          </div>
+
+          <!-- BONUS -->
+          <div class="calendar-row calendar-bonus-row">
+            <div class="cal-week-col"><span class="cal-week-name">Săptămâna 17 (Bonus)</span><span class="cal-week-date">19 - 25 ianuarie</span></div>
+            <div class="cal-icon-col">🎁</div>
+            <div class="cal-content-col">
+              <strong style="color: #b45309;">SIMULARE COMPLETĂ ÎN CONDIȚII DE EXAMEN!</strong><br>
+              • Simulare completă în condiții de examen &nbsp;• Corectare și feedback personalizat
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 3. RECENZII REALE -->
+      <div class="light-card">
+        <h2 style="text-align: center; font-size: 34px; font-weight: 900; margin-bottom: 10px; color: #4a044e;">Ce spun elevii mei</h2>
+        <p style="text-align: center; color: var(--accent-purple); font-size: 16px; margin-bottom: 25px; font-weight: 600;">Recenzii reale direct de la sesiunile de pregătire</p>
+
+        <div class="chat-reviews-container">
+          <div class="chat-bubble">
+            <div class="chat-author">Elev 1</div>
+            <p>"Am o părere minunată despre meetul de astăzi. Sunt încântată, predai foarte bine, ești calmă, răspunzi tuturor întrebărilor, treci de la general la particular și ești foarte empatică. M-ai ajutat să înțeleg în 40 de minute structura subiectului, cum se punctează și la ce să fim atenți."</p>
+          </div>
+
+          <div class="chat-bubble">
+            <div class="chat-author">Elev 2</div>
+            <p>"M-a ajutat mult (și mi-a plăcut) să discut cu tine pe baza eseului... Strategia pe care mi-ai explicat-o, despre cum pot să iau un punctaj cât mai mare, a clarificat nelămurirea pe care o aveam. Suportul vizual este un avantaj enorm pentru a învăța mai ușor!"</p>
+          </div>
+
+          <div class="chat-bubble">
+            <div class="chat-author">Elev 3</div>
+            <p>"Meetul din seara asta a fost super, mi-a plăcut că ne-ai explicat tot pe înțelesul nostru și asta cred că mi-a dat un plus de încredere și puțin mai mult chef să mă duc să mai repet, mulțumim!!"</p>
+          </div>
+
+          <div class="chat-bubble">
+            <div class="chat-author">Elev 4</div>
+            <p>"Are o calmitate aparte și un mod de a explica cu foarte mult drag și răbdare... În iunie am luat 5.30 la română, iar datorită implicării tale am reușit să ajung la 6,60 într-un timp destul de scurt. Sunt foarte mulțumită!"</p>
+          </div>
+
+          <div class="chat-bubble" style="grid-column: span 2;">
+            <div class="chat-author">Elev 5 (Nota 9,15 la BAC)</div>
+            <p>"La prima simulare am luat 4,80 iar la a doua 5,90 și sincer nu credeam că pot ajunge la o notă mai mare. Cu explicațiile și exercițiile făcute împreună am ajuns să iau punctaj maxim... La Bac am obținut 9,15 la limba română și sunt foarte recunoscătoare. O recomand cu mare drag oricui!"</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- SCRIPT -->
+<script>
+  function schimbaPagina(pagina) {
+    document.querySelectorAll('.page-view').forEach(view => view.classList.remove('active'));
+    document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
+
+    document.getElementById('view-' + pagina).classList.add('active');
+    let navLink = document.getElementById('nav-' + pagina);
+    if (navLink) navLink.classList.add('active');
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
