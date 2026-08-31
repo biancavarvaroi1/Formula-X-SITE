@@ -1,5 +1,6 @@
--- Formula X V8 — Camera de studiu
+-- Formula X V9 — Camera de studiu / rezultate cronometrate
 -- Rulează o singură dată în Supabase > SQL Editor.
+-- Scriptul este idempotent: poate fi rulat și dacă ai rulat deja V8.
 
 alter table public.test_attempts
   add column if not exists score_points numeric(5,2),
@@ -26,4 +27,4 @@ begin
 end $$;
 
 -- RLS și politicile existente rămân neschimbate.
--- Utilizatorii autentificați continuă să poată insera/citi doar propriile încercări.
+-- Fiecare utilizator autentificat continuă să poată citi și modifica doar propriile rezultate.
