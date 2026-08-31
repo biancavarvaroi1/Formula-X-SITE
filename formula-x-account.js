@@ -24,7 +24,9 @@
     goal: { weekly_target: 3 },
     progress: new Map(),
     attempts: [],
-    recoveryMode: false
+    recoveryMode: false,
+    routeIndex: new Map(),
+    routeTotal: 0
   };
 
   const MATTER_LABELS = {
@@ -132,6 +134,60 @@
     });
   }
 
+  function rebuildRouteIndex() {
+    const relevant = profileComplete() ? personalizedTests() : [];
+    state.routeIndex = new Map(relevant.map((test, index) => [test.id, { index: index + 1, total: relevant.length }]));
+    state.routeTotal = relevant.length;
+    return relevant;
+  }
+
+  function renderRouteLibrarySummary() {
+    const summary = $('fx-route-library-summary');
+    if (!summary) return;
+    if (!state.user || !profileComplete()) {
+      summary.hidden = true;
+      summary.innerHTML = '';
+      return;
+    }
+    const total = state.routeTotal || personalizedTests().length;
+    summary.hidden = false;
+    summary.innerHTML = `<strong>Traseul tău BAC:</strong> <b>${total} teste numerotate</b> pentru ${escapeHtml(profileLabel(state.profile))}. Toate testele din arhivă rămân vizibile; cele marcate „Test suplimentar” nu intră în procentul traseului tău.`;
+  }
+
+  function showAllTests() {
+    if (typeof schimbaPagina === 'function') schimbaPagina('teste');
+    setTimeout(() => {
+      if (typeof reseteazaFiltreBibliotecaTeste === 'function') {
+        reseteazaFiltreBibliotecaTeste();
+      } else {
+        const profile = $('tests-profile-filter');
+        if (profile) profile.value = 'toate';
+        if (typeof randareTesteAntrenament === 'function') randareTesteAntrenament();
+      }
+      renderRouteLibrarySummary();
+    }, 80);
+  }
+
+  function focusAuthCard(mode) {
+    const loginCard = $('fx-auth-login-card');
+    const signupCard = $('fx-auth-signup-card');
+    [loginCard, signupCard].forEach(card => card?.classList.remove('is-focused'));
+    const target = mode === 'signup' ? signupCard : loginCard;
+    if (target) {
+      target.classList.add('is-focused');
+      setTimeout(() => target.classList.remove('is-focused'), 1800);
+    }
+    const input = mode === 'signup' ? $('fx-signup-name') : $('fx-login-email');
+    setTimeout(() => input?.focus(), 100);
+  }
+
+  function openAuthPage(mode) {
+    if (typeof schimbaPagina === 'function') schimbaPagina('cont');
+    setTimeout(() => focusAuthCard(mode), 120);
+  }
+
+  window.FormulaXOpenAuth = openAuthPage;
+
   function setMessage(el, message, type) {
     if (!el) return;
     el.textContent = message || '';
@@ -217,18 +273,52 @@
     document.body.style.overflow = '';
   }
 
+  function renderHeaderAuthState() {
+    const loggedIn = Boolean(state.user);
+    const login = $('fx-header-login');
+    const signup = $('fx-header-signup');
+    const account = $('fx-header-account');
+    const navAccount = $('nav-cont');
+    if (login) login.hidden = loggedIn;
+    if (signup) signup.hidden = loggedIn;
+    if (account) {
+      account.hidden = !loggedIn;
+      account.textContent = loggedIn ? 'Contul meu' : 'Contul meu';
+    }
+    if (navAccount) navAccount.hidden = !loggedIn;
+  }
+
+  function resetAuthCards() {
+    const loginCard = $('fx-auth-login-card');
+    const signupCard = $('fx-auth-signup-card');
+    const recoveryCard = $('fx-recovery-card');
+    if (loginCard) loginCard.hidden = false;
+    if (signupCard) signupCard.hidden = false;
+    if (recoveryCard) recoveryCard.hidden = true;
+  }
+
   function renderAuthState() {
     const auth = $('fx-auth-section');
     const dash = $('fx-dashboard');
+    const hero = $('fx-account-hero');
     const chip = $('fx-account-user-chip');
+
+    renderHeaderAuthState();
+
     if (!state.user) {
+      resetAuthCards();
       if (auth) auth.hidden = false;
       if (dash) dash.hidden = true;
+      if (hero) hero.hidden = true;
       if (chip) chip.hidden = true;
+      rebuildRouteIndex();
+      renderRouteLibrarySummary();
       return;
     }
+
     if (auth) auth.hidden = true;
     if (dash) dash.hidden = false;
+    if (hero) hero.hidden = false;
     if (chip) {
       chip.hidden = false;
       chip.textContent = state.profile?.name || state.user.email || 'Cont Formula X';
@@ -289,7 +379,7 @@
 
   function renderDashboard() {
     if (!state.user) return;
-    const relevant = personalizedTests();
+    const relevant = rebuildRouteIndex();
     const completed = completedRelevantSet(relevant);
     const total = relevant.length;
     const done = completed.size;
@@ -307,6 +397,10 @@
     $('fx-stat-average').textContent = avg == null ? '—' : formatGrade(avg);
     $('fx-stat-percent').textContent = `${percentage}%`;
     $('fx-stat-streak').textContent = `🔥 ${streak} ${streak===1?'zi':'zile'}`;
+
+    const completion = $('fx-route-complete');
+    if (completion) completion.hidden = !(total > 0 && done === total);
+    renderRouteLibrarySummary();
 
     renderChart(state.attempts);
 
@@ -364,12 +458,22 @@
     if(!box) return;
     if(!state.user) {
       box.innerHTML='<span class="fx-test-progress-status">Vrei să ții minte testele făcute?</span><button type="button" class="fx-login-test-btn">SALVEAZĂ PROGRESUL</button><span class="fx-test-note">Cont gratuit Formula X</span>';
-      box.querySelector('button').addEventListener('click',()=>{ if(typeof schimbaPagina==='function') schimbaPagina('cont'); });
+      box.querySelector('button').addEventListener('click',()=>openAuthPage('signup'));
       return;
     }
+
+    const route = profileComplete() ? state.routeIndex.get(id) : null;
+    const routeBadge = profileComplete()
+      ? (route
+          ? `<span class="fx-route-number">Traseul tău • #${route.index} din ${route.total}</span>`
+          : '<span class="fx-route-number extra">Test suplimentar</span>')
+      : '';
+
     const p=state.progress.get(id);
-    const status=p?.completed ? `<span class="fx-test-progress-status done">✓ Rezolvat${p.last_grade!=null?' • ultima notă '+formatGrade(p.last_grade):''}</span>` : '<span class="fx-test-progress-status">Marchează testul ca rezolvat și salvează nota.</span>';
-    box.innerHTML=`${status}<input class="fx-grade-input" type="number" min="1" max="10" step="0.01" inputmode="decimal" aria-label="Nota pentru test" placeholder="Nota" value="${p?.last_grade!=null?Number(p.last_grade).toFixed(2):''}"><button type="button" class="fx-save-test-btn">SALVEAZĂ</button><span class="fx-test-note">1,00–10,00</span>`;
+    const status=p?.completed
+      ? `<span class="fx-test-progress-status done">✓ Rezolvat${p.last_grade!=null?' • ultima notă '+formatGrade(p.last_grade):''}</span>`
+      : '<span class="fx-test-progress-status">Marchează testul ca rezolvat și salvează nota.</span>';
+    box.innerHTML=`${routeBadge}${status}<input class="fx-grade-input" type="number" min="1" max="10" step="0.01" inputmode="decimal" aria-label="Nota pentru test" placeholder="Nota" value="${p?.last_grade!=null?Number(p.last_grade).toFixed(2):''}"><button type="button" class="fx-save-test-btn">SALVEAZĂ</button><span class="fx-test-note">1,00–10,00</span>`;
     const btn=box.querySelector('.fx-save-test-btn');
     btn.addEventListener('click',()=>saveTestGrade(id,box));
   }
@@ -394,6 +498,8 @@
   }
 
   function refreshAllTestProgressBoxes() {
+    rebuildRouteIndex();
+    renderRouteLibrarySummary();
     document.querySelectorAll('.fx-test-progress[data-progress-for]').forEach(box=>renderTestProgressBox(box,box.dataset.progressFor));
   }
 
@@ -415,6 +521,7 @@
     state.profile=res.data;
     setMessage($('fx-profile-message'),'Profil salvat.','success');
     closeOnboarding(); renderAuthState(); refreshAllTestProgressBoxes();
+    if (typeof randareTesteAntrenament === 'function') randareTesteAntrenament();
   }
 
   async function saveGoal() {
@@ -458,15 +565,11 @@
     const {error}=await db.auth.updateUser({password});
     if(error){ setMessage($('fx-auth-message'),error.message,'error'); return; }
     state.recoveryMode=false;
-    $('fx-reset-password-form').hidden=true;
+    resetAuthCards();
     setMessage($('fx-auth-message'),'Parola a fost schimbată.','success');
+    renderAuthState();
   }
 
-  function switchAuthTab(tab) {
-    document.querySelectorAll('.fx-auth-tab').forEach(b=>b.classList.toggle('active',b.dataset.authTab===tab));
-    $('fx-login-form').hidden=tab!=='login'; $('fx-signup-form').hidden=tab!=='signup'; $('fx-reset-password-form').hidden=true;
-    setMessage($('fx-auth-message'),'');
-  }
 
   async function bootstrapSession() {
     const {data,error}=await db.auth.getSession();
@@ -477,7 +580,11 @@
   }
 
   function setupEvents() {
-    document.querySelectorAll('.fx-auth-tab').forEach(btn=>btn.addEventListener('click',()=>switchAuthTab(btn.dataset.authTab)));
+    $('fx-header-login')?.addEventListener('click',()=>openAuthPage('login'));
+    $('fx-header-signup')?.addEventListener('click',()=>openAuthPage('signup'));
+    $('fx-header-account')?.addEventListener('click',()=>{ if(typeof schimbaPagina==='function') schimbaPagina('cont'); });
+    $('nav-cont')?.addEventListener('click',()=>{ if(typeof schimbaPagina==='function') schimbaPagina('cont'); });
+
     $('fx-login-form')?.addEventListener('submit',signIn);
     $('fx-signup-form')?.addEventListener('submit',signUp);
     $('fx-reset-password-form')?.addEventListener('submit',updatePassword);
@@ -488,7 +595,8 @@
     $('fx-edit-profile')?.addEventListener('click',()=>openOnboarding(true));
     $('fx-logout')?.addEventListener('click',()=>db.auth.signOut());
     $('fx-save-goal')?.addEventListener('click',saveGoal);
-    $('fx-go-tests')?.addEventListener('click',()=>{ if(typeof schimbaPagina==='function') schimbaPagina('teste'); });
+    $('fx-go-tests')?.addEventListener('click',showAllTests);
+    $('fx-explore-extra')?.addEventListener('click',showAllTests);
     $('tests-profile-filter')?.addEventListener('change',()=>{ if(typeof randareTesteAntrenament==='function') randareTesteAntrenament(); });
 
     const library=$('tests-library');
@@ -503,15 +611,32 @@
     setTimeout(async ()=>{
       if(event==='PASSWORD_RECOVERY'){
         state.recoveryMode=true;
+        state.user=session?.user||null;
         if(typeof schimbaPagina==='function') schimbaPagina('cont');
-        if ($('fx-login-form')) $('fx-login-form').hidden=true;
-        if ($('fx-signup-form')) $('fx-signup-form').hidden=true;
-        if ($('fx-reset-password-form')) $('fx-reset-password-form').hidden=false;
+        const auth=$('fx-auth-section');
+        const dash=$('fx-dashboard');
+        const hero=$('fx-account-hero');
+        if(auth) auth.hidden=false;
+        if(dash) dash.hidden=true;
+        if(hero) hero.hidden=true;
+        if($('fx-auth-login-card')) $('fx-auth-login-card').hidden=true;
+        if($('fx-auth-signup-card')) $('fx-auth-signup-card').hidden=true;
+        if($('fx-recovery-card')) $('fx-recovery-card').hidden=false;
+        setMessage($('fx-auth-message'),'Alege o parolă nouă pentru contul tău.');
         return;
       }
       state.user=session?.user||null;
-      if(state.user) await loadUserData(); else { state.profile=null;state.progress=new Map();state.attempts=[];state.goal={weekly_target:3}; }
-      renderAuthState(); refreshAllTestProgressBoxes();
+      if(state.user) await loadUserData();
+      else {
+        state.profile=null;
+        state.progress=new Map();
+        state.attempts=[];
+        state.goal={weekly_target:3};
+        state.routeIndex=new Map();
+        state.routeTotal=0;
+      }
+      renderAuthState();
+      refreshAllTestProgressBoxes();
     },0);
   });
 

@@ -7034,8 +7034,13 @@
     <a id="nav-fizica" onclick="schimbaPagina('fizica')">Fizică</a>
     <a id="nav-chimie" onclick="schimbaPagina('chimie')">Chimie</a>
     <a id="nav-teste" onclick="schimbaPagina('teste')">Teste</a>
-    <a id="nav-cont" onclick="schimbaPagina('cont')">Contul meu</a>
+    <a id="nav-cont" class="fx-nav-account-link" onclick="schimbaPagina('cont')" hidden>Contul meu</a>
   </nav>
+  <div id="fx-header-auth-actions" class="fx-header-auth-actions" aria-label="Cont Formula X">
+    <button type="button" id="fx-header-login" class="fx-header-login">Conectare</button>
+    <button type="button" id="fx-header-signup" class="fx-header-signup">Înregistrare</button>
+    <button type="button" id="fx-header-account" class="fx-header-account" hidden>Contul meu</button>
+  </div>
 </header>
 
 <!-- ÎNSCRIERE RAPIDĂ DE PE PAGINA PRINCIPALĂ -->
@@ -7382,6 +7387,7 @@
           <button type="button" class="simple-reset" id="tests-reset-filters">Resetare</button>
         </div>
 
+        <div id="fx-route-library-summary" class="fx-route-library-summary" hidden></div>
         <div id="tests-library" class="simple-library"></div>
       </main>
 
@@ -7393,54 +7399,71 @@
 <!-- ================= VIEW: CONT ELEV ================= -->
 <div id="view-cont" class="page-view">
   <div class="fx-account-page">
-    <section class="fx-account-hero">
+    <section id="fx-account-hero" class="fx-account-hero" hidden>
       <div>
         <span class="fx-account-eyebrow">Formula X • Progres personal</span>
         <h1>Contul meu</h1>
-        <p>Ține evidența testelor rezolvate, a notelor și a progresului tău până la BAC.</p>
+        <p>Traseul tău BAC, testele rezolvate, notele și evoluția — toate într-un singur loc.</p>
       </div>
       <div id="fx-account-user-chip" class="fx-account-user-chip" hidden></div>
     </section>
 
     <section id="fx-auth-section" class="fx-auth-shell">
       <div class="fx-auth-intro">
-        <span class="fx-account-eyebrow">Cont gratuit</span>
-        <h2>Transformă arhiva într-un plan de pregătire.</h2>
-        <p>După autentificare, Formula X îți arată doar traseul relevant profilului tău și îți calculează automat câte teste ai rezolvat și câte mai ai.</p>
+        <span class="fx-account-eyebrow">Cont Formula X • Gratuit</span>
+        <h1>Nu mai rezolva teste la întâmplare.</h1>
+        <p class="fx-auth-lead">Transformă arhiva Formula X într-un traseu clar până la BAC. Îți alegi profilul, specializarea și proba E.d, iar noi numărăm doar testele care intră în traseul tău.</p>
+
         <div class="fx-auth-benefits">
-          <span>✓ Teste bifate</span><span>✓ Note și încercări</span><span>✓ Grafic de progres</span><span>✓ Obiectiv săptămânal</span>
+          <div><strong>01</strong><span><b>Bifezi testele rezolvate</b><small>Știi mereu ce ai făcut și ce urmează.</small></span></div>
+          <div><strong>02</strong><span><b>Îți salvezi notele</b><small>Poți reveni la același test și urmări progresul.</small></span></div>
+          <div><strong>03</strong><span><b>Vezi câte mai ai</b><small>Ex.: 38 din 164 teste relevante profilului tău.</small></span></div>
+          <div><strong>04</strong><span><b>Îți monitorizezi evoluția</b><small>Medie, grafic și obiectiv săptămânal.</small></span></div>
+        </div>
+
+        <div class="fx-auth-preview" aria-label="Exemplu de progres Formula X">
+          <div><span>Traseul meu</span><strong>38 / 164</strong><small>teste rezolvate</small></div>
+          <div><span>Media mea</span><strong>8,47</strong><small>în creștere ↗</small></div>
+          <div class="fx-auth-preview-progress"><i style="width:23%"></i></div>
+          <p>Toate testele rămân disponibile. Cele din profilul tău sunt marcate și numerotate; celelalte pot fi lucrate suplimentar.</p>
         </div>
       </div>
 
-      <div class="fx-auth-card">
-        <div class="fx-auth-tabs" role="tablist">
-          <button type="button" class="fx-auth-tab active" data-auth-tab="login">Intră în cont</button>
-          <button type="button" class="fx-auth-tab" data-auth-tab="signup">Creează cont</button>
-        </div>
-
+      <div id="fx-auth-login-card" class="fx-auth-card fx-auth-card-login">
+        <span class="fx-form-kicker">Ai deja cont?</span>
+        <h2>Conectare</h2>
+        <p class="fx-auth-card-copy">Continuă de unde ai rămas și vezi progresul tău.</p>
         <form id="fx-login-form" class="fx-auth-form">
           <label>Email<input type="email" id="fx-login-email" autocomplete="email" required placeholder="nume@email.com"></label>
           <label>Parolă<input type="password" id="fx-login-password" autocomplete="current-password" required minlength="6" placeholder="Parola ta"></label>
           <button type="submit" class="fx-primary-btn">INTRĂ ÎN CONT</button>
           <button type="button" id="fx-forgot-password" class="fx-link-btn">Am uitat parola</button>
         </form>
+      </div>
 
-        <form id="fx-signup-form" class="fx-auth-form" hidden>
+      <div id="fx-auth-signup-card" class="fx-auth-card fx-auth-card-signup">
+        <span class="fx-form-kicker">Prima dată aici?</span>
+        <h2>Creează cont gratuit</h2>
+        <p class="fx-auth-card-copy">Îți ia mai puțin de un minut. După confirmare îți alegi traseul BAC.</p>
+        <form id="fx-signup-form" class="fx-auth-form">
           <label>Nume și prenume<input type="text" id="fx-signup-name" autocomplete="name" required maxlength="80" placeholder="Ex: Andreea Popescu"></label>
           <label>Email<input type="email" id="fx-signup-email" autocomplete="email" required placeholder="nume@email.com"></label>
           <label>Parolă<input type="password" id="fx-signup-password" autocomplete="new-password" required minlength="8" placeholder="Minimum 8 caractere"></label>
           <button type="submit" class="fx-primary-btn">CREEAZĂ CONT GRATUIT</button>
           <p class="fx-auth-small">După creare, verifică emailul pentru confirmarea contului.</p>
         </form>
+      </div>
 
-        <form id="fx-reset-password-form" class="fx-auth-form" hidden>
-          <h3>Alege o parolă nouă</h3>
+      <div id="fx-recovery-card" class="fx-auth-card fx-recovery-card" hidden>
+        <span class="fx-form-kicker">Securitate cont</span>
+        <h2>Alege o parolă nouă</h2>
+        <form id="fx-reset-password-form" class="fx-auth-form">
           <label>Parolă nouă<input type="password" id="fx-new-password" autocomplete="new-password" required minlength="8" placeholder="Minimum 8 caractere"></label>
           <button type="submit" class="fx-primary-btn">SALVEAZĂ PAROLA</button>
         </form>
-
-        <div id="fx-auth-message" class="fx-auth-message" aria-live="polite"></div>
       </div>
+
+      <div id="fx-auth-message" class="fx-auth-message fx-auth-message-wide" aria-live="polite"></div>
     </section>
 
     <section id="fx-dashboard" class="fx-dashboard" hidden>
@@ -7451,17 +7474,27 @@
           <p id="fx-dashboard-profile">Completează profilul pentru un progres personalizat.</p>
         </div>
         <div class="fx-dashboard-actions">
-          <button type="button" id="fx-edit-profile" class="fx-secondary-btn">Editează profilul</button>
+          <button type="button" id="fx-edit-profile" class="fx-secondary-btn">Editează traseul BAC</button>
           <button type="button" id="fx-logout" class="fx-secondary-btn">Ieși din cont</button>
         </div>
       </div>
 
       <div class="fx-stat-grid">
-        <article class="fx-stat-card"><span>Teste rezolvate</span><strong id="fx-stat-completed">0</strong><small id="fx-stat-total">din 0</small></article>
-        <article class="fx-stat-card"><span>Mai ai de rezolvat</span><strong id="fx-stat-remaining">0</strong><small>în traseul tău</small></article>
+        <article class="fx-stat-card"><span>Teste din traseul tău</span><strong id="fx-stat-completed">0</strong><small id="fx-stat-total">din 0</small></article>
+        <article class="fx-stat-card"><span>Mai ai de rezolvat</span><strong id="fx-stat-remaining">0</strong><small>din BAC-ul selectat</small></article>
         <article class="fx-stat-card"><span>Media ta</span><strong id="fx-stat-average">—</strong><small>toate încercările</small></article>
-        <article class="fx-stat-card"><span>Arhivă completată</span><strong id="fx-stat-percent">0%</strong><small id="fx-stat-streak">🔥 0 zile</small></article>
+        <article class="fx-stat-card"><span>Traseu completat</span><strong id="fx-stat-percent">0%</strong><small id="fx-stat-streak">🔥 0 zile</small></article>
       </div>
+
+      <article id="fx-route-complete" class="fx-route-complete" hidden>
+        <div class="fx-route-complete-icon">✓</div>
+        <div>
+          <span class="fx-account-eyebrow">Traseu principal finalizat</span>
+          <h3>Ai parcurs toate testele relevante profilului tău.</h3>
+          <p>Foarte bine. De aici îți recomandăm să lucrezi și variante din alte profile: întâlnești cerințe diferite și îți consolidezi materia fără să îți modificăm procentul traseului principal.</p>
+        </div>
+        <button type="button" id="fx-explore-extra" class="fx-primary-btn">EXPLOREAZĂ TESTE SUPLIMENTARE →</button>
+      </article>
 
       <div class="fx-dashboard-grid">
         <article class="fx-panel fx-chart-panel">
@@ -7481,7 +7514,8 @@
       </div>
 
       <article class="fx-panel">
-        <div class="fx-panel-head"><div><span class="fx-account-eyebrow">Traseul meu</span><h3>Progres pe materii</h3></div><button type="button" id="fx-go-tests" class="fx-primary-btn fx-small-btn">CONTINUĂ CU TESTELE →</button></div>
+        <div class="fx-panel-head"><div><span class="fx-account-eyebrow">Traseul meu</span><h3>Progres pe materii</h3></div><button type="button" id="fx-go-tests" class="fx-primary-btn fx-small-btn">VEZI TOATE TESTELE →</button></div>
+        <p class="fx-panel-explainer">Numărăm doar testele relevante profilului și probei tale. Restul arhivei rămâne disponibilă ca antrenament suplimentar.</p>
         <div id="fx-subject-progress" class="fx-subject-progress"></div>
       </article>
 
@@ -7497,14 +7531,14 @@
 <div id="fx-onboarding" class="fx-modal" role="dialog" aria-modal="true" aria-labelledby="fx-onboarding-title" hidden>
   <div class="fx-modal-card">
     <span class="fx-account-eyebrow">Personalizare Formula X</span>
-    <h2 id="fx-onboarding-title">Spune-ne ce BAC dai</h2>
-    <p>Folosim aceste informații doar ca să îți calculăm traseul și numărul de teste relevante.</p>
+    <h2 id="fx-onboarding-title">Configurează traseul tău BAC</h2>
+    <p>Alege profilul, specializarea și proba E.d. Toate testele rămân vizibile în arhivă, dar doar cele relevante alegerilor tale vor fi numerotate și incluse în progres.</p>
     <form id="fx-profile-form" class="fx-profile-form">
       <label>Nume și prenume<input type="text" id="fx-profile-name" required maxlength="80"></label>
       <label>Anul BAC
         <select id="fx-profile-bac-year" required><option value="2027">2027</option><option value="2028">2028</option><option value="2029">2029</option></select>
       </label>
-      <label>Profil
+      <label>Profilul de la liceu
         <select id="fx-profile-type" required>
           <option value="" disabled selected>Alege profilul</option>
           <option value="real">Real</option><option value="uman">Uman</option><option value="tehnologic">Tehnologic</option><option value="pedagogic">Pedagogic</option>
@@ -7513,7 +7547,7 @@
       <label>Specializare
         <select id="fx-profile-specialization" required><option value="" disabled selected>Alege mai întâi profilul</option></select>
       </label>
-      <label>Proba E.d
+      <label>Proba la alegere (E.d)
         <select id="fx-profile-optional" required>
           <option value="" disabled selected>Alege materia</option>
           <option value="bio-anatomie">Biologie — Anatomie și fiziologie umană</option>
