@@ -1,6 +1,29 @@
 <!DOCTYPE html>
-<html lang="ro">
+<html lang="ro" class="fx-user-anonymous">
 <head>
+<!-- Formula X • Google Analytics 4 -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  (function(){
+    var choice = null;
+    try { choice = localStorage.getItem('fx_analytics_consent'); } catch (e) {}
+    gtag('consent', 'default', {
+      'analytics_storage': choice === 'granted' ? 'granted' : 'denied',
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'wait_for_update': 500
+    });
+  })();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QJZDLFJ37Z"></script>
+<script>
+  gtag('js', new Date());
+  gtag('config', 'G-QJZDLFJ37Z');
+</script>
+<script defer src="/formula-x-analytics.js"></script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#081229">
@@ -7018,9 +7041,227 @@
     }
 
   </style>
-  <link rel="stylesheet" href="formula-x-account.css">
+  <style id="formula-x-account-inline">
+/* Formula X — cont elev / progres v4 • auth și dashboard complet separate */
+#view-cont {
+  background:
+    radial-gradient(circle at 78% 8%, rgba(255,202,40,.09), transparent 28%),
+    radial-gradient(circle at 8% 70%, rgba(37,99,235,.08), transparent 34%),
+    linear-gradient(180deg,#081229 0%,#0b1730 46%,#081229 100%);
+  color:#fff; min-height:100vh;
+}
+.fx-account-page { width:min(1240px, calc(100% - 32px)); margin:0 auto; padding:42px 0 72px; }
+.fx-account-eyebrow { display:inline-block; color:#ffca28; font-size:10.5px; font-weight:900; letter-spacing:1.15px; text-transform:uppercase; }
+.fx-account-hero[hidden],.fx-auth-shell[hidden],.fx-dashboard[hidden],.fx-route-complete[hidden],.fx-recovery-card[hidden],.fx-route-library-summary[hidden] { display:none !important; }
+
+/* Stare de autentificare — imposibil să apară auth + dashboard simultan.
+   Implicit (inclusiv înainte să se încarce JS) dashboard-ul este ascuns. */
+html:not(.fx-user-authenticated) #fx-dashboard,
+html:not(.fx-user-authenticated) #fx-account-hero { display:none !important; }
+html.fx-user-authenticated #fx-auth-section { display:none !important; }
+html.fx-user-anonymous #fx-dashboard,
+html.fx-user-anonymous #fx-account-hero { display:none !important; }
+html.fx-user-anonymous #fx-auth-section { display:grid !important; }
+
+
+/* Header auth — formal, discret */
+.fx-header-auth-actions { display:flex; align-items:center; gap:8px; flex:0 0 auto; margin-left:22px; }
+.fx-header-auth-actions button { min-height:38px; padding:8px 13px; border-radius:9px; font:inherit; font-size:11px; font-weight:900; letter-spacing:.45px; text-transform:uppercase; cursor:pointer; transition:.2s ease; }
+.fx-header-login,.fx-header-account {
+  border:1px solid #ffca28;
+  background:rgba(255,202,40,.08);
+  color:#ffca28;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.02);
+}
+.fx-header-login:hover,.fx-header-account:hover { background:#ffca28; color:#081229; border-color:#ffca28; transform:translateY(-1px); }
+.fx-header-signup {
+  border:1px solid #ffca28;
+  background:linear-gradient(90deg,#ffca28,#f59e0b);
+  color:#081229;
+  box-shadow:0 6px 18px rgba(245,158,11,.18);
+}
+.fx-header-signup:hover { filter:brightness(1.06); border-color:#ffd85a; transform:translateY(-1px); }
+.fx-header-auth-actions [hidden],.fx-nav-account-link[hidden] { display:none !important; }
+
+/* Hero only when authenticated */
+.fx-account-hero { display:flex; justify-content:space-between; gap:24px; align-items:flex-end; padding:29px 31px; border-radius:20px; background:linear-gradient(135deg,#09172f,#17365d); color:#fff; box-shadow:0 16px 42px rgba(8,18,41,.13); }
+.fx-account-hero h1 { font-size:clamp(34px,5vw,56px); line-height:1; margin:6px 0 9px; }
+.fx-account-hero p { max-width:720px; color:#dbe4f2; font-size:15px; line-height:1.6; }
+.fx-account-user-chip { padding:10px 14px; border:1px solid rgba(255,255,255,.17); border-radius:999px; background:rgba(255,255,255,.08); color:#fff; font-size:13px; font-weight:800; }
+
+/* Auth landing: explanation + two independent cards */
+.fx-auth-shell { display:grid; grid-template-columns:minmax(330px,1.18fr) minmax(260px,.82fr) minmax(260px,.82fr); gap:18px; align-items:start; }
+.fx-auth-intro,.fx-auth-card,.fx-panel,.fx-stat-card { background:#fff; border:1px solid #e0e5eb; box-shadow:0 14px 34px rgba(0,0,0,.15); }
+.fx-auth-intro { min-height:100%; padding:38px 36px; border-radius:18px; border:1px solid rgba(255,202,40,.23); background:linear-gradient(145deg,rgba(16,35,70,.98),rgba(8,18,41,.98)); box-shadow:0 18px 48px rgba(0,0,0,.22); }
+.fx-auth-intro h1 { max-width:620px; margin:8px 0 14px; color:#ffffff; font-size:clamp(31px,3.4vw,48px); line-height:1.07; letter-spacing:-.7px; }
+.fx-auth-lead { max-width:650px; color:#d6dfed; font-size:15px; line-height:1.72; }
+.fx-auth-benefits { display:grid; gap:10px; margin-top:27px; }
+.fx-auth-benefits > div { display:grid; grid-template-columns:35px 1fr; gap:11px; align-items:start; padding:12px 13px; border:1px solid rgba(255,255,255,.11); border-radius:11px; background:rgba(255,255,255,.055); }
+.fx-auth-benefits > div > strong { display:grid; place-items:center; width:31px; height:31px; border-radius:8px; background:rgba(255,202,40,.14); color:#ffca28; font-size:10px; letter-spacing:.5px; }
+.fx-auth-benefits span { display:grid; gap:2px; color:#ffffff; }
+.fx-auth-benefits b { font-size:13px; }
+.fx-auth-benefits small { color:#bdc9da; font-size:11.5px; line-height:1.45; }
+.fx-auth-benefits > div span,.fx-auth-benefits > div b,.fx-auth-benefits > div small { position:static !important; inset:auto !important; transform:none !important; width:auto !important; max-width:none !important; margin:0 !important; }
+.fx-auth-benefits > div b,.fx-auth-benefits > div small { display:block !important; }
+.fx-auth-preview { margin-top:22px; padding:17px; border-radius:13px; border:1px solid rgba(255,202,40,.16); background:rgba(3,12,28,.55); color:#fff; display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.fx-auth-preview > div:not(.fx-auth-preview-progress) { display:grid; gap:2px; }
+.fx-auth-preview span { color:#aebdd1; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.6px; }
+.fx-auth-preview strong { font-size:24px; color:#fff; }
+.fx-auth-preview small { color:#d6deea; font-size:10.5px; }
+.fx-auth-preview-progress { grid-column:1/-1; height:8px; overflow:hidden; border-radius:999px; background:rgba(255,255,255,.13); }
+.fx-auth-preview-progress i { display:block; height:100%; border-radius:inherit; background:#e3ad22; }
+.fx-auth-preview p { grid-column:1/-1; color:#c9d4e2; font-size:11px; line-height:1.5; }
+
+.fx-auth-card { padding:25px 23px; border-radius:16px; min-width:0; transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease; }
+.fx-auth-card.is-focused { border-color:#ffca28; box-shadow:0 0 0 4px rgba(255,202,40,.16),0 12px 32px rgba(0,0,0,.14); transform:translateY(-1px); }
+.fx-auth-card h2 { margin:5px 0 7px; color:#10233e; font-size:24px; line-height:1.15; }
+.fx-form-kicker { color:#777f8b; font-size:10.5px; font-weight:850; text-transform:uppercase; letter-spacing:.7px; }
+.fx-auth-card-copy { min-height:47px; margin-bottom:17px; color:#737e8d; font-size:12px; line-height:1.55; }
+.fx-auth-form { display:grid; gap:13px; }
+.fx-auth-form h3 { color:#12233f; font-size:22px; }
+.fx-auth-form label,.fx-profile-form label,.fx-goal-edit { display:grid; gap:6px; color:#26364c; font-size:11.5px; font-weight:850; }
+.fx-auth-form input,.fx-profile-form input,.fx-profile-form select,.fx-goal-edit select { width:100%; min-height:46px; padding:9px 12px; border:1px solid #ccd5df; border-radius:8px; background:#fff; color:#111827; outline:none; font-size:16px; }
+.fx-auth-form input:focus,.fx-profile-form input:focus,.fx-profile-form select:focus,.fx-goal-edit select:focus { border-color:#e5ab12; box-shadow:0 0 0 3px rgba(255,202,40,.16); }
+.fx-primary-btn,.fx-secondary-btn,.fx-link-btn { font:inherit; cursor:pointer; }
+.fx-primary-btn { min-height:44px; padding:9px 16px; border:1px solid #ffca28; border-radius:8px; background:linear-gradient(90deg,#ffca28,#f59e0b); color:#081229; font-weight:900; letter-spacing:.3px; box-shadow:0 7px 18px rgba(245,158,11,.13); }
+.fx-primary-btn:hover { filter:brightness(1.06); transform:translateY(-1px); }
+.fx-secondary-btn { min-height:40px; padding:8px 13px; border:1px solid #d4dbe4; border-radius:8px; background:#fff; color:#21334c; font-weight:850; }
+.fx-dashboard-topline .fx-secondary-btn { border-color:rgba(255,202,40,.55); background:rgba(255,202,40,.08); color:#ffca28; }
+.fx-dashboard-topline .fx-secondary-btn:hover { background:#ffca28; color:#081229; }
+.fx-link-btn { min-height:34px; border:0; background:transparent; color:#315d88; text-decoration:underline; font-weight:750; }
+.fx-auth-small { color:#818b98; font-size:10.5px; line-height:1.45; }
+.fx-auth-message { min-height:18px; color:#526071; font-size:12px; font-weight:700; }
+.fx-auth-message-wide { grid-column:2/-1; padding:0 3px; }
+.fx-auth-message.error { color:#b42318; }
+.fx-auth-message.success { color:#217a4d; }
+.fx-recovery-card { grid-column:2/-1; max-width:520px; }
+
+/* Dashboard — visible only after login */
+.fx-dashboard { margin-top:24px; display:grid; gap:18px; }
+.fx-dashboard-topline { display:flex; justify-content:space-between; gap:20px; align-items:flex-end; padding:4px 2px; }
+.fx-dashboard-topline h2 { color:#fff; font-size:30px; margin:5px 0; }
+.fx-dashboard-topline p { color:#c5cfdd; }
+.fx-dashboard-actions { display:flex; gap:8px; flex-wrap:wrap; }
+.fx-stat-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+.fx-stat-card { padding:19px; border-radius:13px; min-width:0; }
+.fx-stat-card span { display:block; color:#697587; font-size:11px; font-weight:800; }
+.fx-stat-card strong { display:block; margin:7px 0 3px; color:#102846; font-size:33px; line-height:1; }
+.fx-stat-card small { color:#8993a0; font-size:10.5px; }
+.fx-dashboard-grid { display:grid; grid-template-columns:minmax(0,1.6fr) minmax(260px,.7fr); gap:14px; }
+.fx-panel { padding:21px; border-radius:14px; min-width:0; }
+.fx-panel-head { display:flex; justify-content:space-between; align-items:center; gap:13px; margin-bottom:15px; }
+.fx-panel-head h3 { color:#17243a; font-size:19px; margin-top:3px; }
+.fx-panel-explainer { margin:-5px 0 17px; color:#778292; font-size:11.5px; line-height:1.5; }
+.fx-trend-chip { padding:7px 10px; border-radius:999px; background:#eef4fa; color:#285b8f; font-size:10.5px; font-weight:850; }
+.fx-progress-chart { min-height:235px; display:flex; align-items:center; justify-content:center; color:#8a95a3; overflow:hidden; }
+.fx-progress-chart svg { width:100%; height:auto; max-height:270px; }
+.fx-goal-number { display:flex; align-items:baseline; gap:7px; margin:22px 0 10px; color:#193d67; }
+.fx-goal-number strong { font-size:36px; }
+.fx-goal-number span { color:#7a8796; font-weight:800; }
+.fx-progress-track { height:9px; overflow:hidden; border-radius:999px; background:#edf1f5; margin-bottom:18px; }
+.fx-progress-track > span { display:block; height:100%; border-radius:inherit; background:linear-gradient(90deg,#d49a19,#edbd43); }
+.fx-full-btn { width:100%; margin-top:11px; }
+.fx-small-btn { min-height:38px; font-size:10.5px; }
+.fx-inline-status { min-height:18px; margin:8px 2px 0; font-size:11px; font-weight:800; line-height:1.4; color:#697587; }
+.fx-inline-status.success { color:#217a4d; }
+.fx-inline-status.error { color:#b42318; }
+.fx-inline-action { display:inline-flex; align-items:center; justify-content:center; text-decoration:none; white-space:nowrap; }
+.fx-subject-progress { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+.fx-subject-card { position:relative; display:grid; gap:12px; padding:17px; min-width:0; border:1px solid #e0e6ed; border-radius:13px; background:linear-gradient(180deg,#fff,#fbfcfe); }
+.fx-subject-card-top { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
+.fx-subject-probe { display:block; margin-bottom:3px; color:#c48608; font-size:9.5px; font-weight:900; letter-spacing:.65px; text-transform:uppercase; }
+.fx-subject-name { color:#172943; font-weight:900; font-size:14px; line-height:1.3; }
+.fx-subject-count { color:#173d67; font-size:19px; font-weight:950; white-space:nowrap; }
+.fx-subject-count small { display:block; margin-top:2px; color:#8a95a3; font-size:9px; font-weight:750; text-align:right; }
+.fx-subject-bar { height:8px; border-radius:999px; background:#edf1f5; overflow:hidden; }
+.fx-subject-bar span { display:block; height:100%; border-radius:inherit; background:linear-gradient(90deg,#173d67,#d69b18); }
+.fx-subject-meta { display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap; color:#758091; font-size:10.5px; }
+.fx-subject-meta strong { color:#35465d; }
+.fx-subject-open { min-height:36px; padding:7px 10px; border:1px solid #d7a52e; border-radius:8px; background:#fff9e8; color:#173d67; text-decoration:none; text-align:center; font-size:10px; font-weight:900; }
+.fx-subject-open:hover { background:#ffca28; color:#081229; }
+.fx-next-test-highlight { outline:3px solid rgba(255,202,40,.65); outline-offset:3px; border-radius:10px; background:#fffdf2 !important; transition:background .2s ease,outline .2s ease; }
+.fx-recent-attempts { display:grid; gap:8px; }
+.fx-attempt-row { display:grid; grid-template-columns:minmax(0,1fr) auto auto; gap:11px; align-items:center; padding:11px 12px; border:1px solid #e3e8ed; border-radius:9px; background:#fbfcfd; }
+.fx-attempt-row strong { color:#1b2b42; font-size:12.5px; }
+.fx-attempt-row span { color:#758091; font-size:10.5px; }
+.fx-attempt-grade { min-width:52px; padding:7px 8px; border-radius:7px; background:#eaf2fa; color:#174e82 !important; text-align:center; font-weight:900; font-size:12.5px !important; }
+.fx-empty { padding:19px; border:1px dashed #ccd4dd; border-radius:9px; color:#7a8594; text-align:center; font-size:12.5px; }
+
+/* Completion recommendation */
+.fx-route-complete { display:grid; grid-template-columns:auto minmax(0,1fr) auto; gap:17px; align-items:center; padding:20px 22px; border:1px solid #d8c185; border-radius:15px; background:linear-gradient(110deg,#fffdf7,#fff9e9); }
+.fx-route-complete-icon { display:grid; place-items:center; width:48px; height:48px; border-radius:50%; background:#173d67; color:#fff; font-size:22px; font-weight:900; }
+.fx-route-complete h3 { margin:4px 0 5px; color:#132845; font-size:19px; }
+.fx-route-complete p { max-width:760px; color:#687486; font-size:12px; line-height:1.55; }
+
+/* Profile onboarding */
+.fx-modal[hidden] { display:none !important; }
+.fx-modal { position:fixed; inset:0; z-index:3000; display:flex; align-items:center; justify-content:center; padding:20px; background:rgba(5,13,28,.78); backdrop-filter:blur(8px); }
+.fx-modal-card { width:min(650px,100%); max-height:calc(100vh - 40px); overflow:auto; padding:28px; border-radius:17px; background:#fff; color:#111827; box-shadow:0 30px 70px rgba(0,0,0,.24); }
+.fx-modal-card h2 { margin:6px 0 8px; color:#14243c; font-size:28px; }
+.fx-modal-card > p { color:#6c7888; line-height:1.6; margin-bottom:19px; }
+.fx-profile-form { display:grid; grid-template-columns:1fr 1fr; gap:13px; }
+.fx-profile-form > label:first-child,.fx-profile-form > label:last-of-type,.fx-profile-form .fx-auth-message,.fx-profile-form > button { grid-column:1/-1; }
+
+/* Test archive: all tests visible; route tests are numbered */
+.fx-route-library-summary { margin:0 0 14px; padding:13px 15px; border:1px solid #d9e1ea; border-left:4px solid #d39b21; border-radius:10px; background:#fff; color:#4e5e72; font-size:12px; line-height:1.55; }
+.fx-route-library-summary strong { color:#173b65; }
+.fx-route-library-summary b { color:#b47c00; }
+.fx-test-progress { grid-column:1/-1; display:flex; flex-wrap:wrap; align-items:center; gap:8px; padding:9px 12px; border-top:1px solid #e2e7ec; background:#f8fafc; }
+.fx-route-number { flex:0 0 auto; padding:5px 8px; border-radius:999px; background:#e9f1f9; color:#164b7c; font-size:10px; font-weight:900; letter-spacing:.15px; }
+.fx-route-number.extra { background:#f1f2f4; color:#7c8590; }
+.fx-test-progress-status { margin-right:auto; color:#5c6877; font-size:11px; font-weight:800; }
+.fx-test-progress-status.done { color:#26794f; }
+.fx-grade-input { width:86px; min-height:37px; padding:7px 8px; border:1px solid #cdd6df; border-radius:7px; background:#fff; color:#172337; font-size:14px; }
+.fx-save-test-btn,.fx-login-test-btn { min-height:37px; padding:7px 11px; border:0; border-radius:7px; background:#173d67; color:#fff; font-size:10px; font-weight:900; }
+.fx-save-test-btn:disabled { opacity:.55; cursor:wait; }
+.fx-test-note { color:#87919e; font-size:10px; }
+
+@media (min-width:951px) { .simple-tests-filters { grid-template-columns:minmax(0,1.2fr) 130px 180px 150px 105px !important; } }
+@media (max-width:1180px) {
+  .fx-header-auth-actions { margin-left:10px; }
+  .fx-header-auth-actions button { padding:7px 10px; font-size:10px; }
+  .fx-auth-shell { grid-template-columns:1fr 1fr; }
+  .fx-auth-intro { grid-column:1/-1; }
+  .fx-auth-message-wide { grid-column:1/-1; }
+}
+@media (max-width:900px) {
+  .fx-dashboard-grid { grid-template-columns:1fr; }
+  .fx-stat-grid { grid-template-columns:1fr 1fr; }
+  .fx-account-hero,.fx-dashboard-topline { align-items:flex-start; flex-direction:column; }
+  .fx-route-complete { grid-template-columns:auto 1fr; }
+  .fx-route-complete .fx-primary-btn { grid-column:1/-1; width:100%; }
+}
+@media (max-width:760px) {
+  .fx-header-auth-actions { margin-left:auto; gap:5px; }
+  .fx-header-auth-actions button { min-height:36px; padding:7px 9px; font-size:9.5px; }
+  header nav .fx-nav-account-link { display:flex !important; }
+}
+@media (max-width:650px) {
+  .fx-account-page { width:min(100% - 18px,1240px); padding-top:22px; }
+  .fx-account-hero { padding:22px 18px; border-radius:14px; }
+  .fx-auth-shell { grid-template-columns:1fr; gap:12px; }
+  .fx-auth-intro,.fx-auth-card,.fx-panel { padding:18px; }
+  .fx-auth-intro h1 { font-size:34px; }
+  .fx-auth-preview { grid-template-columns:1fr 1fr; }
+  .fx-auth-message-wide,.fx-recovery-card { grid-column:1; }
+  .fx-stat-grid,.fx-profile-form { grid-template-columns:1fr; }
+  .fx-profile-form > * { grid-column:1/-1 !important; }
+  .fx-subject-progress { grid-template-columns:1fr; }
+  .fx-subject-card { padding:15px; }
+  .fx-subject-count { text-align:left; }
+  .fx-attempt-row { grid-template-columns:1fr auto; }
+  .fx-attempt-row > span:nth-child(2) { grid-row:2; grid-column:1; }
+  .fx-test-progress { align-items:stretch; }
+  .fx-route-number,.fx-test-progress-status { width:100%; }
+  .fx-grade-input { flex:1 1 100px; }
+  .fx-route-complete { grid-template-columns:1fr; text-align:left; }
+}
+
+</style>
 </head>
 <body>
+<!-- Formula X Accounts V6: 3-probe progress + robust dashboard actions -->
+
 
 <!-- NAVIGARE -->
 <header>
@@ -7037,9 +7278,9 @@
     <a id="nav-cont" class="fx-nav-account-link" onclick="schimbaPagina('cont')" hidden>Contul meu</a>
   </nav>
   <div id="fx-header-auth-actions" class="fx-header-auth-actions" aria-label="Cont Formula X">
-    <button type="button" id="fx-header-login" class="fx-header-login">Conectare</button>
-    <button type="button" id="fx-header-signup" class="fx-header-signup">Înregistrare</button>
-    <button type="button" id="fx-header-account" class="fx-header-account" hidden>Contul meu</button>
+    <button type="button" id="fx-header-login" class="fx-header-login" onclick="deschideContFormulaX('login')">Conectare</button>
+    <button type="button" id="fx-header-signup" class="fx-header-signup" onclick="deschideContFormulaX('signup')">Înregistrare</button>
+    <button type="button" id="fx-header-account" class="fx-header-account" onclick="deschideContFormulaX('account')" hidden>Contul meu</button>
   </div>
 </header>
 
@@ -7493,12 +7734,15 @@
           <h3>Ai parcurs toate testele relevante profilului tău.</h3>
           <p>Foarte bine. De aici îți recomandăm să lucrezi și variante din alte profile: întâlnești cerințe diferite și îți consolidezi materia fără să îți modificăm procentul traseului principal.</p>
         </div>
-        <button type="button" id="fx-explore-extra" class="fx-primary-btn">EXPLOREAZĂ TESTE SUPLIMENTARE →</button>
+        <a href="#teste" id="fx-explore-extra" class="fx-primary-btn fx-inline-action">EXPLOREAZĂ TESTE SUPLIMENTARE →</a>
       </article>
 
       <div class="fx-dashboard-grid">
         <article class="fx-panel fx-chart-panel">
-          <div class="fx-panel-head"><div><span class="fx-account-eyebrow">Evoluție</span><h3>Graficul notelor</h3></div><span id="fx-chart-trend" class="fx-trend-chip">Începe primul test</span></div>
+          <div class="fx-panel-head">
+            <div><span class="fx-account-eyebrow">Evoluție</span><h3>Graficul notelor</h3><span id="fx-chart-trend" class="fx-trend-chip">Nu ai încă note salvate</span></div>
+            <a href="#teste" id="fx-start-next-test" class="fx-primary-btn fx-small-btn fx-inline-action">ÎNCEPE URMĂTORUL TEST →</a>
+          </div>
           <div id="fx-progress-chart" class="fx-progress-chart" aria-label="Graficul evoluției notelor"></div>
         </article>
 
@@ -7509,13 +7753,14 @@
           <label class="fx-goal-edit">Țintă săptămânală
             <select id="fx-weekly-target"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>10</option></select>
           </label>
-          <button type="button" id="fx-save-goal" class="fx-secondary-btn fx-full-btn">Salvează obiectivul</button>
+          <button type="button" id="fx-save-goal" class="fx-secondary-btn fx-full-btn" onclick="window.FormulaXSaveGoal && window.FormulaXSaveGoal()">Salvează obiectivul</button>
+          <p id="fx-goal-message" class="fx-inline-status" aria-live="polite"></p>
         </article>
       </div>
 
       <article class="fx-panel">
-        <div class="fx-panel-head"><div><span class="fx-account-eyebrow">Traseul meu</span><h3>Progres pe materii</h3></div><button type="button" id="fx-go-tests" class="fx-primary-btn fx-small-btn">VEZI TOATE TESTELE →</button></div>
-        <p class="fx-panel-explainer">Numărăm doar testele relevante profilului și probei tale. Restul arhivei rămâne disponibilă ca antrenament suplimentar.</p>
+        <div class="fx-panel-head"><div><span class="fx-account-eyebrow">Cele 3 probe ale tale</span><h3>Progresul tău la fiecare materie</h3></div><a href="#teste" id="fx-go-tests" class="fx-primary-btn fx-small-btn fx-inline-action">VEZI TOATE TESTELE →</a></div>
+        <p class="fx-panel-explainer">BAC-ul tău este urmărit separat pe cele trei probe: Română, proba obligatorie a profilului și proba E.d aleasă. Toată arhiva rămâne disponibilă, dar procentul principal numără doar traseul tău.</p>
         <div id="fx-subject-progress" class="fx-subject-progress"></div>
       </article>
 
@@ -8894,6 +9139,30 @@
     deruleazaSus();
   }
 
+
+  // Cont Formula X: navigație robustă. Funcționează chiar dacă Supabase sau
+  // formula-x-account.js se încarcă mai târziu / este blocat temporar.
+  function deschideContFormulaX(mod) {
+    schimbaPagina('cont');
+    try {
+      window.location.hash = 'cont';
+    } catch (e) {}
+
+    window.setTimeout(function () {
+      var id = mod === 'signup' ? 'fx-auth-signup-card' : (mod === 'login' ? 'fx-auth-login-card' : 'fx-account-hero');
+      var target = document.getElementById(id);
+      if (target && typeof target.scrollIntoView === 'function') {
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      var input = mod === 'signup' ? document.getElementById('fx-signup-name') : document.getElementById('fx-login-email');
+      if (input && typeof input.focus === 'function') input.focus({ preventScroll: true });
+      if (target && target.classList && (mod === 'login' || mod === 'signup')) {
+        target.classList.add('is-focused');
+        window.setTimeout(function(){ target.classList.remove('is-focused'); }, 1600);
+      }
+    }, 80);
+  }
+  window.deschideContFormulaX = deschideContFormulaX;
 
   function deschideInscriereRapida() {
     const modal = document.getElementById('enroll-modal');
@@ -19113,6 +19382,10 @@
     schimbaPagina(paginaDinURL(), false);
   });
 
+  window.addEventListener('hashchange', () => {
+    schimbaPagina(paginaDinURL(), false);
+  });
+
   function afiseazaMesajTrimitere() {
     let trimis = null;
     try {
@@ -19170,6 +19443,797 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="formula-x-account.js"></script>
+<script id="formula-x-account-inline-js">
+(function () {
+  'use strict';
+
+  const SUPABASE_URL = 'https://vooflhvdoutjplfbnahl.supabase.co';
+  const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_iuJBis3q_83zNlYFER2AXQ_o8gzpDPA';
+
+  if (!window.supabase || !window.supabase.createClient) {
+    console.error('Formula X: biblioteca Supabase nu s-a încărcat.');
+    return;
+  }
+
+  const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+    auth: {
+      persistSession: true,
+      autoRefreshToken: true,
+      detectSessionInUrl: true,
+      flowType: 'pkce'
+    }
+  });
+
+  const state = {
+    user: null,
+    profile: null,
+    goal: { weekly_target: 3 },
+    progress: new Map(),
+    attempts: [],
+    recoveryMode: false,
+    routeIndex: new Map(),
+    routeTotal: 0
+  };
+
+  const MATTER_LABELS = {
+    romana: 'Română', mate: 'Matematică', istorie: 'Istorie', bio: 'Biologie', chimie: 'Chimie',
+    fizica: 'Fizică', informatica: 'Informatică', geografie: 'Geografie', logica: 'Logică',
+    psihologie: 'Psihologie', sociologie: 'Sociologie', economie: 'Economie', filosofie: 'Filosofie'
+  };
+
+  const OPTIONAL_LABELS = {
+    'bio-anatomie': 'Biologie — Anatomie', 'bio-vegetala': 'Biologie — vegetală',
+    'chimie-organica': 'Chimie organică', 'chimie-anorganica': 'Chimie anorganică',
+    fizica: 'Fizică', informatica: 'Informatică', geografie: 'Geografie', logica: 'Logică',
+    psihologie: 'Psihologie', sociologie: 'Sociologie', economie: 'Economie', filosofie: 'Filosofie'
+  };
+
+  const SPECIALIZATIONS = {
+    real: [
+      ['mate-info', 'Matematică-Informatică'],
+      ['stiinte-naturii', 'Științele Naturii']
+    ],
+    uman: [
+      ['filologie', 'Filologie'],
+      ['stiinte-sociale', 'Științe Sociale']
+    ],
+    tehnologic: [
+      ['tehnologic', 'Profil tehnologic']
+    ],
+    pedagogic: [
+      ['pedagogic', 'Profil pedagogic']
+    ]
+  };
+
+  function $(id) { return document.getElementById(id); }
+  function normalizeText(value) {
+    return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  }
+  function testText(test) {
+    return normalizeText([test.materie, test.materieLabel, test.titlu, test.detalii, test.proba, test.sesiune].join(' '));
+  }
+  function allTests() {
+    try { return Array.isArray(TESTE_ANTRENAMENT) ? TESTE_ANTRENAMENT : []; }
+    catch (_) { return []; }
+  }
+
+  // Filtrul public din arhivă: păstrează probele E.d comune și restrânge probele cu profil explicit.
+  window.FormulaXProfileFilter = function (test, profile) {
+    if (!profile || profile === 'toate') return true;
+    const txt = testText(test);
+    const mat = String(test.materie || '');
+    if (mat === 'romana') {
+      if (profile === 'real' || profile === 'tehnologic') return txt.includes('real') || txt.includes('tehnologic');
+      if (profile === 'uman' || profile === 'pedagogic') return txt.includes('uman') || txt.includes('pedagogic');
+    }
+    if (mat === 'mate') {
+      if (profile === 'real') return txt.includes('mate-info') || txt.includes('mate info') || txt.includes('stiinte');
+      if (profile === 'tehnologic') return txt.includes('tehnologic');
+      if (profile === 'pedagogic') return txt.includes('pedagogic');
+      if (profile === 'uman') return false;
+    }
+    if (mat === 'istorie') return profile === 'uman' || profile === 'pedagogic';
+    return true;
+  };
+
+  function relevantRomanian(test, profile) {
+    const txt = testText(test);
+    if (profile.profile === 'real' || profile.profile === 'tehnologic') return txt.includes('real') || txt.includes('tehnologic');
+    return txt.includes('uman') || txt.includes('pedagogic');
+  }
+
+  function relevantMath(test, profile) {
+    const txt = testText(test);
+    if (profile.profile === 'real' && profile.specialization === 'mate-info') return txt.includes('mate-info') || txt.includes('mate info');
+    if (profile.profile === 'real' && profile.specialization === 'stiinte-naturii') return txt.includes('stiinte') || txt.includes('st-nat') || txt.includes('st nat');
+    if (profile.profile === 'tehnologic') return txt.includes('tehnologic');
+    if (profile.profile === 'pedagogic') return txt.includes('pedagogic');
+    return false;
+  }
+
+  function relevantOptional(test, optional, profile) {
+    const txt = testText(test);
+    if (optional === 'bio-anatomie') return test.materie === 'bio' && (txt.includes('anatomie') || txt.includes('fiziologie umana'));
+    if (optional === 'bio-vegetala') return test.materie === 'bio' && (txt.includes('vegetal') || txt.includes('animala'));
+    if (optional === 'chimie-organica') return test.materie === 'chimie' && txt.includes('organica');
+    if (optional === 'chimie-anorganica') return test.materie === 'chimie' && (txt.includes('anorganica') || txt.includes('anorganic'));
+    if (optional === 'informatica') {
+      if (test.materie !== 'informatica') return false;
+      if (profile.specialization === 'mate-info') return !txt.includes('stiinte') && !txt.includes('sn ') && !txt.includes('sn-');
+      if (profile.specialization === 'stiinte-naturii') return txt.includes('stiinte') || txt.includes('sn ') || txt.includes('sn-');
+      return true;
+    }
+    return test.materie === optional;
+  }
+
+  function personalizedTests() {
+    const profile = state.profile;
+    if (!profile || !profile.profile) return [];
+    const optional = profile.optional_subject;
+    return allTests().filter(test => {
+      if (!test || !test.id || !test.subiect || !test.barem) return false;
+      if (test.materie === 'romana') return relevantRomanian(test, profile);
+      if (profile.profile === 'uman' && test.materie === 'istorie') return true;
+      if (test.materie === 'mate' && relevantMath(test, profile)) return true;
+      if (optional && relevantOptional(test, optional, profile)) return true;
+      return false;
+    });
+  }
+
+  function bacSubjectBuckets(relevantTests) {
+    const profile = state.profile || {};
+    const relevant = Array.isArray(relevantTests) ? relevantTests : personalizedTests();
+    const compulsoryIsHistory = profile.profile === 'uman';
+    const compulsoryMatter = compulsoryIsHistory ? 'istorie' : 'mate';
+    const mathLabel = profile.specialization === 'mate-info' ? 'Matematică — Mate-Info'
+      : profile.specialization === 'stiinte-naturii' ? 'Matematică — Științele Naturii'
+      : profile.profile === 'tehnologic' ? 'Matematică — Tehnologic'
+      : profile.profile === 'pedagogic' ? 'Matematică — Pedagogic'
+      : 'Matematică';
+    const compulsoryLabel = compulsoryIsHistory ? 'Istorie' : mathLabel;
+    const optionalLabel = OPTIONAL_LABELS[profile.optional_subject] || 'Proba E.d';
+
+    const romana = relevant.filter(t => t.materie === 'romana');
+    const compulsory = relevant.filter(t => t.materie === compulsoryMatter);
+    const knownIds = new Set([...romana, ...compulsory].map(t => t.id));
+    const optional = relevant.filter(t => !knownIds.has(t.id));
+
+    return [
+      { key:'ea', probe:'Proba E.a', label:'Limba și literatura română', matter:'romana', tests:romana },
+      { key:'ec', probe:'Proba E.c', label:compulsoryLabel, matter:compulsoryMatter, tests:compulsory },
+      { key:'ed', probe:'Proba E.d', label:optionalLabel, matter:profile.optional_subject || '', tests:optional }
+    ];
+  }
+
+  function routeBucketByKey(key) {
+    return bacSubjectBuckets().find(b => b.key === key) || null;
+  }
+
+  function highlightTestInLibrary(testId) {
+    if (!testId) return;
+    window.setTimeout(() => {
+      let row = null;
+      try {
+        row = document.querySelector(`.simple-test-row[data-test-id="${CSS.escape(testId)}"]`);
+      } catch (_) {
+        row = [...document.querySelectorAll('.simple-test-row[data-test-id]')].find(el => el.dataset.testId === testId) || null;
+      }
+      if (!row) return;
+      row.classList.add('fx-next-test-highlight');
+      if (typeof row.scrollIntoView === 'function') row.scrollIntoView({behavior:'smooth',block:'center'});
+      window.setTimeout(() => row.classList.remove('fx-next-test-highlight'), 3200);
+    }, 180);
+  }
+
+  function showAllTests(focusTestId) {
+    if (typeof schimbaPagina === 'function') schimbaPagina('teste');
+    else window.location.hash = 'teste';
+    window.setTimeout(() => {
+      if (typeof reseteazaFiltreBibliotecaTeste === 'function') {
+        reseteazaFiltreBibliotecaTeste();
+      } else {
+        const profile = $('tests-profile-filter');
+        if (profile) profile.value = 'toate';
+        if (typeof randareTesteAntrenament === 'function') randareTesteAntrenament();
+      }
+      renderRouteLibrarySummary();
+      if (focusTestId) highlightTestInLibrary(focusTestId);
+    }, 90);
+  }
+
+  function openNextRouteTest() {
+    if (!state.user || !profileComplete()) {
+      if (state.user) openOnboarding(true);
+      else openAuthPage('login');
+      return;
+    }
+    const relevant = personalizedTests();
+    const next = relevant.find(t => !state.progress.get(t.id)?.completed);
+    if (!next) {
+      showAllTests();
+      return;
+    }
+    showAllTests(next.id);
+  }
+
+  function openTestsForBucket(key) {
+    if (!state.user || !profileComplete()) {
+      if (state.user) openOnboarding(true);
+      return;
+    }
+    const bucket = routeBucketByKey(key);
+    if (!bucket || !bucket.tests.length) {
+      showAllTests();
+      return;
+    }
+    const next = bucket.tests.find(t => !state.progress.get(t.id)?.completed) || bucket.tests[0];
+    showAllTests(next?.id || null);
+  }
+
+  window.FormulaXShowAllTests = () => showAllTests();
+  window.FormulaXOpenNextTest = openNextRouteTest;
+  window.FormulaXOpenTestsForBucket = openTestsForBucket;
+
+  function rebuildRouteIndex() {
+    const relevant = profileComplete() ? personalizedTests() : [];
+    state.routeIndex = new Map(relevant.map((test, index) => [test.id, { index: index + 1, total: relevant.length }]));
+    state.routeTotal = relevant.length;
+    return relevant;
+  }
+
+  function renderRouteLibrarySummary() {
+    const summary = $('fx-route-library-summary');
+    if (!summary) return;
+    if (!state.user || !profileComplete()) {
+      summary.hidden = true;
+      summary.innerHTML = '';
+      return;
+    }
+    const total = state.routeTotal || personalizedTests().length;
+    summary.hidden = false;
+    summary.innerHTML = `<strong>Traseul tău BAC:</strong> <b>${total} teste numerotate</b> pentru ${escapeHtml(profileLabel(state.profile))}. Toate testele din arhivă rămân vizibile; cele marcate „Test suplimentar” nu intră în procentul traseului tău.`;
+  }
+
+
+  function focusAuthCard(mode) {
+    const loginCard = $('fx-auth-login-card');
+    const signupCard = $('fx-auth-signup-card');
+    [loginCard, signupCard].forEach(card => card?.classList.remove('is-focused'));
+    const target = mode === 'signup' ? signupCard : loginCard;
+    if (target) {
+      target.classList.add('is-focused');
+      setTimeout(() => target.classList.remove('is-focused'), 1800);
+    }
+    const input = mode === 'signup' ? $('fx-signup-name') : $('fx-login-email');
+    setTimeout(() => input?.focus(), 100);
+  }
+
+  function openAuthPage(mode) {
+    if (typeof window.deschideContFormulaX === 'function') {
+      window.deschideContFormulaX(mode);
+      setTimeout(() => focusAuthCard(mode), 120);
+      return;
+    }
+    if (typeof schimbaPagina === 'function') schimbaPagina('cont');
+    else window.location.hash = 'cont';
+    setTimeout(() => focusAuthCard(mode), 120);
+  }
+
+  window.FormulaXOpenAuth = openAuthPage;
+
+  function setMessage(el, message, type) {
+    if (!el) return;
+    el.textContent = message || '';
+    el.classList.remove('error', 'success');
+    if (type) el.classList.add(type);
+  }
+
+  function formatGrade(value) {
+    const n = Number(value);
+    return Number.isFinite(n) ? n.toFixed(2).replace('.', ',') : '—';
+  }
+
+  function formatDate(value) {
+    if (!value) return '';
+    const d = new Date(value);
+    if (Number.isNaN(d.getTime())) return '';
+    return new Intl.DateTimeFormat('ro-RO', { day:'2-digit', month:'short', year:'numeric' }).format(d);
+  }
+
+  function profileLabel(profile) {
+    if (!profile) return '';
+    const main = { real:'Real', uman:'Uman', tehnologic:'Tehnologic', pedagogic:'Pedagogic' }[profile.profile] || profile.profile || '';
+    const specPair = (SPECIALIZATIONS[profile.profile] || []).find(x => x[0] === profile.specialization);
+    const spec = specPair ? specPair[1] : profile.specialization || '';
+    const optional = OPTIONAL_LABELS[profile.optional_subject] || profile.optional_subject || '';
+    return [main, spec, optional, profile.bac_year ? `BAC ${profile.bac_year}` : ''].filter(Boolean).join(' • ');
+  }
+
+  async function loadUserData() {
+    if (!state.user) return;
+    const uid = state.user.id;
+    const [profileRes, progressRes, attemptsRes, goalRes] = await Promise.all([
+      db.from('profiles').select('*').eq('user_id', uid).maybeSingle(),
+      db.from('test_progress').select('*').eq('user_id', uid),
+      db.from('test_attempts').select('*').eq('user_id', uid).order('completed_at', { ascending: true }),
+      db.from('goals').select('*').eq('user_id', uid).maybeSingle()
+    ]);
+
+    if (profileRes.error) console.error(profileRes.error);
+    if (progressRes.error) console.error(progressRes.error);
+    if (attemptsRes.error) console.error(attemptsRes.error);
+    if (goalRes.error) console.error(goalRes.error);
+
+    state.profile = profileRes.data || null;
+    state.progress = new Map((progressRes.data || []).map(r => [r.test_id, r]));
+    state.attempts = attemptsRes.data || [];
+    state.goal = goalRes.data || { user_id: uid, weekly_target: 3 };
+  }
+
+  function profileComplete() {
+    return Boolean(state.profile && state.profile.name && state.profile.profile && state.profile.specialization && state.profile.optional_subject);
+  }
+
+  function populateSpecializations(selected) {
+    const profileType = $('fx-profile-type')?.value || '';
+    const select = $('fx-profile-specialization');
+    if (!select) return;
+    const values = SPECIALIZATIONS[profileType] || [];
+    select.innerHTML = values.length
+      ? values.map(([value,label]) => `<option value="${value}">${label}</option>`).join('')
+      : '<option value="" disabled selected>Alege mai întâi profilul</option>';
+    if (selected && values.some(x => x[0] === selected)) select.value = selected;
+  }
+
+  function openOnboarding(force) {
+    if (!state.user) return;
+    if (!force && profileComplete()) return;
+    const modal = $('fx-onboarding');
+    if (!modal) return;
+    $('fx-profile-name').value = state.profile?.name || state.user.user_metadata?.name || '';
+    $('fx-profile-bac-year').value = String(state.profile?.bac_year || 2027);
+    $('fx-profile-type').value = state.profile?.profile || '';
+    populateSpecializations(state.profile?.specialization || '');
+    if (state.profile?.optional_subject) $('fx-profile-optional').value = state.profile.optional_subject;
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeOnboarding() {
+    const modal = $('fx-onboarding');
+    if (!modal) return;
+    modal.hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  function renderHeaderAuthState() {
+    const loggedIn = Boolean(state.user);
+    const login = $('fx-header-login');
+    const signup = $('fx-header-signup');
+    const account = $('fx-header-account');
+    const navAccount = $('nav-cont');
+    if (login) login.hidden = loggedIn;
+    if (signup) signup.hidden = loggedIn;
+    if (account) {
+      account.hidden = !loggedIn;
+      account.textContent = loggedIn ? 'Contul meu' : 'Contul meu';
+    }
+    if (navAccount) navAccount.hidden = !loggedIn;
+  }
+
+  function resetAuthCards() {
+    const loginCard = $('fx-auth-login-card');
+    const signupCard = $('fx-auth-signup-card');
+    const recoveryCard = $('fx-recovery-card');
+    if (loginCard) loginCard.hidden = false;
+    if (signupCard) signupCard.hidden = false;
+    if (recoveryCard) recoveryCard.hidden = true;
+  }
+
+  function setDocumentAuthState(loggedIn) {
+    const root = document.documentElement;
+    root.classList.toggle('fx-user-authenticated', Boolean(loggedIn));
+    root.classList.toggle('fx-user-anonymous', !loggedIn);
+  }
+
+  function renderAuthState() {
+    const auth = $('fx-auth-section');
+    const dash = $('fx-dashboard');
+    const hero = $('fx-account-hero');
+    const chip = $('fx-account-user-chip');
+
+    setDocumentAuthState(Boolean(state.user));
+    renderHeaderAuthState();
+
+    if (!state.user) {
+      resetAuthCards();
+      if (auth) auth.hidden = false;
+      if (dash) dash.hidden = true;
+      if (hero) hero.hidden = true;
+      if (chip) chip.hidden = true;
+      rebuildRouteIndex();
+      renderRouteLibrarySummary();
+      return;
+    }
+
+    if (auth) auth.hidden = true;
+    if (dash) dash.hidden = false;
+    if (hero) hero.hidden = false;
+    if (chip) {
+      chip.hidden = false;
+      chip.textContent = state.profile?.name || state.user.email || 'Cont Formula X';
+    }
+    renderDashboard();
+    if (!profileComplete()) openOnboarding(false);
+  }
+
+  function completedRelevantSet(relevant) {
+    const ids = new Set(relevant.map(t => t.id));
+    return new Set([...state.progress.values()].filter(r => r.completed && ids.has(r.test_id)).map(r => r.test_id));
+  }
+
+  function mondayStart(date) {
+    const d = new Date(date);
+    d.setHours(0,0,0,0);
+    const day = (d.getDay() + 6) % 7;
+    d.setDate(d.getDate() - day);
+    return d;
+  }
+
+  function calculateStreak() {
+    const days = new Set(state.attempts.map(a => {
+      const d = new Date(a.completed_at); return Number.isNaN(d.getTime()) ? null : `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    }).filter(Boolean));
+    if (!days.size) return 0;
+    let d = new Date(); d.setHours(0,0,0,0);
+    const key = x => `${x.getFullYear()}-${String(x.getMonth()+1).padStart(2,'0')}-${String(x.getDate()).padStart(2,'0')}`;
+    if (!days.has(key(d))) { d.setDate(d.getDate()-1); if (!days.has(key(d))) return 0; }
+    let streak=0;
+    while (days.has(key(d))) { streak++; d.setDate(d.getDate()-1); }
+    return streak;
+  }
+
+  function renderChart(attempts) {
+    const el = $('fx-progress-chart');
+    if (!el) return;
+    const last = attempts.slice(-12);
+    if (!last.length) {
+      el.innerHTML = '<div class="fx-empty">După ce salvezi prima notă, aici apare evoluția ta.</div>';
+      $('fx-chart-trend').textContent = 'Nu ai încă note salvate';
+      return;
+    }
+    const width=720, height=250, padL=44, padR=18, padT=18, padB=38;
+    const plotW=width-padL-padR, plotH=height-padT-padB;
+    const x = i => last.length===1 ? padL+plotW/2 : padL + i*(plotW/(last.length-1));
+    const y = g => padT + (10-Number(g))*(plotH/9);
+    const pts=last.map((a,i)=>[x(i),y(a.grade),Number(a.grade)]);
+    const path=pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ');
+    const grid=[2,4,6,8,10].map(g=>`<g><line x1="${padL}" x2="${width-padR}" y1="${y(g)}" y2="${y(g)}" stroke="#e6ebf0"/><text x="${padL-10}" y="${y(g)+4}" text-anchor="end" font-size="11" fill="#8390a0">${g}</text></g>`).join('');
+    const circles=pts.map((p,i)=>`<circle cx="${p[0]}" cy="${p[1]}" r="5" fill="#173d67"><title>${formatGrade(p[2])} • ${formatDate(last[i].completed_at)}</title></circle>`).join('');
+    const labels=last.map((a,i)=>`<text x="${x(i)}" y="${height-12}" text-anchor="middle" font-size="9" fill="#8a95a3">${i+1}</text>`).join('');
+    el.innerHTML=`<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Evoluția ultimelor ${last.length} note">${grid}<path d="${path}" fill="none" stroke="#d69b18" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>${circles}${labels}</svg>`;
+    const first=Number(last[0].grade), latest=Number(last[last.length-1].grade);
+    const diff=latest-first;
+    $('fx-chart-trend').textContent = last.length < 2 ? `Prima notă: ${formatGrade(latest)}` : (diff > .01 ? `↗ +${diff.toFixed(2).replace('.',',')}` : diff < -.01 ? `↘ ${diff.toFixed(2).replace('.',',')}` : '→ Stabil');
+  }
+
+  function renderDashboard() {
+    if (!state.user) return;
+    const relevant = rebuildRouteIndex();
+    const completed = completedRelevantSet(relevant);
+    const total = relevant.length;
+    const done = completed.size;
+    const remaining = Math.max(0,total-done);
+    const percentage = total ? Math.round(done*100/total) : 0;
+    const relevantIds = new Set(relevant.map(t => t.id));
+    const routeAttempts = state.attempts.filter(a => relevantIds.has(a.test_id));
+    const grades = routeAttempts.map(a=>Number(a.grade)).filter(Number.isFinite);
+    const avg = grades.length ? grades.reduce((a,b)=>a+b,0)/grades.length : null;
+    const streak = calculateStreak();
+
+    $('fx-dashboard-greeting').textContent = `Bun venit${state.profile?.name ? ', '+state.profile.name.split(/\s+/)[0] : ''}!`;
+    $('fx-dashboard-profile').textContent = profileComplete() ? profileLabel(state.profile) : 'Completează profilul pentru un traseu personalizat.';
+    $('fx-stat-completed').textContent = String(done);
+    $('fx-stat-total').textContent = `din ${total}`;
+    $('fx-stat-remaining').textContent = String(remaining);
+    $('fx-stat-average').textContent = avg == null ? '—' : formatGrade(avg);
+    $('fx-stat-percent').textContent = `${percentage}%`;
+    $('fx-stat-streak').textContent = `🔥 ${streak} ${streak===1?'zi':'zile'}`;
+
+    const completion = $('fx-route-complete');
+    if (completion) completion.hidden = !(total > 0 && done === total);
+    renderRouteLibrarySummary();
+
+    renderChart(routeAttempts);
+
+    const start=mondayStart(new Date());
+    const weeklyDone = new Set(
+      routeAttempts
+        .filter(a => new Date(a.completed_at) >= start)
+        .map(a => a.test_id)
+    ).size;
+    const target = Number(state.goal?.weekly_target || 3);
+    $('fx-goal-progress').textContent = `${weeklyDone} / ${target}`;
+    $('fx-goal-bar').style.width = `${Math.min(100, Math.round(weeklyDone*100/target))}%`;
+    $('fx-weekly-target').value = String(target);
+
+    const subj=$('fx-subject-progress');
+    if (subj) {
+      const buckets = bacSubjectBuckets(relevant);
+      subj.innerHTML = profileComplete() ? buckets.map(bucket => {
+        const tests = bucket.tests || [];
+        const ids = new Set(tests.map(t => t.id));
+        const d = tests.filter(t => completed.has(t.id)).length;
+        const remainingBucket = Math.max(0, tests.length - d);
+        const pct = tests.length ? Math.round(d * 100 / tests.length) : 0;
+        const bucketGrades = state.attempts.filter(a => ids.has(a.test_id)).map(a => Number(a.grade)).filter(Number.isFinite);
+        const bucketAvg = bucketGrades.length ? bucketGrades.reduce((a,b)=>a+b,0)/bucketGrades.length : null;
+        return `<article class="fx-subject-card">
+          <div class="fx-subject-card-top">
+            <div><span class="fx-subject-probe">${escapeHtml(bucket.probe)}</span><div class="fx-subject-name">${escapeHtml(bucket.label)}</div></div>
+            <div class="fx-subject-count">${d} / ${tests.length}<small>${pct}% completat</small></div>
+          </div>
+          <div class="fx-subject-bar"><span style="width:${pct}%"></span></div>
+          <div class="fx-subject-meta"><span>Mai ai <strong>${remainingBucket}</strong></span><span>Media: <strong>${bucketAvg == null ? '—' : formatGrade(bucketAvg)}</strong></span></div>
+          <a href="#teste" class="fx-subject-open" data-route-bucket="${bucket.key}">${d === tests.length && tests.length ? 'REPETĂ / VEZI ALTE TESTE' : 'CONTINUĂ CU TESTELE'} →</a>
+        </article>`;
+      }).join('') : '<div class="fx-empty">Completează profilul pentru a vedea cele trei probe ale BAC-ului tău.</div>';
+    }
+
+    const recent=$('fx-recent-attempts');
+    if (recent) {
+      const rows=state.attempts.slice().sort((a,b)=>new Date(b.completed_at)-new Date(a.completed_at)).slice(0,8);
+      recent.innerHTML=rows.length?rows.map(a=>{
+        const test=allTests().find(t=>t.id===a.test_id);
+        const title=test?`${test.materieLabel||MATTER_LABELS[test.materie]||''} • ${test.titlu||test.id}`:a.test_id;
+        return `<div class="fx-attempt-row"><strong>${escapeHtml(title)}</strong><span>${formatDate(a.completed_at)}</span><span class="fx-attempt-grade">${formatGrade(a.grade)}</span></div>`;
+      }).join(''):'<div class="fx-empty">Nu ai încă încercări salvate.</div>';
+    }
+  }
+
+  function escapeHtml(v) { return String(v||'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c])); }
+
+  function enhanceTestRows() {
+    const library=$('tests-library');
+    if(!library) return;
+    library.querySelectorAll('.simple-test-row[data-test-id]').forEach(row=>{
+      if(row.dataset.fxEnhanced==='1') return;
+      row.dataset.fxEnhanced='1';
+      const id=row.dataset.testId;
+      const box=document.createElement('div');
+      box.className='fx-test-progress';
+      box.dataset.progressFor=id;
+      row.appendChild(box);
+      renderTestProgressBox(box,id);
+    });
+  }
+
+  function renderTestProgressBox(box,id) {
+    if(!box) return;
+    if(!state.user) {
+      box.innerHTML='<span class="fx-test-progress-status">Vrei să ții minte testele făcute?</span><button type="button" class="fx-login-test-btn">SALVEAZĂ PROGRESUL</button><span class="fx-test-note">Cont gratuit Formula X</span>';
+      box.querySelector('button').addEventListener('click',()=>openAuthPage('signup'));
+      return;
+    }
+
+    const route = profileComplete() ? state.routeIndex.get(id) : null;
+    const routeBadge = profileComplete()
+      ? (route
+          ? `<span class="fx-route-number">Traseul tău • #${route.index} din ${route.total}</span>`
+          : '<span class="fx-route-number extra">Test suplimentar</span>')
+      : '';
+
+    const p=state.progress.get(id);
+    const status=p?.completed
+      ? `<span class="fx-test-progress-status done">✓ Rezolvat${p.last_grade!=null?' • ultima notă '+formatGrade(p.last_grade):''}</span>`
+      : '<span class="fx-test-progress-status">Marchează testul ca rezolvat și salvează nota.</span>';
+    box.innerHTML=`${routeBadge}${status}<input class="fx-grade-input" type="number" min="1" max="10" step="0.01" inputmode="decimal" aria-label="Nota pentru test" placeholder="Nota" value="${p?.last_grade!=null?Number(p.last_grade).toFixed(2):''}"><button type="button" class="fx-save-test-btn">SALVEAZĂ</button><span class="fx-test-note">1,00–10,00</span>`;
+    const btn=box.querySelector('.fx-save-test-btn');
+    btn.addEventListener('click',()=>saveTestGrade(id,box));
+  }
+
+  async function saveTestGrade(id,box) {
+    if(!state.user) return;
+    const input=box.querySelector('.fx-grade-input');
+    const grade=Number(String(input.value).replace(',','.'));
+    if(!Number.isFinite(grade)||grade<1||grade>10){ input.focus(); input.setCustomValidity('Introdu o notă între 1 și 10.'); input.reportValidity(); input.setCustomValidity(''); return; }
+    const btn=box.querySelector('.fx-save-test-btn'); btn.disabled=true; btn.textContent='SE SALVEAZĂ...';
+    const now=new Date().toISOString();
+    const attempt=await db.from('test_attempts').insert({user_id:state.user.id,test_id:id,grade,completed_at:now}).select().single();
+    if(attempt.error){ console.error(attempt.error); btn.disabled=false;btn.textContent='SALVEAZĂ'; alert('Nu am putut salva nota. Verifică conexiunea și încearcă din nou.'); return; }
+    const old=state.progress.get(id);
+    const best=Math.max(grade, Number(old?.best_grade||0));
+    const prog=await db.from('test_progress').upsert({user_id:state.user.id,test_id:id,completed:true,last_grade:grade,best_grade:best,completed_at:old?.completed_at||now,updated_at:now},{onConflict:'user_id,test_id'}).select().single();
+    if(prog.error){ console.error(prog.error); }
+    state.attempts.push(attempt.data);
+    if(prog.data) state.progress.set(id,prog.data);
+    if(window.fxTrack) window.fxTrack('test_result_saved',{test_id:id});
+    renderTestProgressBox(box,id);
+    renderDashboard();
+  }
+
+  function refreshAllTestProgressBoxes() {
+    rebuildRouteIndex();
+    renderRouteLibrarySummary();
+    document.querySelectorAll('.fx-test-progress[data-progress-for]').forEach(box=>renderTestProgressBox(box,box.dataset.progressFor));
+  }
+
+  async function saveProfile(event) {
+    event.preventDefault();
+    if(!state.user) return;
+    const payload={
+      user_id:state.user.id,
+      name:$('fx-profile-name').value.trim(),
+      bac_year:Number($('fx-profile-bac-year').value),
+      profile:$('fx-profile-type').value,
+      specialization:$('fx-profile-specialization').value,
+      optional_subject:$('fx-profile-optional').value,
+      updated_at:new Date().toISOString()
+    };
+    if(!payload.name||!payload.profile||!payload.specialization||!payload.optional_subject){ setMessage($('fx-profile-message'),'Completează toate câmpurile.','error'); return; }
+    const res=await db.from('profiles').upsert(payload,{onConflict:'user_id'}).select().single();
+    if(res.error){ console.error(res.error); setMessage($('fx-profile-message'),'Nu am putut salva profilul. Încearcă din nou.','error'); return; }
+    state.profile=res.data;
+    if(window.fxTrack) window.fxTrack('bac_route_saved');
+    setMessage($('fx-profile-message'),'Profil salvat.','success');
+    closeOnboarding(); renderAuthState(); refreshAllTestProgressBoxes();
+    if (typeof randareTesteAntrenament === 'function') randareTesteAntrenament();
+  }
+
+  async function saveGoal() {
+    if(!state.user) return;
+    const select = $('fx-weekly-target');
+    const button = $('fx-save-goal');
+    const message = $('fx-goal-message');
+    const weekly_target = Number(select?.value || 3);
+    if (!Number.isFinite(weekly_target) || weekly_target < 1) return;
+    if (button) { button.disabled = true; button.textContent = 'Se salvează...'; }
+    setMessage(message, 'Salvăm obiectivul...');
+    try {
+      const payload = {user_id:state.user.id,weekly_target,updated_at:new Date().toISOString()};
+      const res = await db.from('goals').upsert(payload,{onConflict:'user_id'}).select('*').maybeSingle();
+      if(res.error) throw res.error;
+      state.goal = res.data || payload;
+      if(window.fxTrack) window.fxTrack('weekly_goal_saved',{weekly_target});
+      renderDashboard();
+      setMessage(message, `Obiectiv salvat: ${weekly_target} ${weekly_target===1?'test':'teste'} pe săptămână. ✓`, 'success');
+    } catch (error) {
+      console.error(error);
+      setMessage(message, 'Nu am putut salva obiectivul. Reîncarcă pagina și încearcă din nou.', 'error');
+    } finally {
+      if (button) { button.disabled = false; button.textContent = 'Salvează obiectivul'; }
+    }
+  }
+  window.FormulaXSaveGoal = saveGoal;
+
+  async function signIn(event) {
+    event.preventDefault();
+    setMessage($('fx-auth-message'),'Se verifică datele...');
+    const {error}=await db.auth.signInWithPassword({email:$('fx-login-email').value.trim(),password:$('fx-login-password').value});
+    if(error){ setMessage($('fx-auth-message'), error.message==='Invalid login credentials'?'Email sau parolă incorectă.':error.message,'error'); return; }
+    setMessage($('fx-auth-message'),'Autentificare reușită.','success');
+    if(window.fxTrack) window.fxTrack('login_success',{method:'email'});
+  }
+
+  async function signUp(event) {
+    event.preventDefault();
+    const name=$('fx-signup-name').value.trim();
+    const email=$('fx-signup-email').value.trim();
+    const password=$('fx-signup-password').value;
+    setMessage($('fx-auth-message'),'Creăm contul...');
+    const {data,error}=await db.auth.signUp({email,password,options:{emailRedirectTo:'https://formula-x.ro/#cont',data:{name}}});
+    if(error){ setMessage($('fx-auth-message'),error.message,'error'); return; }
+    if(data.session){ setMessage($('fx-auth-message'),'Cont creat și autentificat.','success'); }
+    else setMessage($('fx-auth-message'),'Cont creat. Verifică emailul și apasă linkul de confirmare.','success');
+    if(window.fxTrack) window.fxTrack('sign_up_success',{method:'email'});
+  }
+
+  async function forgotPassword() {
+    const email=$('fx-login-email').value.trim();
+    if(!email){ setMessage($('fx-auth-message'),'Scrie mai întâi adresa de email.','error'); $('fx-login-email').focus(); return; }
+    const {error}=await db.auth.resetPasswordForEmail(email,{redirectTo:'https://formula-x.ro/#cont'});
+    setMessage($('fx-auth-message'),error?error.message:'Ți-am trimis un email pentru resetarea parolei.',error?'error':'success');
+  }
+
+  async function updatePassword(event) {
+    event.preventDefault();
+    const password=$('fx-new-password').value;
+    const {error}=await db.auth.updateUser({password});
+    if(error){ setMessage($('fx-auth-message'),error.message,'error'); return; }
+    state.recoveryMode=false;
+    resetAuthCards();
+    setMessage($('fx-auth-message'),'Parola a fost schimbată.','success');
+    renderAuthState();
+  }
+
+
+  async function bootstrapSession() {
+    const {data,error}=await db.auth.getSession();
+    if(error) console.error(error);
+    state.user=data.session?.user||null;
+    if(state.user) await loadUserData();
+    renderAuthState(); refreshAllTestProgressBoxes();
+  }
+
+  function setupEvents() {
+    $('fx-header-login')?.addEventListener('click',()=>openAuthPage('login'));
+    $('fx-header-signup')?.addEventListener('click',()=>openAuthPage('signup'));
+    $('fx-header-account')?.addEventListener('click',()=>{ if(typeof schimbaPagina==='function') schimbaPagina('cont'); });
+    $('nav-cont')?.addEventListener('click',()=>{ if(typeof schimbaPagina==='function') schimbaPagina('cont'); });
+
+    $('fx-login-form')?.addEventListener('submit',signIn);
+    $('fx-signup-form')?.addEventListener('submit',signUp);
+    $('fx-reset-password-form')?.addEventListener('submit',updatePassword);
+    $('fx-forgot-password')?.addEventListener('click',forgotPassword);
+    $('fx-profile-type')?.addEventListener('change',()=>populateSpecializations(''));
+    $('fx-profile-form')?.addEventListener('submit',saveProfile);
+    $('fx-close-onboarding')?.addEventListener('click',closeOnboarding);
+    $('fx-edit-profile')?.addEventListener('click',()=>openOnboarding(true));
+    $('fx-logout')?.addEventListener('click',()=>db.auth.signOut());
+    $('fx-go-tests')?.addEventListener('click',event=>{ event.preventDefault(); showAllTests(); });
+    $('fx-explore-extra')?.addEventListener('click',event=>{ event.preventDefault(); showAllTests(); });
+    $('fx-start-next-test')?.addEventListener('click',event=>{ event.preventDefault(); openNextRouteTest(); });
+    $('fx-subject-progress')?.addEventListener('click',event=>{
+      const link=event.target.closest('[data-route-bucket]');
+      if(!link) return;
+      event.preventDefault();
+      openTestsForBucket(link.dataset.routeBucket);
+    });
+    $('tests-profile-filter')?.addEventListener('change',()=>{ if(typeof randareTesteAntrenament==='function') randareTesteAntrenament(); });
+
+    const library=$('tests-library');
+    if(library){
+      const observer=new MutationObserver(()=>enhanceTestRows());
+      observer.observe(library,{childList:true,subtree:true});
+      enhanceTestRows();
+    }
+  }
+
+  db.auth.onAuthStateChange((event,session)=>{
+    setTimeout(async ()=>{
+      if(event==='PASSWORD_RECOVERY'){
+        setDocumentAuthState(false);
+        state.recoveryMode=true;
+        state.user=session?.user||null;
+        if(typeof schimbaPagina==='function') schimbaPagina('cont');
+        const auth=$('fx-auth-section');
+        const dash=$('fx-dashboard');
+        const hero=$('fx-account-hero');
+        if(auth) auth.hidden=false;
+        if(dash) dash.hidden=true;
+        if(hero) hero.hidden=true;
+        if($('fx-auth-login-card')) $('fx-auth-login-card').hidden=true;
+        if($('fx-auth-signup-card')) $('fx-auth-signup-card').hidden=true;
+        if($('fx-recovery-card')) $('fx-recovery-card').hidden=false;
+        setMessage($('fx-auth-message'),'Alege o parolă nouă pentru contul tău.');
+        return;
+      }
+      state.user=session?.user||null;
+      if(state.user) await loadUserData();
+      else {
+        state.profile=null;
+        state.progress=new Map();
+        state.attempts=[];
+        state.goal={weekly_target:3};
+        state.routeIndex=new Map();
+        state.routeTotal=0;
+      }
+      renderAuthState();
+      refreshAllTestProgressBoxes();
+    },0);
+  });
+
+  // Până când Supabase confirmă o sesiune, afișăm strict pagina de conectare/înregistrare.
+  setDocumentAuthState(false);
+
+  // Initializează după ce pagina este disponibilă.
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',()=>{ setupEvents(); bootstrapSession(); });
+  } else {
+    setupEvents(); bootstrapSession();
+  }
+})();
+
+</script>
 </body>
 </html>
