@@ -7257,6 +7257,82 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
   .fx-route-complete { grid-template-columns:1fr; text-align:left; }
 }
 
+
+
+/* Formula X V8 — autentificare academică + camera de studiu */
+#view-camera-studiu { background:radial-gradient(circle at 82% 7%,rgba(255,202,40,.08),transparent 28%),linear-gradient(180deg,#081229 0%,#0c1933 50%,#081229 100%); min-height:100vh; }
+.fx-auth-shell { grid-template-columns:minmax(360px,1.18fr) minmax(330px,.82fr) !important; max-width:1040px; margin:0 auto; }
+.fx-auth-card-signup[hidden], .fx-auth-card-login[hidden] { display:none !important; }
+.fx-auth-switch { margin-top:20px; padding-top:18px; border-top:1px solid #e6ebf2; display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:7px; color:#67758a; font-size:13px; }
+.fx-auth-switch-btn { border:0; background:transparent; color:#164574; font:inherit; font-weight:900; text-decoration:underline; cursor:pointer; padding:4px; }
+.fx-auth-switch-btn:hover { color:#c48700; }
+.fx-header-login-solid { background:linear-gradient(90deg,#ffca28,#f4a900) !important; color:#081229 !important; box-shadow:0 6px 18px rgba(245,158,11,.18) !important; }
+.fx-header-logout { border:1px solid rgba(255,202,40,.55); background:transparent; color:#ffca28; }
+.fx-header-logout:hover { border-color:#ffca28; background:rgba(255,202,40,.1); transform:translateY(-1px); }
+.fx-study-entry { margin:18px 0 22px; display:grid; grid-template-columns:auto 1fr auto; gap:18px; align-items:center; padding:24px 26px; border:1px solid rgba(255,202,40,.32); border-radius:18px; background:linear-gradient(135deg,#0b1b39,#102b57); color:#fff; box-shadow:0 16px 38px rgba(8,18,41,.18); }
+.fx-study-entry-icon { width:54px; height:54px; border-radius:16px; display:grid; place-items:center; background:rgba(255,202,40,.13); color:#ffca28; font-size:27px; border:1px solid rgba(255,202,40,.3); }
+.fx-study-entry h3 { margin:5px 0 6px; color:#fff; font-size:21px; }
+.fx-study-entry p { margin:0; max-width:760px; color:#d9e4f5; line-height:1.6; font-size:14px; }
+.fx-study-entry-btn { white-space:nowrap; }
+.fx-study-page { width:min(1120px,calc(100% - 32px)); margin:0 auto; padding:40px 0 70px; }
+.fx-study-hero { display:flex; justify-content:space-between; align-items:flex-end; gap:22px; margin-bottom:20px; padding:30px; border-radius:20px; background:linear-gradient(135deg,#081a3a,#153763); color:#fff; border:1px solid rgba(255,202,40,.2); }
+.fx-study-hero h1 { margin:6px 0 10px; font-size:clamp(30px,5vw,50px); line-height:1.05; }
+.fx-study-hero p { margin:0; max-width:760px; color:#d9e4f5; line-height:1.65; }
+.fx-study-card { margin-top:18px; padding:26px; border-radius:18px; background:#fff; border:1px solid #dde4ed; box-shadow:0 13px 34px rgba(8,18,41,.09); color:#10213c; }
+.fx-study-section-head,.fx-study-session-top { display:flex; align-items:flex-start; justify-content:space-between; gap:18px; margin-bottom:20px; }
+.fx-study-section-head h2,.fx-study-session-top h2 { margin:4px 0 0; font-size:24px; color:#0b1e3e; }
+.fx-study-rule,.fx-study-status-badge { display:inline-flex; align-items:center; min-height:34px; padding:7px 11px; border-radius:999px; background:#fff5cc; color:#765600; border:1px solid #f5d46b; font-size:12px; font-weight:900; }
+.fx-study-picker-grid { display:grid; grid-template-columns:.9fr 1fr 1.6fr; gap:14px; }
+.fx-study-picker-grid label,.fx-study-score-grid label { display:grid; gap:7px; font-size:12px; font-weight:900; color:#203452; }
+.fx-study-picker-grid select,.fx-study-score-input input { width:100%; min-height:46px; border:1px solid #ccd6e4; border-radius:10px; padding:9px 11px; background:#fff; color:#10213c; font:inherit; }
+.fx-study-selected { margin:18px 0; padding:16px 18px; border-radius:12px; background:#f5f8fc; border:1px solid #e0e7f0; color:#273b58; line-height:1.55; }
+.fx-study-selected strong { display:block; color:#0b1e3e; font-size:16px; margin-bottom:3px; }
+.fx-study-selected small { display:block; margin-top:5px; color:#748196; }
+.fx-study-selected-empty { color:#718096; }
+.fx-study-picker-actions { display:flex; justify-content:flex-end; }
+.fx-study-picker-actions .fx-primary-btn:disabled { opacity:.45; cursor:not-allowed; }
+.fx-study-session { text-align:center; }
+.fx-study-session-top { text-align:left; }
+.fx-study-session-top p { margin:5px 0 0; color:#68778d; }
+.fx-study-timer-wrap { padding:28px 18px 24px; border-radius:18px; background:linear-gradient(145deg,#071a3f,#102e61); color:#fff; border:1px solid rgba(255,202,40,.25); }
+.fx-study-timer-label { display:block; color:#ffca28; text-transform:uppercase; letter-spacing:1.1px; font-size:11px; font-weight:900; }
+.fx-study-timer { margin:7px 0 2px; font-variant-numeric:tabular-nums; font-size:clamp(52px,10vw,92px); font-weight:900; letter-spacing:2px; line-height:1; }
+.fx-study-elapsed { color:#c8d6ed; font-size:13px; }
+.fx-study-session-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:18px; }
+.fx-study-link-btn { display:inline-flex; align-items:center; justify-content:center; text-decoration:none; }
+.fx-study-finish-btn { border-color:#f1b920; color:#0b1e3e; }
+.fx-study-integrity { margin:16px 0 0; color:#718096; font-size:13px; }
+.fx-study-result > p { color:#61718a; line-height:1.6; }
+.fx-study-finished-time { color:#40536f; font-size:13px; }
+.fx-study-result-actions { margin:14px 0 20px; }
+.fx-study-score-grid { display:grid; grid-template-columns:1fr .55fr; gap:15px; align-items:stretch; max-width:620px; }
+.fx-study-score-input { display:flex; align-items:center; border:1px solid #ccd6e4; border-radius:10px; overflow:hidden; background:#fff; }
+.fx-study-score-input input { border:0; border-radius:0; font-size:20px; font-weight:800; min-width:0; }
+.fx-study-score-input span { padding:0 14px; color:#718096; font-weight:800; white-space:nowrap; }
+.fx-study-grade-preview { padding:13px 16px; border-radius:12px; background:#f5f8fc; border:1px solid #e0e7f0; display:grid; align-content:center; }
+.fx-study-grade-preview span { font-size:11px; font-weight:900; color:#65758a; text-transform:uppercase; letter-spacing:.6px; }
+.fx-study-grade-preview strong { font-size:29px; color:#0b1e3e; }
+.fx-study-grade-preview small { color:#7d899a; }
+.fx-study-result-footer { margin-top:18px; display:flex; flex-wrap:wrap; gap:10px; }
+.fx-study-status-badge.is-paused { background:#eef3fa; border-color:#d5dfec; color:#44566f; }
+.fx-study-status-badge.is-finished { background:#e8f7ed; border-color:#b9e2c4; color:#1e6b35; }
+.fx-attempt-study-meta { display:block; color:#6a7890; font-size:10px; margin-top:3px; }
+@media (max-width:900px) {
+  .fx-auth-shell { grid-template-columns:1fr !important; }
+  .fx-study-entry { grid-template-columns:auto 1fr; }
+  .fx-study-entry-btn { grid-column:1/-1; width:100%; }
+  .fx-study-picker-grid { grid-template-columns:1fr; }
+}
+@media (max-width:650px) {
+  .fx-study-page { width:min(100% - 20px,1120px); padding-top:24px; }
+  .fx-study-hero,.fx-study-section-head,.fx-study-session-top { align-items:stretch; flex-direction:column; }
+  .fx-study-hero { padding:23px 20px; }
+  .fx-study-card { padding:20px 16px; }
+  .fx-study-entry { grid-template-columns:1fr; text-align:left; padding:20px; }
+  .fx-study-score-grid { grid-template-columns:1fr; }
+  .fx-study-session-actions > *,.fx-study-result-footer > * { width:100%; }
+  .fx-study-timer { font-size:clamp(43px,16vw,66px); }
+}
 </style>
 </head>
 <body>
@@ -7278,9 +7354,9 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     <a id="nav-cont" class="fx-nav-account-link" onclick="schimbaPagina('cont')" hidden>Contul meu</a>
   </nav>
   <div id="fx-header-auth-actions" class="fx-header-auth-actions" aria-label="Cont Formula X">
-    <button type="button" id="fx-header-login" class="fx-header-login" onclick="deschideContFormulaX('login')">Conectare</button>
-    <button type="button" id="fx-header-signup" class="fx-header-signup" onclick="deschideContFormulaX('signup')">Înregistrare</button>
+    <button type="button" id="fx-header-login" class="fx-header-login fx-header-login-solid" onclick="deschideContFormulaX('login')">Conectare</button>
     <button type="button" id="fx-header-account" class="fx-header-account" onclick="deschideContFormulaX('account')" hidden>Contul meu</button>
+    <button type="button" id="fx-header-logout" class="fx-header-logout" hidden>Deconectare</button>
   </div>
 </header>
 
@@ -7644,7 +7720,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
       <div>
         <span class="fx-account-eyebrow">Formula X • Progres personal</span>
         <h1>Contul meu</h1>
-        <p>Traseul tău BAC, testele rezolvate, notele și evoluția — toate într-un singur loc.</p>
+        <p>Traseul tău pentru examenul de bacalaureat, testele rezolvate, rezultatele și evoluția — toate într-un singur loc.</p>
       </div>
       <div id="fx-account-user-chip" class="fx-account-user-chip" hidden></div>
     </section>
@@ -7653,20 +7729,20 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
       <div class="fx-auth-intro">
         <span class="fx-account-eyebrow">Cont Formula X • Gratuit</span>
         <h1>Nu mai rezolva teste la întâmplare.</h1>
-        <p class="fx-auth-lead">Transformă arhiva Formula X într-un traseu clar până la BAC. Îți alegi profilul, specializarea și proba E.d, iar noi numărăm doar testele care intră în traseul tău.</p>
+        <p class="fx-auth-lead">Transformă arhiva Formula X într-un plan de pregătire clar pentru examenul de bacalaureat. Îți alegi profilul, specializarea și proba E.d, iar platforma urmărește separat doar testele relevante celor trei probe ale tale.</p>
 
         <div class="fx-auth-benefits">
           <div><strong>01</strong><span><b>Bifezi testele rezolvate</b><small>Știi mereu ce ai făcut și ce urmează.</small></span></div>
-          <div><strong>02</strong><span><b>Îți salvezi notele</b><small>Poți reveni la același test și urmări progresul.</small></span></div>
-          <div><strong>03</strong><span><b>Vezi câte mai ai</b><small>Ex.: 38 din 164 teste relevante profilului tău.</small></span></div>
-          <div><strong>04</strong><span><b>Îți monitorizezi evoluția</b><small>Medie, grafic și obiectiv săptămânal.</small></span></div>
+          <div><strong>02</strong><span><b>Îți înregistrezi rezultatele</b><small>Salvezi nota obținută și poți urmări evoluția de la o încercare la alta.</small></span></div>
+          <div><strong>03</strong><span><b>Vezi cât ai parcurs</b><small>Platforma calculează progresul doar pentru probele examenului tău.</small></span></div>
+          <div><strong>04</strong><span><b>Îți monitorizezi pregătirea</b><small>Medie, evoluție, timp de lucru și obiectiv săptămânal.</small></span></div>
         </div>
 
         <div class="fx-auth-preview" aria-label="Exemplu de progres Formula X">
           <div><span>Traseul meu</span><strong>38 / 164</strong><small>teste rezolvate</small></div>
           <div><span>Media mea</span><strong>8,47</strong><small>în creștere ↗</small></div>
           <div class="fx-auth-preview-progress"><i style="width:23%"></i></div>
-          <p>Toate testele rămân disponibile. Cele din profilul tău sunt marcate și numerotate; celelalte pot fi lucrate suplimentar.</p>
+          <p>Toată arhiva rămâne disponibilă. Testele corespunzătoare profilului și probelor tale sunt numerotate și incluse în progres; celelalte pot fi lucrate ulterior ca antrenament suplimentar.</p>
         </div>
       </div>
 
@@ -7679,13 +7755,18 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
           <label>Parolă<input type="password" id="fx-login-password" autocomplete="current-password" required minlength="6" placeholder="Parola ta"></label>
           <button type="submit" class="fx-primary-btn">INTRĂ ÎN CONT</button>
           <button type="button" id="fx-forgot-password" class="fx-link-btn">Am uitat parola</button>
+          <button type="button" id="fx-resend-confirmation" class="fx-link-btn" hidden>Retrimite emailul de confirmare</button>
+          <div class="fx-auth-switch">
+            <span>Nu ai încă un cont?</span>
+            <button type="button" id="fx-show-signup" class="fx-auth-switch-btn">Creează un cont gratuit</button>
+          </div>
         </form>
       </div>
 
-      <div id="fx-auth-signup-card" class="fx-auth-card fx-auth-card-signup">
+      <div id="fx-auth-signup-card" class="fx-auth-card fx-auth-card-signup" hidden>
         <span class="fx-form-kicker">Prima dată aici?</span>
         <h2>Creează cont gratuit</h2>
-        <p class="fx-auth-card-copy">Îți ia mai puțin de un minut. După confirmare îți alegi traseul BAC.</p>
+        <p class="fx-auth-card-copy">Îți ia mai puțin de un minut. După confirmarea adresei de email îți configurezi traseul pentru examenul de bacalaureat.</p>
         <form id="fx-signup-form" class="fx-auth-form">
           <label>Nume și prenume<input type="text" id="fx-signup-name" autocomplete="name" required maxlength="80" placeholder="Ex: Andreea Popescu"></label>
           <label>Email<input type="email" id="fx-signup-email" autocomplete="email" required placeholder="nume@email.com"></label>
@@ -7693,6 +7774,10 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
           <button type="submit" id="fx-signup-submit" class="fx-primary-btn">CREEAZĂ CONT GRATUIT</button>
           <div id="fx-signup-status" class="fx-signup-status" aria-live="polite"></div>
           <p class="fx-auth-small">După creare, verifică emailul pentru confirmarea contului.</p>
+          <div class="fx-auth-switch">
+            <span>Ai deja un cont?</span>
+            <button type="button" id="fx-show-login" class="fx-auth-switch-btn">Conectează-te</button>
+          </div>
         </form>
       </div>
 
@@ -7711,29 +7796,39 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     <section id="fx-dashboard" class="fx-dashboard" hidden>
       <div class="fx-dashboard-topline">
         <div>
-          <span class="fx-account-eyebrow">Dashboard elev</span>
+          <span class="fx-account-eyebrow">Progres academic</span>
           <h2 id="fx-dashboard-greeting">Bun venit!</h2>
-          <p id="fx-dashboard-profile">Completează profilul pentru un progres personalizat.</p>
+          <p id="fx-dashboard-profile">Completează profilul pentru monitorizarea personalizată a pregătirii.</p>
         </div>
         <div class="fx-dashboard-actions">
-          <button type="button" id="fx-edit-profile" class="fx-secondary-btn">Editează traseul BAC</button>
+          <button type="button" id="fx-edit-profile" class="fx-secondary-btn">Editează traseul pentru bacalaureat</button>
           <button type="button" id="fx-logout" class="fx-secondary-btn">Ieși din cont</button>
         </div>
       </div>
 
       <div class="fx-stat-grid">
-        <article class="fx-stat-card"><span>Teste din traseul tău</span><strong id="fx-stat-completed">0</strong><small id="fx-stat-total">din 0</small></article>
-        <article class="fx-stat-card"><span>Mai ai de rezolvat</span><strong id="fx-stat-remaining">0</strong><small>din BAC-ul selectat</small></article>
-        <article class="fx-stat-card"><span>Media ta</span><strong id="fx-stat-average">—</strong><small>toate încercările</small></article>
-        <article class="fx-stat-card"><span>Traseu completat</span><strong id="fx-stat-percent">0%</strong><small id="fx-stat-streak">🔥 0 zile</small></article>
+        <article class="fx-stat-card"><span>Teste rezolvate</span><strong id="fx-stat-completed">0</strong><small id="fx-stat-total">din 0</small></article>
+        <article class="fx-stat-card"><span>Mai ai de rezolvat</span><strong id="fx-stat-remaining">0</strong><small>din traseul pentru examen</small></article>
+        <article class="fx-stat-card"><span>Media rezultatelor</span><strong id="fx-stat-average">—</strong><small>din încercările înregistrate</small></article>
+        <article class="fx-stat-card"><span>Traseu parcurs</span><strong id="fx-stat-percent">0%</strong><small id="fx-stat-streak">🔥 0 zile</small></article>
       </div>
+
+      <article class="fx-study-entry">
+        <div class="fx-study-entry-icon" aria-hidden="true">⏱</div>
+        <div class="fx-study-entry-copy">
+          <span class="fx-account-eyebrow">Camera de studiu</span>
+          <h3>Lucrează o variantă în condiții apropiate examenului.</h3>
+          <p>Alege un test, pornește cronometrul de 3 ore, rezolvă subiectul fără a consulta baremul, apoi înregistrează punctajul și timpul efectiv de lucru.</p>
+        </div>
+        <button type="button" id="fx-open-study-room" class="fx-primary-btn fx-study-entry-btn">INTRĂ ÎN CAMERA DE STUDIU →</button>
+      </article>
 
       <article id="fx-route-complete" class="fx-route-complete" hidden>
         <div class="fx-route-complete-icon">✓</div>
         <div>
-          <span class="fx-account-eyebrow">Traseu principal finalizat</span>
-          <h3>Ai parcurs toate testele relevante profilului tău.</h3>
-          <p>Foarte bine. De aici îți recomandăm să lucrezi și variante din alte profile: întâlnești cerințe diferite și îți consolidezi materia fără să îți modificăm procentul traseului principal.</p>
+          <span class="fx-account-eyebrow">Parcurs principal finalizat</span>
+          <h3>Ai parcurs toate testele corespunzătoare profilului și probelor tale.</h3>
+          <p>Ai finalizat setul principal recomandat pentru examenul de bacalaureat. Pentru consolidare, îți recomandăm să continui cu variante din alte profile: vei întâlni formulări și cerințe diferite, fără ca acestea să modifice procentul traseului tău principal.</p>
         </div>
         <a href="#teste" id="fx-explore-extra" class="fx-primary-btn fx-inline-action">EXPLOREAZĂ TESTE SUPLIMENTARE →</a>
       </article>
@@ -7741,7 +7836,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
       <div class="fx-dashboard-grid">
         <article class="fx-panel fx-chart-panel">
           <div class="fx-panel-head">
-            <div><span class="fx-account-eyebrow">Evoluție</span><h3>Graficul notelor</h3><span id="fx-chart-trend" class="fx-trend-chip">Nu ai încă note salvate</span></div>
+            <div><span class="fx-account-eyebrow">Evoluție</span><h3>Graficul notelor</h3><span id="fx-chart-trend" class="fx-trend-chip">Nu ai încă rezultate înregistrate</span></div>
             <a href="#teste" id="fx-start-next-test" class="fx-primary-btn fx-small-btn fx-inline-action">ÎNCEPE URMĂTORUL TEST →</a>
           </div>
           <div id="fx-progress-chart" class="fx-progress-chart" aria-label="Graficul evoluției notelor"></div>
@@ -7760,8 +7855,8 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
       </div>
 
       <article class="fx-panel">
-        <div class="fx-panel-head"><div><span class="fx-account-eyebrow">Cele 3 probe ale tale</span><h3>Progresul tău la fiecare materie</h3></div><a href="#teste" id="fx-go-tests" class="fx-primary-btn fx-small-btn fx-inline-action">VEZI TOATE TESTELE →</a></div>
-        <p class="fx-panel-explainer">BAC-ul tău este urmărit separat pe cele trei probe: Română, proba obligatorie a profilului și proba E.d aleasă. Toată arhiva rămâne disponibilă, dar procentul principal numără doar traseul tău.</p>
+        <div class="fx-panel-head"><div><span class="fx-account-eyebrow">Cele trei probe ale examenului</span><h3>Progresul pe fiecare probă</h3></div><a href="#teste" id="fx-go-tests" class="fx-primary-btn fx-small-btn fx-inline-action">VEZI TOATE TESTELE →</a></div>
+        <p class="fx-panel-explainer">Pregătirea este urmărită separat pentru cele trei probe scrise relevante traseului tău: Limba și literatura română, proba obligatorie a profilului și proba E.d aleasă. Restul arhivei rămâne disponibil ca material suplimentar.</p>
         <div id="fx-subject-progress" class="fx-subject-progress"></div>
       </article>
 
@@ -7777,11 +7872,11 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
 <div id="fx-onboarding" class="fx-modal" role="dialog" aria-modal="true" aria-labelledby="fx-onboarding-title" hidden>
   <div class="fx-modal-card">
     <span class="fx-account-eyebrow">Personalizare Formula X</span>
-    <h2 id="fx-onboarding-title">Configurează traseul tău BAC</h2>
-    <p>Alege profilul, specializarea și proba E.d. Toate testele rămân vizibile în arhivă, dar doar cele relevante alegerilor tale vor fi numerotate și incluse în progres.</p>
+    <h2 id="fx-onboarding-title">Configurează traseul pentru examenul de bacalaureat</h2>
+    <p>Alege profilul, specializarea și proba E.d. Toate testele rămân vizibile în arhivă, însă numai variantele relevante celor trei probe ale examenului tău vor fi numerotate și incluse în progresul principal.</p>
     <form id="fx-profile-form" class="fx-profile-form">
       <label>Nume și prenume<input type="text" id="fx-profile-name" required maxlength="80"></label>
-      <label>Anul BAC
+      <label>Anul examenului de bacalaureat
         <select id="fx-profile-bac-year" required><option value="2027">2027</option><option value="2028">2028</option><option value="2029">2029</option></select>
       </label>
       <label>Profilul de la liceu
@@ -7814,6 +7909,93 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
       <button type="submit" class="fx-primary-btn">SALVEAZĂ ȘI VEZI PROGRESUL</button>
       <button type="button" id="fx-close-onboarding" class="fx-link-btn">Închide</button>
     </form>
+  </div>
+</div>
+
+<!-- ================= VIEW: CAMERA DE STUDIU ================= -->
+<div id="view-camera-studiu" class="page-view">
+  <div class="fx-study-page">
+    <section class="fx-study-hero">
+      <div>
+        <span class="fx-account-eyebrow">Formula X • Camera de studiu</span>
+        <h1>Sesiune cronometrată de pregătire</h1>
+        <p>Lucrează o variantă în condiții apropiate examenului de bacalaureat. Cronometrul pornește de la 3 ore, iar baremul devine disponibil după finalizarea sesiunii.</p>
+      </div>
+      <button type="button" id="fx-study-back-account" class="fx-secondary-btn">Înapoi la contul meu</button>
+    </section>
+
+    <section id="fx-study-picker" class="fx-study-card fx-study-picker">
+      <div class="fx-study-section-head">
+        <div><span class="fx-account-eyebrow">Pasul 1</span><h2>Alege varianta pe care vrei să o lucrezi</h2></div>
+        <span class="fx-study-rule">Timp recomandat: 3 ore</span>
+      </div>
+      <div class="fx-study-picker-grid">
+        <label>Set de teste
+          <select id="fx-study-scope">
+            <option value="route">Traseul meu pentru examen</option>
+            <option value="all">Toată arhiva Formula X</option>
+          </select>
+        </label>
+        <label>Materie / probă
+          <select id="fx-study-subject"><option value="toate">Toate materiile</option></select>
+        </label>
+        <label class="fx-study-test-select">Test
+          <select id="fx-study-test"><option value="">Alege un test</option></select>
+        </label>
+      </div>
+      <div id="fx-study-selected" class="fx-study-selected fx-study-selected-empty">
+        Selectează un test pentru a vedea detaliile sesiunii.
+      </div>
+      <div class="fx-study-picker-actions">
+        <button type="button" id="fx-study-start" class="fx-primary-btn" disabled>ÎNCEPE TESTUL ȘI PORNEȘTE CRONOMETRUL →</button>
+      </div>
+    </section>
+
+    <section id="fx-study-session" class="fx-study-card fx-study-session" hidden>
+      <div class="fx-study-session-top">
+        <div>
+          <span class="fx-account-eyebrow">Sesiune în desfășurare</span>
+          <h2 id="fx-study-session-title">Test selectat</h2>
+          <p id="fx-study-session-meta"></p>
+        </div>
+        <span id="fx-study-status-badge" class="fx-study-status-badge">În lucru</span>
+      </div>
+
+      <div class="fx-study-timer-wrap">
+        <span class="fx-study-timer-label">Timp rămas</span>
+        <div id="fx-study-timer" class="fx-study-timer" role="timer" aria-live="off">03:00:00</div>
+        <div class="fx-study-elapsed">Timp efectiv: <strong id="fx-study-elapsed">00:00:00</strong></div>
+      </div>
+
+      <div class="fx-study-session-actions">
+        <a id="fx-study-open-subject" class="fx-primary-btn fx-study-link-btn" href="#" target="_blank" rel="noopener">DESCHIDE SUBIECTUL</a>
+        <button type="button" id="fx-study-pause" class="fx-secondary-btn">Pauză</button>
+        <button type="button" id="fx-study-finish" class="fx-secondary-btn fx-study-finish-btn">Finalizează testul</button>
+      </div>
+      <p class="fx-study-integrity">Pentru o simulare relevantă, recomandăm să nu consulți baremul înainte de finalizarea timpului de lucru.</p>
+    </section>
+
+    <section id="fx-study-result" class="fx-study-card fx-study-result" hidden>
+      <div class="fx-study-section-head">
+        <div><span class="fx-account-eyebrow">Pasul 3</span><h2>Corectează și înregistrează rezultatul</h2></div>
+        <div class="fx-study-finished-time">Timp de lucru: <strong id="fx-study-final-time">—</strong></div>
+      </div>
+      <p>Acum poți consulta baremul oficial. Introdu punctajul final, incluzând cele 10 puncte acordate din oficiu.</p>
+      <div class="fx-study-result-actions">
+        <a id="fx-study-open-barem" class="fx-secondary-btn fx-study-link-btn" href="#" target="_blank" rel="noopener">DESCHIDE BAREMUL</a>
+      </div>
+      <div class="fx-study-score-grid">
+        <label>Punctaj final
+          <div class="fx-study-score-input"><input id="fx-study-score" type="number" min="10" max="100" step="0.5" inputmode="decimal" placeholder="Ex.: 87"><span>/ 100</span></div>
+        </label>
+        <div class="fx-study-grade-preview"><span>Nota rezultată</span><strong id="fx-study-grade">—</strong><small>Punctaj ÷ 10</small></div>
+      </div>
+      <div id="fx-study-save-message" class="fx-inline-status" aria-live="polite"></div>
+      <div class="fx-study-result-footer">
+        <button type="button" id="fx-study-save-result" class="fx-primary-btn">ÎNREGISTREAZĂ REZULTATUL</button>
+        <button type="button" id="fx-study-new-session" class="fx-secondary-btn">Alege alt test</button>
+      </div>
+    </section>
   </div>
 </div>
 
@@ -9150,6 +9332,10 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     } catch (e) {}
 
     window.setTimeout(function () {
+      var loginCard = document.getElementById('fx-auth-login-card');
+      var signupCard = document.getElementById('fx-auth-signup-card');
+      if (mod === 'signup') { if (loginCard) loginCard.hidden = true; if (signupCard) signupCard.hidden = false; }
+      if (mod === 'login') { if (loginCard) loginCard.hidden = false; if (signupCard) signupCard.hidden = true; }
       var id = mod === 'signup' ? 'fx-auth-signup-card' : (mod === 'login' ? 'fx-auth-login-card' : 'fx-account-hero');
       var target = document.getElementById(id);
       if (target && typeof target.scrollIntoView === 'function') {
@@ -19368,7 +19554,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
 
   function paginaDinURL() {
     const pagina = window.location.hash.replace('#', '');
-    return ['acasa', 'romana', 'mate', 'bio', 'fizica', 'chimie', 'teste', 'cont'].indexOf(pagina) !== -1 ? pagina : 'acasa';
+    return ['acasa', 'romana', 'mate', 'bio', 'fizica', 'chimie', 'teste', 'cont', 'camera-studiu'].indexOf(pagina) !== -1 ? pagina : 'acasa';
   }
 
   window.addEventListener('DOMContentLoaded', () => {
@@ -19709,12 +19895,15 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     const loginCard = $('fx-auth-login-card');
     const signupCard = $('fx-auth-signup-card');
     [loginCard, signupCard].forEach(card => card?.classList.remove('is-focused'));
-    const target = mode === 'signup' ? signupCard : loginCard;
+    const showSignup = mode === 'signup';
+    if (loginCard) loginCard.hidden = showSignup;
+    if (signupCard) signupCard.hidden = !showSignup;
+    const target = showSignup ? signupCard : loginCard;
     if (target) {
       target.classList.add('is-focused');
-      setTimeout(() => target.classList.remove('is-focused'), 1800);
+      setTimeout(() => target.classList.remove('is-focused'), 1200);
     }
-    const input = mode === 'signup' ? $('fx-signup-name') : $('fx-login-email');
+    const input = showSignup ? $('fx-signup-name') : $('fx-login-email');
     setTimeout(() => input?.focus(), 100);
   }
 
@@ -19756,7 +19945,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     const specPair = (SPECIALIZATIONS[profile.profile] || []).find(x => x[0] === profile.specialization);
     const spec = specPair ? specPair[1] : profile.specialization || '';
     const optional = OPTIONAL_LABELS[profile.optional_subject] || profile.optional_subject || '';
-    return [main, spec, optional, profile.bac_year ? `BAC ${profile.bac_year}` : ''].filter(Boolean).join(' • ');
+    return [main, spec, optional, profile.bac_year ? `Examenul de bacalaureat ${profile.bac_year}` : ''].filter(Boolean).join(' • ');
   }
 
   async function loadUserData() {
@@ -19819,15 +20008,12 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
   function renderHeaderAuthState() {
     const loggedIn = Boolean(state.user);
     const login = $('fx-header-login');
-    const signup = $('fx-header-signup');
     const account = $('fx-header-account');
+    const logout = $('fx-header-logout');
     const navAccount = $('nav-cont');
     if (login) login.hidden = loggedIn;
-    if (signup) signup.hidden = loggedIn;
-    if (account) {
-      account.hidden = !loggedIn;
-      account.textContent = loggedIn ? 'Contul meu' : 'Contul meu';
-    }
+    if (account) account.hidden = !loggedIn;
+    if (logout) logout.hidden = !loggedIn;
     if (navAccount) navAccount.hidden = !loggedIn;
   }
 
@@ -19836,8 +20022,9 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     const signupCard = $('fx-auth-signup-card');
     const recoveryCard = $('fx-recovery-card');
     if (loginCard) loginCard.hidden = false;
-    if (signupCard) signupCard.hidden = false;
+    if (signupCard) signupCard.hidden = true;
     if (recoveryCard) recoveryCard.hidden = true;
+    if ($('fx-resend-confirmation')) $('fx-resend-confirmation').hidden = true;
   }
 
   function setDocumentAuthState(loggedIn) {
@@ -19908,8 +20095,8 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     if (!el) return;
     const last = attempts.slice(-12);
     if (!last.length) {
-      el.innerHTML = '<div class="fx-empty">După ce salvezi prima notă, aici apare evoluția ta.</div>';
-      $('fx-chart-trend').textContent = 'Nu ai încă note salvate';
+      el.innerHTML = '<div class="fx-empty">După ce înregistrezi primul rezultat, aici va apărea evoluția notelor tale.</div>';
+      $('fx-chart-trend').textContent = 'Nu ai încă rezultate înregistrate';
       return;
     }
     const width=720, height=250, padL=44, padR=18, padT=18, padB=38;
@@ -19942,7 +20129,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     const streak = calculateStreak();
 
     $('fx-dashboard-greeting').textContent = `Bun venit${state.profile?.name ? ', '+state.profile.name.split(/\s+/)[0] : ''}!`;
-    $('fx-dashboard-profile').textContent = profileComplete() ? profileLabel(state.profile) : 'Completează profilul pentru un traseu personalizat.';
+    $('fx-dashboard-profile').textContent = profileComplete() ? profileLabel(state.profile) : 'Completează profilul pentru monitorizarea personalizată a pregătirii.';
     $('fx-stat-completed').textContent = String(done);
     $('fx-stat-total').textContent = `din ${total}`;
     $('fx-stat-remaining').textContent = String(remaining);
@@ -19987,7 +20174,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
           <div class="fx-subject-meta"><span>Mai ai <strong>${remainingBucket}</strong></span><span>Media: <strong>${bucketAvg == null ? '—' : formatGrade(bucketAvg)}</strong></span></div>
           <a href="#teste" class="fx-subject-open" data-route-bucket="${bucket.key}">${d === tests.length && tests.length ? 'REPETĂ / VEZI ALTE TESTE' : 'CONTINUĂ CU TESTELE'} →</a>
         </article>`;
-      }).join('') : '<div class="fx-empty">Completează profilul pentru a vedea cele trei probe ale BAC-ului tău.</div>';
+      }).join('') : '<div class="fx-empty">Completează profilul pentru a vedea separat cele trei probe ale examenului de bacalaureat.</div>';
     }
 
     const recent=$('fx-recent-attempts');
@@ -19996,8 +20183,9 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
       recent.innerHTML=rows.length?rows.map(a=>{
         const test=allTests().find(t=>t.id===a.test_id);
         const title=test?`${test.materieLabel||MATTER_LABELS[test.materie]||''} • ${test.titlu||test.id}`:a.test_id;
-        return `<div class="fx-attempt-row"><strong>${escapeHtml(title)}</strong><span>${formatDate(a.completed_at)}</span><span class="fx-attempt-grade">${formatGrade(a.grade)}</span></div>`;
-      }).join(''):'<div class="fx-empty">Nu ai încă încercări salvate.</div>';
+        const studyMeta = a.study_room ? `<small class="fx-attempt-study-meta">${a.score_points!=null?escapeHtml(String(a.score_points).replace('.',','))+'p • ':''}${a.duration_seconds!=null?formatStudyTime(a.duration_seconds):''}</small>` : '';
+        return `<div class="fx-attempt-row"><strong>${escapeHtml(title)}</strong><span>${formatDate(a.completed_at)}${studyMeta}</span><span class="fx-attempt-grade">${formatGrade(a.grade)}</span></div>`;
+      }).join(''):'<div class="fx-empty">Nu ai încă rezultate înregistrate.</div>';
     }
   }
 
@@ -20029,15 +20217,15 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     const route = profileComplete() ? state.routeIndex.get(id) : null;
     const routeBadge = profileComplete()
       ? (route
-          ? `<span class="fx-route-number">Traseul tău • #${route.index} din ${route.total}</span>`
+          ? `<span class="fx-route-number">Traseul examenului • #${route.index} din ${route.total}</span>`
           : '<span class="fx-route-number extra">Test suplimentar</span>')
       : '';
 
     const p=state.progress.get(id);
     const status=p?.completed
       ? `<span class="fx-test-progress-status done">✓ Rezolvat${p.last_grade!=null?' • ultima notă '+formatGrade(p.last_grade):''}</span>`
-      : '<span class="fx-test-progress-status">Marchează testul ca rezolvat și salvează nota.</span>';
-    box.innerHTML=`${routeBadge}${status}<input class="fx-grade-input" type="number" min="1" max="10" step="0.01" inputmode="decimal" aria-label="Nota pentru test" placeholder="Nota" value="${p?.last_grade!=null?Number(p.last_grade).toFixed(2):''}"><button type="button" class="fx-save-test-btn">SALVEAZĂ</button><span class="fx-test-note">1,00–10,00</span>`;
+      : '<span class="fx-test-progress-status">Înregistrează rezultatul obținut la acest test.</span>';
+    box.innerHTML=`${routeBadge}${status}<input class="fx-grade-input" type="number" min="1" max="10" step="0.01" inputmode="decimal" aria-label="Nota obținută la test" placeholder="Nota obținută" value="${p?.last_grade!=null?Number(p.last_grade).toFixed(2):''}"><button type="button" class="fx-save-test-btn">ÎNREGISTREAZĂ</button><span class="fx-test-note">Nota: 1,00–10,00</span>`;
     const btn=box.querySelector('.fx-save-test-btn');
     btn.addEventListener('click',()=>saveTestGrade(id,box));
   }
@@ -20050,7 +20238,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     const btn=box.querySelector('.fx-save-test-btn'); btn.disabled=true; btn.textContent='SE SALVEAZĂ...';
     const now=new Date().toISOString();
     const attempt=await db.from('test_attempts').insert({user_id:state.user.id,test_id:id,grade,completed_at:now}).select().single();
-    if(attempt.error){ console.error(attempt.error); btn.disabled=false;btn.textContent='SALVEAZĂ'; alert('Nu am putut salva nota. Verifică conexiunea și încearcă din nou.'); return; }
+    if(attempt.error){ console.error(attempt.error); btn.disabled=false;btn.textContent='ÎNREGISTREAZĂ'; alert('Nu am putut salva nota. Verifică conexiunea și încearcă din nou.'); return; }
     const old=state.progress.get(id);
     const best=Math.max(grade, Number(old?.best_grade||0));
     const prog=await db.from('test_progress').upsert({user_id:state.user.id,test_id:id,completed:true,last_grade:grade,best_grade:best,completed_at:old?.completed_at||now,updated_at:now},{onConflict:'user_id,test_id'}).select().single();
@@ -20085,9 +20273,220 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     if(res.error){ console.error(res.error); setMessage($('fx-profile-message'),'Nu am putut salva profilul. Încearcă din nou.','error'); return; }
     state.profile=res.data;
     if(window.fxTrack) window.fxTrack('bac_route_saved');
-    setMessage($('fx-profile-message'),'Profil salvat.','success');
+    setMessage($('fx-profile-message'),'Traseul pentru examenul de bacalaureat a fost salvat.','success');
     closeOnboarding(); renderAuthState(); refreshAllTestProgressBoxes();
     if (typeof randareTesteAntrenament === 'function') randareTesteAntrenament();
+  }
+
+
+  const FX_STUDY_LIMIT_SECONDS = 3 * 60 * 60;
+  const studyState = {
+    test:null,
+    startedAt:0,
+    pausedAt:0,
+    pausedTotalMs:0,
+    interval:null,
+    finished:false,
+    elapsedSeconds:0
+  };
+
+  function formatStudyTime(totalSeconds) {
+    const sec = Math.max(0, Math.floor(Number(totalSeconds) || 0));
+    const h = Math.floor(sec / 3600);
+    const m = Math.floor((sec % 3600) / 60);
+    const s = sec % 60;
+    return [h,m,s].map(v=>String(v).padStart(2,'0')).join(':');
+  }
+
+  function studyAvailableTests() {
+    const scope = $('fx-study-scope')?.value || 'route';
+    const base = scope === 'route' && profileComplete() ? personalizedTests() : allTests().filter(t=>t?.subiect && t?.barem);
+    const subject = $('fx-study-subject')?.value || 'toate';
+    return base.filter(t => subject === 'toate' || String(t.materie) === subject);
+  }
+
+  function studyTestLabel(test) {
+    const session = test.sesiuneScurta || test.sesiune || '';
+    return `${test.an} • ${session} • ${test.materieLabel || MATTER_LABELS[test.materie] || test.materie} • ${test.titlu || test.id}`;
+  }
+
+  function populateStudyRoom() {
+    if (!state.user) return;
+    const scope = $('fx-study-scope');
+    if (scope && !profileComplete()) { scope.value='all'; scope.querySelector('option[value="route"]')?.setAttribute('disabled',''); }
+    else scope?.querySelector('option[value="route"]')?.removeAttribute('disabled');
+
+    const base = (scope?.value === 'route' && profileComplete()) ? personalizedTests() : allTests().filter(t=>t?.subiect && t?.barem);
+    const subj = $('fx-study-subject');
+    const currentSubject = subj?.value || 'toate';
+    if (subj) {
+      const map = new Map();
+      base.forEach(t=>map.set(String(t.materie), t.materieLabel || MATTER_LABELS[t.materie] || t.materie));
+      subj.innerHTML = '<option value="toate">Toate materiile</option>' + [...map.entries()].sort((a,b)=>a[1].localeCompare(b[1],'ro')).map(([v,l])=>`<option value="${escapeHtml(v)}">${escapeHtml(l)}</option>`).join('');
+      if ([...subj.options].some(o=>o.value===currentSubject)) subj.value=currentSubject;
+    }
+    populateStudyTests();
+  }
+
+  function populateStudyTests() {
+    const select = $('fx-study-test');
+    if (!select) return;
+    const tests = studyAvailableTests().slice().sort((a,b)=> Number(b.an||0)-Number(a.an||0) || String(a.materieLabel||'').localeCompare(String(b.materieLabel||''),'ro') || String(a.sesiune||'').localeCompare(String(b.sesiune||''),'ro'));
+    select.innerHTML = '<option value="">Alege un test</option>' + tests.map(t=>`<option value="${escapeHtml(t.id)}">${escapeHtml(studyTestLabel(t))}</option>`).join('');
+    studyState.test=null;
+    renderStudySelection();
+  }
+
+  function renderStudySelection() {
+    const id=$('fx-study-test')?.value;
+    const test=allTests().find(t=>t.id===id) || null;
+    studyState.test=test;
+    const box=$('fx-study-selected');
+    const start=$('fx-study-start');
+    if (!test) {
+      if(box){ box.className='fx-study-selected fx-study-selected-empty'; box.textContent='Selectează un test pentru a vedea detaliile sesiunii.'; }
+      if(start) start.disabled=true;
+      return;
+    }
+    const route=profileComplete()?state.routeIndex.get(test.id):null;
+    if(box){
+      box.className='fx-study-selected';
+      box.innerHTML=`<strong>${escapeHtml(test.materieLabel || MATTER_LABELS[test.materie] || '')} — ${escapeHtml(test.titlu || '')}</strong><span>${escapeHtml(String(test.an))} • ${escapeHtml(test.sesiuneScurta || test.sesiune || '')} • ${escapeHtml(test.proba || '')}</span>${route?`<small>Testul #${route.index} din ${route.total} în traseul tău pentru examen.</small>`:'<small>Variantă disponibilă ca antrenament suplimentar.</small>'}`;
+    }
+    if(start) start.disabled=false;
+  }
+
+  function currentStudyElapsedSeconds() {
+    if (!studyState.startedAt) return 0;
+    const end = studyState.finished ? studyState.startedAt + studyState.elapsedSeconds*1000 : Date.now();
+    const activePause = studyState.pausedAt ? Math.max(0, Date.now()-studyState.pausedAt) : 0;
+    return Math.min(FX_STUDY_LIMIT_SECONDS, Math.max(0, Math.floor((end - studyState.startedAt - studyState.pausedTotalMs - activePause)/1000)));
+  }
+
+  function updateStudyTimer() {
+    if (!studyState.startedAt) return;
+    const elapsed = studyState.finished ? studyState.elapsedSeconds : currentStudyElapsedSeconds();
+    const remaining = Math.max(0, FX_STUDY_LIMIT_SECONDS - elapsed);
+    if($('fx-study-timer')) $('fx-study-timer').textContent=formatStudyTime(remaining);
+    if($('fx-study-elapsed')) $('fx-study-elapsed').textContent=formatStudyTime(elapsed);
+    if(!studyState.finished && remaining<=0) finishStudySession(true);
+  }
+
+  function startStudySession() {
+    if (!state.user) { openAuthPage('login'); return; }
+    const test=studyState.test;
+    if(!test) return;
+    clearInterval(studyState.interval);
+    studyState.startedAt=Date.now(); studyState.pausedAt=0; studyState.pausedTotalMs=0; studyState.finished=false; studyState.elapsedSeconds=0;
+    if($('fx-study-picker')) $('fx-study-picker').hidden=true;
+    if($('fx-study-session')) $('fx-study-session').hidden=false;
+    if($('fx-study-result')) $('fx-study-result').hidden=true;
+    if($('fx-study-session-title')) $('fx-study-session-title').textContent=`${test.materieLabel || MATTER_LABELS[test.materie] || ''} — ${test.titlu || ''}`;
+    if($('fx-study-session-meta')) $('fx-study-session-meta').textContent=`${test.an} • ${test.sesiuneScurta || test.sesiune || ''} • ${test.proba || ''}`;
+    if($('fx-study-open-subject')) $('fx-study-open-subject').href=test.subiect;
+    if($('fx-study-open-barem')) $('fx-study-open-barem').href=test.barem;
+    if($('fx-study-status-badge')) { $('fx-study-status-badge').textContent='În lucru'; $('fx-study-status-badge').className='fx-study-status-badge'; }
+    if($('fx-study-pause')) $('fx-study-pause').textContent='Pauză';
+    updateStudyTimer();
+    studyState.interval=setInterval(updateStudyTimer,1000);
+    if(window.fxTrack) window.fxTrack('study_room_started',{test_id:test.id});
+    try { window.open(test.subiect,'_blank','noopener'); } catch(_) {}
+  }
+
+  function toggleStudyPause() {
+    if(!studyState.startedAt || studyState.finished) return;
+    const badge=$('fx-study-status-badge');
+    const btn=$('fx-study-pause');
+    if(!studyState.pausedAt){
+      studyState.pausedAt=Date.now();
+      if(btn) btn.textContent='Reia cronometrul';
+      if(badge){badge.textContent='Pauză'; badge.className='fx-study-status-badge is-paused';}
+    } else {
+      studyState.pausedTotalMs += Date.now()-studyState.pausedAt;
+      studyState.pausedAt=0;
+      if(btn) btn.textContent='Pauză';
+      if(badge){badge.textContent='În lucru'; badge.className='fx-study-status-badge';}
+    }
+    updateStudyTimer();
+  }
+
+  function finishStudySession(automatic=false) {
+    if(!studyState.startedAt || studyState.finished) return;
+    if(studyState.pausedAt){ studyState.pausedTotalMs += Date.now()-studyState.pausedAt; studyState.pausedAt=0; }
+    studyState.elapsedSeconds=currentStudyElapsedSeconds();
+    studyState.finished=true;
+    clearInterval(studyState.interval); studyState.interval=null;
+    updateStudyTimer();
+    if($('fx-study-status-badge')) { $('fx-study-status-badge').textContent=automatic?'Timp încheiat':'Finalizat'; $('fx-study-status-badge').className='fx-study-status-badge is-finished'; }
+    if($('fx-study-pause')) $('fx-study-pause').disabled=true;
+    if($('fx-study-finish')) $('fx-study-finish').disabled=true;
+    if($('fx-study-result')) $('fx-study-result').hidden=false;
+    if($('fx-study-final-time')) $('fx-study-final-time').textContent=formatStudyTime(studyState.elapsedSeconds);
+    $('fx-study-result')?.scrollIntoView({behavior:'smooth',block:'start'});
+    if(window.fxTrack) window.fxTrack('study_room_completed',{test_id:studyState.test?.id || ''});
+  }
+
+  function resetStudyRoom() {
+    clearInterval(studyState.interval);
+    studyState.test=null; studyState.startedAt=0; studyState.pausedAt=0; studyState.pausedTotalMs=0; studyState.interval=null; studyState.finished=false; studyState.elapsedSeconds=0;
+    if($('fx-study-picker')) $('fx-study-picker').hidden=false;
+    if($('fx-study-session')) $('fx-study-session').hidden=true;
+    if($('fx-study-result')) $('fx-study-result').hidden=true;
+    if($('fx-study-pause')) { $('fx-study-pause').disabled=false; $('fx-study-pause').textContent='Pauză'; }
+    if($('fx-study-finish')) $('fx-study-finish').disabled=false;
+    if($('fx-study-score')) $('fx-study-score').value='';
+    if($('fx-study-grade')) $('fx-study-grade').textContent='—';
+    setMessage($('fx-study-save-message'),'');
+    populateStudyRoom();
+  }
+
+  async function saveStudyResult() {
+    if(!state.user || !studyState.test || !studyState.finished) return;
+    const points=Number(String($('fx-study-score')?.value || '').replace(',','.'));
+    if(!Number.isFinite(points) || points<10 || points>100){
+      setMessage($('fx-study-save-message'),'Introdu punctajul final între 10 și 100 de puncte, incluzând punctele din oficiu.','error');
+      $('fx-study-score')?.focus(); return;
+    }
+    const grade=Math.round(points*10)/100; // points / 10, păstrat la două zecimale
+    const now=new Date().toISOString();
+    const btn=$('fx-study-save-result');
+    if(btn){btn.disabled=true;btn.textContent='SE ÎNREGISTREAZĂ...';}
+    let attempt=await db.from('test_attempts').insert({
+      user_id:state.user.id,
+      test_id:studyState.test.id,
+      grade,
+      score_points:points,
+      duration_seconds:studyState.elapsedSeconds,
+      study_room:true,
+      completed_at:now
+    }).select().single();
+    let timeSaved=true;
+    if(attempt.error && /score_points|duration_seconds|study_room|column/i.test(attempt.error.message||'')){
+      timeSaved=false;
+      attempt=await db.from('test_attempts').insert({user_id:state.user.id,test_id:studyState.test.id,grade,completed_at:now}).select().single();
+    }
+    if(attempt.error){
+      console.error(attempt.error); setMessage($('fx-study-save-message'),'Nu am putut înregistra rezultatul. Verifică conexiunea și încearcă din nou.','error');
+      if(btn){btn.disabled=false;btn.textContent='ÎNREGISTREAZĂ REZULTATUL';} return;
+    }
+    const old=state.progress.get(studyState.test.id);
+    const best=Math.max(grade,Number(old?.best_grade||0));
+    const prog=await db.from('test_progress').upsert({user_id:state.user.id,test_id:studyState.test.id,completed:true,last_grade:grade,best_grade:best,completed_at:old?.completed_at||now,updated_at:now},{onConflict:'user_id,test_id'}).select().single();
+    if(prog.error) console.error(prog.error);
+    state.attempts.push(attempt.data);
+    if(prog.data) state.progress.set(studyState.test.id,prog.data);
+    renderDashboard(); refreshAllTestProgressBoxes();
+    const msg=`Rezultat înregistrat: ${points.toFixed(points%1?1:0).replace('.',',')} / 100 • nota ${formatGrade(grade)} • timp ${formatStudyTime(studyState.elapsedSeconds)}.${timeSaved?'':' Nota a fost salvată, dar pentru memorarea timpului trebuie rulat update-ul SQL V8.'}`;
+    setMessage($('fx-study-save-message'),msg,timeSaved?'success':'error');
+    if(btn){btn.disabled=false;btn.textContent='REZULTAT ÎNREGISTRAT ✓';}
+    if(window.fxTrack) window.fxTrack('study_result_saved',{test_id:studyState.test.id});
+  }
+
+  function openStudyRoom() {
+    if(!state.user){ openAuthPage('login'); return; }
+    if(typeof schimbaPagina==='function') schimbaPagina('camera-studiu');
+    else window.location.hash='camera-studiu';
+    if(!studyState.startedAt) populateStudyRoom();
   }
 
   async function saveGoal() {
@@ -20106,7 +20505,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
       state.goal = res.data || payload;
       if(window.fxTrack) window.fxTrack('weekly_goal_saved',{weekly_target});
       renderDashboard();
-      setMessage(message, `Obiectiv salvat: ${weekly_target} ${weekly_target===1?'test':'teste'} pe săptămână. ✓`, 'success');
+      setMessage(message, `Obiectiv săptămânal salvat: ${weekly_target} ${weekly_target===1?'test':'teste'} pe săptămână. ✓`, 'success');
     } catch (error) {
       console.error(error);
       setMessage(message, 'Nu am putut salva obiectivul. Reîncarcă pagina și încearcă din nou.', 'error');
@@ -20118,9 +20517,20 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
 
   async function signIn(event) {
     event.preventDefault();
+    if ($('fx-resend-confirmation')) $('fx-resend-confirmation').hidden = true;
     setMessage($('fx-auth-message'),'Se verifică datele...');
-    const {error}=await db.auth.signInWithPassword({email:$('fx-login-email').value.trim(),password:$('fx-login-password').value});
-    if(error){ setMessage($('fx-auth-message'), error.message==='Invalid login credentials'?'Email sau parolă incorectă.':error.message,'error'); return; }
+    const email = $('fx-login-email').value.trim();
+    const {error}=await db.auth.signInWithPassword({email,password:$('fx-login-password').value});
+    if(error){
+      const raw = error.message || '';
+      if (/email not confirmed/i.test(raw)) {
+        setMessage($('fx-auth-message'),'Adresa de email nu este încă confirmată. Verifică mesajul primit de la Formula X sau retrimite confirmarea.','error');
+        if ($('fx-resend-confirmation')) $('fx-resend-confirmation').hidden = false;
+      } else {
+        setMessage($('fx-auth-message'), raw==='Invalid login credentials'?'Email sau parolă incorectă.':raw,'error');
+      }
+      return;
+    }
     setMessage($('fx-auth-message'),'Autentificare reușită.','success');
     if(window.fxTrack) window.fxTrack('login_success',{method:'email'});
   }
@@ -20192,6 +20602,35 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     }
   }
 
+  async function resendConfirmation() {
+    const email = $('fx-login-email')?.value.trim() || $('fx-signup-email')?.value.trim();
+    if (!email) { setMessage($('fx-auth-message'),'Introdu mai întâi adresa de email.','error'); return; }
+    const btn = $('fx-resend-confirmation');
+    if (btn) { btn.disabled = true; btn.textContent = 'Se retrimite...'; }
+    const { error } = await db.auth.resend({
+      type:'signup',
+      email,
+      options:{ emailRedirectTo:'https://formula-x.ro/cont-confirmat.html' }
+    });
+    if (error) setMessage($('fx-auth-message'),'Nu am putut retrimite emailul de confirmare. Așteaptă aproximativ un minut și încearcă din nou.','error');
+    else setMessage($('fx-auth-message'),'Emailul de confirmare a fost retrimis. Verifică și folderul Spam / Junk.','success');
+    if (btn) { btn.disabled = false; btn.textContent = 'Retrimite emailul de confirmare'; }
+  }
+
+  async function signOutUser() {
+    const headerBtn = $('fx-header-logout');
+    const dashBtn = $('fx-logout');
+    if (headerBtn) { headerBtn.disabled = true; headerBtn.textContent = 'Se deconectează...'; }
+    if (dashBtn) dashBtn.disabled = true;
+    const { error } = await db.auth.signOut();
+    if (headerBtn) { headerBtn.disabled = false; headerBtn.textContent = 'Deconectare'; }
+    if (dashBtn) dashBtn.disabled = false;
+    if (error) { setMessage($('fx-auth-message'),'Nu am putut închide sesiunea. Încearcă din nou.','error'); return; }
+    if (typeof schimbaPagina === 'function') schimbaPagina('cont');
+    focusAuthCard('login');
+    setTimeout(()=>setMessage($('fx-auth-message'),'Te-ai deconectat cu succes. Progresul înregistrat rămâne salvat în cont.','success'),80);
+  }
+
   async function forgotPassword() {
     const email=$('fx-login-email').value.trim();
     if(!email){ setMessage($('fx-auth-message'),'Scrie mai întâi adresa de email.','error'); $('fx-login-email').focus(); return; }
@@ -20217,26 +20656,50 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     state.user=data.session?.user||null;
     if(state.user) await loadUserData();
     renderAuthState(); refreshAllTestProgressBoxes();
+    if(window.location.hash==='#camera-studiu') {
+      if(state.user) populateStudyRoom();
+      else openAuthPage('login');
+    }
   }
 
   function setupEvents() {
     $('fx-header-login')?.addEventListener('click',()=>openAuthPage('login'));
-    $('fx-header-signup')?.addEventListener('click',()=>openAuthPage('signup'));
     $('fx-header-account')?.addEventListener('click',()=>{ if(typeof schimbaPagina==='function') schimbaPagina('cont'); });
+    $('fx-header-logout')?.addEventListener('click',signOutUser);
     $('nav-cont')?.addEventListener('click',()=>{ if(typeof schimbaPagina==='function') schimbaPagina('cont'); });
 
     $('fx-login-form')?.addEventListener('submit',signIn);
     $('fx-signup-form')?.addEventListener('submit',signUp);
     $('fx-reset-password-form')?.addEventListener('submit',updatePassword);
     $('fx-forgot-password')?.addEventListener('click',forgotPassword);
+    $('fx-resend-confirmation')?.addEventListener('click',resendConfirmation);
+    $('fx-show-signup')?.addEventListener('click',()=>focusAuthCard('signup'));
+    $('fx-show-login')?.addEventListener('click',()=>focusAuthCard('login'));
     $('fx-profile-type')?.addEventListener('change',()=>populateSpecializations(''));
     $('fx-profile-form')?.addEventListener('submit',saveProfile);
     $('fx-close-onboarding')?.addEventListener('click',closeOnboarding);
     $('fx-edit-profile')?.addEventListener('click',()=>openOnboarding(true));
-    $('fx-logout')?.addEventListener('click',()=>db.auth.signOut());
+    $('fx-logout')?.addEventListener('click',signOutUser);
     $('fx-go-tests')?.addEventListener('click',event=>{ event.preventDefault(); showAllTests(); });
     $('fx-explore-extra')?.addEventListener('click',event=>{ event.preventDefault(); showAllTests(); });
     $('fx-start-next-test')?.addEventListener('click',event=>{ event.preventDefault(); openNextRouteTest(); });
+    $('fx-open-study-room')?.addEventListener('click',openStudyRoom);
+    $('fx-study-back-account')?.addEventListener('click',()=>{ if(typeof schimbaPagina==='function') schimbaPagina('cont'); });
+    $('fx-study-scope')?.addEventListener('change',populateStudyRoom);
+    $('fx-study-subject')?.addEventListener('change',populateStudyTests);
+    $('fx-study-test')?.addEventListener('change',renderStudySelection);
+    $('fx-study-start')?.addEventListener('click',startStudySession);
+    $('fx-study-pause')?.addEventListener('click',toggleStudyPause);
+    $('fx-study-finish')?.addEventListener('click',()=>finishStudySession(false));
+    $('fx-study-score')?.addEventListener('input',()=>{ const p=Number(String($('fx-study-score')?.value||'').replace(',','.')); $('fx-study-grade').textContent=Number.isFinite(p)&&p>=10&&p<=100?formatGrade(p/10):'—'; });
+    $('fx-study-save-result')?.addEventListener('click',saveStudyResult);
+    $('fx-study-new-session')?.addEventListener('click',resetStudyRoom);
+    window.addEventListener('hashchange',()=>{
+      if(window.location.hash==='#camera-studiu'){
+        if(!state.user) openAuthPage('login');
+        else if(!studyState.startedAt) populateStudyRoom();
+      }
+    });
     $('fx-subject-progress')?.addEventListener('click',event=>{
       const link=event.target.closest('[data-route-bucket]');
       if(!link) return;
@@ -20284,6 +20747,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
       }
       renderAuthState();
       refreshAllTestProgressBoxes();
+      if(!state.user && window.location.hash==='#camera-studiu') openAuthPage('login');
     },0);
   });
 
