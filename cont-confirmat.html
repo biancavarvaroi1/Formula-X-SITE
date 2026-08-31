@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#07142f">
+<meta name="robots" content="noindex, follow">
+<title>Email confirmat | Formula X</title>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  (function(){
+    var choice=null;
+    try{choice=localStorage.getItem('fx_analytics_consent');}catch(e){}
+    gtag('consent','default',{
+      analytics_storage:choice==='granted'?'granted':'denied',
+      ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'
+    });
+  })();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QJZDLFJ37Z"></script>
+<script>gtag('js',new Date());gtag('config','G-QJZDLFJ37Z');</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:'Outfit',Arial,sans-serif;background:#07142f;color:#fff}body{min-height:100vh;background:radial-gradient(circle at 50% 20%,rgba(255,196,37,.12),transparent 28%),linear-gradient(145deg,#07142f,#0b2148)}.top{height:5px;background:linear-gradient(90deg,#7749a8,#ffc425,#7749a8)}
+.wrap{max-width:760px;margin:auto;padding:34px 20px 60px}.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:58px}.logo{font-size:30px;color:#ffc425;font-style:italic;font-weight:900;text-decoration:none}.box{text-align:center;background:#fff;color:#07142f;border-radius:28px;padding:58px 46px;box-shadow:0 30px 70px rgba(0,0,0,.27)}.check{width:88px;height:88px;border-radius:50%;display:grid;place-items:center;margin:0 auto 24px;background:#fff5d3;border:1px solid #ffdf77;color:#b87900;font-size:42px;font-weight:900}h1{font-size:43px;margin:0 0 14px;letter-spacing:-1px}p{color:#62718a;font-size:18px;line-height:1.6;margin:0 auto 28px;max-width:560px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 28px;border-radius:13px;background:linear-gradient(90deg,#ffc425,#ffad0b);color:#07142f;text-decoration:none;font-weight:900;box-shadow:0 13px 28px rgba(255,174,11,.2)}.sub{display:block;margin-top:18px;color:#6b7b91;font-size:14px}.error{display:none;background:#fff1f0;border:1px solid #ffd0cc;color:#9e1c14;border-radius:13px;padding:13px 15px;margin:0 0 22px;font-weight:700}
+@media(max-width:600px){.wrap{padding-top:24px}.head{margin-bottom:30px}.box{padding:40px 23px;border-radius:22px}h1{font-size:34px}p{font-size:16px}}
+</style>
+</head>
+<body><div class="top"></div><main class="wrap"><div class="head"><a href="/" class="logo">FORMULA X</a></div><section class="box"><div id="confirmation-error" class="error"></div><div class="check">✓</div><h1>Email confirmat!</h1><p>Contul tău Formula X este activ. Acum te poți conecta, îți alegi traseul BAC și începi să-ți urmărești testele, notele și evoluția.</p><a class="btn" href="/#cont">CONTINUĂ CĂTRE CONT →</a><span class="sub">După conectare îți vom cere profilul, specializarea și proba E.d.</span></section></main>
+<script>
+(function(){
+ const h=new URLSearchParams(location.hash.replace(/^#/,''));
+ const q=new URLSearchParams(location.search);
+ const err=h.get('error_description')||q.get('error_description');
+ if(err){
+  const box=document.getElementById('confirmation-error');
+  box.style.display='block';box.textContent='Linkul nu a putut fi confirmat: '+decodeURIComponent(err.replace(/\+/g,' '));
+  document.querySelector('.check').textContent='!';
+  document.querySelector('h1').textContent='Confirmarea nu a reușit';
+  document.querySelector('.btn').textContent='ÎNAPOI LA CONECTARE';
+ }
+ try{sessionStorage.removeItem('fx_pending_email');sessionStorage.removeItem('fx_pending_name');}catch(e){}
+})();
+</script></body></html>

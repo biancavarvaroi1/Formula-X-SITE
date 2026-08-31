@@ -7690,7 +7690,8 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
           <label>Nume și prenume<input type="text" id="fx-signup-name" autocomplete="name" required maxlength="80" placeholder="Ex: Andreea Popescu"></label>
           <label>Email<input type="email" id="fx-signup-email" autocomplete="email" required placeholder="nume@email.com"></label>
           <label>Parolă<input type="password" id="fx-signup-password" autocomplete="new-password" required minlength="8" placeholder="Minimum 8 caractere"></label>
-          <button type="submit" class="fx-primary-btn">CREEAZĂ CONT GRATUIT</button>
+          <button type="submit" id="fx-signup-submit" class="fx-primary-btn">CREEAZĂ CONT GRATUIT</button>
+          <div id="fx-signup-status" class="fx-signup-status" aria-live="polite"></div>
           <p class="fx-auth-small">După creare, verifică emailul pentru confirmarea contului.</p>
         </form>
       </div>
@@ -19442,6 +19443,15 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
 </footer>
 
 
+
+<style id="formula-x-signup-v7-style">
+.fx-signup-status{min-height:20px;margin-top:4px;font-size:.88rem;font-weight:700;line-height:1.35;color:#65748b}
+.fx-signup-status.is-loading{color:#b67500}
+.fx-signup-status.is-error{color:#b42318}
+.fx-signup-status.is-success{color:#137333}
+.fx-primary-btn:disabled{opacity:.72;cursor:wait;transform:none!important}
+</style>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script id="formula-x-account-inline-js">
 (function () {
@@ -20120,12 +20130,66 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     const name=$('fx-signup-name').value.trim();
     const email=$('fx-signup-email').value.trim();
     const password=$('fx-signup-password').value;
-    setMessage($('fx-auth-message'),'Creăm contul...');
-    const {data,error}=await db.auth.signUp({email,password,options:{emailRedirectTo:'https://formula-x.ro/#cont',data:{name}}});
-    if(error){ setMessage($('fx-auth-message'),error.message,'error'); return; }
-    if(data.session){ setMessage($('fx-auth-message'),'Cont creat și autentificat.','success'); }
-    else setMessage($('fx-auth-message'),'Cont creat. Verifică emailul și apasă linkul de confirmare.','success');
-    if(window.fxTrack) window.fxTrack('sign_up_success',{method:'email'});
+    const status=$('fx-signup-status');
+    const button=$('fx-signup-submit');
+
+    const setSignupStatus=(message,type)=>{
+      if(!status) return;
+      status.textContent=message||'';
+      status.classList.remove('is-loading','is-error','is-success');
+      if(type) status.classList.add(`is-${type}`);
+    };
+
+    if(!name || !email || password.length < 8){
+      setSignupStatus('Completează numele, emailul și o parolă de minimum 8 caractere.','error');
+      return;
+    }
+
+    if(button){ button.disabled=true; button.textContent='SE CREEAZĂ CONTUL…'; }
+    setSignupStatus('Creăm contul și pregătim emailul de confirmare…','loading');
+    setMessage($('fx-auth-message'),'');
+
+    try {
+      const {data,error}=await db.auth.signUp({
+        email,
+        password,
+        options:{
+          emailRedirectTo:'https://formula-x.ro/cont-confirmat.html',
+          data:{name}
+        }
+      });
+      if(error) throw error;
+
+      try {
+        sessionStorage.setItem('fx_pending_email',email);
+        sessionStorage.setItem('fx_pending_name',name);
+      } catch(e) {}
+
+      if(window.fxTrack) window.fxTrack('sign_up_success',{method:'email'});
+
+      if(data && data.session){
+        // Confirmarea emailului este dezactivată în Supabase: utilizatorul este deja autentificat.
+        setSignupStatus('Cont creat. Te conectăm…','success');
+        window.location.assign('https://formula-x.ro/#cont');
+        return;
+      }
+
+      setSignupStatus('Cont creat. Te trimitem la pasul de confirmare…','success');
+      window.location.assign('https://formula-x.ro/confirmare-email.html');
+    } catch(error) {
+      console.error('Formula X signup:', error);
+      let msg=error?.message || 'Nu am putut crea contul. Încearcă din nou.';
+      if(/already registered|already been registered/i.test(msg)) msg='Există deja un cont cu această adresă. Folosește Conectare.';
+      if(/password/i.test(msg) && /weak|short|least/i.test(msg)) msg='Parola trebuie să aibă minimum 8 caractere.';
+      if(/rate limit/i.test(msg)) msg='S-au făcut prea multe încercări într-un timp scurt. Așteaptă puțin și încearcă din nou.';
+      setSignupStatus(msg,'error');
+      setMessage($('fx-auth-message'),msg,'error');
+    } finally {
+      if(button && !location.pathname.endsWith('confirmare-email.html')){
+        button.disabled=false;
+        button.textContent='CREEAZĂ CONT GRATUIT';
+      }
+    }
   }
 
   async function forgotPassword() {
