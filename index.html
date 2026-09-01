@@ -7377,6 +7377,70 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
 @media(max-width:600px){.fx-weekly-metrics{grid-template-columns:1fr}.fx-reflection-card{padding:20px 16px}.fx-reflection-actions{flex-direction:column}.fx-reflection-actions>*{width:100%}.fx-test-progress{gap:7px}.fx-journal-btn{flex:1 1 auto}}
 </style>
 
+
+<style id="formula-x-v11-styles">
+/* Formula X V11 — barem automat + ședință gratuită 30 minute */
+.btn-free-session-home{
+  min-height:48px;padding:13px 18px;border:1px solid rgba(255,202,40,.76);border-radius:12px;
+  background:rgba(255,202,40,.08);color:#ffca28;font-weight:850;letter-spacing:.2px;cursor:pointer;
+  transition:.2s ease;white-space:nowrap
+}
+.btn-free-session-home:hover{background:#ffca28;color:#081229;transform:translateY(-1px)}
+
+.home-free-session{padding:78px 22px;background:linear-gradient(145deg,#07152f 0%,#0b2853 55%,#07152f 100%);position:relative;overflow:hidden}
+.home-free-session::before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;right:-160px;top:-190px;background:rgba(255,202,40,.09)}
+.home-free-session::after{content:"";position:absolute;width:320px;height:320px;border-radius:50%;left:-180px;bottom:-190px;background:rgba(255,255,255,.035)}
+.home-free-session-wrap{position:relative;z-index:1;width:min(1180px,100%);margin:0 auto;display:grid;grid-template-columns:minmax(0,1.02fr) minmax(380px,.98fr);gap:38px;align-items:center}
+.home-free-session-copy{color:#fff;min-width:0}
+.home-free-session-kicker{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border-radius:999px;background:rgba(255,202,40,.13);border:1px solid rgba(255,202,40,.42);color:#ffca28;font-size:12px;font-weight:900;letter-spacing:.65px;text-transform:uppercase}
+.home-free-session-copy h2{margin:18px 0 14px;color:#fff;font-size:clamp(30px,4vw,48px);line-height:1.08;letter-spacing:-1.1px}
+.home-free-session-copy h2 span{color:#ffca28}
+.home-free-session-copy>p{margin:0;max-width:660px;color:#d9e4f7;font-size:16px;line-height:1.75}
+.home-free-session-benefits{display:grid;gap:11px;margin-top:26px}
+.home-free-session-benefit{display:flex;align-items:flex-start;gap:11px;color:#eef4ff;font-size:14px;line-height:1.5}
+.home-free-session-benefit b{display:grid;place-items:center;flex:0 0 28px;width:28px;height:28px;border-radius:9px;background:#ffca28;color:#07152f;font-size:13px}
+.home-free-session-mentors{display:flex;flex-wrap:wrap;gap:8px;margin-top:25px}
+.home-free-session-mentors span{padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);color:#dbe7fa;font-size:11px;font-weight:750}
+
+.free-mentor-session-card{background:#fff;border:1px solid rgba(255,255,255,.5);border-radius:22px;padding:27px;box-shadow:0 24px 60px rgba(0,0,0,.22);min-width:0}
+.free-mentor-session-card-head{margin-bottom:18px}
+.free-mentor-session-card-head span{display:block;color:#9a6a00;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.7px}
+.free-mentor-session-card-head h3{margin:5px 0 6px;color:#0a2147;font-size:25px;line-height:1.15}
+.free-mentor-session-card-head p{margin:0;color:#6d7c91;font-size:12.5px;line-height:1.55}
+.free-mentor-session-form{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.free-mentor-field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.free-mentor-field.is-full{grid-column:1/-1}
+.free-mentor-field label,.free-mentor-field>span{color:#203451;font-size:11px;font-weight:850}
+.free-mentor-field input,.free-mentor-field select,.free-mentor-field textarea{width:100%;min-width:0;border:1px solid #d8e1ec;border-radius:10px;background:#fbfcfe;color:#172a46;padding:11px 12px;font:inherit;font-size:14px;outline:none;transition:border-color .18s ease,box-shadow .18s ease}
+.free-mentor-field input,.free-mentor-field select{min-height:44px}
+.free-mentor-field textarea{min-height:86px;resize:vertical;line-height:1.5}
+.free-mentor-field input:focus,.free-mentor-field select:focus,.free-mentor-field textarea:focus{border-color:#d5a514;box-shadow:0 0 0 3px rgba(255,202,40,.2);background:#fff}
+.free-mentor-consent{grid-column:1/-1;display:flex;gap:9px;align-items:flex-start;padding:10px 11px;border-radius:10px;background:#f7f9fc;color:#66758a;font-size:11px;line-height:1.45}
+.free-mentor-consent input{margin-top:2px;flex:0 0 auto}
+.free-mentor-submit{grid-column:1/-1;min-height:48px;border:0;border-radius:11px;background:linear-gradient(90deg,#ffca28,#f4aa0b);color:#081229;font-weight:950;letter-spacing:.3px;cursor:pointer;box-shadow:0 9px 22px rgba(212,158,0,.22)}
+.free-mentor-submit:hover{filter:brightness(.98);transform:translateY(-1px)}
+.free-mentor-submit:disabled{opacity:.65;cursor:wait;transform:none}
+.free-mentor-status{grid-column:1/-1;min-height:18px;margin-top:-2px;font-size:12px;font-weight:750;line-height:1.45}
+.free-mentor-status.is-success{color:#18734b}.free-mentor-status.is-error{color:#b42318}
+
+.fx-study-barem-auto{margin:18px 0 20px;border:1px solid #d8e1ec;border-radius:16px;overflow:hidden;background:#f7f9fc}
+.fx-study-barem-auto-head{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:15px 17px;border-bottom:1px solid #dfe6ee;background:#fff}
+.fx-study-barem-auto-head div{min-width:0}.fx-study-barem-auto-head span{display:block;color:#8a6800;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.55px}.fx-study-barem-auto-head strong{display:block;margin-top:3px;color:#0b2147;font-size:16px}
+.fx-study-barem-frame{display:block;width:100%;height:700px;border:0;background:#eef2f7}
+.fx-study-barem-help{padding:9px 14px;color:#718096;font-size:11px;line-height:1.45;background:#fff;border-top:1px solid #e1e7ef}
+
+@media(max-width:900px){
+ .home-free-session-wrap{grid-template-columns:1fr}.home-free-session{padding:62px 18px}.free-mentor-session-card{max-width:720px;width:100%;margin:0 auto}
+ .hero-cta-row{flex-wrap:wrap}.btn-free-session-home{flex:1 1 100%}
+}
+@media(max-width:600px){
+ .home-free-session{padding:50px 14px}.home-free-session-copy h2{font-size:32px}.free-mentor-session-card{padding:20px 15px;border-radius:17px}
+ .free-mentor-session-form{grid-template-columns:1fr}.free-mentor-field.is-full,.free-mentor-consent,.free-mentor-submit,.free-mentor-status{grid-column:1}
+ .fx-study-barem-auto-head{align-items:flex-start;flex-direction:column}.fx-study-barem-auto-head .fx-study-link-btn{width:100%;text-align:center}
+ .fx-study-barem-frame{height:520px}
+}
+</style>
+
 </head>
 <body>
 <!-- Formula X Accounts V10: progres academic + camera de studiu + jurnal -->
@@ -7452,6 +7516,9 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
         <button type="button" class="btn-enroll-home" onclick="deschideInscriereRapida()">
           ÎNSCRIE-TE
         </button>
+        <button type="button" class="btn-free-session-home" onclick="deruleazaLaElement(document.getElementById('sedinta-gratuita'))">
+          ȘEDINȚĂ GRATUITĂ 30 MIN
+        </button>
       </div>
 
       <div class="hero-footer-info">
@@ -7508,6 +7575,80 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     </div>
   </section>
 
+
+
+  <!-- ================= ȘEDINȚĂ GRATUITĂ CU UN MENTOR ================= -->
+  <section id="sedinta-gratuita" class="home-free-session" aria-labelledby="free-session-title">
+    <div class="home-free-session-wrap">
+      <div class="home-free-session-copy">
+        <span class="home-free-session-kicker">✦ Discuție individuală • 30 de minute</span>
+        <h2 id="free-session-title">O întrebare poate schimba felul în care te pregătești pentru <span>examenul de bacalaureat.</span></h2>
+        <p>Rezervă o ședință gratuită de 30 de minute cu unul dintre mentorii Formula X. Poți discuta despre dificultățile întâmpinate, organizarea pregătirii sau o materie la care simți că ai nevoie de direcție. Alegi mentorul și ziua potrivită, iar noi te contactăm pentru a stabili ora exactă.</p>
+        <div class="home-free-session-benefits">
+          <div class="home-free-session-benefit"><b>1</b><span><strong>Alegi mentorul</strong><br>Selectezi disciplina la care vrei să primești sprijin.</span></div>
+          <div class="home-free-session-benefit"><b>2</b><span><strong>Alegi ziua</strong><br>Ne spui în ce zi ți-ar fi cel mai ușor să participi.</span></div>
+          <div class="home-free-session-benefit"><b>3</b><span><strong>Stabilim ora împreună</strong><br>Echipa Formula X te contactează ulterior pentru confirmarea intervalului orar.</span></div>
+        </div>
+        <div class="home-free-session-mentors" aria-label="Mentorii Formula X">
+          <span>Română • Bianca Varvaroi</span><span>Matematică • Marius Benga</span><span>Biologie • Theodora Opris</span><span>Fizică • Ioana Voinea</span><span>Chimie • Ilaria Grigoraș</span>
+        </div>
+      </div>
+
+      <div class="free-mentor-session-card">
+        <div class="free-mentor-session-card-head">
+          <span>Formula X • 1 la 1</span>
+          <h3>Solicită ședința gratuită</h3>
+          <p>Completează formularul. După trimitere, te vom contacta pentru a stabili ora exactă a întâlnirii.</p>
+        </div>
+        <form id="free-mentor-session-form" class="free-mentor-session-form">
+          <div class="free-mentor-field">
+            <label for="free-session-name">Nume și prenume *</label>
+            <input id="free-session-name" name="Nume elev" type="text" autocomplete="name" required placeholder="Ex.: Andrei Popescu">
+          </div>
+          <div class="free-mentor-field">
+            <label for="free-session-class">Clasa</label>
+            <select id="free-session-class" name="Clasa">
+              <option value="">Alege clasa</option>
+              <option>Clasa a XI-a</option>
+              <option>Clasa a XII-a</option>
+              <option>Clasa a XIII-a</option>
+              <option>Absolvent(ă)</option>
+            </select>
+          </div>
+          <div class="free-mentor-field">
+            <label for="free-session-email">Email *</label>
+            <input id="free-session-email" name="email" type="email" autocomplete="email" required placeholder="nume@email.ro">
+          </div>
+          <div class="free-mentor-field">
+            <label for="free-session-phone">Telefon / WhatsApp *</label>
+            <input id="free-session-phone" name="Telefon / WhatsApp" type="tel" autocomplete="tel" required placeholder="07xx xxx xxx">
+          </div>
+          <div class="free-mentor-field is-full">
+            <label for="free-session-mentor">Mentor / materie *</label>
+            <select id="free-session-mentor" required>
+              <option value="" selected disabled>Alege mentorul</option>
+              <option value="Bianca Varvaroi|Limba și literatura română">Bianca Varvaroi — Limba și literatura română</option>
+              <option value="Marius Benga|Matematică">Marius Benga — Matematică</option>
+              <option value="Theodora Opris|Biologie">Theodora Opris — Biologie</option>
+              <option value="Ioana Voinea|Fizică">Ioana Voinea — Fizică</option>
+              <option value="Ilaria Grigoraș|Chimie">Ilaria Grigoraș — Chimie</option>
+            </select>
+          </div>
+          <div class="free-mentor-field is-full">
+            <label for="free-session-date">Ziua preferată *</label>
+            <input id="free-session-date" type="date" required>
+          </div>
+          <div class="free-mentor-field is-full">
+            <label for="free-session-topic">Ce ai vrea să discuți?</label>
+            <textarea id="free-session-topic" placeholder="Ex.: Am dificultăți la Subiectul III și aș vrea să știu cum să îmi organizez mai bine pregătirea."></textarea>
+          </div>
+          <label class="free-mentor-consent"><input id="free-session-consent" type="checkbox" required><span>Sunt de acord să fiu contactat(ă) de echipa Formula X pentru stabilirea ședinței gratuite.</span></label>
+          <button id="free-mentor-submit" type="submit" class="free-mentor-submit">SOLICITĂ ȘEDINȚA GRATUITĂ →</button>
+          <div id="free-mentor-status" class="free-mentor-status" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </section>
 
   <!-- ================= CALENDAR OFICIAL BAC 2027 ================= -->
   <section class="home-bac-section" id="calendar-bac-2027" aria-labelledby="calendar-bac-title">
@@ -8027,7 +8168,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
       <div>
         <span class="fx-account-eyebrow">Formula X • Camera de studiu</span>
         <h1>Simulare individuală cronometrată</h1>
-        <p>Alege o variantă și lucreaz-o într-o sesiune de 3 ore, cu monitorizarea timpului efectiv. După finalizare, consulți baremul și înregistrezi punctajul, nota și durata de lucru.</p>
+        <p>Alege o variantă și lucreaz-o într-o sesiune de 3 ore, cu monitorizarea timpului efectiv. După finalizare, baremul oficial se deschide automat în pagină, apoi înregistrezi punctajul, nota și durata de lucru.</p>
       </div>
       <button type="button" id="fx-study-back-account" class="fx-secondary-btn">Înapoi la contul meu</button>
     </section>
@@ -8098,9 +8239,14 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
         <div><span class="fx-account-eyebrow">Pasul 3</span><h2>Evaluează lucrarea și înregistrează rezultatul</h2></div>
         <div class="fx-study-finished-time">Timp de lucru: <strong id="fx-study-final-time">—</strong></div>
       </div>
-      <p>Consultă baremul oficial și introdu punctajul final, incluzând cele 10 puncte acordate din oficiu. Platforma va păstra nota și timpul efectiv de lucru.</p>
-      <div class="fx-study-result-actions">
-        <a id="fx-study-open-barem" class="fx-secondary-btn fx-study-link-btn" href="#" target="_blank" rel="noopener">DESCHIDE BAREMUL</a>
+      <p>Baremul oficial s-a deschis mai jos. Corectează lucrarea, apoi introdu punctajul final, incluzând cele 10 puncte acordate din oficiu. Platforma va păstra nota și timpul efectiv de lucru.</p>
+      <div class="fx-study-barem-auto">
+        <div class="fx-study-barem-auto-head">
+          <div><span>Barem oficial de evaluare</span><strong>Corectarea variantei</strong></div>
+          <a id="fx-study-open-barem" class="fx-secondary-btn fx-study-link-btn" href="#" target="_blank" rel="noopener">DESCHIDE ÎN FILĂ NOUĂ</a>
+        </div>
+        <iframe id="fx-study-barem-frame" class="fx-study-barem-frame" title="Barem oficial pentru varianta finalizată" src="about:blank"></iframe>
+        <div class="fx-study-barem-help">Dacă PDF-ul nu este afișat de browser, folosește butonul „Deschide în filă nouă”.</div>
       </div>
       <div class="fx-study-score-grid">
         <label>Punctaj final
@@ -9781,6 +9927,104 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     document.querySelectorAll('.enrollment-form[data-emailjs-form="true"]').forEach((form) => {
       form.addEventListener('submit', gestioneazaTrimitereFormular);
     });
+  }
+
+
+  function seteazaStatusSedintaGratuita(mesaj, tip = '') {
+    const status = document.getElementById('free-mentor-status');
+    if (!status) return;
+    status.textContent = mesaj || '';
+    status.classList.remove('is-success', 'is-error');
+    if (tip === 'success') status.classList.add('is-success');
+    if (tip === 'error') status.classList.add('is-error');
+  }
+
+  function dataRomaneascaDinISO(valoare) {
+    if (!valoare) return '';
+    const parti = String(valoare).split('-');
+    if (parti.length !== 3) return valoare;
+    return `${parti[2]}.${parti[1]}.${parti[0]}`;
+  }
+
+  async function gestioneazaSedintaGratuita(event) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const submit = document.getElementById('free-mentor-submit');
+
+    if (!emailjsConfigurat() || !initializeazaEmailJSDacaEsteDisponibil()) {
+      seteazaStatusSedintaGratuita('Serviciul de trimitere nu este disponibil momentan. Încearcă din nou în câteva minute.', 'error');
+      return;
+    }
+
+    const name = document.getElementById('free-session-name')?.value.trim() || '';
+    const email = document.getElementById('free-session-email')?.value.trim() || '';
+    const phone = document.getElementById('free-session-phone')?.value.trim() || '';
+    const cls = document.getElementById('free-session-class')?.value || '';
+    const mentorRaw = document.getElementById('free-session-mentor')?.value || '';
+    const preferredDate = document.getElementById('free-session-date')?.value || '';
+    const topic = document.getElementById('free-session-topic')?.value.trim() || '';
+    const consent = document.getElementById('free-session-consent')?.checked;
+    const [mentor, materie] = mentorRaw.split('|');
+
+    if (!name || !email || !phone || !mentor || !materie || !preferredDate || !consent) {
+      seteazaStatusSedintaGratuita('Completează câmpurile obligatorii înainte de trimitere.', 'error');
+      return;
+    }
+
+    if (submit) { submit.disabled = true; submit.textContent = 'SE TRIMITE SOLICITAREA…'; }
+    seteazaStatusSedintaGratuita('Trimitem solicitarea către echipa Formula X…');
+
+    const zi = dataRomaneascaDinISO(preferredDate);
+    const adminParams = {
+      site_name: 'Formula X',
+      subject_line: `Solicitare ședință gratuită 30 min — ${materie} — ${mentor}`,
+      subject_name: `${materie} — ședință gratuită 30 min`,
+      mentor_name: mentor,
+      student_name: name,
+      student_first_name: prenumeDinNume(name),
+      student_email: email,
+      student_phone: phone,
+      class_name: cls || 'Nespecificat',
+      selected_week: `Zi preferată: ${zi} • Ora va fi stabilită ulterior`,
+      current_level: 'Solicitare ședință individuală gratuită de 30 de minute',
+      desired_grade: '',
+      student_message: topic || 'Nu a fost adăugat un mesaj suplimentar.',
+      admin_email: 'formulax05@gmail.com',
+      support_email: 'formulax05@gmail.com',
+      friendly_intro: 'Ai primit o solicitare pentru o ședință gratuită de 30 de minute Formula X.',
+      friendly_body: `Elevul a ales ziua ${zi}. Contactează-l pentru stabilirea orei exacte.`
+    };
+
+    try {
+      await window.emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.adminTemplateId, adminParams);
+      form.reset();
+      const dateInput = document.getElementById('free-session-date');
+      if (dateInput) seteazaDataMinimaSedintaGratuita(dateInput);
+      seteazaStatusSedintaGratuita(`Solicitarea a fost trimisă. Te vom contacta pentru a stabili ora ședinței din ${zi}.`, 'success');
+      if (window.fxTrack) window.fxTrack('free_mentor_session_request', {subject: materie, mentor_name: mentor});
+    } catch (error) {
+      console.error('Formula X — ședință gratuită:', error);
+      seteazaStatusSedintaGratuita('Nu am putut trimite solicitarea. Încearcă din nou sau contactează-ne prin WhatsApp.', 'error');
+    } finally {
+      if (submit) { submit.disabled = false; submit.textContent = 'SOLICITĂ ȘEDINȚA GRATUITĂ →'; }
+    }
+  }
+
+  function seteazaDataMinimaSedintaGratuita(input) {
+    if (!input) return;
+    const azi = new Date();
+    const yyyy = azi.getFullYear();
+    const mm = String(azi.getMonth() + 1).padStart(2, '0');
+    const dd = String(azi.getDate()).padStart(2, '0');
+    input.min = `${yyyy}-${mm}-${dd}`;
+  }
+
+  function initializeazaFormularSedintaGratuita() {
+    const form = document.getElementById('free-mentor-session-form');
+    if (!form || form.dataset.initialized === 'true') return;
+    form.dataset.initialized = 'true';
+    seteazaDataMinimaSedintaGratuita(document.getElementById('free-session-date'));
+    form.addEventListener('submit', gestioneazaSedintaGratuita);
   }
 
   document.addEventListener('keydown', (event) => {
@@ -19680,6 +19924,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     schimbaPagina(paginaDinURL(), false);
     initializeazaStareaSaptamanilor();
     initializeazaFormulareEmailJS();
+    initializeazaFormularSedintaGratuita();
     initializeazaCountdownuriBac();
     initializeazaBibliotecaTeste();
   });
@@ -20675,6 +20920,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     if($('fx-study-session-meta')) $('fx-study-session-meta').textContent=`${test.an} • ${test.sesiuneScurta || test.sesiune || ''} • ${test.proba || ''}`;
     if($('fx-study-open-subject')) $('fx-study-open-subject').href=test.subiect;
     if($('fx-study-open-barem')) $('fx-study-open-barem').href=test.barem;
+    if($('fx-study-barem-frame')) $('fx-study-barem-frame').src='about:blank';
     if($('fx-study-status-badge')) { $('fx-study-status-badge').textContent='În lucru'; $('fx-study-status-badge').className='fx-study-status-badge'; }
     if($('fx-study-pause')) $('fx-study-pause').textContent='Pauză';
     updateStudyTimer();
@@ -20715,6 +20961,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     if($('fx-study-result')) $('fx-study-result').hidden=false;
     if($('fx-study-final-time')) $('fx-study-final-time').textContent=formatStudyTime(studyState.elapsedSeconds);
     if($('fx-study-time-status')) $('fx-study-time-status').textContent='Sesiune finalizată';
+    if($('fx-study-barem-frame')) $('fx-study-barem-frame').src=studyState.test?.barem || 'about:blank';
     $('fx-study-result')?.scrollIntoView({behavior:'smooth',block:'start'});
     if(window.fxTrack) window.fxTrack('study_room_completed',{test_id:studyState.test?.id || ''});
   }
@@ -20729,6 +20976,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     if($('fx-study-finish')) $('fx-study-finish').disabled=false;
     if($('fx-study-score')) $('fx-study-score').value='';
     if($('fx-study-grade')) $('fx-study-grade').textContent='—';
+    if($('fx-study-barem-frame')) $('fx-study-barem-frame').src='about:blank';
     if($('fx-study-time-progress-bar')) $('fx-study-time-progress-bar').style.width='0%';
     if($('fx-study-time-status')) $('fx-study-time-status').textContent='În desfășurare';
     setMessage($('fx-study-save-message'),'');
