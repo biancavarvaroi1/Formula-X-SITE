@@ -8229,7 +8229,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
       <div class="fx-study-session-actions">
         <a id="fx-study-open-subject" class="fx-primary-btn fx-study-link-btn" href="#" target="_blank" rel="noopener">DESCHIDE SUBIECTUL</a>
         <button type="button" id="fx-study-pause" class="fx-secondary-btn">Pauză</button>
-        <button type="button" id="fx-study-finish" class="fx-secondary-btn fx-study-finish-btn">Finalizează testul</button>
+        <button type="button" id="fx-study-finish" class="fx-secondary-btn fx-study-finish-btn">Finalizează testul și vezi baremul</button>
       </div>
       <p class="fx-study-integrity">Pentru ca rezultatul să fie relevant, recomandăm să lucrezi fără a consulta baremul până la finalizarea sesiunii.</p>
     </section>
@@ -8256,7 +8256,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
       </div>
       <div id="fx-study-save-message" class="fx-inline-status" aria-live="polite"></div>
       <div class="fx-study-result-footer">
-        <button type="button" id="fx-study-save-result" class="fx-primary-btn">ÎNREGISTREAZĂ REZULTATUL</button>
+        <button type="button" id="fx-study-save-result" class="fx-primary-btn">ÎNREGISTREAZĂ ȘI REVINO ÎN CONT</button>
         <button type="button" id="fx-study-analyze" class="fx-secondary-btn">ANALIZEAZĂ VARIANTA</button>
         <button type="button" id="fx-study-new-session" class="fx-secondary-btn">Alege altă variantă</button>
       </div>
@@ -20760,9 +20760,24 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
   }
 
   function openStudyRoomWithTest(testId){
-    if(!testId){openStudyRoom();return;} openStudyRoom();
+    if(!testId){ openStudyRoom(); return; }
+    const targetTest=allTests().find(t=>t.id===testId);
+    if(!targetTest){ openStudyRoom(); return; }
+
+    // Dacă utilizatorul revine exact la sesiunea aflată încă în lucru, o păstrăm.
+    if(studyState.startedAt && !studyState.finished && studyState.test?.id===testId){
+      openStudyRoom();
+      return;
+    }
+
+    // O sesiune veche (finalizată sau pentru altă variantă) nu trebuie să blocheze varianta nouă.
+    if(studyState.startedAt){
+      resetStudyRoom();
+    }
+
+    openStudyRoom();
     setTimeout(()=>{
-      const test=allTests().find(t=>t.id===testId); if(!test) return;
+      const test=targetTest;
       if($('fx-study-scope')) $('fx-study-scope').value=profileComplete()&&state.routeIndex.has(testId)?'route':'all';
       populateStudyRoom();
       if($('fx-study-subject')){$('fx-study-subject').value=String(test.materie);populateStudyTests();}
@@ -21010,7 +21025,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     }
     if(attempt.error){
       console.error(attempt.error); setMessage($('fx-study-save-message'),'Nu am putut înregistra rezultatul. Verifică conexiunea și încearcă din nou.','error');
-      if(btn){btn.disabled=false;btn.textContent='ÎNREGISTREAZĂ REZULTATUL';} return;
+      if(btn){btn.disabled=false;btn.textContent='ÎNREGISTREAZĂ ȘI REVINO ÎN CONT';} return;
     }
     const old=state.progress.get(studyState.test.id);
     const best=Math.max(grade,Number(old?.best_grade||0));
@@ -21023,10 +21038,20 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     setMessage($('fx-study-save-message'),msg,timeSaved?'success':'error');
     if(btn){btn.disabled=false;btn.textContent='REZULTAT ÎNREGISTRAT ✓';}
     if(window.fxTrack) window.fxTrack('study_result_saved',{test_id:studyState.test.id});
+
+    // După salvarea completă, închidem sesiunea locală și revenim în cont.
+    // Astfel, următoarea variantă pornește mereu cu o stare curată.
+    resetStudyRoom();
+    if(typeof schimbaPagina==='function') schimbaPagina('cont');
+    else window.location.hash='cont';
   }
 
   function openStudyRoom() {
     if(!state.user){ openAuthPage('login'); return; }
+
+    // O sesiune deja finalizată nu trebuie restaurată când Camera de studiu este redeschisă.
+    if(studyState.finished) resetStudyRoom();
+
     if(typeof schimbaPagina==='function') schimbaPagina('camera-studiu');
     else window.location.hash='camera-studiu';
     if(!studyState.startedAt) populateStudyRoom();
@@ -21226,7 +21251,12 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     $('fx-explore-extra')?.addEventListener('click',event=>{ event.preventDefault(); showAllTests(); });
     $('fx-start-next-test')?.addEventListener('click',event=>{ event.preventDefault(); openNextRouteTest(); });
     $('fx-open-study-room')?.addEventListener('click',openStudyRoom);
-    $('fx-study-back-account')?.addEventListener('click',()=>{ if(typeof schimbaPagina==='function') schimbaPagina('cont'); });
+    $('fx-study-back-account')?.addEventListener('click',()=>{
+      // După o sesiune finalizată, eliminăm starea veche înainte de revenirea în cont.
+      if(studyState.finished) resetStudyRoom();
+      if(typeof schimbaPagina==='function') schimbaPagina('cont');
+      else window.location.hash='cont';
+    });
     $('fx-study-scope')?.addEventListener('change',populateStudyRoom);
     $('fx-study-subject')?.addEventListener('change',populateStudyTests);
     $('fx-study-year')?.addEventListener('change',populateStudyTests);
