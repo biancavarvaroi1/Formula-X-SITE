@@ -9881,14 +9881,54 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     if (tip === 'error') nota.classList.add('is-error');
   }
 
+  function fxCheieMateriePentruSupabase(materie) {
+    const normalizat = String(materie || '')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .trim();
+
+    if (normalizat.includes('rom')) return 'romana';
+    if (normalizat.includes('mat')) return 'matematica';
+    if (normalizat.includes('bio')) return 'biologie';
+    if (normalizat.includes('chim')) return 'chimie';
+    if (normalizat.includes('fiz')) return 'fizica';
+    if (normalizat.includes('geo')) return 'geografie';
+    return '';
+  }
+
+  async function fxSalveazaInscriereInSupabase(formData) {
+    const client = window.fxSupabaseClient;
+    if (!client) throw new Error('Clientul Supabase nu este disponibil.');
+
+    const materie = formData.get('Materie') || '';
+    const subject = fxCheieMateriePentruSupabase(materie);
+    if (!subject) throw new Error('Materia nu a putut fi identificată pentru portalul profesorilor.');
+
+    const fullName = String(formData.get('Nume elev') || '').trim();
+    const email = String(formData.get('email') || '').trim().toLowerCase();
+    const phone = String(formData.get('Telefon / WhatsApp') || '').trim();
+    const currentLevel = String(formData.get('Nivel actual') || '').trim();
+    const className = String(formData.get('Clasa') || '').trim();
+    const level = currentLevel || className || null;
+
+    const { error } = await client
+      .from('enrollments')
+      .insert({
+        full_name: fullName,
+        email,
+        phone: phone || null,
+        subject,
+        level
+      });
+
+    if (error) throw error;
+    return true;
+  }
+
   async function gestioneazaTrimitereFormular(event) {
     event.preventDefault();
     const form = event.currentTarget;
-
-    if (!emailjsConfigurat() || !initializeazaEmailJSDacaEsteDisponibil()) {
-      seteazaStatusFormular(form, 'Serviciul de email nu este disponibil momentan. Reîncarcă pagina și încearcă din nou.', 'error');
-      return;
-    }
 
     const button = form.querySelector('.enrollment-submit');
     const buttonTextInitial = button ? button.textContent : '';
@@ -9924,19 +9964,77 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
       friendly_body: 'Vom reveni cât mai repede cu toate detaliile legate de organizare, confirmare și următorii pași. Ne bucurăm să te avem alături și abia așteptăm să învățăm împreună!'
     };
 
-    try {
-      await window.emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.adminTemplateId, adminParams);
+    let salvatInSupabase = false;
+    let emailTrimis = false;
+    let eroareSupabase = null;
+    let eroareEmail = null;
 
-      form.reset();
-      seteazaStatusFormular(form, 'Cererea a fost trimisă cu succes. Elevul va primi și un email de confirmare Formula X. 💛', 'success');
+    // 1. Salvăm cererea în baza de date pentru portalul mentorului.
+    try {
+      await fxSalveazaInscriereInSupabase(formData);
+      salvatInSupabase = true;
     } catch (error) {
-      console.error('Eroare la trimiterea formularului:', error);
-      seteazaStatusFormular(form, 'A apărut o eroare la trimitere. Verifică setările EmailJS și încearcă din nou.', 'error');
-    } finally {
-      if (button) {
-        button.disabled = false;
-        button.textContent = buttonTextInitial || 'TRIMITE CEREREA →';
+      eroareSupabase = error;
+      console.error('Eroare la salvarea înscrierii în Supabase:', error);
+    }
+
+    // 2. Păstrăm și notificarea EmailJS existentă.
+    try {
+      if (emailjsConfigurat() && initializeazaEmailJSDacaEsteDisponibil()) {
+        await window.emailjs.send(
+          EMAILJS_CONFIG.serviceId,
+          EMAILJS_CONFIG.adminTemplateId,
+          adminParams
+        );
+        emailTrimis = true;
       }
+    } catch (error) {
+      eroareEmail = error;
+      console.error('Eroare la trimiterea formularului prin EmailJS:', error);
+    }
+
+    if (salvatInSupabase || emailTrimis) {
+      form.reset();
+
+      if (salvatInSupabase && emailTrimis) {
+        seteazaStatusFormular(
+          form,
+          'Cererea a fost înregistrată cu succes și a ajuns la echipa Formula X. 💛',
+          'success'
+        );
+      } else if (salvatInSupabase) {
+        seteazaStatusFormular(
+          form,
+          'Cererea a fost înregistrată cu succes. Echipa Formula X te va contacta cât mai curând. 💛',
+          'success'
+        );
+      } else {
+        seteazaStatusFormular(
+          form,
+          'Cererea a fost trimisă echipei Formula X. 💛',
+          'success'
+        );
+      }
+
+      if (window.fxTrack) {
+        window.fxTrack('program_enrollment_submit', {
+          subject: fxCheieMateriePentruSupabase(materie) || materie,
+          mentor_name: mentor,
+          database_saved: salvatInSupabase
+        });
+      }
+    } else {
+      console.error('Înscriere nereușită.', { eroareSupabase, eroareEmail });
+      seteazaStatusFormular(
+        form,
+        'A apărut o eroare la trimitere. Reîncarcă pagina și încearcă din nou.',
+        'error'
+      );
+    }
+
+    if (button) {
+      button.disabled = false;
+      button.textContent = buttonTextInitial || 'TRIMITE CEREREA →';
     }
   }
 
@@ -25526,6 +25624,9 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
       flowType: 'pkce'
     }
   });
+
+  // Client comun folosit și de formularele de înscriere Formula X.
+  window.fxSupabaseClient = db;
 
   const state = {
     user: null,
