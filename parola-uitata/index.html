@@ -4,18 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex,nofollow,noarchive">
-  <title>Resetare parolă | Formula X</title>
+  <title>Recuperare parolă | Formula X</title>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
-    :root{--navy:#0b1830;--navy2:#172d50;--gold:#c99d35;--gold2:#f0cf77;--text:#202735;--muted:#6e7888;--border:#e5e8ee;--ok:#176b37;--bad:#a72f2f}
-    *{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--text);background:radial-gradient(circle at 85% 10%,rgba(201,157,53,.16),transparent 30%),linear-gradient(145deg,#f8f4eb,#fff 46%,#f1f4f8)}
-    .card{width:min(520px,100%);background:rgba(255,255,255,.96);border:1px solid rgba(201,157,53,.24);border-radius:28px;box-shadow:0 28px 80px rgba(13,26,48,.14);overflow:hidden}.top{padding:31px 34px;background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff}.brand{display:flex;align-items:center;gap:11px}.x{width:45px;height:45px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(135deg,var(--gold),var(--gold2));font-size:23px;font-weight:950}.brand strong{display:block}.brand small{display:block;color:#cbd5e4;font-size:11px;margin-top:2px}.body{padding:35px 34px 38px}.kicker{font-size:10px;text-transform:uppercase;letter-spacing:1.2px;font-weight:900;color:#9a762a}.body h1{font-size:29px;letter-spacing:-.5px;margin:9px 0 10px}.lead{color:var(--muted);line-height:1.65;font-size:14px;margin:0 0 25px}.field label{display:block;font-size:12px;font-weight:900;margin-bottom:8px}.field input{width:100%;padding:14px 15px;border:1px solid var(--border);border-radius:12px;outline:none;font:inherit}.field input:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(201,157,53,.10)}.btn{width:100%;border:0;border-radius:12px;background:linear-gradient(135deg,var(--navy),#23456f);color:#fff;padding:14px 16px;font:inherit;font-weight:900;cursor:pointer;margin-top:14px}.btn:disabled{opacity:.65;cursor:wait}.back{display:block;text-align:center;margin-top:17px;color:#74602d;text-decoration:none;font-size:13px;font-weight:800}.msg{min-height:22px;margin-top:13px;color:var(--bad);font-size:13px;font-weight:700;text-align:center}.success{text-align:center;padding:7px 0}.success-icon{width:68px;height:68px;margin:0 auto 20px;border-radius:50%;display:grid;place-items:center;background:#e4f4e9;color:var(--ok);font-size:30px;font-weight:900}.email-chip{display:inline-block;max-width:100%;overflow-wrap:anywhere;background:#f7f4eb;border:1px solid #eadbb4;color:#735c25;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:800;margin:2px 0 13px}.tip{margin-top:20px;padding:13px 14px;border-radius:12px;background:#f7f8fa;color:#6e7888;font-size:12px;line-height:1.55;text-align:left}.hidden{display:none!important}@media(max-width:520px){body{padding:13px}.top,.body{padding-left:23px;padding-right:23px}.body h1{font-size:25px}}
+    :root{--navy:#0b1830;--navy2:#172d50;--gold:#c99d35;--gold2:#f0cf77;--text:#202735;--muted:#6e7888;--border:#e5e8ee;--ok:#176b37;--bad:#a72f2f;--soft:#f8f4eb}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--text);background:radial-gradient(circle at 88% 8%,rgba(201,157,53,.18),transparent 31%),radial-gradient(circle at 4% 92%,rgba(23,45,80,.10),transparent 28%),linear-gradient(145deg,#f8f4eb,#fff 48%,#f1f4f8)}
+    .card{width:min(540px,100%);background:rgba(255,255,255,.97);border:1px solid rgba(201,157,53,.25);border-radius:30px;box-shadow:0 30px 90px rgba(13,26,48,.15);overflow:hidden}.top{padding:31px 35px;background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;position:relative}.top:after{content:"";position:absolute;right:-55px;top:-70px;width:180px;height:180px;border-radius:50%;border:1px solid rgba(240,207,119,.26)}.brand{display:flex;align-items:center;gap:12px;position:relative;z-index:1}.x{width:47px;height:47px;display:grid;place-items:center;border-radius:14px;background:linear-gradient(135deg,var(--gold),var(--gold2));font-size:24px;font-weight:950;box-shadow:0 8px 23px rgba(201,157,53,.25)}.brand strong{display:block;font-size:17px}.brand small{display:block;color:#cbd5e4;font-size:11px;margin-top:2px;letter-spacing:.25px}.body{padding:37px 35px 40px}.kicker{font-size:10px;text-transform:uppercase;letter-spacing:1.25px;font-weight:900;color:#9a762a}.body h1{font-size:30px;letter-spacing:-.6px;margin:9px 0 10px}.lead{color:var(--muted);line-height:1.66;font-size:14px;margin:0 0 25px}.field{margin-bottom:16px}.field label{display:block;font-size:12px;font-weight:900;margin-bottom:8px}.field input{width:100%;padding:14px 15px;border:1px solid var(--border);border-radius:12px;outline:none;font:inherit;background:#fff}.field input:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(201,157,53,.10)}.password-wrap{position:relative}.password-wrap input{padding-right:72px}.show-pass{position:absolute;right:9px;top:50%;transform:translateY(-50%);border:0;background:transparent;color:#765e32;font-weight:800;font-size:11px;cursor:pointer;padding:8px}.btn{width:100%;border:0;border-radius:12px;background:linear-gradient(135deg,var(--navy),#23456f);color:#fff;padding:14px 16px;font:inherit;font-weight:900;cursor:pointer;margin-top:4px;box-shadow:0 10px 24px rgba(23,45,80,.16)}.btn:hover{filter:brightness(1.04)}.btn:disabled{opacity:.65;cursor:wait}.back{display:block;text-align:center;margin-top:18px;color:#74602d;text-decoration:none;font-size:13px;font-weight:800}.back:hover{text-decoration:underline}.msg{min-height:22px;margin-top:13px;color:var(--bad);font-size:13px;font-weight:700;text-align:center;line-height:1.45}.msg.ok{color:var(--ok)}.success{text-align:center;padding:7px 0}.success-icon{width:70px;height:70px;margin:0 auto 20px;border-radius:50%;display:grid;place-items:center;background:#e4f4e9;color:var(--ok);font-size:31px;font-weight:900}.email-chip{display:inline-block;max-width:100%;overflow-wrap:anywhere;background:#f7f4eb;border:1px solid #eadbb4;color:#735c25;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:800;margin:2px 0 13px}.tip{margin-top:20px;padding:13px 14px;border-radius:12px;background:#f7f8fa;color:#6e7888;font-size:12px;line-height:1.55;text-align:left}.requirements{margin:0 0 18px;padding:13px 15px;border-radius:12px;background:var(--soft);border:1px solid #eee2c5;color:#73684d;font-size:12px;line-height:1.55}.hidden{display:none!important}.spinner{width:34px;height:34px;border:3px solid #e8eaf0;border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite;margin:2px auto 18px}@keyframes spin{to{transform:rotate(360deg)}}
+    @media(max-width:520px){body{padding:13px}.top,.body{padding-left:23px;padding-right:23px}.body h1{font-size:26px}}
   </style>
 </head>
 <body>
   <main class="card">
-    <div class="top"><div class="brand"><div class="x">X</div><div><strong>Formula X</strong><small>Recuperare acces cont</small></div></div></div>
+    <div class="top"><div class="brand"><div class="x">X</div><div><strong>Formula X</strong><small>Recuperare securizată a contului</small></div></div></div>
     <div class="body">
+      <section id="loadingView" class="success hidden">
+        <div class="spinner"></div>
+        <span class="kicker">Se verifică linkul</span>
+        <h1>Un moment...</h1>
+        <p class="lead">Verificăm în siguranță cererea de resetare a parolei.</p>
+      </section>
+
       <section id="requestView">
         <span class="kicker">Securitate cont</span>
         <h1>Ai uitat parola?</h1>
@@ -23,17 +31,48 @@
         <form id="resetForm">
           <div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="email" required placeholder="nume@email.com"></div>
           <button id="sendBtn" class="btn" type="submit">TRIMITE LINKUL DE RESETARE</button>
-          <div id="msg" class="msg" aria-live="polite"></div>
+          <div id="requestMsg" class="msg" aria-live="polite"></div>
         </form>
         <a class="back" href="/#cont">← Înapoi la conectare</a>
       </section>
+
       <section id="sentView" class="success hidden">
         <div class="success-icon">✓</div>
         <span class="kicker">Email trimis</span>
         <h1>Verifică-ți emailul</h1>
         <p class="lead">Dacă există un cont Formula X asociat acestei adrese, vei primi linkul pentru resetarea parolei.</p>
         <div id="sentEmail" class="email-chip"></div>
-        <div class="tip"><strong>Nu vezi mesajul?</strong> Verifică și folderele Spam / Junk. Linkul din email te va aduce înapoi în Formula X, unde vei putea seta parola nouă.</div>
+        <div class="tip"><strong>Ce urmează?</strong> Deschide emailul primit de la Formula X și apasă linkul de recuperare. Vei reveni pe această pagină și îți va apărea formularul pentru parola nouă. Verifică și Spam / Junk.</div>
+        <a class="back" href="/#cont">Înapoi la Formula X</a>
+      </section>
+
+      <section id="recoveryView" class="hidden">
+        <span class="kicker">Link confirmat</span>
+        <h1>Alege parola nouă</h1>
+        <p class="lead">Introdu o parolă nouă pentru contul tău Formula X. După salvare te vei putea conecta cu ea.</p>
+        <div class="requirements"><strong>Parola trebuie să aibă minimum 8 caractere.</strong> Pentru siguranță, folosește o combinație pe care nu o utilizezi în alte conturi.</div>
+        <form id="newPasswordForm">
+          <div class="field"><label for="newPassword">Parolă nouă</label><div class="password-wrap"><input id="newPassword" type="password" autocomplete="new-password" minlength="8" required placeholder="Minimum 8 caractere"><button class="show-pass" type="button" data-target="newPassword">ARATĂ</button></div></div>
+          <div class="field"><label for="confirmPassword">Confirmă parola</label><div class="password-wrap"><input id="confirmPassword" type="password" autocomplete="new-password" minlength="8" required placeholder="Repetă parola"><button class="show-pass" type="button" data-target="confirmPassword">ARATĂ</button></div></div>
+          <button id="saveBtn" class="btn" type="submit">SALVEAZĂ PAROLA NOUĂ</button>
+          <div id="recoveryMsg" class="msg" aria-live="polite"></div>
+        </form>
+      </section>
+
+      <section id="doneView" class="success hidden">
+        <div class="success-icon">✓</div>
+        <span class="kicker">Parolă actualizată</span>
+        <h1>Gata!</h1>
+        <p class="lead">Parola contului tău a fost schimbată. Acum te poți conecta folosind parola nouă.</p>
+        <a class="btn" style="display:block;text-decoration:none" href="/#cont">MERGI LA CONECTARE</a>
+      </section>
+
+      <section id="invalidView" class="success hidden">
+        <div class="success-icon" style="background:#fbe7e7;color:var(--bad)">!</div>
+        <span class="kicker">Link invalid</span>
+        <h1>Linkul nu mai este valabil</h1>
+        <p class="lead">Linkul de recuperare a expirat, a fost deja folosit sau nu a putut fi verificat. Cere un link nou.</p>
+        <button id="newRequestBtn" class="btn" type="button">CERE UN LINK NOU</button>
         <a class="back" href="/#cont">Înapoi la Formula X</a>
       </section>
     </div>
@@ -42,11 +81,78 @@
 const SUPABASE_URL='https://vooflhvdoutjplfbnahl.supabase.co';
 const SUPABASE_PUBLIC_KEY='sb_publishable_iuJBis3q_83zNlYFER2AXQ_o8gzpDPA';
 const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLIC_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,flowType:'pkce'}});
-const params=new URLSearchParams(location.search),preset=params.get('email')||'';
-const emailEl=document.getElementById('email');emailEl.value=preset;
-function showSent(email){document.getElementById('requestView').classList.add('hidden');document.getElementById('sentView').classList.remove('hidden');document.getElementById('sentEmail').textContent=email||'adresa ta de email';}
-if(params.get('trimis')==='1')showSent(preset);
-document.getElementById('resetForm').addEventListener('submit',async e=>{e.preventDefault();const email=emailEl.value.trim();if(!email)return;const btn=document.getElementById('sendBtn'),msg=document.getElementById('msg');btn.disabled=true;btn.textContent='SE TRIMITE...';msg.textContent='';const {error}=await sb.auth.resetPasswordForEmail(email,{redirectTo:'https://formula-x.ro/#cont'});if(error){console.error(error);msg.textContent='Nu am putut trimite emailul. Încearcă din nou peste câteva momente.';btn.disabled=false;btn.textContent='TRIMITE LINKUL DE RESETARE';return}history.replaceState({},'',location.pathname+'?trimis=1&email='+encodeURIComponent(email));showSent(email);});
+const $=id=>document.getElementById(id);
+const views=['loadingView','requestView','sentView','recoveryView','doneView','invalidView'];
+const params=new URLSearchParams(location.search);
+const preset=params.get('email')||'';
+const recoveryHint=params.has('code') || params.get('type')==='recovery' || location.hash.includes('type=recovery') || location.hash.includes('access_token=');
+let recoveryHandled=false;
+
+function showView(id){views.forEach(v=>$(v)?.classList.toggle('hidden',v!==id));}
+function cleanRecoveryUrl(){try{history.replaceState({},'',location.pathname);}catch(_){} }
+function showSent(email){$('sentEmail').textContent=email||'adresa ta de email';showView('sentView');}
+function showRecovery(){recoveryHandled=true;showView('recoveryView');setTimeout(()=>$('newPassword')?.focus(),80);}
+function showInvalid(){showView('invalidView');}
+
+$('email').value=preset;
+if(params.get('trimis')==='1' && !recoveryHint) showSent(preset);
+else if(recoveryHint) showView('loadingView');
+
+// Listener-ul este înregistrat imediat, pentru a nu rata evenimentul PASSWORD_RECOVERY.
+sb.auth.onAuthStateChange((event,session)=>{
+  if(event==='PASSWORD_RECOVERY'){
+    recoveryHandled=true;
+    showRecovery();
+  }
+});
+
+async function detectRecoverySession(){
+  if(!recoveryHint) return;
+  showView('loadingView');
+  // Supabase procesează automat ?code=... pentru PKCE. Așteptăm scurt schimbul de sesiune.
+  for(let i=0;i<12;i++){
+    const {data}=await sb.auth.getSession();
+    if(data?.session?.user){showRecovery();return;}
+    await new Promise(r=>setTimeout(r,150));
+  }
+  if(!recoveryHandled) showInvalid();
+}
+detectRecoverySession();
+
+$('resetForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const email=$('email').value.trim();
+  if(!email)return;
+  const btn=$('sendBtn'),msg=$('requestMsg');
+  btn.disabled=true;btn.textContent='SE TRIMITE...';msg.textContent='';
+  const {error}=await sb.auth.resetPasswordForEmail(email,{redirectTo:'https://formula-x.ro/parola-uitata/'});
+  if(error){console.error(error);msg.textContent='Nu am putut trimite emailul. Încearcă din nou peste câteva momente.';btn.disabled=false;btn.textContent='TRIMITE LINKUL DE RESETARE';return;}
+  history.replaceState({},'',location.pathname+'?trimis=1&email='+encodeURIComponent(email));
+  showSent(email);
+});
+
+$('newPasswordForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const password=$('newPassword').value;
+  const confirm=$('confirmPassword').value;
+  const msg=$('recoveryMsg'),btn=$('saveBtn');
+  msg.classList.remove('ok');msg.textContent='';
+  if(password.length<8){msg.textContent='Parola trebuie să aibă minimum 8 caractere.';return;}
+  if(password!==confirm){msg.textContent='Cele două parole nu coincid.';return;}
+  btn.disabled=true;btn.textContent='SE SALVEAZĂ...';
+  const {error}=await sb.auth.updateUser({password});
+  if(error){console.error(error);msg.textContent=error.message||'Nu am putut schimba parola. Cere un link nou și încearcă din nou.';btn.disabled=false;btn.textContent='SALVEAZĂ PAROLA NOUĂ';return;}
+  cleanRecoveryUrl();
+  await sb.auth.signOut();
+  showView('doneView');
+});
+
+document.querySelectorAll('.show-pass').forEach(btn=>btn.addEventListener('click',()=>{
+  const input=$(btn.dataset.target);if(!input)return;
+  const reveal=input.type==='password';input.type=reveal?'text':'password';btn.textContent=reveal?'ASCUNDE':'ARATĂ';
+}));
+
+$('newRequestBtn').addEventListener('click',()=>{cleanRecoveryUrl();showView('requestView');$('email').focus();});
 </script>
 </body>
 </html>

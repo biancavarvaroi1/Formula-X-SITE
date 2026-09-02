@@ -26850,7 +26850,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     setMessage($('fx-auth-message'),'Trimitem linkul de resetare...');
     const { error } = await db.auth.resetPasswordForEmail(email,{
       // Păstrăm destinația deja compatibilă cu configurația Supabase existentă.
-      redirectTo:'https://formula-x.ro/#cont'
+      redirectTo:'https://formula-x.ro/parola-uitata/'
     });
 
     if (error) {
