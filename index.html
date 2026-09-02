@@ -26687,12 +26687,43 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
   }
   window.FormulaXSaveGoal = saveGoal;
 
+  // Formula X V16 — autentificare inteligentă elev / mentor / admin.
+  async function getCurrentStaffAccount(userId) {
+    if (!userId) return null;
+    try {
+      const { data, error } = await db
+        .from('staff_accounts')
+        .select('user_id, display_name, role, subject')
+        .eq('user_id', userId)
+        .maybeSingle();
+      if (error) {
+        console.warn('Formula X staff lookup:', error.message || error);
+        return null;
+      }
+      return data || null;
+    } catch (error) {
+      console.warn('Formula X staff lookup:', error);
+      return null;
+    }
+  }
+
+  async function redirectStaffToPortal(user) {
+    if (!user || state.recoveryMode) return false;
+    const staff = await getCurrentStaffAccount(user.id);
+    if (!staff || !['mentor','admin'].includes(staff.role)) return false;
+    window.location.replace('https://formula-x.ro/profesori/');
+    return true;
+  }
+
   async function signIn(event) {
     event.preventDefault();
     if ($('fx-resend-confirmation')) $('fx-resend-confirmation').hidden = true;
     setMessage($('fx-auth-message'),'Se verifică datele...');
     const email = $('fx-login-email').value.trim();
-    const {error}=await db.auth.signInWithPassword({email,password:$('fx-login-password').value});
+    const { data, error } = await db.auth.signInWithPassword({
+      email,
+      password:$('fx-login-password').value
+    });
     if(error){
       const raw = error.message || '';
       if (/email not confirmed/i.test(raw)) {
@@ -26703,6 +26734,10 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
       }
       return;
     }
+
+    // Dacă utilizatorul este mentor/admin, același login îl duce direct în portalul privat.
+    if (data?.user && await redirectStaffToPortal(data.user)) return;
+
     setMessage($('fx-auth-message'),'Autentificare reușită.','success');
     if(window.fxTrack) window.fxTrack('login_success',{method:'email'});
   }
@@ -26804,10 +26839,29 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
   }
 
   async function forgotPassword() {
-    const email=$('fx-login-email').value.trim();
-    if(!email){ setMessage($('fx-auth-message'),'Scrie mai întâi adresa de email.','error'); $('fx-login-email').focus(); return; }
-    const {error}=await db.auth.resetPasswordForEmail(email,{redirectTo:'https://formula-x.ro/#cont'});
-    setMessage($('fx-auth-message'),error?error.message:'Ți-am trimis un email pentru resetarea parolei.',error?'error':'success');
+    const email = $('fx-login-email')?.value.trim() || '';
+
+    // Dacă elevul nu a completat încă emailul, îl ducem la pagina dedicată.
+    if (!email) {
+      window.location.assign('https://formula-x.ro/parola-uitata/');
+      return;
+    }
+
+    setMessage($('fx-auth-message'),'Trimitem linkul de resetare...');
+    const { error } = await db.auth.resetPasswordForEmail(email,{
+      // Păstrăm destinația deja compatibilă cu configurația Supabase existentă.
+      redirectTo:'https://formula-x.ro/#cont'
+    });
+
+    if (error) {
+      console.error('Formula X reset password:', error);
+      setMessage($('fx-auth-message'),'Nu am putut trimite emailul de resetare. Încearcă din nou.','error');
+      return;
+    }
+
+    window.location.assign(
+      'https://formula-x.ro/parola-uitata/?trimis=1&email=' + encodeURIComponent(email)
+    );
   }
 
   async function updatePassword(event) {
@@ -26816,8 +26870,12 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     const {error}=await db.auth.updateUser({password});
     if(error){ setMessage($('fx-auth-message'),error.message,'error'); return; }
     state.recoveryMode=false;
+
+    // Dacă parola aparține unui mentor/admin, îl ducem înapoi în portalul profesorilor.
+    if (state.user && await redirectStaffToPortal(state.user)) return;
+
     resetAuthCards();
-    setMessage($('fx-auth-message'),'Parola a fost schimbată.','success');
+    setMessage($('fx-auth-message'),'Parola a fost schimbată. Te poți conecta în contul tău.','success');
     renderAuthState();
   }
 
@@ -26826,6 +26884,16 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     const {data,error}=await db.auth.getSession();
     if(error) console.error(error);
     state.user=data.session?.user||null;
+
+    // Dăm prioritate evenimentului PASSWORD_RECOVERY. Astfel, un mentor care își
+    // resetează parola nu este trimis în portal înainte să poată alege parola nouă.
+    if (state.user) {
+      await new Promise(resolve => setTimeout(resolve, 600));
+      if (state.recoveryMode) return;
+      // Un profesor care deschide pagina principală fiind deja autentificat ajunge direct în portal.
+      if (await redirectStaffToPortal(state.user)) return;
+    }
+
     if(state.user) await loadUserData();
     renderAuthState(); refreshAllTestProgressBoxes();
     if(window.location.hash==='#camera-studiu') {
@@ -26923,6 +26991,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
         return;
       }
       state.user=session?.user||null;
+      if(state.user && await redirectStaffToPortal(state.user)) return;
       if(state.user) await loadUserData();
       else {
         state.profile=null;

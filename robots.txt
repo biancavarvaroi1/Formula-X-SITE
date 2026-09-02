@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /profesori/
+Disallow: /parola-uitata/
 
 Sitemap: https://formula-x.ro/sitemap.xml

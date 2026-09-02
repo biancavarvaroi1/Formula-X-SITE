@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>Resetare parolă | Formula X</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    :root{--navy:#0b1830;--navy2:#172d50;--gold:#c99d35;--gold2:#f0cf77;--text:#202735;--muted:#6e7888;--border:#e5e8ee;--ok:#176b37;--bad:#a72f2f}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--text);background:radial-gradient(circle at 85% 10%,rgba(201,157,53,.16),transparent 30%),linear-gradient(145deg,#f8f4eb,#fff 46%,#f1f4f8)}
+    .card{width:min(520px,100%);background:rgba(255,255,255,.96);border:1px solid rgba(201,157,53,.24);border-radius:28px;box-shadow:0 28px 80px rgba(13,26,48,.14);overflow:hidden}.top{padding:31px 34px;background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff}.brand{display:flex;align-items:center;gap:11px}.x{width:45px;height:45px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(135deg,var(--gold),var(--gold2));font-size:23px;font-weight:950}.brand strong{display:block}.brand small{display:block;color:#cbd5e4;font-size:11px;margin-top:2px}.body{padding:35px 34px 38px}.kicker{font-size:10px;text-transform:uppercase;letter-spacing:1.2px;font-weight:900;color:#9a762a}.body h1{font-size:29px;letter-spacing:-.5px;margin:9px 0 10px}.lead{color:var(--muted);line-height:1.65;font-size:14px;margin:0 0 25px}.field label{display:block;font-size:12px;font-weight:900;margin-bottom:8px}.field input{width:100%;padding:14px 15px;border:1px solid var(--border);border-radius:12px;outline:none;font:inherit}.field input:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(201,157,53,.10)}.btn{width:100%;border:0;border-radius:12px;background:linear-gradient(135deg,var(--navy),#23456f);color:#fff;padding:14px 16px;font:inherit;font-weight:900;cursor:pointer;margin-top:14px}.btn:disabled{opacity:.65;cursor:wait}.back{display:block;text-align:center;margin-top:17px;color:#74602d;text-decoration:none;font-size:13px;font-weight:800}.msg{min-height:22px;margin-top:13px;color:var(--bad);font-size:13px;font-weight:700;text-align:center}.success{text-align:center;padding:7px 0}.success-icon{width:68px;height:68px;margin:0 auto 20px;border-radius:50%;display:grid;place-items:center;background:#e4f4e9;color:var(--ok);font-size:30px;font-weight:900}.email-chip{display:inline-block;max-width:100%;overflow-wrap:anywhere;background:#f7f4eb;border:1px solid #eadbb4;color:#735c25;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:800;margin:2px 0 13px}.tip{margin-top:20px;padding:13px 14px;border-radius:12px;background:#f7f8fa;color:#6e7888;font-size:12px;line-height:1.55;text-align:left}.hidden{display:none!important}@media(max-width:520px){body{padding:13px}.top,.body{padding-left:23px;padding-right:23px}.body h1{font-size:25px}}
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="top"><div class="brand"><div class="x">X</div><div><strong>Formula X</strong><small>Recuperare acces cont</small></div></div></div>
+    <div class="body">
+      <section id="requestView">
+        <span class="kicker">Securitate cont</span>
+        <h1>Ai uitat parola?</h1>
+        <p class="lead">Introdu adresa folosită pentru contul Formula X. Îți trimitem pe email un link securizat pentru alegerea unei parole noi.</p>
+        <form id="resetForm">
+          <div class="field"><label for="email">Email</label><input id="email" type="email" autocomplete="email" required placeholder="nume@email.com"></div>
+          <button id="sendBtn" class="btn" type="submit">TRIMITE LINKUL DE RESETARE</button>
+          <div id="msg" class="msg" aria-live="polite"></div>
+        </form>
+        <a class="back" href="/#cont">← Înapoi la conectare</a>
+      </section>
+      <section id="sentView" class="success hidden">
+        <div class="success-icon">✓</div>
+        <span class="kicker">Email trimis</span>
+        <h1>Verifică-ți emailul</h1>
+        <p class="lead">Dacă există un cont Formula X asociat acestei adrese, vei primi linkul pentru resetarea parolei.</p>
+        <div id="sentEmail" class="email-chip"></div>
+        <div class="tip"><strong>Nu vezi mesajul?</strong> Verifică și folderele Spam / Junk. Linkul din email te va aduce înapoi în Formula X, unde vei putea seta parola nouă.</div>
+        <a class="back" href="/#cont">Înapoi la Formula X</a>
+      </section>
+    </div>
+  </main>
+<script>
+const SUPABASE_URL='https://vooflhvdoutjplfbnahl.supabase.co';
+const SUPABASE_PUBLIC_KEY='sb_publishable_iuJBis3q_83zNlYFER2AXQ_o8gzpDPA';
+const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLIC_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,flowType:'pkce'}});
+const params=new URLSearchParams(location.search),preset=params.get('email')||'';
+const emailEl=document.getElementById('email');emailEl.value=preset;
+function showSent(email){document.getElementById('requestView').classList.add('hidden');document.getElementById('sentView').classList.remove('hidden');document.getElementById('sentEmail').textContent=email||'adresa ta de email';}
+if(params.get('trimis')==='1')showSent(preset);
+document.getElementById('resetForm').addEventListener('submit',async e=>{e.preventDefault();const email=emailEl.value.trim();if(!email)return;const btn=document.getElementById('sendBtn'),msg=document.getElementById('msg');btn.disabled=true;btn.textContent='SE TRIMITE...';msg.textContent='';const {error}=await sb.auth.resetPasswordForEmail(email,{redirectTo:'https://formula-x.ro/#cont'});if(error){console.error(error);msg.textContent='Nu am putut trimite emailul. Încearcă din nou peste câteva momente.';btn.disabled=false;btn.textContent='TRIMITE LINKUL DE RESETARE';return}history.replaceState({},'',location.pathname+'?trimis=1&email='+encodeURIComponent(email));showSent(email);});
+</script>
+</body>
+</html>
