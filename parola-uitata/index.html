@@ -80,44 +80,104 @@
 <script>
 const SUPABASE_URL='https://vooflhvdoutjplfbnahl.supabase.co';
 const SUPABASE_PUBLIC_KEY='sb_publishable_iuJBis3q_83zNlYFER2AXQ_o8gzpDPA';
-const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLIC_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,flowType:'pkce'}});
+
+// Pagina de recuperare foloseste implicit flow. Linkul securizat din email
+// este verificat mai intai de Supabase, apoi redirectul revine aici cu o
+// sesiune temporara in URL (#access_token=...&refresh_token=...&type=recovery).
+const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLIC_KEY,{
+  auth:{
+    persistSession:true,
+    autoRefreshToken:true,
+    detectSessionInUrl:true,
+    flowType:'implicit',
+    storageKey:'formula-x-password-recovery'
+  }
+});
+
 const $=id=>document.getElementById(id);
 const views=['loadingView','requestView','sentView','recoveryView','doneView','invalidView'];
 const params=new URLSearchParams(location.search);
+const hashParams=new URLSearchParams(location.hash.replace(/^#/,''));
 const preset=params.get('email')||'';
-const recoveryHint=params.has('code') || params.get('type')==='recovery' || location.hash.includes('type=recovery') || location.hash.includes('access_token=');
+const hasRecoveryHash=hashParams.get('type')==='recovery' || (!!hashParams.get('access_token') && !!hashParams.get('refresh_token'));
+const hasRecoveryCode=params.has('code');
+const hasRecoveryTokenHash=params.has('token_hash') && (params.get('type')==='recovery');
+const recoveryHint=hasRecoveryHash || hasRecoveryCode || hasRecoveryTokenHash;
 let recoveryHandled=false;
 
 function showView(id){views.forEach(v=>$(v)?.classList.toggle('hidden',v!==id));}
 function cleanRecoveryUrl(){try{history.replaceState({},'',location.pathname);}catch(_){} }
 function showSent(email){$('sentEmail').textContent=email||'adresa ta de email';showView('sentView');}
 function showRecovery(){recoveryHandled=true;showView('recoveryView');setTimeout(()=>$('newPassword')?.focus(),80);}
-function showInvalid(){showView('invalidView');}
+function showInvalid(message='Linkul de recuperare a expirat, a fost deja folosit sau nu a putut fi verificat. Cere un link nou.'){
+  const lead=$('invalidView')?.querySelector('.lead');
+  if(lead) lead.textContent=message;
+  showView('invalidView');
+}
 
 $('email').value=preset;
 if(params.get('trimis')==='1' && !recoveryHint) showSent(preset);
 else if(recoveryHint) showView('loadingView');
 
-// Listener-ul este înregistrat imediat, pentru a nu rata evenimentul PASSWORD_RECOVERY.
+// Ascultam evenimentul oficial Supabase pentru recovery.
 sb.auth.onAuthStateChange((event,session)=>{
-  if(event==='PASSWORD_RECOVERY'){
-    recoveryHandled=true;
+  if(event==='PASSWORD_RECOVERY' && session?.user){
     showRecovery();
   }
 });
 
-async function detectRecoverySession(){
+async function consumeRecoveryLink(){
   if(!recoveryHint) return;
   showView('loadingView');
-  // Supabase procesează automat ?code=... pentru PKCE. Așteptăm scurt schimbul de sesiune.
-  for(let i=0;i<12;i++){
-    const {data}=await sb.auth.getSession();
-    if(data?.session?.user){showRecovery();return;}
-    await new Promise(r=>setTimeout(r,150));
+
+  try{
+    // 1) Implicit flow: session tokens in hash.
+    const access_token=hashParams.get('access_token');
+    const refresh_token=hashParams.get('refresh_token');
+    if(access_token && refresh_token){
+      const {data,error}=await sb.auth.setSession({access_token,refresh_token});
+      if(error) throw error;
+      if(data?.session?.user){
+        showRecovery();
+        return;
+      }
+    }
+
+    // 2) Fallback pentru linkuri custom cu token_hash&type=recovery.
+    const token_hash=params.get('token_hash');
+    if(token_hash && params.get('type')==='recovery'){
+      const {data,error}=await sb.auth.verifyOtp({token_hash,type:'recovery'});
+      if(error) throw error;
+      if(data?.session?.user){
+        showRecovery();
+        return;
+      }
+    }
+
+    // 3) Daca biblioteca a procesat deja URL-ul, sesiunea poate exista deja.
+    for(let i=0;i<10;i++){
+      const {data}=await sb.auth.getSession();
+      if(data?.session?.user){
+        showRecovery();
+        return;
+      }
+      await new Promise(r=>setTimeout(r,120));
+    }
+
+    // Un ?code=... ramas dintr-un email PKCE vechi nu poate fi schimbat
+    // fara verifierul din browserul in care a fost cerut linkul. Cerem link nou.
+    if(hasRecoveryCode){
+      showInvalid('Acest link a fost generat de versiunea veche a recuperării parolei. Cere un link nou și folosește cel mai recent email primit.');
+      return;
+    }
+
+    if(!recoveryHandled) showInvalid();
+  }catch(error){
+    console.error('Formula X recovery link:',error);
+    showInvalid();
   }
-  if(!recoveryHandled) showInvalid();
 }
-detectRecoverySession();
+consumeRecoveryLink();
 
 $('resetForm').addEventListener('submit',async e=>{
   e.preventDefault();
@@ -140,6 +200,14 @@ $('newPasswordForm').addEventListener('submit',async e=>{
   if(password.length<8){msg.textContent='Parola trebuie să aibă minimum 8 caractere.';return;}
   if(password!==confirm){msg.textContent='Cele două parole nu coincid.';return;}
   btn.disabled=true;btn.textContent='SE SALVEAZĂ...';
+
+  const {data:{session}}=await sb.auth.getSession();
+  if(!session?.user){
+    msg.textContent='Sesiunea de recuperare nu mai este valabilă. Cere un link nou.';
+    btn.disabled=false;btn.textContent='SALVEAZĂ PAROLA NOUĂ';
+    return;
+  }
+
   const {error}=await sb.auth.updateUser({password});
   if(error){console.error(error);msg.textContent=error.message||'Nu am putut schimba parola. Cere un link nou și încearcă din nou.';btn.disabled=false;btn.textContent='SALVEAZĂ PAROLA NOUĂ';return;}
   cleanRecoveryUrl();

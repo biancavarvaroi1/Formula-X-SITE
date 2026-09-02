@@ -25625,6 +25625,20 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     }
   });
 
+
+  // Client separat doar pentru recuperarea parolei.
+  // Folosim implicit flow pentru ca linkul din email sa poata fi deschis
+  // si intr-un alt tab/browser fara sa depinda de PKCE code_verifier.
+  const resetDb = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+    auth: {
+      persistSession: false,
+      autoRefreshToken: false,
+      detectSessionInUrl: false,
+      flowType: 'implicit',
+      storageKey: 'formula-x-password-reset-request'
+    }
+  });
+
   // Client comun folosit și de formularele de înscriere Formula X.
   window.fxSupabaseClient = db;
 
@@ -26848,7 +26862,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     }
 
     setMessage($('fx-auth-message'),'Trimitem linkul de resetare...');
-    const { error } = await db.auth.resetPasswordForEmail(email,{
+    const { error } = await resetDb.auth.resetPasswordForEmail(email,{
       // Păstrăm destinația deja compatibilă cu configurația Supabase existentă.
       redirectTo:'https://formula-x.ro/parola-uitata/'
     });
