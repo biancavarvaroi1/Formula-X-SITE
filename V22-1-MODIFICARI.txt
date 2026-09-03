@@ -1,0 +1,11 @@
+FORMULA X V22.1 — TELEFON / WHATSAPP OBLIGATORIU
+
+Modificări:
+- Telefon / WhatsApp este obligatoriu în toate formularele de cerere și ședință.
+- Sub fiecare câmp apare explicația:
+  „Numărul este folosit exclusiv pentru comunicarea legată de cererea ta și de organizarea programului Formula X.”
+- Politica de confidențialitate a fost actualizată pentru a explica necesitatea numărului.
+- Termenii de utilizare precizează scopul folosirii numărului.
+- Numărul nu este folosit automat pentru marketing/campanii promoționale.
+- Analytics-ul anonim și restul modificărilor V22 rămân neschimbate.
+- SQL-ul de analytics din V22 rămâne același; nu trebuie rulat un SQL nou pentru această actualizare.
