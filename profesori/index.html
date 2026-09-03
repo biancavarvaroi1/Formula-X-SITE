@@ -15,19 +15,30 @@
       --shadow:0 22px 65px rgba(54,31,40,.10);--shadow-soft:0 10px 32px rgba(54,31,40,.07)
     }
     *{box-sizing:border-box}html{background:var(--bg)}body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--text);background:radial-gradient(circle at 8% 0%,color-mix(in srgb,var(--soft) 16%,transparent),transparent 31%),linear-gradient(145deg,var(--bg),#fff 55%,var(--tint));transition:background .35s ease}button,input,select{font:inherit}.hidden{display:none!important}
+    .portal-boot{min-height:100vh;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 50% 18%,rgba(201,162,74,.12),transparent 34%),linear-gradient(145deg,#fff,var(--bg));}.portal-boot-card{width:min(420px,100%);text-align:center;background:rgba(255,255,255,.94);border:1px solid rgba(201,162,74,.25);border-radius:24px;padding:38px 28px;box-shadow:var(--shadow)}.portal-boot-x{width:58px;height:58px;margin:0 auto 18px;border-radius:17px;display:grid;place-items:center;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#fff;font-size:28px;font-weight:950;box-shadow:0 10px 26px rgba(201,162,74,.24)}.portal-boot-card strong{display:block;font-size:18px}.portal-boot-card span{display:block;color:var(--muted);font-size:13px;margin-top:7px}.portal-loader{width:34px;height:34px;margin:22px auto 0;border:3px solid #ece5df;border-top-color:var(--gold);border-radius:50%;animation:fxspin .8s linear infinite}@keyframes fxspin{to{transform:rotate(360deg)}}
     .login-wrap{min-height:100vh;display:grid;place-items:center;padding:28px 18px;position:relative;overflow:hidden}.login-wrap:before,.login-wrap:after{content:"";position:absolute;border-radius:50%;filter:blur(2px);pointer-events:none}.login-wrap:before{width:420px;height:420px;right:-160px;top:-170px;background:radial-gradient(circle,rgba(201,162,74,.18),transparent 68%)}.login-wrap:after{width:450px;height:450px;left:-210px;bottom:-220px;background:radial-gradient(circle,rgba(122,48,69,.13),transparent 70%)}
     .login-shell{width:min(980px,100%);display:grid;grid-template-columns:1.05fr .95fr;background:rgba(255,255,255,.86);border:1px solid rgba(201,162,74,.27);border-radius:30px;box-shadow:0 30px 90px rgba(35,22,28,.15);overflow:hidden;backdrop-filter:blur(18px);position:relative;z-index:1}.login-brand{padding:54px 46px;background:linear-gradient(145deg,#17131a,#29212a 58%,#3a2830);color:#fff;position:relative;overflow:hidden}.login-brand:after{content:"X";position:absolute;right:-8px;bottom:-64px;font-size:250px;font-weight:950;color:rgba(255,255,255,.035);line-height:1}.xlogo{width:68px;height:68px;display:grid;place-items:center;border-radius:20px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#fff;font-weight:950;font-size:33px;box-shadow:0 14px 34px rgba(201,162,74,.24);margin-bottom:34px}.eyebrow{display:inline-flex;align-items:center;gap:8px;color:#e8ce8b;font-size:11px;font-weight:900;letter-spacing:1.45px;text-transform:uppercase}.eyebrow:before{content:"";width:28px;height:1px;background:#d9b961}.login-brand h1{font-size:clamp(34px,4vw,50px);line-height:1.02;margin:14px 0 18px;letter-spacing:-1.2px}.login-brand p{max-width:430px;color:#d9d2d7;line-height:1.7;margin:0;font-size:15px}.privacy-note{margin-top:36px;padding-top:22px;border-top:1px solid rgba(255,255,255,.11);font-size:12px;color:#afa6ac;line-height:1.55}
     .login-card{padding:54px 48px;background:rgba(255,255,255,.96);display:flex;flex-direction:column;justify-content:center}.login-card h2{font-size:27px;margin:0 0 8px}.sub{color:var(--muted);line-height:1.55;margin:0 0 29px;font-size:14px}.field{margin-bottom:17px}.field label{display:block;font-size:12px;font-weight:900;letter-spacing:.25px;margin-bottom:8px}.field input{width:100%;padding:14px 15px;border:1px solid var(--border);border-radius:12px;outline:none;background:#fff;color:var(--text);transition:.2s}.field input:focus{border-color:#a0793a;box-shadow:0 0 0 4px rgba(201,162,74,.10)}.primary{border:0;border-radius:12px;background:linear-gradient(135deg,var(--primary),color-mix(in srgb,var(--primary) 72%,#000));color:#fff;font-weight:900;padding:14px 18px;cursor:pointer;box-shadow:0 9px 23px color-mix(in srgb,var(--primary) 20%,transparent);transition:.2s}.primary:hover{transform:translateY(-1px);filter:brightness(1.04)}.login-card .primary{width:100%;margin-top:3px}.primary:disabled{opacity:.6;cursor:wait;transform:none}.forgot{border:0;background:transparent;color:#765e32;font-weight:800;font-size:13px;cursor:pointer;margin:15px auto 0;display:block;padding:4px 7px}.forgot:hover{text-decoration:underline}.msg{min-height:22px;margin-top:15px;text-align:center;font-size:13px;font-weight:750;color:var(--bad)}
-    .topbar{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.84);backdrop-filter:blur(18px);border-bottom:1px solid color-mix(in srgb,var(--primary) 12%,#e8e1e4)}.topbar-in{max-width:1400px;margin:auto;padding:13px 28px;display:flex;justify-content:space-between;align-items:center;gap:18px}.brand{display:flex;align-items:center;gap:12px}.brand-x{width:44px;height:44px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#fff;font-weight:950;font-size:23px;box-shadow:0 7px 18px rgba(201,162,74,.20)}.brand strong{display:block;font-size:15px;letter-spacing:.1px}.brand small{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.65px;font-weight:800}.top-actions{display:flex;gap:8px;align-items:center}.ghost{border:1px solid var(--border);border-radius:10px;background:#fff;padding:9px 13px;font-weight:800;cursor:pointer;color:var(--text)}
+    .topbar{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.84);backdrop-filter:blur(18px);border-bottom:1px solid color-mix(in srgb,var(--primary) 12%,#e8e1e4)}.topbar-in{max-width:1400px;margin:auto;padding:13px 28px;display:flex;justify-content:space-between;align-items:center;gap:18px}.brand{display:flex;align-items:center;gap:12px}.brand-x{width:44px;height:44px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#fff;font-weight:950;font-size:23px;box-shadow:0 7px 18px rgba(201,162,74,.20)}.brand strong{display:block;font-size:15px;letter-spacing:.1px}.brand small{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.65px;font-weight:800}.top-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.ghost{border:1px solid var(--border);border-radius:10px;background:#fff;padding:9px 13px;font-weight:800;cursor:pointer;color:var(--text);text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:6px;transition:.18s}.ghost:hover{transform:translateY(-1px);border-color:color-mix(in srgb,var(--primary) 30%,var(--border));background:color-mix(in srgb,var(--primary) 3%,#fff)}
     .main{max-width:1400px;margin:auto;padding:34px 28px 65px}.hero{position:relative;padding:34px 34px 30px;border-radius:26px;color:#fff;background:linear-gradient(125deg,color-mix(in srgb,var(--primary) 92%,#111),var(--primary) 54%,var(--soft));box-shadow:0 22px 55px color-mix(in srgb,var(--primary) 20%,transparent);display:flex;justify-content:space-between;gap:24px;align-items:flex-start;overflow:hidden}.hero:before{content:"";position:absolute;width:330px;height:330px;border:1px solid rgba(255,255,255,.11);border-radius:50%;right:-130px;top:-205px}.hero:after{content:"X";position:absolute;right:20px;bottom:-72px;font-size:180px;font-weight:950;color:rgba(255,255,255,.045);line-height:1}.hero-content,.pill{position:relative;z-index:1}.mentor-tag{display:inline-flex;gap:8px;align-items:center;font-size:10px;font-weight:950;letter-spacing:1.35px;text-transform:uppercase;color:#fff4cf;margin-bottom:12px}.mentor-tag:before{content:"";width:26px;height:1px;background:#f2d47b}.hero h1{font-size:clamp(29px,4vw,42px);margin:0 0 8px;letter-spacing:-.7px}.hero p{margin:0;opacity:.91;font-size:14px;line-height:1.6}.pill{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.29);padding:10px 15px;border-radius:999px;font-weight:900;white-space:nowrap;backdrop-filter:blur(9px);box-shadow:inset 0 1px 0 rgba(255,255,255,.15)}
     .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin:22px 0}.stat{background:rgba(255,255,255,.93);border:1px solid color-mix(in srgb,var(--primary) 9%,var(--border));border-radius:19px;padding:21px;box-shadow:var(--shadow-soft);position:relative;overflow:hidden}.stat:after{content:"";position:absolute;left:0;bottom:0;height:3px;width:100%;background:linear-gradient(90deg,var(--primary),var(--soft));opacity:.7}.stat small{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;font-weight:900;letter-spacing:.7px}.stat b{display:block;font-size:34px;margin-top:6px;letter-spacing:-.8px}.s-new b{color:var(--warn)}.s-active b{color:var(--ok)}.s-inactive b{color:var(--bad)}
-    .panel{background:rgba(255,255,255,.96);border:1px solid color-mix(in srgb,var(--primary) 9%,var(--border));border-radius:22px;overflow:hidden;box-shadow:var(--shadow-soft)}.panel-head{padding:22px;border-bottom:1px solid var(--border)}.panel-title-row{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:15px}.panel-head h2{margin:0;font-size:20px}.secure-badge{font-size:10px;text-transform:uppercase;letter-spacing:.65px;font-weight:900;color:#7c6639;background:#fff8e6;border:1px solid #ead6a0;border-radius:999px;padding:6px 9px}.toolbar{display:grid;grid-template-columns:minmax(220px,1fr) 180px 190px auto;gap:10px}.toolbar input,.toolbar select{width:100%;padding:11px 12px;border:1px solid var(--border);border-radius:10px;background:#fff;outline:none;color:var(--text)}.toolbar input:focus,.toolbar select:focus{border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 9%,transparent)}.admin-field{display:none}body.admin .admin-field{display:block}
+    .panel{background:rgba(255,255,255,.96);border:1px solid color-mix(in srgb,var(--primary) 9%,var(--border));border-radius:22px;overflow:hidden;box-shadow:var(--shadow-soft)}.panel-head{padding:22px;border-bottom:1px solid var(--border)}.panel-title-row{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:15px}.panel-head h2{margin:0;font-size:20px}.secure-badge{font-size:10px;text-transform:uppercase;letter-spacing:.65px;font-weight:900;color:#7c6639;background:#fff8e6;border:1px solid #ead6a0;border-radius:999px;padding:6px 9px}.toolbar{display:grid;grid-template-columns:minmax(220px,1fr) 180px 190px auto;gap:10px}.toolbar input,.toolbar select{width:100%;padding:11px 12px;border:1px solid var(--border);border-radius:10px;background:#fff;outline:none;color:var(--text)}.toolbar input:focus,.toolbar select:focus{border-color:var(--primary);box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 9%,transparent)}.admin-field,.admin-only{display:none}body.admin .admin-field{display:block}body.admin .admin-only{display:block}
     .table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:980px}th{text-align:left;padding:12px 15px;background:color-mix(in srgb,var(--primary) 3%,#fff);color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.7px}td{padding:15px;border-top:1px solid #f0e9ec;font-size:14px;vertical-align:middle}tbody tr{transition:.16s}tbody tr:hover{background:color-mix(in srgb,var(--primary) 2.5%,#fff)}.name{font-weight:900}.email{font-size:12px;color:var(--muted);margin-top:3px}.badge{display:inline-flex;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:900}.b-nou{background:#fff1d6;color:#88560c}.b-activ{background:#def4e5;color:#17682f}.b-inactiv{background:#fbe1e1;color:#932b2b}.status-select{padding:8px;border:1px solid var(--border);border-radius:9px;background:#fff;color:var(--text)}.center{padding:55px 22px;text-align:center;color:var(--muted);line-height:1.6}.footer-note{text-align:center;color:var(--muted);font-size:11px;margin-top:22px}.footer-note strong{color:#8c7038}
     @media(max-width:900px){.login-shell{grid-template-columns:1fr}.login-brand{display:none}.stats{grid-template-columns:1fr 1fr}.toolbar{grid-template-columns:1fr 1fr}.hero{flex-direction:column}}@media(max-width:560px){.login-card{padding:38px 24px}.main{padding:21px 13px 45px}.topbar-in{padding:11px 13px}.brand small{display:none}.toolbar{grid-template-columns:1fr}.stats{gap:10px}.stat{padding:17px}.stat b{font-size:29px}.hero{padding:25px 21px}.panel-title-row{align-items:flex-start;flex-direction:column}.pill{white-space:normal}}
+  
+    .analytics-panel{margin:22px 0}.analytics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:20px}.analytics-card{border:1px solid var(--border);border-radius:16px;padding:18px;background:linear-gradient(145deg,#fff,color-mix(in srgb,var(--primary) 3%,#fff));box-shadow:var(--shadow-soft)}.analytics-card small{display:block;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.7px;font-weight:900}.analytics-card b{display:block;font-size:30px;margin-top:6px;color:var(--primary)}.analytics-body{padding:0 20px 20px}.analytics-list{display:grid;gap:8px}.analytics-row{display:grid;grid-template-columns:minmax(125px,1fr) 3fr 70px;align-items:center;gap:10px;font-size:12px}.analytics-bar{height:9px;border-radius:999px;background:#edf0f4;overflow:hidden}.analytics-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--primary),var(--soft))}.analytics-count{text-align:right;font-weight:900}.analytics-note{font-size:11px;color:var(--muted);line-height:1.5;margin-top:12px}@media(max-width:760px){.analytics-grid{grid-template-columns:1fr}.analytics-row{grid-template-columns:100px 1fr 52px}}
   </style>
 </head>
 <body>
-<section id="login" class="login-wrap">
+<section id="boot" class="portal-boot" aria-live="polite">
+  <div class="portal-boot-card">
+    <div class="portal-boot-x">X</div>
+    <strong>Se deschide Portalul Mentorilor</strong>
+    <span>Verificăm în siguranță sesiunea și drepturile contului.</span>
+    <div class="portal-loader" aria-hidden="true"></div>
+  </div>
+</section>
+<section id="login" class="login-wrap hidden">
   <div class="login-shell">
     <div class="login-brand">
       <div class="xlogo">X</div>
@@ -54,7 +65,7 @@
   <header class="topbar">
     <div class="topbar-in">
       <div class="brand"><div class="brand-x">X</div><div><strong>Formula X</strong><small>Portal privat pentru mentori</small></div></div>
-      <div class="top-actions"><button id="logoutBtn" class="ghost">Deconectare</button></div>
+      <div class="top-actions"><a href="https://formula-x.ro/?portal=site" class="ghost" id="backSiteBtn">← Înapoi la site</a><button id="logoutBtn" class="ghost">Deconectare</button></div>
     </div>
   </header>
   <main class="main">
@@ -67,6 +78,15 @@
       <div class="stat s-new"><small>Înscrieri noi</small><b id="cNew">0</b></div>
       <div class="stat s-active"><small>Elevi activi</small><b id="cActive">0</b></div>
       <div class="stat s-inactive"><small>Elevi inactivi</small><b id="cInactive">0</b></div>
+    </section>
+    <section id="analyticsPanel" class="panel analytics-panel admin-only">
+      <div class="panel-head"><div class="panel-title-row"><h2>Activitatea platformei</h2><span class="secure-badge">ANALYTICS MINIMIZAT</span></div><p class="sub" style="margin:0">Număr de vizualizări ale paginilor. Nu sunt salvate în tabel nume, emailuri, user ID-uri sau identificatori de vizitator.</p></div>
+      <div class="analytics-grid">
+        <div class="analytics-card"><small>Vizualizări azi</small><b id="aToday">0</b></div>
+        <div class="analytics-card"><small>Ultimele 7 zile</small><b id="a7">0</b></div>
+        <div class="analytics-card"><small>Ultimele 30 zile</small><b id="a30">0</b></div>
+      </div>
+      <div class="analytics-body"><h3 style="font-size:15px;margin:0 0 12px">Cele mai accesate pagini • 30 zile</h3><div id="analyticsPages" class="analytics-list"><div class="center">Se încarcă statisticile...</div></div><div class="analytics-note">Aceste cifre reprezintă vizualizări de pagină, nu persoane unice. Reîncărcările și roboții pot fi numărați.</div></div>
     </section>
     <section class="panel">
       <div class="panel-head">
@@ -98,10 +118,12 @@ const SUBJECTS={
   geografie:{label:'Geografie',icon:'🌍',primary:'#7a3045',soft:'#d98fa3',bg:'#fff5f7',tint:'#f8e9ee'}
 };
 let staff=null,rows=[];
+const ANALYTICS_LABELS={acasa:'Pagina principală',romana:'Română',mate:'Matematică',bio:'Biologie',fizica:'Fizică',chimie:'Chimie',geo:'Geografie',teste:'Teste BAC', 'camera-studiu':'Camera de studiu',cont:'Cont Formula X'};
 const $=id=>document.getElementById(id);
 const esc=v=>{const d=document.createElement('div');d.textContent=v==null?'':String(v);return d.innerHTML};
-function showLogin(msg=''){ $('app').classList.add('hidden');$('login').classList.remove('hidden');$('loginMsg').textContent=msg;$('loginBtn').disabled=false;$('loginBtn').textContent='Intră în portal'; }
-function showApp(){ $('login').classList.add('hidden');$('app').classList.remove('hidden'); }
+function hideBoot(){ $('boot')?.classList.add('hidden'); }
+function showLogin(msg=''){ hideBoot(); $('app').classList.add('hidden');$('login').classList.remove('hidden');$('loginMsg').textContent=msg;$('loginBtn').disabled=false;$('loginBtn').textContent='Intră în portal'; }
+function showApp(){ hideBoot(); $('login').classList.add('hidden');$('app').classList.remove('hidden'); }
 async function staffForCurrentUser(){const {data:{user},error}=await sb.auth.getUser();if(error||!user)return null;const r=await sb.from('staff_accounts').select('user_id,display_name,role,subject').eq('user_id',user.id).maybeSingle();if(r.error)throw r.error;return r.data||null;}
 function theme(){
   if(staff.role==='admin'){
@@ -116,7 +138,27 @@ function theme(){
   $('hello').textContent=`Bună, ${staff.display_name}!`;$('heroText').textContent=`Ai aici înscrierile pentru ${t.label}. Poți verifica rapid elevii noi și actualiza statusul fiecăruia.`;$('subjectPill').textContent=`${t.icon} ${t.label}`;
 }
 async function openPortal(){try{staff=await staffForCurrentUser();if(!staff){showLogin('Acest cont nu are acces la Portalul Mentorilor.');return false}if(!['mentor','admin'].includes(staff.role)){showLogin('Acces interzis.');return false}showApp();theme();await load();return true}catch(e){console.error(e);showLogin('Nu am putut verifica drepturile contului.');return false}}
-async function load(){ $('content').innerHTML='<div class="center">Se încarcă elevii...</div>';let q=sb.from('enrollments').select('id,full_name,email,phone,subject,level,status,created_at').order('created_at',{ascending:false});if(staff.role==='mentor')q=q.eq('subject',staff.subject);const {data,error}=await q;if(error){console.error(error);$('content').innerHTML='<div class="center">⚠️ Nu am putut încărca elevii. Reîncarcă pagina și încearcă din nou.</div>';return}rows=data||[];render();}
+
+function roDateKey(d){try{return new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Bucharest',year:'numeric',month:'2-digit',day:'2-digit'}).format(d)}catch(_){return d.toISOString().slice(0,10)}}
+async function loadAnalytics(){
+  if(!staff||staff.role!=='admin')return;
+  const box=$('analyticsPages');
+  try{
+    const {data,error}=await sb.rpc('get_page_view_stats',{p_days:30});
+    if(error) throw error;
+    const rowsA=data||[];
+    const today=roDateKey(new Date());
+    const d7=new Date();d7.setDate(d7.getDate()-6);const from7=roDateKey(d7);
+    let totalToday=0,total7=0,total30=0;const byPage={};
+    for(const r of rowsA){const n=Number(r.views)||0;const day=String(r.view_date);total30+=n;if(day===today)totalToday+=n;if(day>=from7)total7+=n;byPage[r.page_key]=(byPage[r.page_key]||0)+n;}
+    $('aToday').textContent=totalToday;$('a7').textContent=total7;$('a30').textContent=total30;
+    const items=Object.entries(byPage).sort((a,b)=>b[1]-a[1]);
+    if(!items.length){box.innerHTML='<div class="center">Nu există încă vizualizări înregistrate.</div>';return;}
+    const max=items[0][1]||1;box.innerHTML=items.map(([k,v])=>`<div class="analytics-row"><strong>${esc(ANALYTICS_LABELS[k]||k)}</strong><div class="analytics-bar"><div class="analytics-fill" style="width:${Math.max(3,Math.round(v/max*100))}%"></div></div><span class="analytics-count">${v}</span></div>`).join('');
+  }catch(e){console.error(e);if(box)box.innerHTML='<div class="center">⚠️ Analytics nu este configurat încă. Rulează fișierul SQL din V22 în Supabase.</div>';}
+}
+
+async function load(){ $('content').innerHTML='<div class="center">Se încarcă elevii...</div>';let q=sb.from('enrollments').select('id,full_name,email,phone,subject,level,status,created_at').order('created_at',{ascending:false});if(staff.role==='mentor')q=q.eq('subject',staff.subject);const {data,error}=await q;if(error){console.error(error);$('content').innerHTML='<div class="center">⚠️ Nu am putut încărca elevii. Reîncarcă pagina și încearcă din nou.</div>';return}rows=data||[];render();if(staff.role==='admin')await loadAnalytics();}
 function filtered(){const s=$('search').value.trim().toLowerCase(),st=$('status').value,su=$('subject').value;return rows.filter(r=>{const hay=[r.full_name,r.email,r.phone,r.level].filter(Boolean).join(' ').toLowerCase();if(s&&!hay.includes(s))return false;if(st&&r.status!==st)return false;if(staff.role==='admin'&&su&&r.subject!==su)return false;return true})}
 function counts(arr){$('cTotal').textContent=arr.length;$('cNew').textContent=arr.filter(x=>x.status==='nou').length;$('cActive').textContent=arr.filter(x=>x.status==='activ').length;$('cInactive').textContent=arr.filter(x=>x.status==='inactiv').length;}
 function badge(s){if(s==='activ')return '<span class="badge b-activ">● Activ</span>';if(s==='inactiv')return '<span class="badge b-inactiv">● Inactiv</span>';return '<span class="badge b-nou">● Nou</span>'}
@@ -127,7 +169,21 @@ async function requestPasswordReset(){const email=$('email').value.trim();if(!em
 $('loginForm').addEventListener('submit',async e=>{e.preventDefault();$('loginMsg').textContent='';$('loginBtn').disabled=true;$('loginBtn').textContent='Se verifică...';const {error}=await sb.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});if(error){showLogin('Email sau parolă incorectă.');return}const ok=await openPortal();if(!ok){await sb.auth.signOut();showLogin('Acest cont nu are acces la Portalul Mentorilor.')}});
 $('forgotBtn').addEventListener('click',requestPasswordReset);
 $('logoutBtn').addEventListener('click',async()=>{await sb.auth.signOut();staff=null;rows=[];showLogin()});$('search').addEventListener('input',render);$('status').addEventListener('change',render);$('subject').addEventListener('change',render);$('refresh').addEventListener('click',load);
-(async()=>{const {data:{session}}=await sb.auth.getSession();if(session)await openPortal();else showLogin()})();
+(async()=>{
+  try{
+    const {data:{session},error}=await sb.auth.getSession();
+    if(error) throw error;
+    if(session){
+      const ok=await openPortal();
+      if(!ok) return;
+    }else{
+      showLogin();
+    }
+  }catch(error){
+    console.error('Formula X portal bootstrap:',error);
+    showLogin('Nu am putut verifica sesiunea. Reîncarcă pagina și încearcă din nou.');
+  }
+})();
 </script>
 </body>
 </html>

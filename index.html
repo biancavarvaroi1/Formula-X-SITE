@@ -1,30 +1,7 @@
 <!DOCTYPE html>
 <html lang="ro" class="fx-user-anonymous">
 <head>
-<!-- Formula X • Google Analytics 4 -->
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  (function(){
-    var choice = null;
-    try { choice = localStorage.getItem('fx_analytics_consent'); } catch (e) {}
-    gtag('consent', 'default', {
-      'analytics_storage': choice === 'granted' ? 'granted' : 'denied',
-      'ad_storage': 'denied',
-      'ad_user_data': 'denied',
-      'ad_personalization': 'denied',
-      'wait_for_update': 500
-    });
-  })();
-</script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QJZDLFJ37Z"></script>
-<script>
-  gtag('js', new Date());
-  gtag('config', 'G-QJZDLFJ37Z');
-</script>
-<script defer src="/formula-x-analytics.js"></script>
-
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#081229">
   <meta name="color-scheme" content="light">
@@ -70,11 +47,8 @@
     ]
   }
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <style>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<style>
     :root {
       --navy-dark: #081229;
       --yellow-badge: #ffca28;
@@ -7574,8 +7548,8 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
 <div id="enroll-modal" class="enroll-modal" role="dialog" aria-modal="true" aria-labelledby="enroll-modal-title" onclick="inchideInscriereDinFundal(event)">
   <div class="enroll-modal-panel">
     <button type="button" class="enroll-modal-close" aria-label="Închide formularul" onclick="inchideInscriereRapida()">×</button>
-    <span class="enroll-modal-logo">Formula X • Înscriere</span>
-    <h2 id="enroll-modal-title">La ce materie vrei să te înscrii?</h2>
+    <span class="enroll-modal-logo">Formula X • Cerere de înscriere</span>
+    <h2 id="enroll-modal-title">Pentru ce materie vrei să trimiți o cerere?</h2>
     <p>Alege materia, iar noi te ducem direct la formularul mentorului. Orarul complet rămâne afișat pe pagina fiecărei materii.</p>
 
     <form class="quick-enroll-form" onsubmit="continuaInscriere(event)">
@@ -7589,7 +7563,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
         <option value="chimie">Chimie Organică — Ilaria Grigoraș</option>
         <option value="geo">Geografie — Stelea Aida</option>
       </select>
-      <button type="submit" class="quick-enroll-submit">CONTINUĂ ÎNSCRIEREA →</button>
+      <button type="submit" class="quick-enroll-submit">CONTINUĂ CĂTRE CERERE →</button>
     </form>
 
     <div class="quick-enroll-help">După alegerea materiei vei completa datele de contact, iar cererea va fi trimisă către formulax05@gmail.com. Grupele au maximum 15 elevi.</div>
@@ -7621,7 +7595,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
           DESCOPERĂ PROGRAMUL &rarr;
         </button>
         <button type="button" class="btn-enroll-home" onclick="deschideInscriereRapida()">
-          ÎNSCRIE-TE
+          TRIMITE O CERERE
         </button>
         <button type="button" class="btn-free-session-home" onclick="deruleazaLaElement(document.getElementById('sedinta-gratuita'))">
           ȘEDINȚĂ GRATUITĂ 30 MIN
@@ -7648,10 +7622,10 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
         <p>Mentorii Formula X au construit fiecare program pe săptămâni și teme clare, astfel încât pregătirea să fie ușor de urmărit. Orarul complet este afișat pe pagina fiecărei materii.</p>
         <p>Completezi formularul de înscriere pentru materia dorită, iar echipa Formula X revine cu detaliile de organizare. Fiecare grupă are maximum 15 elevi, pentru ca mentorul să poată lucra atent cu fiecare participant.</p>
         <div class="home-price-callout">
-          Programul a fost conceput în primul rând pentru a ajuta elevii să aibă acces la pregătire de calitate, fără costurile ridicate ale meditațiilor clasice. <strong>Formula X este cel mai ieftin program de pregătire BAC din România.</strong>
+          Programul a fost conceput în primul rând pentru a ajuta elevii să aibă acces la pregătire de calitate, fără costurile ridicate ale meditațiilor clasice. <strong>Formula X urmărește să ofere pregătire BAC accesibilă, cu structură clară și prețuri transparente.</strong>
         </div>
         <div class="home-program-facts" aria-label="Avantaje Formula X">
-          <span>🏷️ Cel mai ieftin program de pregătire BAC din România</span>
+          <span>🏷️ Pregătire BAC accesibilă • prețuri transparente</span>
           <span>👥 Grupe de maximum 15 elevi</span>
           <span>🎥 Câte un Meet lunar gratuit la fiecare materie, în grupul WhatsApp</span>
         </div>
@@ -7727,8 +7701,8 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
             <input id="free-session-email" name="email" type="email" autocomplete="email" required placeholder="nume@email.ro">
           </div>
           <div class="free-mentor-field">
-            <label for="free-session-phone">Telefon / WhatsApp *</label>
-            <input id="free-session-phone" name="Telefon / WhatsApp" type="tel" autocomplete="tel" required placeholder="07xx xxx xxx">
+            <label for="free-session-phone">Telefon / WhatsApp <span style="font-weight:500;color:#7b8798">(opțional)</span></label>
+            <input id="free-session-phone" name="Telefon / WhatsApp" type="tel" autocomplete="tel" placeholder="07xx xxx xxx">
           </div>
           <div class="free-mentor-field is-full">
             <label for="free-session-mentor">Mentor / materie *</label>
@@ -7750,7 +7724,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
             <label for="free-session-topic">Ce ai vrea să discuți?</label>
             <textarea id="free-session-topic" placeholder="Ex.: Am dificultăți la Subiectul III și aș vrea să știu cum să îmi organizez mai bine pregătirea."></textarea>
           </div>
-          <label class="free-mentor-consent"><input id="free-session-consent" type="checkbox" required><span>Sunt de acord să fiu contactat(ă) de echipa Formula X pentru stabilirea ședinței gratuite.</span></label>
+          <label class="free-mentor-consent"><input id="free-session-consent" type="checkbox" required><span>Solicit să fiu contactat(ă) pentru stabilirea ședinței gratuite, am citit <a href="/legal/confidentialitate/" target="_blank" rel="noopener">Politica de confidențialitate</a> și confirm că am cel puțin 16 ani sau că solicitarea este transmisă de un părinte/tutore.</span></label>
           <button id="free-mentor-submit" type="submit" class="free-mentor-submit">SOLICITĂ ȘEDINȚA GRATUITĂ →</button>
           <div id="free-mentor-status" class="free-mentor-status" aria-live="polite"></div>
         </form>
@@ -8063,6 +8037,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
           <label>Nume și prenume<input type="text" id="fx-signup-name" autocomplete="name" required maxlength="80" placeholder="Ex: Andreea Popescu"></label>
           <label>Email<input type="email" id="fx-signup-email" autocomplete="email" required placeholder="nume@email.com"></label>
           <label>Parolă<input type="password" id="fx-signup-password" autocomplete="new-password" required minlength="8" placeholder="Minimum 8 caractere"></label>
+          <label class="fx-legal-check"><input type="checkbox" id="fx-signup-legal" required><span>Am citit <a href="/legal/confidentialitate/" target="_blank" rel="noopener">Politica de confidențialitate</a> și <a href="/legal/termeni/" target="_blank" rel="noopener">Termenii de utilizare</a>. Confirm că am cel puțin 16 ani; dacă am sub 16 ani, contul trebuie creat cu implicarea părintelui/tutorelui.</span></label>
           <button type="submit" id="fx-signup-submit" class="fx-primary-btn">CREEAZĂ CONTUL</button>
           <div id="fx-signup-status" class="fx-signup-status" aria-live="polite"></div>
           <p class="fx-auth-small">După creare, verifică emailul pentru confirmarea contului.</p>
@@ -8095,6 +8070,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
         <div class="fx-dashboard-actions">
           <button type="button" id="fx-edit-profile" class="fx-secondary-btn">Editează traseul pentru bacalaureat</button>
           <button type="button" id="fx-logout" class="fx-secondary-btn">Ieși din cont</button>
+          <a class="fx-secondary-btn" href="mailto:formulax05@gmail.com?subject=Solicitare%20stergere%20sau%20acces%20date%20Formula%20X" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center">Datele mele / ștergere cont</a>
         </div>
       </div>
 
@@ -8366,8 +8342,9 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
       <div id="fx-study-save-message" class="fx-inline-status" aria-live="polite"></div>
       <div class="fx-study-result-footer">
         <button type="button" id="fx-study-save-result" class="fx-primary-btn">ÎNREGISTREAZĂ ȘI REVINO ÎN CONT</button>
+        <button type="button" id="fx-study-save-next" class="fx-secondary-btn">ÎNREGISTREAZĂ ȘI ALEGE ALTĂ VARIANTĂ</button>
         <button type="button" id="fx-study-analyze" class="fx-secondary-btn">ANALIZEAZĂ VARIANTA</button>
-        <button type="button" id="fx-study-new-session" class="fx-secondary-btn">Alege altă variantă</button>
+        <button type="button" id="fx-study-new-session" class="fx-secondary-btn">Alege altă variantă fără salvare</button>
       </div>
     </section>
   </div>
@@ -8429,8 +8406,8 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
           </div>
 
           <div class="enrollment-field">
-            <label>Telefon / WhatsApp *</label>
-            <input type="tel" name="Telefon / WhatsApp" placeholder="Ex: +40 712 345 678" required>
+            <label>Telefon / WhatsApp <span style="font-weight:500;color:#7b8798">(opțional)</span></label>
+            <input type="tel" name="Telefon / WhatsApp" placeholder="Ex: +40 712 345 678">
           </div>
 
           <div class="enrollment-field">
@@ -8463,11 +8440,11 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
 
           <label class="enrollment-consent">
             <input type="checkbox" required>
-            <span>Sunt de acord ca datele completate să fie folosite de Formula X exclusiv pentru a mă contacta în legătură cu această cerere de înscriere.</span>
+            <span>Am citit <a href="/legal/confidentialitate/" target="_blank" rel="noopener">Politica de confidențialitate</a> și confirm că am cel puțin 16 ani sau că formularul este transmis de un părinte/tutore.</span>
           </label>
 
-          <button class="enrollment-submit" type="submit">TRIMITE CEREREA →</button>
-          <div class="enrollment-note">După trimitere, vei primi un email de confirmare din partea Formula X.</div>
+          <button class="enrollment-submit" type="submit">TRIMITE O CERERE DE ÎNSCRIERE →</button>
+          <div class="enrollment-note">Transmiterea formularului este gratuită, nu reprezintă o plată și nu încheie prin ea însăși un contract. Echipa Formula X te va contacta separat.</div>
         </form>
       </div>
       <!-- 2. CALENDAR DETALIAT 17 SĂPTĂMÂNI -->
@@ -8637,10 +8614,10 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
         </div>
       </div>
 
-      <!-- 3. RECENZII REALE -->
+      <!-- 3. FEEDBACK ELEVI -->
       <div class="light-card">
         <h2 style="text-align: center; font-size: 34px; font-weight: 900; margin-bottom: 10px; color: #4a044e;">Ce spun elevii Biancăi</h2>
-        <p style="text-align: center; color: var(--accent-purple); font-size: 16px; margin-bottom: 25px; font-weight: 600;">Recenzii reale direct de la sesiunile de pregătire</p>
+        <p style="text-align: center; color: var(--accent-purple); font-size: 16px; margin-bottom: 25px; font-weight: 600;">Feedback primit de la elevi după sesiunile de pregătire</p>
 
         <div class="chat-reviews-container">
           <div class="chat-bubble">
@@ -8753,8 +8730,8 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
           </div>
 
           <div class="enrollment-field">
-            <label>Telefon / WhatsApp *</label>
-            <input type="tel" name="Telefon / WhatsApp" placeholder="Ex: +40 712 345 678" required>
+            <label>Telefon / WhatsApp <span style="font-weight:500;color:#7b8798">(opțional)</span></label>
+            <input type="tel" name="Telefon / WhatsApp" placeholder="Ex: +40 712 345 678">
           </div>
 
           <div class="enrollment-field">
@@ -8787,11 +8764,11 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
 
           <label class="enrollment-consent">
             <input type="checkbox" required>
-            <span>Sunt de acord ca datele completate să fie folosite de Formula X exclusiv pentru a mă contacta în legătură cu această cerere de înscriere.</span>
+            <span>Am citit <a href="/legal/confidentialitate/" target="_blank" rel="noopener">Politica de confidențialitate</a> și confirm că am cel puțin 16 ani sau că formularul este transmis de un părinte/tutore.</span>
           </label>
 
-          <button class="enrollment-submit" type="submit">TRIMITE CEREREA →</button>
-          <div class="enrollment-note">După trimitere, vei primi un email de confirmare din partea Formula X.</div>
+          <button class="enrollment-submit" type="submit">TRIMITE O CERERE DE ÎNSCRIERE →</button>
+          <div class="enrollment-note">Transmiterea formularului este gratuită, nu reprezintă o plată și nu încheie prin ea însăși un contract. Echipa Formula X te va contacta separat.</div>
         </form>
       </div>
       <!-- 2. CALENDAR -->
@@ -8866,40 +8843,40 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
         <div class="math-calendar-note">Înveți organizat. Exersezi constant. Reușești.</div>
       </div>
 
-      <!-- 3. RECENZII REALE -->
+      <!-- 3. FEEDBACK ELEVI -->
       <div class="math-card">
         <h2 class="math-reviews-title">Ce spun elevii lui Marius Benga</h2>
-        <p class="math-reviews-subtitle">Feedback real de la sesiunile de pregătire la matematică</p>
+        <p class="math-reviews-subtitle">Feedback de la elevi • Matematică</p>
 
         <div class="math-reviews-grid">
           <div class="math-review">
             <div class="math-review-label">💬 Claritate</div>
             <p>„Vreau să vă mulțumesc pentru această ședință gratuită. Mi-a plăcut foarte mult modul în care ați explicat subiectul de BAC – totul a fost clar, bine structurat și ușor de urmărit.”</p>
-            <div class="math-review-footer">Feedback real • Matematică</div>
+            <div class="math-review-footer">Feedback elev • Matematică</div>
           </div>
 
           <div class="math-review">
             <div class="math-review-label">🤝 Încredere</div>
             <p>„Mi-a plăcut foarte mult această pregătire pentru bacul la matematică! Chiar m-a ajutat să înțeleg mai bine lucrurile și să prind mai multă încredere. Mulțumesc mult pentru timpul și răbdarea acordată! Recomand tuturor!! 🤗🤗”</p>
-            <div class="math-review-footer">Feedback real • Matematică</div>
+            <div class="math-review-footer">Feedback elev • Matematică</div>
           </div>
 
           <div class="math-review">
             <div class="math-review-label">🧠 Explicații</div>
             <p>„Vă mulțumesc frumos pentru această întâlnire gratuită. Îmi place foarte mult stilul dumneavoastră de a explica exercițiile, m-ați făcut să înțeleg și să învăț lucruri noi. A fost o experiență plăcută și mă bucur că am avut această ocazie. Vă mulțumesc încă o dată 😊.”</p>
-            <div class="math-review-footer">Feedback real • Matematică</div>
+            <div class="math-review-footer">Feedback elev • Matematică</div>
           </div>
 
           <div class="math-review">
             <div class="math-review-label">💙 Răbdare și sprijin</div>
             <p>„M-ai ajutat să înțeleg și mi-ai dat încredere că pot reuși.”</p>
-            <div class="math-review-footer">Feedback real • Matematică</div>
+            <div class="math-review-footer">Feedback elev • Matematică</div>
           </div>
 
           <div class="math-review math-review-wide">
             <div class="math-review-label">📐 Gândire logică</div>
             <p>„M-ai făcut să gândesc logic exercițiile și mi-ai consolidat încrederea în mine.”</p>
-            <div class="math-review-footer">Feedback real • Matematică</div>
+            <div class="math-review-footer">Feedback elev • Matematică</div>
           </div>
         </div>
       </div>
@@ -8987,8 +8964,8 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
           </div>
 
           <div class="enrollment-field">
-            <label>Telefon / WhatsApp *</label>
-            <input type="tel" name="Telefon / WhatsApp" placeholder="Ex: +40 712 345 678" required>
+            <label>Telefon / WhatsApp <span style="font-weight:500;color:#7b8798">(opțional)</span></label>
+            <input type="tel" name="Telefon / WhatsApp" placeholder="Ex: +40 712 345 678">
           </div>
 
           <div class="enrollment-field">
@@ -9021,11 +8998,11 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
 
           <label class="enrollment-consent">
             <input type="checkbox" required>
-            <span>Sunt de acord ca datele completate să fie folosite de Formula X exclusiv pentru a mă contacta în legătură cu această cerere de înscriere.</span>
+            <span>Am citit <a href="/legal/confidentialitate/" target="_blank" rel="noopener">Politica de confidențialitate</a> și confirm că am cel puțin 16 ani sau că formularul este transmis de un părinte/tutore.</span>
           </label>
 
-          <button class="enrollment-submit" type="submit">TRIMITE CEREREA →</button>
-          <div class="enrollment-note">După trimitere, vei primi un email de confirmare din partea Formula X.</div>
+          <button class="enrollment-submit" type="submit">TRIMITE O CERERE DE ÎNSCRIERE →</button>
+          <div class="enrollment-note">Transmiterea formularului este gratuită, nu reprezintă o plată și nu încheie prin ea însăși un contract. Echipa Formula X te va contacta separat.</div>
         </form>
       </div>
       <!-- 2. CALENDAR -->
@@ -9102,28 +9079,28 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
         <div class="bio-calendar-note">Înveți organizat. Exersezi constant. <strong>Reușești!</strong></div>
       </div>
 
-      <!-- 3. RECENZII REALE -->
+      <!-- 3. FEEDBACK ELEVI -->
       <div class="bio-card">
         <h2 class="bio-reviews-title">Ce spun elevii Theodorei</h2>
-        <p class="bio-reviews-subtitle">Feedback real de la pregătirea la Biologie</p>
+        <p class="bio-reviews-subtitle">Feedback de la elevi • Biologie</p>
 
         <div class="bio-reviews-grid">
           <div class="bio-review">
-            <div class="bio-review-label">🏆 Rezultat real • 9,50</div>
+            <div class="bio-review-label">🏆 Rezultat raportat • 9,50</div>
             <p>„Heeeiii! Am luat 9,50 la test la bio după ce am învățat de pe notițele tale sistemul nervos 😍😍 Mulțumesc, sunt foarte utile 💞💞”</p>
-            <div class="bio-review-footer">Feedback real • Biologie</div>
+            <div class="bio-review-footer">Feedback elev • Biologie</div>
           </div>
 
           <div class="bio-review">
             <div class="bio-review-label">🌱 De la bază</div>
             <p>„A fost greu pentru mine la început pentru că nu aveam noțiunile de bază, la școală ne-a fost predat doar să fie... dar acum înțeleg totul cum ar trebui să fie, iar desenele tale sunt extraordinare, iar lecțiile foarte, foarte bine făcute. Nu știu ce m-aș fi făcut fără ajutorul tău!!!! 💗💗”</p>
-            <div class="bio-review-footer">Feedback real • Biologie</div>
+            <div class="bio-review-footer">Feedback elev • Biologie</div>
           </div>
 
           <div class="bio-review">
             <div class="bio-review-label">💚 Calm și sprijin</div>
             <p>„Îmi place din ce în ce mai mult să lucrez cu tine! Înțeleg foarte bine ceea ce explici și asta se datorează calmului de care dai dovadă și dorinței de a ne ajuta să înțelegem 🥰🥰”</p>
-            <div class="bio-review-footer">Feedback real • Biologie</div>
+            <div class="bio-review-footer">Feedback elev • Biologie</div>
           </div>
         </div>
       </div>
@@ -9210,8 +9187,8 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
           </div>
 
           <div class="enrollment-field">
-            <label>Telefon / WhatsApp *</label>
-            <input type="tel" name="Telefon / WhatsApp" placeholder="Ex: +40 712 345 678" required>
+            <label>Telefon / WhatsApp <span style="font-weight:500;color:#7b8798">(opțional)</span></label>
+            <input type="tel" name="Telefon / WhatsApp" placeholder="Ex: +40 712 345 678">
           </div>
 
           <div class="enrollment-field">
@@ -9244,11 +9221,11 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
 
           <label class="enrollment-consent">
             <input type="checkbox" required>
-            <span>Sunt de acord ca datele completate să fie folosite de Formula X exclusiv pentru a mă contacta în legătură cu această cerere de înscriere.</span>
+            <span>Am citit <a href="/legal/confidentialitate/" target="_blank" rel="noopener">Politica de confidențialitate</a> și confirm că am cel puțin 16 ani sau că formularul este transmis de un părinte/tutore.</span>
           </label>
 
-          <button class="enrollment-submit" type="submit">TRIMITE CEREREA →</button>
-          <div class="enrollment-note">După trimitere, vei primi un email de confirmare din partea Formula X.</div>
+          <button class="enrollment-submit" type="submit">TRIMITE O CERERE DE ÎNSCRIERE →</button>
+          <div class="enrollment-note">Transmiterea formularului este gratuită, nu reprezintă o plată și nu încheie prin ea însăși un contract. Echipa Formula X te va contacta separat.</div>
         </form>
       </div>
       <div class="phys-card">
@@ -9317,31 +9294,31 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
 
       <div class="phys-card">
         <h2 class="phys-reviews-title">Ce spun elevii Ioanei</h2>
-        <p class="phys-reviews-subtitle">Recenzii reale de la ședințele de pregătire la fizică</p>
+        <p class="phys-reviews-subtitle">Feedback de la elevi • Fizică</p>
 
         <div class="phys-reviews-grid">
           <div class="phys-review">
             <div class="phys-review-label">⚡ Claritate și progres</div>
             <p>„Ședința 1 la 1 m-a făcut pur și simplu să înțeleg fizica. Am făcut câteva exerciții pe care în mod normal nu le înțelegeam deloc, iar după doar o ședință fizica nu mai pare așa horror. Chiar m-a atras să merg pe această materie la BAC, pentru că am văzut că problema nu era la mine, ci faptul că nu îmi explicase cineva cum trebuie materia. Mulțumesc pentru această ședință și pentru toate explicațiile necesare.”</p>
-            <div class="phys-review-footer">Feedback real • Fizică</div>
+            <div class="phys-review-footer">Feedback elev • Fizică</div>
           </div>
 
           <div class="phys-review">
             <div class="phys-review-label">🤗 Răbdare și atenție</div>
             <p>„Chiar mi-a plăcut modul în care ai explicat, fiindcă am reținut și înțeles totul instant. Mi-a plăcut și faptul că ai avut răbdare când ai explicat, dar și că ai așteptat după noi să scriem. Mulțumim!!”</p>
-            <div class="phys-review-footer">Feedback real • Fizică</div>
+            <div class="phys-review-footer">Feedback elev • Fizică</div>
           </div>
 
           <div class="phys-review">
             <div class="phys-review-label">😊 Încredere</div>
             <p>„Ședința de astăzi mi-a întrecut orice așteptare. Mi-a plăcut că am putut pune întrebări ori de câte ori nu am înțeles ceva și am primit explicații până când lucrurile au devenit clare. Am prins încredere în mine și, după această ședință, BAC-ul nu mai pare imposibil.”</p>
-            <div class="phys-review-footer">Feedback real • Fizică</div>
+            <div class="phys-review-footer">Feedback elev • Fizică</div>
           </div>
 
           <div class="phys-review">
             <div class="phys-review-label">💜 Atmosferă deschisă</div>
             <p>„Mi-a plăcut ședința și răbdarea pe care ai avut-o. Ai explicat pe înțelesul nostru și ne-am simțit liberi să vorbim și să punem întrebări, iar explicațiile au fost reluate ori de câte ori era nevoie.”</p>
-            <div class="phys-review-footer">Feedback real • Fizică</div>
+            <div class="phys-review-footer">Feedback elev • Fizică</div>
           </div>
         </div>
       </div>
@@ -9431,8 +9408,8 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
           </div>
 
           <div class="enrollment-field">
-            <label>Telefon / WhatsApp *</label>
-            <input type="tel" name="Telefon / WhatsApp" placeholder="Ex: +40 712 345 678" required>
+            <label>Telefon / WhatsApp <span style="font-weight:500;color:#7b8798">(opțional)</span></label>
+            <input type="tel" name="Telefon / WhatsApp" placeholder="Ex: +40 712 345 678">
           </div>
 
           <div class="enrollment-field">
@@ -9465,11 +9442,11 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
 
           <label class="enrollment-consent">
             <input type="checkbox" required>
-            <span>Sunt de acord ca datele completate să fie folosite de Formula X exclusiv pentru a mă contacta în legătură cu această cerere de înscriere.</span>
+            <span>Am citit <a href="/legal/confidentialitate/" target="_blank" rel="noopener">Politica de confidențialitate</a> și confirm că am cel puțin 16 ani sau că formularul este transmis de un părinte/tutore.</span>
           </label>
 
-          <button class="enrollment-submit" type="submit">TRIMITE CEREREA →</button>
-          <div class="enrollment-note">După trimitere, vei primi un email de confirmare din partea Formula X.</div>
+          <button class="enrollment-submit" type="submit">TRIMITE O CERERE DE ÎNSCRIERE →</button>
+          <div class="enrollment-note">Transmiterea formularului este gratuită, nu reprezintă o plată și nu încheie prin ea însăși un contract. Echipa Formula X te va contacta separat.</div>
         </form>
       </div>
       <!-- 2. CALENDAR DETALIAT 20 SĂPTĂMÂNI -->
@@ -9515,70 +9492,70 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
         <div class="chem-calendar-note">Înveți organizat. Exersezi constant. Reușești. <strong>Tu poți!</strong></div>
       </div>
 
-      <!-- 3. RECENZII REALE -->
+      <!-- 3. FEEDBACK ELEVI -->
       <div class="chem-card">
         <h2 class="chem-reviews-title">Ce spun elevii Ilariei</h2>
-        <p class="chem-reviews-subtitle">Recenzii reale de la ședințele de pregătire la chimie</p>
+        <p class="chem-reviews-subtitle">Feedback de la elevi • Chimie</p>
 
         <div class="chem-reviews-grid">
           <div class="chem-review">
             <div class="chem-review-label">💬 Elev 1 • Claritate</div>
             <p>„Heii! Mi-a plăcut foarte mult și meet-ul de azi. Îți apreciez foarte tare răbdarea pe care o ai și faptul că explici exact pe înțelesul tuturor. Mulțumesc încă o dată pentru oportunitate! ❤️”</p>
-            <div class="chem-review-footer">Feedback real • Chimie</div>
+            <div class="chem-review-footer">Feedback elev • Chimie</div>
           </div>
 
           <div class="chem-review">
             <div class="chem-review-label">🤍 Elev 2 • Răbdare</div>
             <p>„Ședința de azi a fost mult mai frumoasă decât mă așteptam. Ne-ai răspuns la absolut toate întrebările și ai avut răbdare cu noi. O recomand cu drag pe Ilaria Grigoraș, este foarte dedicată. Veniți la pregătire din timp dacă vreți să luați o notă bună la BAC. 💗”</p>
-            <div class="chem-review-footer">Feedback real • Chimie</div>
+            <div class="chem-review-footer">Feedback elev • Chimie</div>
           </div>
 
           <div class="chem-review">
             <div class="chem-review-label">📘 Elev 3 • Explicații</div>
             <p>„Ai explicat minunat, te-ai asigurat că am înțeles ceea ce ne-ai predat și ai lucrat pe exemple cu noi. Apreciez că ai răspuns tuturor întrebărilor și ne-ai oferit sfaturi în vederea bacalaureatului și admiterii. Meriți toate laudele!”</p>
-            <div class="chem-review-footer">Feedback real • Chimie</div>
+            <div class="chem-review-footer">Feedback elev • Chimie</div>
           </div>
 
           <div class="chem-review">
             <div class="chem-review-label">⚕️ Elev 4 • Experiență utilă</div>
             <p>„Am participat la un meet gratuit al Ilariei unde am rezolvat un subiect de BAC, iar experiența a fost una plăcută. În afară de rezolvarea exercițiilor am aflat și diverse lucruri care ar ajuta foarte mult persoanele ce își doresc să dea la medicină. O experiență super bună din care poți învăța ușor chiar și dacă nu știi unele capitole! 🤗”</p>
-            <div class="chem-review-footer">Feedback real • Chimie</div>
+            <div class="chem-review-footer">Feedback elev • Chimie</div>
           </div>
 
           <div class="chem-review">
             <div class="chem-review-label">🎯 Elev 5 • Încredere</div>
             <p>„Am apreciat că ai avut răbdare cu toți și că ai explicat pe înțelesul fiecăruia, indiferent de nivel. Deși îmi place chimia, mereu mi-a fost frică de subiectul 3 și întâlnirea cu tine m-a ajutat să scap de ea. Mulțumesc pentru oportunitate! You rock! 🤍”</p>
-            <div class="chem-review-footer">Feedback real • Chimie</div>
+            <div class="chem-review-footer">Feedback elev • Chimie</div>
           </div>
 
           <div class="chem-review">
             <div class="chem-review-label">💙 Elev 6 • Calm</div>
             <p>„Explici minunat, îmi place că ești super calmă și ne ajuți când ne încurcăm sau nu suntem siguri pe noi. Mi-a făcut plăcere să particip la această ședință, ești super tare!! 🤍💙”</p>
-            <div class="chem-review-footer">Feedback real • Chimie</div>
+            <div class="chem-review-footer">Feedback elev • Chimie</div>
           </div>
 
           <div class="chem-review chem-review-wide">
             <div class="chem-review-label">🧠 Elev 7 • Înțelegere pas cu pas</div>
             <p>„A fost o ședință foarte bună și m-a ajutat să-mi fixez noțiuni pe care nu prea le-am priceput la clasă. Îmi place că stai și explici ca să înțeleagă oricine și că faci multe exerciții ca să vezi dacă elevii au înțeles. Ai explicat de ce răspunsurile greșite de la grilă sunt greșite și ai analizat fiecare pas. E mult mai fain să lucrezi cu o persoană care te îndrumă pe baza experienței proprii. Mulțumesc!”</p>
-            <div class="chem-review-footer">Feedback real • Chimie</div>
+            <div class="chem-review-footer">Feedback elev • Chimie</div>
           </div>
 
           <div class="chem-review chem-review-wide">
             <div class="chem-review-label">🙌 Elev 8 • Interactivitate</div>
             <p>„Am rămas plăcut surprinsă fiindcă am putut să participăm și noi direct și să răspundem la exerciții. Mi-a plăcut că au fost prezentate și explicate concepte care nu erau fix din exercițiile de la BAC și că ai avut răbdare să explici orice, oricui, cu calm. Se vede că ești pasionată. M-am bucurat enorm și că s-a trimis PDF-ul cu tot ce s-a lucrat.”</p>
-            <div class="chem-review-footer">Feedback real • Chimie</div>
+            <div class="chem-review-footer">Feedback elev • Chimie</div>
           </div>
 
           <div class="chem-review">
             <div class="chem-review-label">🧪 Elev 9 • Chimie organică</div>
             <p>„Am participat la meet-ul de chimie organică și mi-a plăcut foarte mult! Explicațiile au fost foarte clare și bine structurate, iar unele lucruri pe care nu le înțelegeam înainte au devenit mult mai ușor de înțeles. Recomand cu drag, mai ales celor care vor să își consolideze bazele la chimie organică! 😊”</p>
-            <div class="chem-review-footer">Feedback real • Chimie</div>
+            <div class="chem-review-footer">Feedback elev • Chimie</div>
           </div>
 
           <div class="chem-review">
             <div class="chem-review-label">✨ Elev 10 • Atmosferă</div>
             <p>„Mi-a plăcut enorm întâlnirea în care s-a rezolvat un subiect tip BAC la chimie organică. Vă pricepeți să explicați și apreciez răbdarea. Îmi place că destindeți atmosfera și că vă luați timpul necesar pentru a explica în detaliu, astfel încât să înțeleagă toată lumea. Mulțumesc încă o dată pentru răbdare!”</p>
-            <div class="chem-review-footer">Feedback real • Chimie</div>
+            <div class="chem-review-footer">Feedback elev • Chimie</div>
           </div>
         </div>
       </div>
@@ -9648,14 +9625,14 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
           <input type="hidden" name="Mentor" value="Stelea Aida">
           <div class="enrollment-field"><label>Nume și prenume *</label><input type="text" name="Nume elev" required placeholder="Ex: Maria Popescu"></div>
           <div class="enrollment-field"><label>Email *</label><input type="email" name="email" required placeholder="exemplu@gmail.com"></div>
-          <div class="enrollment-field"><label>Telefon / WhatsApp *</label><input type="tel" name="Telefon / WhatsApp" required placeholder="Ex: +40 712 345 678"></div>
+          <div class="enrollment-field"><label>Telefon / WhatsApp <span style="font-weight:500;color:#7b8798">(opțional)</span></label><input type="tel" name="Telefon / WhatsApp" placeholder="Ex: +40 712 345 678"></div>
           <div class="enrollment-field"><label>Clasa</label><select name="Clasa"><option value="">Alege clasa</option><option>Clasa a IX-a</option><option>Clasa a X-a</option><option>Clasa a XI-a</option><option>Clasa a XII-a</option><option>Absolvent</option></select></div>
           <div class="enrollment-field"><label>Nivel / notă actuală</label><input type="text" name="Nivel actual" placeholder="Ex: 6,50 / nivel mediu"></div>
           <div class="enrollment-field"><label>Nota dorită la BAC</label><input type="text" name="Nota dorită" placeholder="Ex: 9+"></div>
           <div class="enrollment-field full"><label>Mesaj pentru mentor</label><textarea name="Mesaj" placeholder="Spune-ne pe scurt ce ai vrea să aprofundezi sau ce dificultăți ai."></textarea></div>
-          <label class="enrollment-consent"><input type="checkbox" required><span>Sunt de acord ca datele completate să fie folosite de Formula X exclusiv pentru a mă contacta în legătură cu această cerere de înscriere.</span></label>
-          <button type="submit" class="enrollment-submit">TRIMITE CEREREA →</button>
-          <div class="enrollment-note">După trimitere, vei primi un email de confirmare din partea Formula X.</div>
+          <label class="enrollment-consent"><input type="checkbox" required><span>Am citit <a href="/legal/confidentialitate/" target="_blank" rel="noopener">Politica de confidențialitate</a> și confirm că am cel puțin 16 ani sau că formularul este transmis de un părinte/tutore.</span></label>
+          <button type="submit" class="enrollment-submit">TRIMITE O CERERE DE ÎNSCRIERE →</button>
+          <div class="enrollment-note">Transmiterea formularului este gratuită, nu reprezintă o plată și nu încheie prin ea însăși un contract. Echipa Formula X te va contacta separat.</div>
         </form>
       </div>
 
@@ -9768,6 +9745,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     }
 
     deruleazaSus();
+    if (window.fxRecordPageView) window.fxRecordPageView(pagina);
   }
 
 
@@ -10015,14 +9993,6 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
           'success'
         );
       }
-
-      if (window.fxTrack) {
-        window.fxTrack('program_enrollment_submit', {
-          subject: fxCheieMateriePentruSupabase(materie) || materie,
-          mentor_name: mentor,
-          database_saved: salvatInSupabase
-        });
-      }
     } else {
       console.error('Înscriere nereușită.', { eroareSupabase, eroareEmail });
       seteazaStatusFormular(
@@ -10034,7 +10004,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
 
     if (button) {
       button.disabled = false;
-      button.textContent = buttonTextInitial || 'TRIMITE CEREREA →';
+      button.textContent = buttonTextInitial || 'TRIMITE O CERERE DE ÎNSCRIERE →';
     }
   }
 
@@ -25581,19 +25551,29 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
   <div class="seo-site-footer-inner">
     <strong>Formula X • Pregătire BAC 2027</strong>
     <p>Pregătire online și resurse gratuite pentru Bacalaureat: teste de antrenament, subiecte și bareme oficiale.</p>
-    <nav aria-label="Pagini indexabile Formula X">
+    <nav aria-label="Navigare Formula X">
       <a href="teste/">Teste BAC</a>
-      <a href="materii/romana/">Pregătire BAC Română</a>
-      <a href="materii/matematica/">Pregătire BAC Matematică</a>
-      <a href="materii/biologie/">Pregătire BAC Biologie</a>
-      <a href="materii/fizica/">Pregătire BAC Fizică</a>
-      <a href="materii/chimie/">Pregătire BAC Chimie</a>
-      <a href="materii/geografie/">Pregătire BAC Geografie</a>
+      <a href="materii/romana/">Română</a>
+      <a href="materii/matematica/">Matematică</a>
+      <a href="materii/biologie/">Biologie</a>
+      <a href="materii/fizica/">Fizică</a>
+      <a href="materii/chimie/">Chimie</a>
+      <a href="materii/geografie/">Geografie</a>
+      <a href="/legal/confidentialitate/">Confidențialitate</a>
+      <a href="/legal/termeni/">Termeni de utilizare</a>
+      <a href="/legal/cookies/">Cookies & stocare locală</a>
+      <a href="mailto:formulax05@gmail.com">Contact</a>
     </nav>
+    <p class="legal-note">Formula X nu procesează în prezent plăți prin platformă. Trimiterea unei cereri de înscriere nu reprezintă o plată și nu încheie prin ea însăși un contract. Pentru solicitări privind datele personale: formulax05@gmail.com.</p>
   </div>
 </footer>
 
 
+
+
+<style id="formula-x-v22-legal-style">
+.fx-legal-check{display:flex!important;align-items:flex-start!important;gap:9px!important;padding:12px 13px;border:1px solid #dce4ee;border-radius:12px;background:#f8fafc;font-size:12px!important;line-height:1.5!important;color:#5b6778}.fx-legal-check input{width:auto!important;margin-top:3px;flex:0 0 auto}.fx-legal-check a,.enrollment-consent a,.free-mentor-consent a{color:#765e32;font-weight:800;text-decoration:underline;text-underline-offset:2px}.fx-legal-status{margin-top:10px;font-size:12px;color:#667085;line-height:1.5}.seo-site-footer .legal-note{font-size:12px;color:#94a3b8;margin-top:13px;max-width:850px}
+</style>
 
 <style id="formula-x-signup-v7-style">
 .fx-signup-status{min-height:20px;margin-top:4px;font-size:.88rem;font-weight:700;line-height:1.35;color:#65748b}
@@ -25641,6 +25621,28 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
 
   // Client comun folosit și de formularele de înscriere Formula X.
   window.fxSupabaseClient = db;
+
+  // V22: analytics intern, agregabil, fără identificator de utilizator în tabel.
+  // Se salvează exclusiv cheia paginii din lista fixă de mai jos și momentul accesării.
+  const FX_ANALYTICS_ALLOWED = new Set(['acasa','romana','mate','bio','fizica','chimie','geo','teste','camera-studiu','cont']);
+  let fxLastPageView = { key: null, at: 0 };
+  window.fxRecordPageView = async function(pageKey) {
+    const key = String(pageKey || '').trim();
+    if (!FX_ANALYTICS_ALLOWED.has(key)) return;
+    const now = Date.now();
+    if (fxLastPageView.key === key && now - fxLastPageView.at < 1000) return;
+    fxLastPageView = { key, at: now };
+    try {
+      const { error } = await db.from('page_views').insert({ page_key: key });
+      if (error && !String(error.message || '').toLowerCase().includes('page_views')) console.debug('Formula X analytics:', error.message);
+    } catch (_) {}
+  };
+  window.setTimeout(() => {
+    const active = document.querySelector('.page-view.active');
+    const key = active && active.id ? active.id.replace(/^view-/, '') : 'acasa';
+    window.fxRecordPageView(key);
+  }, 650);
+
 
   const state = {
     user: null,
@@ -26256,7 +26258,6 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     if(prog.error){ console.error(prog.error); }
     state.attempts.push(attempt.data);
     if(prog.data) state.progress.set(id,prog.data);
-    if(window.fxTrack) window.fxTrack('test_result_saved',{test_id:id});
     renderTestProgressBox(box,id);
     renderDashboard();
   }
@@ -26313,7 +26314,6 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
       const status=$('fx-reflection-status');
       if(status){status.textContent='Analiza variantei a fost salvată. ✓';status.className='fx-reflection-status success';}
       renderDashboard(); refreshAllTestProgressBoxes();
-      if(window.fxTrack) window.fxTrack('test_reflection_saved',{test_id:id,tag_count:payload.difficulty_tags.length,needs_review:payload.needs_review});
       setTimeout(closeReflectionModal,650);
     }catch(error){
       console.error(error);
@@ -26426,7 +26426,6 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     const res=await db.from('profiles').upsert(payload,{onConflict:'user_id'}).select().single();
     if(res.error){ console.error(res.error); setMessage($('fx-profile-message'),'Nu am putut salva profilul. Încearcă din nou.','error'); return; }
     state.profile=res.data;
-    if(window.fxTrack) window.fxTrack('bac_route_saved');
     setMessage($('fx-profile-message'),'Traseul pentru examenul de bacalaureat a fost salvat.','success');
     closeOnboarding(); renderAuthState(); refreshAllTestProgressBoxes();
     if (typeof randareTesteAntrenament === 'function') randareTesteAntrenament();
@@ -26441,7 +26440,8 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     pausedTotalMs:0,
     interval:null,
     finished:false,
-    elapsedSeconds:0
+    elapsedSeconds:0,
+    saving:false
   };
 
   function formatStudyTime(totalSeconds) {
@@ -26558,7 +26558,6 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     if($('fx-study-pause')) $('fx-study-pause').textContent='Pauză';
     updateStudyTimer();
     studyState.interval=setInterval(updateStudyTimer,1000);
-    if(window.fxTrack) window.fxTrack('study_room_started',{test_id:test.id});
     try { window.open(test.subiect,'_blank','noopener'); } catch(_) {}
   }
 
@@ -26596,28 +26595,36 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     if($('fx-study-time-status')) $('fx-study-time-status').textContent='Sesiune finalizată';
     if($('fx-study-barem-frame')) $('fx-study-barem-frame').src=studyState.test?.barem || 'about:blank';
     $('fx-study-result')?.scrollIntoView({behavior:'smooth',block:'start'});
-    if(window.fxTrack) window.fxTrack('study_room_completed',{test_id:studyState.test?.id || ''});
   }
 
-  function resetStudyRoom() {
+  function resetStudyRoom(repopulate=true) {
     clearInterval(studyState.interval);
-    studyState.test=null; studyState.startedAt=0; studyState.pausedAt=0; studyState.pausedTotalMs=0; studyState.interval=null; studyState.finished=false; studyState.elapsedSeconds=0;
+    studyState.test=null; studyState.startedAt=0; studyState.pausedAt=0; studyState.pausedTotalMs=0; studyState.interval=null; studyState.finished=false; studyState.elapsedSeconds=0; studyState.saving=false;
     if($('fx-study-picker')) $('fx-study-picker').hidden=false;
     if($('fx-study-session')) $('fx-study-session').hidden=true;
     if($('fx-study-result')) $('fx-study-result').hidden=true;
     if($('fx-study-pause')) { $('fx-study-pause').disabled=false; $('fx-study-pause').textContent='Pauză'; }
     if($('fx-study-finish')) $('fx-study-finish').disabled=false;
+    if($('fx-study-save-result')) { $('fx-study-save-result').disabled=false; $('fx-study-save-result').textContent='ÎNREGISTREAZĂ ȘI REVINO ÎN CONT'; }
+    if($('fx-study-save-next')) { $('fx-study-save-next').disabled=false; $('fx-study-save-next').textContent='ÎNREGISTREAZĂ ȘI ALEGE ALTĂ VARIANTĂ'; }
     if($('fx-study-score')) $('fx-study-score').value='';
     if($('fx-study-grade')) $('fx-study-grade').textContent='—';
     if($('fx-study-barem-frame')) $('fx-study-barem-frame').src='about:blank';
     if($('fx-study-time-progress-bar')) $('fx-study-time-progress-bar').style.width='0%';
     if($('fx-study-time-status')) $('fx-study-time-status').textContent='În desfășurare';
     setMessage($('fx-study-save-message'),'');
-    populateStudyRoom();
+    if(repopulate && state.user) populateStudyRoom();
   }
 
-  async function saveStudyResult() {
-    if(!state.user || !studyState.test || !studyState.finished) return;
+  function chooseAnotherStudyTest() {
+    resetStudyRoom(true);
+    if(typeof schimbaPagina==='function') schimbaPagina('camera-studiu', false);
+    else window.location.hash='camera-studiu';
+    requestAnimationFrame(()=>$('fx-study-picker')?.scrollIntoView({behavior:'smooth',block:'start'}));
+  }
+
+  async function saveStudyResult(destination='account') {
+    if(!state.user || !studyState.test || !studyState.finished || studyState.saving) return;
     const points=Number(String($('fx-study-score')?.value || '').replace(',','.'));
     if(!Number.isFinite(points) || points<10 || points>100){
       setMessage($('fx-study-save-message'),'Introdu punctajul final între 10 și 100 de puncte, incluzând punctele din oficiu.','error');
@@ -26625,8 +26632,11 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     }
     const grade=Math.round(points*10)/100; // points / 10, păstrat la două zecimale
     const now=new Date().toISOString();
-    const btn=$('fx-study-save-result');
-    if(btn){btn.disabled=true;btn.textContent='SE ÎNREGISTREAZĂ...';}
+    const btnAccount=$('fx-study-save-result');
+    const btnNext=$('fx-study-save-next');
+    studyState.saving=true;
+    if(btnAccount){btnAccount.disabled=true;btnAccount.textContent='SE ÎNREGISTREAZĂ...';}
+    if(btnNext){btnNext.disabled=true;btnNext.textContent='SE ÎNREGISTREAZĂ...';}
     let attempt=await db.from('test_attempts').insert({
       user_id:state.user.id,
       test_id:studyState.test.id,
@@ -26643,7 +26653,10 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     }
     if(attempt.error){
       console.error(attempt.error); setMessage($('fx-study-save-message'),'Nu am putut înregistra rezultatul. Verifică conexiunea și încearcă din nou.','error');
-      if(btn){btn.disabled=false;btn.textContent='ÎNREGISTREAZĂ ȘI REVINO ÎN CONT';} return;
+      studyState.saving=false;
+      if(btnAccount){btnAccount.disabled=false;btnAccount.textContent='ÎNREGISTREAZĂ ȘI REVINO ÎN CONT';}
+      if(btnNext){btnNext.disabled=false;btnNext.textContent='ÎNREGISTREAZĂ ȘI ALEGE ALTĂ VARIANTĂ';}
+      return;
     }
     const old=state.progress.get(studyState.test.id);
     const best=Math.max(grade,Number(old?.best_grade||0));
@@ -26654,12 +26667,18 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     renderDashboard(); refreshAllTestProgressBoxes();
     const msg=`Rezultat înregistrat: ${points.toFixed(points%1?1:0).replace('.',',')} / 100 • nota ${formatGrade(grade)} • timp ${formatStudyTime(studyState.elapsedSeconds)}.${timeSaved?'':' Nota a fost salvată, dar pentru memorarea timpului trebuie rulat update-ul SQL V8.'}`;
     setMessage($('fx-study-save-message'),msg,timeSaved?'success':'error');
-    if(btn){btn.disabled=false;btn.textContent='REZULTAT ÎNREGISTRAT ✓';}
-    if(window.fxTrack) window.fxTrack('study_result_saved',{test_id:studyState.test.id});
 
-    // După salvarea completă, închidem sesiunea locală și revenim în cont.
-    // Astfel, următoarea variantă pornește mereu cu o stare curată.
-    resetStudyRoom();
+    // După salvare eliminăm complet sesiunea locală, astfel încât următoarea
+    // variantă să nu poată moșteni testul, cronometrul sau starea anterioară.
+    if(destination==='next'){
+      resetStudyRoom(true);
+      if(typeof schimbaPagina==='function') schimbaPagina('camera-studiu', false);
+      else window.location.hash='camera-studiu';
+      requestAnimationFrame(()=>$('fx-study-picker')?.scrollIntoView({behavior:'smooth',block:'start'}));
+      return;
+    }
+
+    resetStudyRoom(false);
     if(typeof schimbaPagina==='function') schimbaPagina('cont');
     else window.location.hash='cont';
   }
@@ -26689,7 +26708,6 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
       const res = await db.from('goals').upsert(payload,{onConflict:'user_id'}).select('*').maybeSingle();
       if(res.error) throw res.error;
       state.goal = res.data || payload;
-      if(window.fxTrack) window.fxTrack('weekly_goal_saved',{weekly_target});
       renderDashboard();
       setMessage(message, `Obiectiv săptămânal salvat: ${weekly_target} ${weekly_target===1?'test':'teste'} pe săptămână. ✓`, 'success');
     } catch (error) {
@@ -26721,10 +26739,32 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     }
   }
 
-  async function redirectStaffToPortal(user) {
+  function staffRequestedPublicSite() {
+    try {
+      const url = new URL(window.location.href);
+      if (url.searchParams.get('portal') === 'site') {
+        sessionStorage.setItem('fx_staff_browse_site','1');
+        url.searchParams.delete('portal');
+        const clean = url.pathname + (url.search || '') + (url.hash || '');
+        window.history.replaceState(window.history.state, '', clean);
+        return true;
+      }
+      return sessionStorage.getItem('fx_staff_browse_site') === '1';
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function clearStaffPublicSitePreference() {
+    try { sessionStorage.removeItem('fx_staff_browse_site'); } catch (_) {}
+  }
+
+  async function redirectStaffToPortal(user, force=false) {
     if (!user || state.recoveryMode) return false;
+    if (!force && staffRequestedPublicSite()) return false;
     const staff = await getCurrentStaffAccount(user.id);
     if (!staff || !['mentor','admin'].includes(staff.role)) return false;
+    clearStaffPublicSitePreference();
     window.location.replace('https://formula-x.ro/profesori/');
     return true;
   }
@@ -26750,10 +26790,9 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     }
 
     // Dacă utilizatorul este mentor/admin, același login îl duce direct în portalul privat.
-    if (data?.user && await redirectStaffToPortal(data.user)) return;
+    if (data?.user && await redirectStaffToPortal(data.user, true)) return;
 
     setMessage($('fx-auth-message'),'Autentificare reușită.','success');
-    if(window.fxTrack) window.fxTrack('login_success',{method:'email'});
   }
 
   async function signUp(event) {
@@ -26795,8 +26834,6 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
         sessionStorage.setItem('fx_pending_email',email);
         sessionStorage.setItem('fx_pending_name',name);
       } catch(e) {}
-
-      if(window.fxTrack) window.fxTrack('sign_up_success',{method:'email'});
 
       if(data && data.session){
         // Confirmarea emailului este dezactivată în Supabase: utilizatorul este deja autentificat.
@@ -26847,6 +26884,8 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     if (headerBtn) { headerBtn.disabled = false; headerBtn.textContent = 'Deconectare'; }
     if (dashBtn) dashBtn.disabled = false;
     if (error) { setMessage($('fx-auth-message'),'Nu am putut închide sesiunea. Încearcă din nou.','error'); return; }
+    resetStudyRoom(false);
+    clearStaffPublicSitePreference();
     if (typeof schimbaPagina === 'function') schimbaPagina('cont');
     focusAuthCard('login');
     setTimeout(()=>setMessage($('fx-auth-message'),'Te-ai deconectat cu succes. Progresul înregistrat rămâne salvat în cont.','success'),80);
@@ -26918,7 +26957,10 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
 
   function setupEvents() {
     $('fx-header-login')?.addEventListener('click',()=>openAuthPage('login'));
-    $('fx-header-account')?.addEventListener('click',()=>{ if(typeof schimbaPagina==='function') schimbaPagina('cont'); });
+    $('fx-header-account')?.addEventListener('click',async()=>{
+      if(state.user && await redirectStaffToPortal(state.user, true)) return;
+      if(typeof schimbaPagina==='function') schimbaPagina('cont');
+    });
     $('fx-header-logout')?.addEventListener('click',signOutUser);
 
     $('fx-login-form')?.addEventListener('submit',signIn);
@@ -26951,8 +26993,9 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     $('fx-study-pause')?.addEventListener('click',toggleStudyPause);
     $('fx-study-finish')?.addEventListener('click',()=>finishStudySession(false));
     $('fx-study-score')?.addEventListener('input',()=>{ const p=Number(String($('fx-study-score')?.value||'').replace(',','.')); $('fx-study-grade').textContent=Number.isFinite(p)&&p>=10&&p<=100?formatGrade(p/10):'—'; });
-    $('fx-study-save-result')?.addEventListener('click',saveStudyResult);
-    $('fx-study-new-session')?.addEventListener('click',resetStudyRoom);
+    $('fx-study-save-result')?.addEventListener('click',()=>saveStudyResult('account'));
+    $('fx-study-save-next')?.addEventListener('click',()=>saveStudyResult('next'));
+    $('fx-study-new-session')?.addEventListener('click',chooseAnotherStudyTest);
     $('fx-study-analyze')?.addEventListener('click',()=>{ if(studyState.test) openReflectionModal(studyState.test.id); });
     $('fx-recommendation-action')?.addEventListener('click',()=>openStudyRoomWithTest(state.recommendedTestId));
     $('fx-reflection-close')?.addEventListener('click',closeReflectionModal);
@@ -27008,6 +27051,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
       if(state.user && await redirectStaffToPortal(state.user)) return;
       if(state.user) await loadUserData();
       else {
+        resetStudyRoom(false);
         state.profile=null;
         state.progress=new Map();
         state.attempts=[];
