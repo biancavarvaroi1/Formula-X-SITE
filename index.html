@@ -10120,6 +10120,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     if (normalizat.includes('chim')) return 'chimie';
     if (normalizat.includes('fiz')) return 'fizica';
     if (normalizat.includes('geo')) return 'geografie';
+    if (normalizat.includes('logic')) return 'logica';
     return '';
   }
 
@@ -10147,7 +10148,10 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
         email,
         phone,
         subject,
-        level
+        level,
+        student_message: String(formData.get('Mesaj') || '').trim() || null,
+        desired_grade: String(formData.get('Nota dorită') || '').trim() || null,
+        request_type: 'inscriere'
       });
 
     if (error) throw error;

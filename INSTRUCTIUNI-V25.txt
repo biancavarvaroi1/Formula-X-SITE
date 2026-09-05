@@ -1,0 +1,55 @@
+FORMULA X V25 — CE AI DE FĂCUT
+================================
+
+ACEST PACHET ADĂUGĂ:
+- mesajele elevilor în contul profesorului;
+- adăugare manuală elevi;
+- editare date + notă internă;
+- arhivare/restaurare elevi (nu șterge contul Formula X al elevului);
+- creare și editare grupe;
+- alegerea elevilor din fiecare grupă;
+- calendar lunar;
+- programări pentru grupă sau elev individual;
+- status ședință: programată / finalizată / anulată;
+- administratorul vede toate materiile, grupele, ședințele și jurnalul activității;
+- Logică + Niță Daniela Georgiana sunt incluse în portal;
+- culoare Logică: #9F11A1.
+
+PASUL 1 — SUPABASE
+1. Supabase -> SQL Editor -> New query.
+2. Copiază TOT fișierul:
+   SUPABASE-V25-ELEVI-GRUPE-CALENDAR.sql
+3. Apasă Run.
+4. Trebuie să apară la final „Formula X V25 configurat”.
+
+PASUL 2 — DANIELA
+Contul Danielei trebuie să existe deja în:
+Authentication -> Users
+și în public.staff_accounts cu:
+- display_name = Niță Daniela Georgiana
+- role = mentor
+- subject = logica
+
+PASUL 3 — GITHUB
+1. Copiază index.html în rădăcina repository-ului și înlocuiește index.html existent.
+2. Copiază folderul profesori peste folderul profesori existent (Merge/Replace).
+3. Copiază daniela.jpeg în rădăcina repository-ului dacă nu este deja acolo.
+4. NU șterge testele, PDF-urile sau celelalte imagini.
+5. GitHub Desktop -> Commit to main -> Push origin.
+
+CE SE ÎNTÂMPLĂ CU „ȘTERGEREA” ELEVILOR
+Profesorul folosește Arhivează. Elevul dispare din lista curentă, dar datele nu sunt
+distruse și poate fi restaurat. Contul de autentificare al elevului NU este șters.
+Doar administratorul ar trebui să șteargă definitiv conturi, dacă va fi necesar.
+
+ADMINISTRATOR
+În portal, administratorul vede:
+- toți elevii și mesajele lor;
+- toate grupele;
+- toate ședințele;
+- filtrare pe materie;
+- fila „Activitate echipă” cu acțiunile profesorilor.
+
+IMPORTANT
+Nu pune niciodată cheia service_role Supabase în GitHub/HTML.
+Portalul folosește doar cheia publică și securitatea RLS.
