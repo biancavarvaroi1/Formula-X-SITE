@@ -1,0 +1,25 @@
+FORMULA X — V24 GITHUB — DANIELA / LOGICĂ
+================================================
+
+Acest pachet este un PATCH pentru repository-ul Formula X.
+
+Conține:
+- index.html — homepage + pagina Logică + Daniela + formulare
+- daniela.jpeg — fotografia Danielei
+- profesori/index.html — portal profesori actualizat pentru materia LOGICĂ
+
+CE FACI:
+1. Dezarhivează ZIP-ul.
+2. Copiază TOT conținutul direct în rădăcina repository-ului Formula X.
+3. Acceptă Replace/Merge pentru index.html și folderul profesori.
+4. NU șterge folderele cu testele sau PDF-urile.
+5. GitHub Desktop: Commit to main -> Push origin.
+
+IMPORTANT SUPABASE:
+Contul Danielei trebuie să existe în Authentication -> Users și în
+public.staff_accounts cu:
+  display_name = Niță Daniela Georgiana
+  role         = mentor
+  subject      = logica
+
+Portalul profesori folosește culoarea #9F11A1 pentru Logică.
