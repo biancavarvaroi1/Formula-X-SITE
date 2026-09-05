@@ -1,0 +1,26 @@
+FORMULA X — V24 — DANIELA / LOGICĂ
+
+MODIFICĂRI INCLUSE:
+- pagină nouă Logică, argumentare și comunicare (#logica)
+- mentor: Niță Daniela Georgiana
+- fotografie Daniela
+- culoare Logică: #9F11A1 (exact din mostra furnizată)
+- formular propriu de înscriere, integrat cu același EmailJS ca restul site-ului
+- Daniela adăugată în formularul rapid de înscriere de pe homepage
+- Daniela adăugată în formularul pentru ședința gratuită de 30 minute
+- Daniela adăugată în lista mentorilor pentru ședința gratuită
+- Logică adăugată în meniul principal
+- Logică adăugată în lista de materii din hero
+- card nou Logică în secțiunea „Alege Materia”
+- rutare #logica + analytics actualizate
+- linkul „Logică” din footer rămâne către TESTELE de Logică, conform cerinței
+- filtrul Logică din arhiva de teste NU a fost schimbat și continuă să afișeze testele
+
+CUM ÎNCARCI:
+1. Dezarhivează acest ZIP.
+2. În rădăcina repository-ului Formula X, înlocuiește index.html cu cel din pachet.
+3. Copiază daniela.jpeg în rădăcina repository-ului, lângă marius.jpeg, ioana.jpeg etc.
+4. culoare-logica-referinta.png este doar pentru referință; nu este necesar să o urci.
+5. Commit + Push.
+
+NU șterge folderele cu testele sau celelalte imagini existente.

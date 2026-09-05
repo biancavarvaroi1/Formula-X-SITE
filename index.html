@@ -199,7 +199,7 @@
       filter: drop-shadow(0 0 25px rgba(255, 202, 40, 0.8));
     }
 
-    nav { display: flex; gap: 35px; }
+    nav { display: flex; gap: 24px; }
     nav a {
       color: #94a3b8; text-decoration: none; font-size: 15px; font-weight: 700;
       text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: 0.3s;
@@ -7539,6 +7539,103 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
 .fx-contact-direct strong{color:#10284e}
 .fx-contact-direct .fx-secondary-btn{margin-left:auto}
 @media(max-width:600px){.fx-contact-panel{padding:25px 18px 20px;border-radius:18px}.fx-contact-panel h2{font-size:27px}.fx-contact-direct .fx-secondary-btn{margin-left:0;width:100%}}
+
+
+    /* =========================================
+       LOGICĂ — NIȚĂ DANIELA GEORGIANA
+       Culoare furnizată: #9F11A1
+    ========================================== */
+    .logic-page-bg {
+      --logic: #9F11A1;
+      --logic-dark: #6f0d71;
+      --logic-soft: #f8e8f8;
+      --logic-ink: #2d1730;
+      --logic-muted: #6f6072;
+      min-height: 100vh;
+      padding: 50px 0 90px;
+      background:
+        radial-gradient(circle at 88% 8%, rgba(159,17,161,.16), transparent 28%),
+        radial-gradient(circle at 10% 70%, rgba(159,17,161,.07), transparent 32%),
+        linear-gradient(180deg, #fff, #fdf8fd 62%, #f8eef8);
+      color: var(--logic-ink);
+    }
+    .logic-wrapper { width: min(1180px, calc(100% - 34px)); margin: 0 auto; }
+    .logic-hero-banner {
+      position: relative; overflow: hidden;
+      padding: 52px 42px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #5b0c60 0%, #9F11A1 55%, #c143c2 100%);
+      color: #fff;
+      box-shadow: 0 28px 70px rgba(89, 12, 94, .23);
+      margin-bottom: 26px;
+    }
+    .logic-hero-banner::after {
+      content: '∴  ∧  ∨  →  ↔'; position: absolute; right: 28px; top: 18px;
+      font-size: clamp(28px, 5vw, 70px); font-weight: 900; letter-spacing: 10px;
+      color: rgba(255,255,255,.09); transform: rotate(-5deg); pointer-events: none;
+    }
+    .logic-hero-kicker { display:inline-block; margin-bottom:10px; font-weight:900; letter-spacing:2px; text-transform:uppercase; font-size:12px; color:#ffd7ff; }
+    .logic-hero-banner h1 { position: relative; z-index: 1; max-width: 850px; font-size: clamp(36px, 5vw, 60px); line-height: 1.05; margin: 0; }
+    .logic-hero-banner h1 span { color: #ffd6ff; }
+    .logic-hero-banner p { position: relative; z-index:1; max-width: 760px; margin-top: 16px; color: rgba(255,255,255,.88); font-size: 17px; }
+
+    .logic-card {
+      background: rgba(255,255,255,.97);
+      border: 1px solid rgba(159,17,161,.13);
+      border-radius: 26px;
+      padding: 34px;
+      box-shadow: 0 18px 52px rgba(69, 22, 72, .09);
+      margin-bottom: 24px;
+    }
+    .logic-mentor-box { display:grid; grid-template-columns: 340px 1fr; gap: 34px; align-items:center; }
+    .logic-mentor-photo {
+      width: 100%; height: 430px; object-fit: cover; object-position: center 30%;
+      border-radius: 23px; border: 4px solid #fff;
+      box-shadow: 0 20px 45px rgba(82, 16, 86, .18);
+    }
+    .logic-tag { display:inline-flex; align-items:center; gap:8px; background:var(--logic-soft); color:var(--logic-dark); padding:8px 13px; border-radius:999px; font-weight:900; font-size:12px; letter-spacing:.6px; text-transform:uppercase; margin-bottom:12px; }
+    .logic-mentor-text h2 { font-size: clamp(31px, 4vw, 45px); color: var(--logic-dark); line-height:1.08; margin-bottom:16px; }
+    .logic-mentor-text p { color: var(--logic-muted); font-size: 16px; line-height:1.75; margin: 0 0 14px; }
+    .logic-achievements { display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; }
+    .logic-achievement { border:1px solid rgba(159,17,161,.14); background:#fff8ff; color:var(--logic-dark); border-radius:14px; padding:11px 14px; font-weight:800; font-size:13px; }
+
+    .logic-section-title { font-size: clamp(28px, 4vw, 40px); line-height:1.12; color:var(--logic-ink); margin-bottom:10px; }
+    .logic-section-lead { color:var(--logic-muted); max-width:850px; margin-bottom:22px; }
+    .logic-method-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:14px; }
+    .logic-method-item { padding:20px; border-radius:18px; background:linear-gradient(180deg,#fff,#fdf4fd); border:1px solid rgba(159,17,161,.12); }
+    .logic-method-icon { width:42px; height:42px; border-radius:13px; display:grid; place-items:center; background:var(--logic); color:white; font-size:19px; margin-bottom:13px; box-shadow:0 9px 22px rgba(159,17,161,.22); }
+    .logic-method-item strong { display:block; color:var(--logic-dark); margin-bottom:6px; }
+    .logic-method-item span { color:var(--logic-muted); font-size:13px; line-height:1.55; }
+
+    .logic-page-bg .enrollment-card { border-color: rgba(159,17,161,.17); box-shadow: 0 22px 58px rgba(83, 16, 87, .10); }
+    .logic-page-bg .enrollment-kicker { color: var(--logic-dark); background: var(--logic-soft); }
+    .logic-page-bg .enrollment-summary span { border-color: rgba(159,17,161,.14); background: #fff8ff; color: var(--logic-dark); }
+    .logic-page-bg .enrollment-form input:focus,
+    .logic-page-bg .enrollment-form select:focus,
+    .logic-page-bg .enrollment-form textarea:focus { border-color: var(--logic); box-shadow: 0 0 0 4px rgba(159,17,161,.08); }
+    .logic-page-bg .enrollment-submit { background: linear-gradient(135deg, var(--logic), var(--logic-dark)); box-shadow: 0 14px 30px rgba(159,17,161,.22); }
+
+    .logic-test-link-box { display:flex; align-items:center; justify-content:space-between; gap:22px; padding:24px 26px; border-radius:22px; background:#321235; color:white; margin-top:24px; }
+    .logic-test-link-box h3 { margin:0 0 5px; font-size:22px; }
+    .logic-test-link-box p { margin:0; color:rgba(255,255,255,.72); }
+    .logic-test-link-box button { flex:0 0 auto; border:0; border-radius:14px; padding:13px 18px; background:#fff; color:var(--logic-dark); font-weight:900; cursor:pointer; }
+
+    @media (max-width: 980px) {
+      .logic-mentor-box { grid-template-columns: 1fr; }
+      .logic-mentor-photo { max-width: 430px; margin:0 auto; height:500px; }
+      .logic-method-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 620px) {
+      .logic-page-bg { padding-top: 28px; }
+      .logic-wrapper { width:min(100% - 22px,1180px); }
+      .logic-hero-banner { padding:34px 22px; border-radius:23px; }
+      .logic-card { padding:23px 16px; border-radius:21px; }
+      .logic-mentor-photo { height:390px; }
+      .logic-method-grid { grid-template-columns: 1fr; }
+      .logic-test-link-box { flex-direction:column; align-items:flex-start; }
+      .logic-test-link-box button { width:100%; }
+    }
+
 </style>
 </head>
 <body>
@@ -7557,6 +7654,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     <a id="nav-fizica" onclick="schimbaPagina('fizica')">Fizică</a>
     <a id="nav-chimie" onclick="schimbaPagina('chimie')">Chimie</a>
     <a id="nav-geo" onclick="schimbaPagina('geo')">Geografie</a>
+    <a id="nav-logica" onclick="schimbaPagina('logica')">Logică</a>
     <a id="nav-teste" onclick="schimbaPagina('teste')">Teste</a>
   </nav>
   <div id="fx-header-auth-actions" class="fx-header-auth-actions" aria-label="Cont Formula X">
@@ -7572,7 +7670,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     <button type="button" class="enroll-modal-close" aria-label="Închide formularul" onclick="inchideInscriereRapida()">×</button>
     <span class="enroll-modal-logo">Formula X • Cerere de înscriere</span>
     <h2 id="enroll-modal-title">Pentru ce materie vrei să trimiți o cerere?</h2>
-    <p>Alege materia, iar noi te ducem direct la formularul mentorului. Orarul complet rămâne afișat pe pagina fiecărei materii.</p>
+    <p>Alege materia, iar noi te ducem direct la formularul mentorului și la informațiile disponibile despre program.</p>
 
     <form class="quick-enroll-form" onsubmit="continuaInscriere(event)">
       <label for="quick-subject">Materia *</label>
@@ -7584,6 +7682,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
         <option value="fizica">Fizică — Ioana Voinea</option>
         <option value="chimie">Chimie Organică — Ilaria Grigoraș</option>
         <option value="geo">Geografie — Stelea Aida</option>
+        <option value="logica">Logică, argumentare și comunicare — Niță Daniela Georgiana</option>
       </select>
       <button type="submit" class="quick-enroll-submit">CONTINUĂ CĂTRE CERERE →</button>
     </form>
@@ -7610,6 +7709,8 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
         <button type="button" class="subject-text-link" onclick="schimbaPagina('chimie')">Chimie</button>
         <span>&nbsp;•&nbsp;</span>
         <button type="button" class="subject-text-link" onclick="schimbaPagina('geo')">Geografie</button>
+        <span>&nbsp;•&nbsp;</span>
+        <button type="button" class="subject-text-link" onclick="schimbaPagina('logica')">Logică</button>
       </div>
 
       <div class="hero-cta-row">
@@ -7641,7 +7742,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
       <div class="home-program-copy">
         <span class="home-program-eyebrow">✦ Cum funcționează Formula X</span>
         <h2>Un program structurat, construit ca să te ajute <span>exact acolo unde ai nevoie.</span></h2>
-        <p>Mentorii Formula X au construit fiecare program pe săptămâni și teme clare, astfel încât pregătirea să fie ușor de urmărit. Orarul complet este afișat pe pagina fiecărei materii.</p>
+        <p>Mentorii Formula X construiesc programele astfel încât pregătirea să fie clară și ușor de urmărit. Pe pagina fiecărei materii găsești informațiile disponibile despre program și mentor.</p>
         <p>Completezi formularul de înscriere pentru materia dorită, iar echipa Formula X revine cu detaliile de organizare. Fiecare grupă are maximum 15 elevi, pentru ca mentorul să poată lucra atent cu fiecare participant.</p>
         <div class="home-price-callout">
           Programul a fost conceput în primul rând pentru a ajuta elevii să aibă acces la pregătire de calitate, fără costurile ridicate ale meditațiilor clasice. <strong>Formula X urmărește să ofere pregătire BAC accesibilă, cu structură clară și prețuri transparente.</strong>
@@ -7661,8 +7762,8 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
         </div>
         <div class="home-program-step">
           <div class="home-program-step-num">02</div>
-          <h3>Vezi orarul</h3>
-          <p>Vezi programul complet al mentorului, cu săptămânile și temele afișate clar, apoi completezi formularul de înscriere.</p>
+          <h3>Vezi programul</h3>
+          <p>Vezi informațiile disponibile despre programul mentorului, apoi completezi formularul de înscriere.</p>
         </div>
         <div class="home-program-step">
           <div class="home-program-step-num">03</div>
@@ -7693,7 +7794,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
           <div class="home-free-session-benefit"><b>3</b><span><strong>Stabilim ora împreună</strong><br>Echipa Formula X te contactează ulterior pentru confirmarea intervalului orar.</span></div>
         </div>
         <div class="home-free-session-mentors" aria-label="Mentorii Formula X">
-          <span>Română • Bianca Varvaroi</span><span>Matematică • Marius Benga</span><span>Biologie • Theodora Opris</span><span>Fizică • Ioana Voinea</span><span>Chimie • Ilaria Grigoraș</span><span>Geografie • Stelea Aida</span>
+          <span>Română • Bianca Varvaroi</span><span>Matematică • Marius Benga</span><span>Biologie • Theodora Opris</span><span>Fizică • Ioana Voinea</span><span>Chimie • Ilaria Grigoraș</span><span>Geografie • Stelea Aida</span><span>Logică • Niță Daniela Georgiana</span>
         </div>
       </div>
 
@@ -7737,6 +7838,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
               <option value="Ioana Voinea|Fizică">Ioana Voinea — Fizică</option>
               <option value="Ilaria Grigoraș|Chimie">Ilaria Grigoraș — Chimie</option>
               <option value="Stelea Aida|Geografie">Stelea Aida — Geografie</option>
+              <option value="Niță Daniela Georgiana|Logică, argumentare și comunicare">Niță Daniela Georgiana — Logică, argumentare și comunicare</option>
             </select>
           </div>
           <div class="free-mentor-field is-full">
@@ -7913,6 +8015,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
       <div class="card-mat" onclick="schimbaPagina('fizica')"><img src="ioana.jpeg" alt="Ioana Voinea" class="subject-card-photo"><span class="icon">⚛️</span><h3>Fizică</h3><p class="subject-mentor-name">Mentor: Ioana Voinea</p></div>
       <div class="card-mat" onclick="schimbaPagina('chimie')"><img src="ilaria.jpeg" alt="Ilaria Grigoraș" class="subject-card-photo"><span class="icon">🧪</span><h3>Chimie</h3><p class="subject-mentor-name">Mentor: Ilaria Grigoraș</p></div>
       <div class="card-mat geo-home-card" onclick="schimbaPagina('geo')"><img src="aida.jpeg" alt="Stelea Aida" class="subject-card-photo"><span class="icon">🌍</span><h3>Geografie</h3><p class="subject-mentor-name">Mentor: Stelea Aida</p></div>
+      <div class="card-mat logic-home-card" onclick="schimbaPagina('logica')"><img src="daniela.jpeg" alt="Niță Daniela Georgiana" class="subject-card-photo"><span class="icon">🧠</span><h3>Logică</h3><p class="subject-mentor-name">Mentor: Niță Daniela Georgiana</p></div>
     </div>
   </section>
   <!-- COUNTDOWN BAC 2027 -->
@@ -9677,6 +9780,123 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
 <div class="geo-stage-header"><div class="geo-stage-number">IV</div><div><h3>Recapitulare generală și simulare</h3><p>Săptămânile 17 – 19</p></div></div><div class="geo-calendar-row"><div class="geo-week-number">17</div><div class="geo-week-label">Săpt. 17<br>12 – 18 ianuarie</div><div class="geo-topic"><strong>Recapitulare – Europa + România</strong><span>Europa: state și capitale, relief, climă, hidrografie, țărmuri, vegetație și soluri, resurse, populație, modificări politice și hărți. România: județe, vecini, relief, climă, hidrografie, Dunărea și Marea Neagră, resurse, economie, populație și hărți.</span></div></div><div class="geo-calendar-row"><div class="geo-week-number">18</div><div class="geo-week-label">Săpt. 18<br>19 – 25 ianuarie</div><div class="geo-topic"><strong>Recapitulare complexă – toate subiectele</strong><span>Subiectele I, II și III; hărți mute; localizare; calcule; interpretarea graficelor și hărților; greșeli frecvente; sinteze și scheme esențiale.</span></div></div><div class="geo-calendar-row geo-bonus"><div class="geo-week-number">19</div><div class="geo-week-label">Săpt. 19<br>26 ianuarie – 1 februarie</div><div class="geo-topic"><strong>BONUS – simulare completă în condiții de examen</strong><span>Subiectul I – Europa; Subiectul II – România; Subiectul III – populație și exerciții; timp de lucru ca la examen; corectare după barem; feedback personalizat și recapitularea punctelor slabe.</span></div></div></div>
         <div style="margin-top:28px;padding:18px 20px;border-radius:18px;background:#7A3045;color:#fff;text-align:center;font-weight:900;line-height:1.5;">🏆 OBIECTIV FINAL: PUNCTAJ MAXIM LA GEOGRAFIE!</div>
       </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ================= VIEW: LOGICĂ ================= -->
+<div id="view-logica" class="page-view">
+  <div class="logic-page-bg">
+    <div class="logic-wrapper">
+
+      <section class="logic-hero-banner">
+        <span class="logic-hero-kicker">Formula X • BAC 2027 • Logică</span>
+        <h1>Pregătire la <span>Logică, argumentare și comunicare</span> cu Niță Daniela Georgiana</h1>
+        <p>Explicații clare, metode interactive și exercițiu aplicat, într-un mediu în care poți întreba, greși, corecta și înțelege cu adevărat logica din spatele fiecărei cerințe.</p>
+      </section>
+
+      <section class="logic-card">
+        <div class="logic-mentor-box">
+          <img src="daniela.jpeg" alt="Niță Daniela Georgiana - mentor Logică, argumentare și comunicare" class="logic-mentor-photo">
+          <div class="logic-mentor-text">
+            <span class="logic-tag">🧠 Mentorul tău la Logică</span>
+            <h2>Niță Daniela Georgiana</h2>
+            <p>Niță Daniela Georgiana este studentă la Facultatea de Psihologie și Științele Educației și are aproape <strong>3 ani de experiență</strong> în pregătirea elevilor pentru examenul de Bacalaureat la disciplina <strong>Logică, argumentare și comunicare</strong>.</p>
+            <p>La proba de Logică din cadrul examenului de Bacalaureat a obținut nota <strong>9,70</strong>, iar de-a lungul anilor a lucrat cu numeroși elevi, obținând multe note de <strong>10</strong> și foarte multe rezultate de peste <strong>9</strong>.</p>
+            <p>În cadrul Formulei X, stilul ei de predare se bazează pe explicații clare, metode interactive și exercițiu aplicat, astfel încât elevii să înțeleagă logica din spatele fiecărui tip de exercițiu, nu doar să memoreze formule sau pași de rezolvare.</p>
+            <div class="logic-achievements">
+              <span class="logic-achievement">⭐ 9,70 la BAC</span>
+              <span class="logic-achievement">📚 Aproape 3 ani experiență</span>
+              <span class="logic-achievement">🏆 Note de 10</span>
+              <span class="logic-achievement">📈 Numeroase rezultate peste 9</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="logic-card">
+        <h2 class="logic-section-title">Cum se desfășoară pregătirea?</h2>
+        <p class="logic-section-lead">Daniela își adaptează explicațiile la nivelul fiecărui elev și pune accent pe cerințele specifice examenului de Bacalaureat, astfel încât informația să fie ușor de înțeles și de aplicat.</p>
+        <div class="logic-method-grid">
+          <div class="logic-method-item"><div class="logic-method-icon">💡</div><strong>Explicații clare</strong><span>Noțiunile sunt explicate logic, fără memorare mecanică a unor pași pe care elevul nu îi înțelege.</span></div>
+          <div class="logic-method-item"><div class="logic-method-icon">✍️</div><strong>Exercițiu aplicat</strong><span>Accent pe rezolvare și pe înțelegerea modului în care se aplică informația în cerințele de examen.</span></div>
+          <div class="logic-method-item"><div class="logic-method-icon">🤝</div><strong>Atmosferă deschisă</strong><span>Elevii sunt încurajați să pună întrebări, să își corecteze greșelile și să capete încredere.</span></div>
+          <div class="logic-method-item"><div class="logic-method-icon">🎯</div><strong>Orientare spre BAC</strong><span>Pregătirea urmărește cerințele specifice examenului și obținerea unui rezultat cât mai bun.</span></div>
+        </div>
+      </section>
+
+      <section class="logic-card">
+        <h2 class="logic-section-title">Un proces organizat, interactiv și orientat spre rezultate</h2>
+        <p class="logic-section-lead">Atmosfera din timpul ședințelor este una prietenoasă și deschisă. Elevii sunt încurajați să pună întrebări, să își corecteze greșelile și să capete treptat mai multă încredere în propriile cunoștințe. Pasiunea Danielei pentru lucrul cu elevii și experiența acumulată în pregătirea acestora îi permit să transforme pregătirea pentru Bac într-un proces organizat, interactiv și orientat spre rezultate.</p>
+      </section>
+
+      <section class="logic-card enrollment-card">
+        <div class="enrollment-head">
+          <span class="enrollment-kicker">📩 Înscriere Formula X</span>
+          <h2>Înscrie-te la pregătirea pentru Logică</h2>
+          <p>Completează formularul, iar cererea ajunge direct la echipa Formula X. Te vom contacta ulterior cu detaliile de organizare ale programului.</p>
+        </div>
+
+        <div class="enrollment-summary">
+          <span>🧠 Logică, argumentare și comunicare</span>
+          <span>👩‍🏫 Mentor: Niță Daniela Georgiana</span>
+          <span>👥 Maximum 15 elevi / grupă</span>
+          <span>💻 Online</span>
+        </div>
+
+        <form class="enrollment-form" data-emailjs-form="true">
+          <input type="hidden" name="_url" value="https://formula-x.ro/">
+          <input type="hidden" name="_next" value="https://formula-x.ro/?trimis=1">
+          <input type="hidden" name="Materie" value="Logică, argumentare și comunicare">
+          <input type="hidden" name="Mentor" value="Niță Daniela Georgiana">
+
+          <div class="enrollment-field">
+            <label>Nume și prenume *</label>
+            <input type="text" name="Nume elev" placeholder="Ex: Maria Popescu" required>
+          </div>
+          <div class="enrollment-field">
+            <label>Email *</label>
+            <input type="email" name="email" placeholder="exemplu@gmail.com" required>
+          </div>
+          <div class="enrollment-field">
+            <label>Telefon / WhatsApp *</label>
+            <input type="tel" name="Telefon / WhatsApp" autocomplete="tel" required placeholder="Ex: +40 712 345 678">
+            <div style="margin-top:6px;font-size:12px;line-height:1.45;color:#7b8798">Numărul este folosit exclusiv pentru comunicarea legată de cererea ta și de organizarea programului Formula X.</div>
+          </div>
+          <div class="enrollment-field">
+            <label>Clasa</label>
+            <select name="Clasa">
+              <option value="">Alege clasa</option>
+              <option>Clasa a IX-a</option><option>Clasa a X-a</option><option>Clasa a XI-a</option><option>Clasa a XII-a</option><option>Absolvent</option>
+            </select>
+          </div>
+          <div class="enrollment-field">
+            <label>Nivel / notă actuală</label>
+            <input type="text" name="Nivel actual" placeholder="Ex: 6,50 / nivel mediu">
+          </div>
+          <div class="enrollment-field">
+            <label>Nota dorită la BAC</label>
+            <input type="text" name="Nota dorită" placeholder="Ex: 9+">
+          </div>
+          <div class="enrollment-field full">
+            <label>Mesaj pentru Daniela</label>
+            <textarea name="Mesaj" placeholder="Spune-ne pe scurt ce ai vrea să aprofundezi sau ce dificultăți ai."></textarea>
+          </div>
+          <label class="enrollment-consent">
+            <input type="checkbox" required>
+            <span>Am citit <a href="/legal/confidentialitate/" target="_blank" rel="noopener">Politica de confidențialitate</a> și confirm că am cel puțin 16 ani sau că formularul este transmis de un părinte/tutore.</span>
+          </label>
+          <button class="enrollment-submit" type="submit">TRIMITE O CERERE DE ÎNSCRIERE →</button>
+          <div class="enrollment-note">Transmiterea formularului este gratuită, nu reprezintă o plată și nu încheie prin ea însăși un contract. Echipa Formula X te va contacta separat.</div>
+        </form>
+
+        <div class="logic-test-link-box">
+          <div><h3>Vrei să exersezi și singur?</h3><p>Arhiva gratuită de teste la Logică rămâne disponibilă separat în secțiunea Teste BAC.</p></div>
+          <button type="button" onclick="schimbaPagina('teste'); setTimeout(function(){ var b=document.querySelector('.tests-subject-side-btn[data-subject=\'logica\']'); if(b) b.click(); },180);">VEZI TESTELE LA LOGICĂ →</button>
+        </div>
+      </section>
+
     </div>
   </div>
 </div>
@@ -38208,7 +38428,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
   function deschideTesteMaterie(event, materie) {
     if (event && typeof event.preventDefault === 'function') event.preventDefault();
 
-    const materiiPermise = new Set(['toate', 'romana', 'mate', 'bio', 'fizica', 'chimie', 'geografie']);
+    const materiiPermise = new Set(['toate', 'romana', 'mate', 'bio', 'fizica', 'chimie', 'geografie', 'logica']);
     const materieTinta = materiiPermise.has(materie) ? materie : 'toate';
 
     // Deschide biblioteca de teste și pornește de la filtre curate.
@@ -38310,7 +38530,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
 
   function paginaDinURL() {
     const pagina = window.location.hash.replace('#', '');
-    return ['acasa', 'romana', 'mate', 'bio', 'fizica', 'chimie', 'geo', 'teste', 'cont', 'camera-studiu'].indexOf(pagina) !== -1 ? pagina : 'acasa';
+    return ['acasa', 'romana', 'mate', 'bio', 'fizica', 'chimie', 'geo', 'logica', 'teste', 'cont', 'camera-studiu'].indexOf(pagina) !== -1 ? pagina : 'acasa';
   }
 
   window.addEventListener('DOMContentLoaded', () => {
@@ -38414,6 +38634,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
       <a href="#teste" onclick="deschideTesteMaterie(event, 'fizica')">Fizică</a>
       <a href="#teste" onclick="deschideTesteMaterie(event, 'chimie')">Chimie</a>
       <a href="#teste" onclick="deschideTesteMaterie(event, 'geografie')">Geografie</a>
+      <a href="#teste" onclick="deschideTesteMaterie(event, 'logica')">Logică</a>
       <a href="/legal/confidentialitate/">Confidențialitate</a>
       <a href="/legal/termeni/">Termeni de utilizare</a>
       <a href="/legal/cookies/">Cookies & stocare locală</a>
@@ -38479,7 +38700,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
 
   // V22: analytics intern, agregabil, fără identificator de utilizator în tabel.
   // Se salvează exclusiv cheia paginii din lista fixă de mai jos și momentul accesării.
-  const FX_ANALYTICS_ALLOWED = new Set(['acasa','romana','mate','bio','fizica','chimie','geo','teste','camera-studiu','cont']);
+  const FX_ANALYTICS_ALLOWED = new Set(['acasa','romana','mate','bio','fizica','chimie','geo','logica','teste','camera-studiu','cont']);
   let fxLastPageView = { key: null, at: 0 };
   window.fxRecordPageView = async function(pageKey) {
     const key = String(pageKey || '').trim();
