@@ -52,13 +52,16 @@ button{cursor:pointer}.btn{border:0;border-radius:11px;padding:10px 14px;font-we
 <div id="app" class="hidden">
 <header class="topbar"><div class="topbar-in">
   <div class="brand"><div class="brand-x">X</div><div><strong>Formula X</strong><small>Portal profesori</small></div></div>
-  <div class="top-actions"><button id="refreshBtn" class="btn btn-soft">↻ Reîmprospătează</button><button id="logoutBtn" class="btn btn-soft">Ieși</button></div>
+  <div class="top-actions"><button id="refreshBtn" class="btn btn-soft">↻ Reîmprospătează</button><button id="logoutBtn" class="btn btn-danger" title="Ieși din contul de profesor">↪ Ieși din cont</button></div>
 </div></header>
 
 <main class="main">
   <section class="hero">
     <div><h1 id="hello">Bună!</h1><p id="heroText">Se încarcă datele portalului...</p></div>
-    <div id="subjectPill" class="pill">Formula X</div>
+    <div style="display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap;justify-content:flex-end">
+      <div id="subjectPill" class="pill">Formula X</div>
+      <button id="heroLogoutBtn" class="btn btn-danger" type="button">↪ Ieși din cont</button>
+    </div>
   </section>
 
   <div class="nav-tabs">
@@ -405,7 +408,14 @@ function renderActivity(){
 }
 $('loginForm').addEventListener('submit',async e=>{e.preventDefault();$('loginMsg').textContent='';$('loginBtn').disabled=true;$('loginBtn').textContent='Se verifică...';const {error}=await sb.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});if(error){showLogin('Email sau parolă incorectă.');return}const ok=await openPortal();if(!ok){await sb.auth.signOut();showLogin('Acest cont nu are acces la Portalul Profesorilor.')}})
 $('forgotBtn').addEventListener('click',async()=>{const email=$('email').value.trim();if(!email){location.assign('/parola-uitata/');return}$('loginMsg').textContent='Trimitem linkul...';const {error}=await resetSb.auth.resetPasswordForEmail(email,{redirectTo:'https://formula-x.ro/parola-uitata/'});if(error){$('loginMsg').textContent='Nu am putut trimite linkul.';return}location.assign('/parola-uitata/?trimis=1&email='+encodeURIComponent(email))})
-$('logoutBtn').addEventListener('click',async()=>{await sb.auth.signOut();staff=null;students=[];groups=[];members=[];sessions=[];showLogin()})
+async function logoutProfessor(){
+  await sb.auth.signOut();
+  staff=null;user=null;students=[];groups=[];members=[];sessions=[];activities=[];staffList=[];
+  showLogin();
+  try{history.replaceState(null,'',location.pathname)}catch(e){}
+}
+$('logoutBtn').addEventListener('click',logoutProfessor);
+$('heroLogoutBtn').addEventListener('click',logoutProfessor)
 $('refreshBtn').addEventListener('click',loadAll);$('closeModal').addEventListener('click',closeModal);$('modal').addEventListener('click',e=>{if(e.target===$('modal'))closeModal()})
 document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.tab)))
 $('studentSearch').addEventListener('input',renderStudents);$('studentStatus').addEventListener('change',renderStudents);$('studentType').addEventListener('change',renderStudents);$('showArchived').addEventListener('change',renderStudents)
