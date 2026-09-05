@@ -1,0 +1,78 @@
+FORMULA X V29 — PORTAL STABIL + ADMIN VIZUALIZĂRI + MOBILE
+================================================================
+
+CE AM CORECTAT
+--------------
+1. Administratorul are din nou fila „📊 Vizualizări site”.
+   - astăzi
+   - ultimele 7 zile
+   - ultimele 30 zile
+   - ultimele 365 zile
+   - distribuție pe pagini
+   - ultimele zile
+
+2. Există UN SINGUR buton „Ieși din cont”.
+
+3. Separat există butonul „← Formula X”.
+   Acesta te duce pe site FĂRĂ să te deconecteze.
+
+4. După deconectare, formularul de login are:
+   „← Întoarce-te pe site”.
+
+5. Loginul profesorilor a fost stabilizat:
+   - pagina principală folosește RPC-ul get_my_staff_profile();
+   - profesorul este trimis direct în portal;
+   - nu se mai randă dashboardul normal înaintea redirectului;
+   - portalul are ecran de încărcare până când sesiunea este verificată;
+   - portalul nu este afișat înainte ca datele lui să fie încărcate.
+
+6. Telefon:
+   - meniul portalului se poate glisa;
+   - tabelul elevilor devine carduri;
+   - modalele devin tip bottom-sheet;
+   - butoanele sunt mai ușor de apăsat;
+   - calendarul se poate glisa stânga-dreapta;
+   - statisticile și grupele sunt responsive.
+
+CE URCI PE GITHUB
+-----------------
+Înlocuiești:
+- index.html
+- profesori/index.html
+
+Păstrezi / urci:
+- daniela.jpeg
+
+NU ștergi:
+- teste-bac
+- PDF-urile
+- restul fișierelor site-ului
+
+După upload:
+Commit to main -> Push origin
+
+TEST
+----
+1. Deschide în Incognito:
+   https://formula-x.ro/profesori/?v=29
+
+2. Pe login trebuie să vezi V29.
+
+3. Testează Daniela:
+   danielanita655@gmail.com
+
+4. Testează administratorul:
+   fila „📊 Vizualizări site” trebuie să fie vizibilă.
+
+5. Testează pe telefon:
+   - Elevii mei
+   - Grupe
+   - Calendar
+   - Vizualizări (admin)
+   - modal adăugare/editare
+
+SUPABASE
+--------
+MASTER V28 pe care l-ai rulat rămâne baza unică.
+Nu mai rula SQL-urile vechi.
+Fișierul FORMULA-X-SUPABASE-MASTER-V28.sql este inclus doar ca referință/backup.

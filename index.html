@@ -39799,22 +39799,22 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
   }
   window.FormulaXSaveGoal = saveGoal;
 
-  // Formula X V16 — autentificare inteligentă elev / mentor / admin.
+  // Formula X V29 — autentificare inteligentă stabilă elev / mentor / admin.
+  let staffRedirectInProgress = false;
+
   async function getCurrentStaffAccount(userId) {
     if (!userId) return null;
     try {
-      const { data, error } = await db
-        .from('staff_accounts')
-        .select('user_id, display_name, role, subject')
-        .eq('user_id', userId)
-        .maybeSingle();
+      // Folosim același RPC sigur ca portalul profesorilor.
+      const { data, error } = await db.rpc('get_my_staff_profile');
       if (error) {
-        console.warn('Formula X staff lookup:', error.message || error);
+        console.warn('Formula X staff RPC:', error.message || error);
         return null;
       }
-      return data || null;
+      const row = Array.isArray(data) ? data[0] : data;
+      return row || null;
     } catch (error) {
-      console.warn('Formula X staff lookup:', error);
+      console.warn('Formula X staff RPC:', error);
       return null;
     }
   }
@@ -39841,11 +39841,18 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
 
   async function redirectStaffToPortal(user, force=false) {
     if (!user || state.recoveryMode) return false;
+    if (staffRedirectInProgress) return true;
     if (!force && staffRequestedPublicSite()) return false;
+
     const staff = await getCurrentStaffAccount(user.id);
     if (!staff || !['mentor','admin'].includes(staff.role)) return false;
+
+    staffRedirectInProgress = true;
     clearStaffPublicSitePreference();
-    window.location.replace('https://formula-x.ro/profesori/');
+
+    // Nu randăm mai întâi dashboardul de elev; profesorul merge direct în portal.
+    try { document.documentElement.setAttribute('data-staff-redirect','1'); } catch (_) {}
+    window.location.replace('https://formula-x.ro/profesori/?v=29');
     return true;
   }
 
@@ -39872,7 +39879,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     // Dacă utilizatorul este mentor/admin, același login îl duce direct în portalul privat.
     if (data?.user && await redirectStaffToPortal(data.user, true)) return;
 
-    setMessage($('fx-auth-message'),'Autentificare reușită.','success');
+    if (!staffRedirectInProgress) setMessage($('fx-auth-message'),'Autentificare reușită.','success');
   }
 
   async function signUp(event) {

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow,noarchive">
-<title>Portal Profesori | Formula X</title>
+<title>Portal Profesori V29 | Formula X</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root{--primary:#7a3045;--soft:#d98fa3;--bg:#fff7f9;--tint:#f8e9ee;--card:#fff;--text:#261e21;--muted:#75686e;--border:#eadde1;--gold:#c9a24a;--gold2:#f0d481;--ok:#19763b;--warn:#9a620e;--bad:#a83030;--shadow:0 18px 55px rgba(54,31,40,.09)}
@@ -25,10 +25,127 @@ button{cursor:pointer}.btn{border:0;border-radius:11px;padding:10px 14px;font-we
 .modal{position:fixed;inset:0;z-index:100;background:rgba(18,12,15,.48);display:grid;place-items:center;padding:18px}.modal-card{width:min(680px,100%);max-height:92vh;overflow:auto;background:#fff;border-radius:21px;box-shadow:0 30px 100px rgba(0,0,0,.25)}.modal-head{padding:18px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}.modal-head h3{margin:0}.modal-body{padding:20px}.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.modal-grid .full{grid-column:1/-1}.modal-foot{padding:15px 20px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}.readonly-box{padding:12px;border:1px solid var(--border);border-radius:10px;background:#faf8f9;white-space:pre-wrap;line-height:1.55;color:#4e4247;min-height:60px}
 .member-list{display:grid;gap:8px;max-height:420px;overflow:auto}.member-option{display:flex;align-items:flex-start;gap:9px;border:1px solid var(--border);padding:10px;border-radius:11px}.member-option strong{display:block}.member-option small{color:var(--muted)}
 @media(max-width:1000px){.stats{grid-template-columns:repeat(2,1fr)}.group-grid{grid-template-columns:1fr 1fr}.toolbar{grid-template-columns:1fr 1fr}.calendar-grid{overflow:auto}.cal-day{min-height:90px}.login-shell{grid-template-columns:1fr}.login-brand{display:none}}@media(max-width:620px){.main{padding:18px 10px 45px}.topbar-in{padding:10px}.hero{padding:22px 18px;flex-direction:column}.stats{grid-template-columns:1fr 1fr}.group-grid{grid-template-columns:1fr;padding:11px}.toolbar{grid-template-columns:1fr}.modal-grid{grid-template-columns:1fr}.modal-grid .full{grid-column:auto}.panel-head{align-items:flex-start;flex-direction:column}.activity{grid-template-columns:1fr}.calendar-wrap{overflow:auto}.calendar-grid{min-width:720px}}
+
+/* ===== Formula X V29 — stabilitate + mobil ===== */
+.boot-screen{min-height:100vh;display:grid;place-items:center;padding:24px;background:var(--bg)}
+.boot-card{width:min(430px,100%);padding:34px 28px;text-align:center;background:#fff;border:1px solid var(--border);border-radius:24px;box-shadow:var(--shadow)}
+.boot-spinner{width:42px;height:42px;margin:0 auto 16px;border-radius:50%;border:4px solid color-mix(in srgb,var(--primary) 15%,#fff);border-top-color:var(--primary);animation:fxspin .8s linear infinite}
+@keyframes fxspin{to{transform:rotate(360deg)}}
+.boot-card strong{display:block;font-size:18px}.boot-card span{display:block;color:var(--muted);font-size:13px;margin-top:7px;line-height:1.5}
+.login-site-back{margin-top:10px;width:100%}
+.portal-notice{display:none;margin:0 0 16px;padding:11px 14px;border-radius:12px;border:1px solid #efdba3;background:#fff9e8;color:#76500e;font-size:13px;font-weight:750}
+.portal-notice.show{display:block}
+.hero-side{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap;justify-content:flex-end}
+.analytics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:18px}
+.analytics-card{border:1px solid var(--border);border-radius:17px;padding:17px;background:linear-gradient(145deg,#fff,color-mix(in srgb,var(--primary) 3%,#fff))}
+.analytics-card small{display:block;color:var(--muted);font-size:10px;text-transform:uppercase;font-weight:900;letter-spacing:.55px}
+.analytics-card b{display:block;font-size:28px;margin-top:5px}
+.analytics-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:16px;padding:0 18px 18px}
+.analytics-box{border:1px solid var(--border);border-radius:17px;padding:17px;background:#fff}
+.analytics-box h3{margin:0 0 14px;font-size:16px}
+.view-row{display:grid;grid-template-columns:minmax(130px,1fr) 2fr auto;gap:10px;align-items:center;margin:10px 0}
+.view-row strong{font-size:12px}.view-bar{height:9px;border-radius:999px;background:color-mix(in srgb,var(--primary) 8%,#fff);overflow:hidden}.view-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--primary),var(--soft))}
+.view-count{font-size:12px;font-weight:900}
+.daily-list{display:grid;gap:8px}.daily-row{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px solid #f2ecef}.daily-row:last-child{border-bottom:0}.daily-row span{color:var(--muted);font-size:12px}.daily-row b{font-size:13px}
+.analytics-toolbar{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.analytics-toolbar select{padding:9px 11px;border:1px solid var(--border);border-radius:10px;background:#fff}
+.mobile-calendar-hint{display:none;color:var(--muted);font-size:11px;margin:0 0 8px}
+button,a,.tab{touch-action:manipulation}
+
 </style>
+
+<style id="v29-mobile-overrides">
+@media(max-width:1000px){
+  .analytics-grid{grid-template-columns:repeat(2,1fr)}
+  .analytics-layout{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+  body{overflow-x:hidden}
+  .login-wrap{padding:12px;align-items:center}
+  .login-shell{border-radius:20px}
+  .login-card{padding:28px 20px}
+  .login-card h2{font-size:22px}
+  .topbar-in{padding:9px 10px;align-items:flex-start;flex-wrap:wrap}
+  .brand-x{width:38px;height:38px;font-size:19px;border-radius:11px}
+  .brand small{font-size:9px}
+  .top-actions{width:100%;display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px}
+  .top-actions .btn{padding:9px 7px;font-size:11px;min-height:42px}
+  .main{padding:14px 10px 40px}
+  .hero{padding:20px 17px;border-radius:18px;gap:14px}
+  .hero h1{font-size:27px}
+  .hero-side{justify-content:flex-start}
+  .pill{font-size:11px;padding:8px 10px}
+  .nav-tabs{flex-wrap:nowrap;overflow-x:auto;padding:2px 0 7px;margin:14px 0;scrollbar-width:none}
+  .nav-tabs::-webkit-scrollbar{display:none}
+  .tab{flex:0 0 auto;white-space:nowrap;min-height:42px}
+  .subject-filter{flex:0 0 190px;margin-left:0}
+  body.admin .subject-filter{display:block}
+  .subject-filter select{width:100%;min-height:42px}
+  .stats{gap:8px;margin-bottom:12px}
+  .stat{padding:13px;border-radius:14px}
+  .stat b{font-size:24px}
+  .panel{border-radius:16px}
+  .panel-head{padding:16px;gap:12px}
+  .panel-head .actions,.panel-head>.btn{width:100%}
+  .panel-head .actions .btn,.panel-head>.btn{width:100%}
+  .toolbar{padding:12px;gap:8px}
+  .toolbar input,.toolbar select{min-height:44px}
+  .table-wrap{overflow:visible}
+  table.student-table{min-width:0;width:100%;border-collapse:separate;border-spacing:0 10px;padding:0 10px 10px}
+  .student-table thead{display:none}
+  .student-table tbody,.student-table tr,.student-table td{display:block;width:100%}
+  .student-table tr{border:1px solid var(--border);border-radius:15px;background:#fff;box-shadow:0 5px 18px rgba(54,31,40,.05);overflow:hidden}
+  .student-table td{border:0;border-bottom:1px solid #f3edef;padding:11px 12px;display:grid;grid-template-columns:105px minmax(0,1fr);gap:10px;align-items:start}
+  .student-table td:last-child{border-bottom:0}
+  .student-table td::before{content:attr(data-label);font-size:9px;line-height:1.4;text-transform:uppercase;letter-spacing:.55px;font-weight:900;color:var(--muted)}
+  .student-table .actions{justify-content:flex-start}
+  .student-table .actions .btn{min-height:38px}
+  .message-preview{max-width:none}
+  .group-grid{padding:11px}
+  .group-card{padding:15px}
+  .calendar-wrap{padding:12px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .mobile-calendar-hint{display:block}
+  .calendar-grid{min-width:670px}
+  .calendar-title{font-size:18px}
+  .session-row{align-items:stretch;flex-direction:column}
+  .session-row .btn{width:100%}
+  .activity-list{padding:11px}
+  .modal{padding:0;place-items:end center}
+  .modal-card{width:100%;max-height:91dvh;border-radius:20px 20px 0 0}
+  .modal-head{padding:15px 16px;position:sticky;top:0;background:#fff;z-index:2}
+  .modal-body{padding:16px}
+  .modal-foot{padding:12px 16px;position:sticky;bottom:0;background:#fff;z-index:2;display:grid;grid-template-columns:1fr;gap:8px}
+  .modal-foot .btn{width:100%;min-height:44px}
+  .field input,.field select,.field textarea{font-size:16px;min-height:44px}
+  .analytics-grid{grid-template-columns:1fr 1fr;padding:12px;gap:8px}
+  .analytics-card{padding:13px}
+  .analytics-card b{font-size:23px}
+  .analytics-layout{padding:0 12px 12px;gap:10px}
+  .analytics-box{padding:14px}
+  .view-row{grid-template-columns:1fr auto;gap:7px}
+  .view-bar{grid-column:1/-1;grid-row:2}
+  .analytics-toolbar{width:100%}
+  .analytics-toolbar select,.analytics-toolbar .btn{width:100%}
+}
+@media(max-width:420px){
+  .stats{grid-template-columns:1fr 1fr}
+  .stat small{font-size:8.5px}.stat b{font-size:22px}
+  .analytics-grid{grid-template-columns:1fr 1fr}
+  .top-actions{grid-template-columns:1fr 1fr}
+  #refreshBtn{grid-column:1/-1}
+  .student-table td{grid-template-columns:88px minmax(0,1fr)}
+}
+</style>
+
 </head>
 <body>
-<section id="login" class="login-wrap">
+<section id="boot" class="boot-screen">
+  <div class="boot-card">
+    <div class="boot-spinner"></div>
+    <strong>Formula X</strong>
+    <span>Verificăm sesiunea și pregătim portalul profesorilor…</span>
+  </div>
+</section>
+<section id="login" class="login-wrap hidden">
   <div class="login-shell">
     <div class="login-brand">
       <div class="xlogo">X</div>
@@ -36,7 +153,7 @@ button{cursor:pointer}.btn{border:0;border-radius:11px;padding:10px 14px;font-we
       <p>Gestionezi elevii, mesajele primite, grupele și programările într-un singur loc. Fiecare profesor vede doar materia sa, iar administratorul are vizibilitate asupra întregii echipe.</p>
     </div>
     <div class="login-card">
-      <h2>Conectare profesor</h2>
+      <h2>Conectare profesor <span style="font-size:11px;color:var(--muted);font-weight:800">V29</span></h2>
       <p style="color:var(--muted);margin:0 0 24px">Folosește contul de profesor creat în Supabase.</p>
       <form id="loginForm">
         <div class="field"><label>Email</label><input id="email" type="email" autocomplete="email" required></div>
@@ -44,6 +161,7 @@ button{cursor:pointer}.btn{border:0;border-radius:11px;padding:10px 14px;font-we
         <button id="loginBtn" class="btn btn-primary" style="width:100%" type="submit">Intră în portal</button>
       </form>
       <button id="forgotBtn" class="btn btn-soft" style="width:100%;margin-top:10px">Am uitat parola</button>
+      <button id="loginBackSiteBtn" class="btn btn-soft login-site-back" type="button">← Întoarce-te pe site</button>
       <div id="loginMsg" class="msg"></div>
     </div>
   </div>
@@ -51,16 +169,20 @@ button{cursor:pointer}.btn{border:0;border-radius:11px;padding:10px 14px;font-we
 
 <div id="app" class="hidden">
 <header class="topbar"><div class="topbar-in">
-  <div class="brand"><div class="brand-x">X</div><div><strong>Formula X</strong><small>Portal profesori</small></div></div>
-  <div class="top-actions"><button id="refreshBtn" class="btn btn-soft">↻ Reîmprospătează</button><button id="logoutBtn" class="btn btn-danger" title="Ieși din contul de profesor">↪ Ieși din cont</button></div>
+  <div class="brand"><div class="brand-x">X</div><div><strong>Formula X</strong><small>Portal profesori • V29</small></div></div>
+  <div class="top-actions">
+    <button id="refreshBtn" class="btn btn-soft">↻ Reîmprospătează</button>
+    <button id="backSiteBtn" class="btn btn-soft">← Formula X</button>
+    <button id="logoutBtn" class="btn btn-danger" title="Ieși din contul de profesor">↪ Ieși din cont</button>
+  </div>
 </div></header>
 
 <main class="main">
+  <div id="portalNotice" class="portal-notice"></div>
   <section class="hero">
     <div><h1 id="hello">Bună!</h1><p id="heroText">Se încarcă datele portalului...</p></div>
-    <div style="display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap;justify-content:flex-end">
+    <div class="hero-side">
       <div id="subjectPill" class="pill">Formula X</div>
-      <button id="heroLogoutBtn" class="btn btn-danger" type="button">↪ Ieși din cont</button>
     </div>
   </section>
 
@@ -69,6 +191,7 @@ button{cursor:pointer}.btn{border:0;border-radius:11px;padding:10px 14px;font-we
     <button class="tab" data-tab="groups">🗂 Grupe</button>
     <button class="tab" data-tab="calendar">📅 Calendar</button>
     <button class="tab admin-only" data-tab="activity">🛡 Activitate echipă</button>
+    <button class="tab admin-only" data-tab="views">📊 Vizualizări site</button>
     <div class="subject-filter"><select id="adminSubject"><option value="">Toate materiile</option></select></div>
   </div>
 
@@ -114,8 +237,44 @@ button{cursor:pointer}.btn{border:0;border-radius:11px;padding:10px 14px;font-we
       </div>
       <div class="calendar-wrap">
         <div class="calendar-head"><div id="calendarTitle" class="calendar-title"></div><div class="calendar-nav"><button id="prevMonth" class="btn btn-soft btn-sm">←</button><button id="todayMonth" class="btn btn-soft btn-sm">Azi</button><button id="nextMonth" class="btn btn-soft btn-sm">→</button></div></div>
-        <div id="calendarGrid" class="calendar-grid"></div>
+        <div class="mobile-calendar-hint">Pe telefon poți glisa calendarul stânga–dreapta.</div><div id="calendarGrid" class="calendar-grid"></div>
         <div class="upcoming" id="upcomingSessions"></div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="tab-views" class="tabview hidden">
+    <div class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>Vizualizările site-ului</h2>
+          <p>Statistici agregate din Formula X. Sunt vizibile doar administratorului.</p>
+        </div>
+        <div class="analytics-toolbar">
+          <select id="viewsRange">
+            <option value="7">Ultimele 7 zile</option>
+            <option value="30" selected>Ultimele 30 zile</option>
+            <option value="365">Ultimele 365 zile</option>
+          </select>
+          <button id="refreshViewsBtn" class="btn btn-soft">↻ Actualizează</button>
+        </div>
+      </div>
+      <div class="analytics-grid">
+        <div class="analytics-card"><small>Astăzi</small><b id="viewsToday">0</b></div>
+        <div class="analytics-card"><small>7 zile</small><b id="views7">0</b></div>
+        <div class="analytics-card"><small>30 zile</small><b id="views30">0</b></div>
+        <div class="analytics-card"><small>365 zile</small><b id="views365">0</b></div>
+      </div>
+      <div class="analytics-layout">
+        <div class="analytics-box">
+          <h3 id="viewsBreakdownTitle">Pagini — ultimele 30 zile</h3>
+          <div id="viewsBreakdown"></div>
+        </div>
+        <div class="analytics-box">
+          <h3>Ultimele zile</h3>
+          <div id="viewsDaily" class="daily-list"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -152,7 +311,7 @@ const SUBJECTS={
   logica:{label:'Logică, argumentare și comunicare',icon:'🧠',primary:'#9F11A1',soft:'#D77AD9',bg:'#FFF4FF',tint:'#F8E5F9'}
 };
 const WEEKDAYS=['','Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă','Duminică'];
-let staff=null,user=null,students=[],groups=[],members=[],sessions=[],activities=[],staffList=[];
+let staff=null,user=null,students=[],groups=[],members=[],sessions=[],activities=[],staffList=[],pageViews=[];
 let activeTab='students',calendarDate=new Date();
 
 const $=id=>document.getElementById(id);
@@ -172,17 +331,101 @@ function theme(){
   document.documentElement.style.setProperty('--bg',t?.bg||'#fff7f9');
   document.documentElement.style.setProperty('--tint',t?.tint||'#f8e9ee');
 }
-function showLogin(msg=''){ $('app').classList.add('hidden');$('login').classList.remove('hidden');$('loginMsg').textContent=msg;$('loginBtn').disabled=false;$('loginBtn').textContent='Intră în portal'}
-function showApp(){ $('login').classList.add('hidden');$('app').classList.remove('hidden')}
+function showLogin(msg=''){
+  $('boot')?.classList.add('hidden');
+  $('app').classList.add('hidden');
+  $('login').classList.remove('hidden');
+  $('loginMsg').textContent=msg;
+  $('loginBtn').disabled=false;
+  $('loginBtn').textContent='Intră în portal';
+}
+function showBoot(){
+  $('login').classList.add('hidden');
+  $('app').classList.add('hidden');
+  $('boot')?.classList.remove('hidden');
+}
+function showApp(){
+  $('boot')?.classList.add('hidden');
+  $('login').classList.add('hidden');
+  $('app').classList.remove('hidden');
+}
+function portalNotice(message=''){
+  const el=$('portalNotice');
+  if(!el)return;
+  el.textContent=message;
+  el.classList.toggle('show',Boolean(message));
+}
+function goToPublicSite(){
+  location.assign('https://formula-x.ro/?portal=site#acasa');
+}
 function openModal(title,body,foot=''){ $('modalTitle').textContent=title;$('modalBody').innerHTML=body;$('modalFoot').innerHTML=foot;$('modal').classList.remove('hidden')}
 function closeModal(){ $('modal').classList.add('hidden');$('modalBody').innerHTML='';$('modalFoot').innerHTML=''}
-function setTab(tab){activeTab=tab;document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));document.querySelectorAll('.tabview').forEach(v=>v.classList.add('hidden'));$('tab-'+tab).classList.remove('hidden');if(tab==='calendar')renderCalendar();if(tab==='activity')renderActivity()}
-async function staffForCurrentUser(){const {data:{user:u},error}=await sb.auth.getUser();if(error||!u)return null;user=u;const r=await sb.from('staff_accounts').select('user_id,display_name,role,subject').eq('user_id',u.id).maybeSingle();if(r.error)throw r.error;return r.data||null}
+function setTab(tab){
+  if(tab==='views' && staff?.role!=='admin') tab='students';
+  activeTab=tab;
+  document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
+  document.querySelectorAll('.tabview').forEach(v=>v.classList.add('hidden'));
+  $('tab-'+tab)?.classList.remove('hidden');
+  if(tab==='calendar')renderCalendar();
+  if(tab==='activity')renderActivity();
+  if(tab==='views')renderViews();
+}
+async function staffForCurrentUser(){
+  const {data:{user:u},error:userError}=await sb.auth.getUser();
+
+  if(userError){
+    console.error('Formula X V29 - auth.getUser:',userError);
+    throw new Error('AUTH_USER_ERROR: '+(userError.message||'necunoscut'));
+  }
+
+  if(!u){
+    throw new Error('AUTH_NO_USER');
+  }
+
+  user=u;
+
+  // V27: folosim RPC-ul dedicat, nu SELECT direct din browser.
+  const {data,error}=await sb.rpc('get_my_staff_profile');
+
+  if(error){
+    console.error('Formula X V29 - get_my_staff_profile:',error);
+    throw new Error('STAFF_RPC_ERROR: '+(error.message||'necunoscut'));
+  }
+
+  const row=Array.isArray(data)?data[0]:data;
+
+  if(!row){
+    throw new Error('STAFF_NOT_FOUND');
+  }
+
+  if(row.role!=='mentor' && row.role!=='admin'){
+    throw new Error('STAFF_INVALID_ROLE');
+  }
+
+  if(row.role==='mentor' && !SUBJECTS[row.subject]){
+    throw new Error('STAFF_UNKNOWN_SUBJECT: '+String(row.subject||''));
+  }
+
+  return row;
+}
 function populateSubjectFilters(){
   $('adminSubject').innerHTML='<option value="">Toate materiile</option>'+Object.entries(SUBJECTS).map(([k,v])=>`<option value="${k}">${v.label}</option>`).join('');
 }
 async function openPortal(){
-  try{staff=await staffForCurrentUser()}catch(e){console.error(e);showLogin('Nu am putut verifica accesul.');return false}
+  try{
+    staff=await staffForCurrentUser()
+  }catch(e){
+    console.error('Formula X V29 - acces profesor:',e);
+    const m=String(e?.message||e||'');
+    let txt='Nu am putut verifica accesul.';
+    if(m.includes('STAFF_NOT_FOUND')) txt='Contul este autentificat, dar nu este înregistrat ca profesor în staff_accounts.';
+    else if(m.includes('STAFF_UNKNOWN_SUBJECT')) txt='Contul de profesor are o materie necunoscută în portal: '+m.split(':').slice(1).join(':').trim();
+    else if(m.includes('STAFF_RPC_ERROR')) txt='Supabase nu permite citirea profilului de profesor. Verifică MASTER V28 în Supabase.';
+    else if(m.includes('AUTH_NO_USER')) txt='Sesiunea nu a fost creată. Conectează-te din nou.';
+    else if(m.includes('AUTH_USER_ERROR')) txt='Supabase a returnat o eroare la verificarea sesiunii.';
+    showLogin(txt);
+    return false
+  }
   if(!staff)return false;
   document.body.classList.toggle('admin',staff.role==='admin');theme();populateSubjectFilters();
   $('hello').textContent=`Bună, ${staff.display_name}!`;
@@ -193,10 +436,19 @@ async function openPortal(){
     $('heroText').textContent=`Gestionezi elevii, mesajele, grupele și programările pentru ${SUBJECTS[staff.subject]?.label||staff.subject}.`;
     $('subjectPill').textContent=subjectLabel(staff.subject);
   }
-  showApp();await loadAll();return true;
+  await loadAll();showApp();return true;
 }
 async function loadAll(){
-  await Promise.all([loadStaff(),loadStudents(),loadGroups(),loadMembers(),loadSessions(),loadActivity()]);
+  portalNotice('');
+  await Promise.all([
+    loadStaff(),
+    loadStudents(),
+    loadGroups(),
+    loadMembers(),
+    loadSessions(),
+    loadActivity(),
+    loadPageViews()
+  ]);
   renderAll();
 }
 async function loadStaff(){
@@ -228,10 +480,85 @@ async function loadActivity(){
   if(staff.role==='mentor')q=q.eq('actor_id',user.id);
   const {data,error}=await q;if(error){console.error(error);activities=[];return}activities=data||[];
 }
+
+async function loadPageViews(){
+  if(staff?.role!=='admin'){pageViews=[];return}
+  const {data,error}=await sb.rpc('get_page_view_stats',{p_days:365});
+  if(error){
+    console.error('Formula X V29 - analytics:',error);
+    pageViews=[];
+    portalNotice('Portalul funcționează, dar statisticile de vizualizare nu au putut fi încărcate.');
+    return;
+  }
+  pageViews=data||[];
+}
+const PAGE_LABELS={
+  acasa:'Acasă',
+  romana:'Română',
+  mate:'Matematică',
+  bio:'Biologie',
+  fizica:'Fizică',
+  chimie:'Chimie',
+  geo:'Geografie',
+  logica:'Logică',
+  teste:'Teste BAC',
+  'camera-studiu':'Camera de studiu',
+  cont:'Cont',
+  profesori:'Portal profesori'
+};
+function bucharestDateKey(d=new Date()){
+  const parts=new Intl.DateTimeFormat('en-CA',{
+    timeZone:'Europe/Bucharest',
+    year:'numeric',month:'2-digit',day:'2-digit'
+  }).formatToParts(d);
+  const obj=Object.fromEntries(parts.filter(x=>x.type!=='literal').map(x=>[x.type,x.value]));
+  return `${obj.year}-${obj.month}-${obj.day}`;
+}
+function dateMinusDaysKey(days){
+  const d=new Date();
+  d.setUTCDate(d.getUTCDate()-days);
+  return bucharestDateKey(d);
+}
+function viewsFromDays(days){
+  const min=dateMinusDaysKey(days-1);
+  return pageViews.filter(r=>String(r.view_date)>=min);
+}
+function sumViews(rows){return rows.reduce((s,r)=>s+Number(r.views||0),0)}
+function renderViews(){
+  if(staff?.role!=='admin')return;
+  const today=bucharestDateKey();
+  $('viewsToday').textContent=sumViews(pageViews.filter(r=>String(r.view_date)===today));
+  $('views7').textContent=sumViews(viewsFromDays(7));
+  $('views30').textContent=sumViews(viewsFromDays(30));
+  $('views365').textContent=sumViews(viewsFromDays(365));
+
+  const days=Number($('viewsRange')?.value||30);
+  const rows=viewsFromDays(days);
+  const byPage=new Map();
+  rows.forEach(r=>byPage.set(r.page_key,(byPage.get(r.page_key)||0)+Number(r.views||0)));
+  const pages=[...byPage.entries()].sort((a,b)=>b[1]-a[1]);
+  const max=Math.max(1,...pages.map(x=>x[1]));
+  $('viewsBreakdownTitle').textContent=`Pagini — ultimele ${days} zile`;
+  $('viewsBreakdown').innerHTML=pages.length?pages.map(([key,count])=>`
+    <div class="view-row">
+      <strong>${esc(PAGE_LABELS[key]||key)}</strong>
+      <div class="view-bar"><div class="view-fill" style="width:${Math.max(3,(count/max)*100)}%"></div></div>
+      <span class="view-count">${count}</span>
+    </div>
+  `).join(''):'<div class="empty">Nu există vizualizări în perioada selectată.</div>';
+
+  const byDay=new Map();
+  rows.forEach(r=>byDay.set(String(r.view_date),(byDay.get(String(r.view_date))||0)+Number(r.views||0)));
+  const daysArr=[...byDay.entries()].sort((a,b)=>b[0].localeCompare(a[0])).slice(0,14);
+  $('viewsDaily').innerHTML=daysArr.length?daysArr.map(([date,count])=>`
+    <div class="daily-row"><span>${fmtDate(date+'T12:00:00')}</span><b>${count} vizualizări</b></div>
+  `).join(''):'<div class="empty">Nu există date.</div>';
+}
+
 async function logActivity(subject,action,entityType,entityId,details={}){
   try{await sb.from('teacher_activity').insert({actor_id:user.id,subject,action,entity_type:entityType,entity_id:String(entityId||''),details})}catch(e){console.debug('Activity log:',e)}
 }
-function renderAll(){renderStats();renderStudents();renderGroups();renderCalendar();renderActivity()}
+function renderAll(){renderStats();renderStudents();renderGroups();renderCalendar();renderActivity();renderViews()}
 function relevantStudents(){return students.filter(s=>visibleSubject(s.subject))}
 function relevantGroups(){return groups.filter(g=>visibleSubject(g.subject))}
 function relevantSessions(){return sessions.filter(s=>visibleSubject(s.subject))}
@@ -252,18 +579,18 @@ function groupsForStudent(id){return groups.filter(g=>members.some(m=>m.group_id
 function renderStudents(){
   const arr=filteredStudents();
   if(!arr.length){$('studentsContent').innerHTML='<div class="empty">Nu există elevi pentru filtrele selectate.</div>';return}
-  let h='<div class="table-wrap"><table><thead><tr><th>Elev</th><th>Contact</th><th>Materie</th><th>Mesaj elev</th><th>Grupă</th><th>Status</th><th>Acțiuni</th></tr></thead><tbody>';
+  let h='<div class="table-wrap"><table class="student-table"><thead><tr><th>Elev</th><th>Contact</th><th>Materie</th><th>Mesaj elev</th><th>Grupă</th><th>Status</th><th>Acțiuni</th></tr></thead><tbody>';
   for(const r of arr){
     const gs=groupsForStudent(r.id);
     const msg=(r.student_message||'').trim();
     h+=`<tr>
-      <td><div class="name">${esc(r.full_name)}</div><div class="subtext">${esc(r.level||'Nivel nespecificat')} • ${esc(typeLabel(r.request_type))}<br>${fmtDate(r.created_at)}</div></td>
-      <td>${esc(r.phone||'-')}<div class="subtext">${esc(r.email)}</div></td>
-      <td>${esc(subjectLabel(r.subject))}${r.desired_grade?`<div class="subtext">Țintă: ${esc(r.desired_grade)}</div>`:''}</td>
-      <td><div class="message-preview ${msg?'':'message-empty'}">${msg?esc(msg.length>170?msg.slice(0,170)+'…':msg):'Nu a lăsat mesaj.'}</div></td>
-      <td>${gs.length?gs.map(g=>`<span class="badge">${esc(g.name)}</span>`).join(' '):'<span class="subtext">Nealocat</span>'}</td>
-      <td>${statusBadge(r.status,r.archived_at)}</td>
-      <td><div class="actions"><button class="btn btn-soft btn-sm" onclick="editStudent('${r.id}')">Detalii</button><button class="btn ${r.archived_at?'btn-soft':'btn-danger'} btn-sm" onclick="toggleArchive('${r.id}')">${r.archived_at?'Restaurează':'Arhivează'}</button></div></td>
+      <td data-label="Elev"><div class="name">${esc(r.full_name)}</div><div class="subtext">${esc(r.level||'Nivel nespecificat')} • ${esc(typeLabel(r.request_type))}<br>${fmtDate(r.created_at)}</div></td>
+      <td data-label="Contact">${esc(r.phone||'-')}<div class="subtext">${esc(r.email)}</div></td>
+      <td data-label="Materie">${esc(subjectLabel(r.subject))}${r.desired_grade?`<div class="subtext">Țintă: ${esc(r.desired_grade)}</div>`:''}</td>
+      <td data-label="Mesaj elev"><div class="message-preview ${msg?'':'message-empty'}">${msg?esc(msg.length>170?msg.slice(0,170)+'…':msg):'Nu a lăsat mesaj.'}</div></td>
+      <td data-label="Grupă">${gs.length?gs.map(g=>`<span class="badge">${esc(g.name)}</span>`).join(' '):'<span class="subtext">Nealocat</span>'}</td>
+      <td data-label="Status">${statusBadge(r.status,r.archived_at)}</td>
+      <td data-label="Acțiuni"><div class="actions"><button class="btn btn-soft btn-sm" onclick="editStudent('${r.id}')">Detalii</button><button class="btn ${r.archived_at?'btn-soft':'btn-danger'} btn-sm" onclick="toggleArchive('${r.id}')">${r.archived_at?'Restaurează':'Arhivează'}</button></div></td>
     </tr>`;
   }
   h+='</tbody></table></div>';$('studentsContent').innerHTML=h;
@@ -287,7 +614,7 @@ async function saveNewStudent(){
   const subject=$('mSubject').value,name=$('mName').value.trim(),email=$('mEmail').value.trim().toLowerCase();
   if(!subject||!name||!email){alert('Completează numele, emailul și materia.');return}
   const payload={full_name:name,email,phone:$('mPhone').value.trim()||null,subject,level:$('mLevel').value.trim()||null,status:$('mStatus').value,source:'mentor',request_type:'manual',student_message:$('mMessage')?.value.trim()||null,teacher_note:$('mTeacherNote').value.trim()||null};
-  const {data,error}=await sb.from('enrollments').insert(payload).select('id').single();if(error){console.error(error);alert('Elevul nu a putut fi adăugat. Verifică dacă ai rulat SQL-ul V25.');return}
+  const {data,error}=await sb.from('enrollments').insert(payload).select('id').single();if(error){console.error(error);alert('Elevul nu a putut fi adăugat. Verifică MASTER V28 în Supabase.');return}
   await logActivity(subject,'student_added','enrollment',data.id,{name,email});closeModal();await loadAll();
 }
 function editStudent(id){
@@ -406,22 +733,82 @@ function renderActivity(){
   const labels={student_added:'Elev adăugat',student_updated:'Elev actualizat',student_archived:'Elev arhivat',student_restored:'Elev restaurat',group_created:'Grupă creată',group_updated:'Grupă actualizată',group_deleted:'Grupă ștearsă',group_members_updated:'Componență grupă schimbată',session_created:'Ședință programată',session_status:'Status ședință schimbat',session_deleted:'Ședință ștearsă'};
   $('activityContent').innerHTML=arr.map(a=>{const actor=staffList.find(s=>s.user_id===a.actor_id);return `<div class="activity"><small>${fmtDateTime(a.created_at)}</small><div><strong>${esc(labels[a.action]||a.action)}</strong><div class="subtext">${esc(actor?.display_name||'Profesor')} · ${esc(subjectLabel(a.subject))}</div>${a.details&&Object.keys(a.details).length?`<div class="subtext">${esc(JSON.stringify(a.details))}</div>`:''}</div><code>${esc(a.entity_type)}</code></div>`}).join('');
 }
-$('loginForm').addEventListener('submit',async e=>{e.preventDefault();$('loginMsg').textContent='';$('loginBtn').disabled=true;$('loginBtn').textContent='Se verifică...';const {error}=await sb.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});if(error){showLogin('Email sau parolă incorectă.');return}const ok=await openPortal();if(!ok){await sb.auth.signOut();showLogin('Acest cont nu are acces la Portalul Profesorilor.')}})
+$('loginForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  $('loginMsg').textContent='';
+  $('loginBtn').disabled=true;
+  $('loginBtn').textContent='Se verifică...';
+
+  const email=$('email').value.trim().toLowerCase();
+  const password=$('password').value;
+
+  const {data,error}=await sb.auth.signInWithPassword({email,password});
+
+  if(error){
+    console.error('Formula X V29 - login:',error);
+    const code=error.code||error.name||'auth_error';
+    showLogin('Conectarea Supabase a eșuat: '+code+'. Verifică emailul și parola.');
+    return;
+  }
+
+  if(!data?.session){
+    showLogin('Supabase nu a creat sesiunea de autentificare.');
+    return;
+  }
+
+  const ok=await openPortal();
+
+  if(!ok){
+    // Nu ascundem mesajul diagnostic afișat de openPortal.
+    await sb.auth.signOut();
+    return;
+  }
+})
 $('forgotBtn').addEventListener('click',async()=>{const email=$('email').value.trim();if(!email){location.assign('/parola-uitata/');return}$('loginMsg').textContent='Trimitem linkul...';const {error}=await resetSb.auth.resetPasswordForEmail(email,{redirectTo:'https://formula-x.ro/parola-uitata/'});if(error){$('loginMsg').textContent='Nu am putut trimite linkul.';return}location.assign('/parola-uitata/?trimis=1&email='+encodeURIComponent(email))})
 async function logoutProfessor(){
-  await sb.auth.signOut();
-  staff=null;user=null;students=[];groups=[];members=[];sessions=[];activities=[];staffList=[];
-  showLogin();
+  const btn=$('logoutBtn');
+  if(btn){btn.disabled=true;btn.textContent='Se deconectează…'}
+  const {error}=await sb.auth.signOut();
+  if(error){
+    console.error('Formula X V29 - logout:',error);
+    if(btn){btn.disabled=false;btn.textContent='↪ Ieși din cont'}
+    portalNotice('Nu am putut închide sesiunea. Încearcă din nou.');
+    return;
+  }
+  staff=null;user=null;students=[];groups=[];members=[];sessions=[];activities=[];staffList=[];pageViews=[];
+  $('password').value='';
+  showLogin('Te-ai deconectat cu succes.');
   try{history.replaceState(null,'',location.pathname)}catch(e){}
 }
 $('logoutBtn').addEventListener('click',logoutProfessor);
-$('heroLogoutBtn').addEventListener('click',logoutProfessor)
-$('refreshBtn').addEventListener('click',loadAll);$('closeModal').addEventListener('click',closeModal);$('modal').addEventListener('click',e=>{if(e.target===$('modal'))closeModal()})
+$('backSiteBtn').addEventListener('click',goToPublicSite);
+$('loginBackSiteBtn').addEventListener('click',goToPublicSite);
+$('refreshBtn').addEventListener('click',loadAll);
+$('viewsRange')?.addEventListener('change',renderViews);
+$('refreshViewsBtn')?.addEventListener('click',async()=>{await loadPageViews();renderViews()});$('closeModal').addEventListener('click',closeModal);$('modal').addEventListener('click',e=>{if(e.target===$('modal'))closeModal()})
 document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.tab)))
 $('studentSearch').addEventListener('input',renderStudents);$('studentStatus').addEventListener('change',renderStudents);$('studentType').addEventListener('change',renderStudents);$('showArchived').addEventListener('change',renderStudents)
 $('adminSubject').addEventListener('change',renderAll);$('addStudentBtn').addEventListener('click',addStudent);$('addGroupBtn').addEventListener('click',addGroup);$('addSessionBtn').addEventListener('click',addSession)
 $('prevMonth').addEventListener('click',()=>{calendarDate=new Date(calendarDate.getFullYear(),calendarDate.getMonth()-1,1);renderCalendar()});$('nextMonth').addEventListener('click',()=>{calendarDate=new Date(calendarDate.getFullYear(),calendarDate.getMonth()+1,1);renderCalendar()});$('todayMonth').addEventListener('click',()=>{calendarDate=new Date();renderCalendar()})
-;(async()=>{const {data:{session}}=await sb.auth.getSession();if(session){const ok=await openPortal();if(!ok)showLogin('Contul nu are acces la portal.')}else showLogin()})();
+;(async()=>{
+  showBoot();
+  try{
+    const {data:{session},error}=await sb.auth.getSession();
+    if(error) throw error;
+    if(!session){
+      showLogin();
+      return;
+    }
+    const ok=await openPortal();
+    if(!ok){
+      await sb.auth.signOut();
+      showLogin('Contul nu are acces la portalul profesorilor.');
+    }
+  }catch(error){
+    console.error('Formula X V29 - bootstrap:',error);
+    showLogin('Nu am putut verifica sesiunea. Reîncarcă pagina și încearcă din nou.');
+  }
+})();
 </script>
 </body>
 </html>
