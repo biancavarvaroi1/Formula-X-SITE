@@ -7,6 +7,7 @@
   <meta name="color-scheme" content="light">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Formula X | Pregătire BAC 2027, teste și bareme oficiale</title>
+  <!-- Formula X Security V30: Turnstile + Edge Function pentru formulare -->
   <meta name="description" content="Formula X oferă pregătire BAC 2027 online la Română, Matematică, Biologie, Fizică, Chimie și Geografie, plus o arhivă gratuită cu teste, subiecte și bareme oficiale.">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <link rel="canonical" href="https://formula-x.ro/">
@@ -7117,6 +7118,38 @@
       .geo-calendar-row { grid-template-columns: 52px 1fr; gap: 10px; align-items: start; }
       .geo-topic { grid-column: 1 / -1; padding-top: 4px; }
     }
+
+
+    /* Formula X V30 — protecție formulare: Turnstile + honeypot */
+    .fx-security-check {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-start;
+      margin-top: 2px;
+    }
+    .fx-security-label {
+      font-size: 12px;
+      line-height: 1.45;
+      color: #64748b;
+      font-weight: 700;
+    }
+    .fx-turnstile {
+      width: 100%;
+      min-height: 65px;
+    }
+    .fx-honeypot {
+      position: absolute !important;
+      left: -10000px !important;
+      top: auto !important;
+      width: 1px !important;
+      height: 1px !important;
+      overflow: hidden !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+
 </style>
   <style id="formula-x-account-inline">
 /* Formula X — cont elev / progres v4 • auth și dashboard complet separate */
@@ -7637,6 +7670,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     }
 
 </style>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" defer></script>
 </head>
 <body>
 <!-- Formula X Accounts V10: progres academic + camera de studiu + jurnal -->
@@ -7850,6 +7884,14 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
             <textarea id="free-session-topic" placeholder="Ex.: Am dificultăți la Subiectul III și aș vrea să știu cum să îmi organizez mai bine pregătirea."></textarea>
           </div>
           <label class="free-mentor-consent"><input id="free-session-consent" type="checkbox" required><span>Solicit să fiu contactat(ă) pentru stabilirea ședinței gratuite, am citit <a href="/legal/confidentialitate/" target="_blank" rel="noopener">Politica de confidențialitate</a> și confirm că am cel puțin 16 ani sau că solicitarea este transmisă de un părinte/tutore.</span></label>
+          
+          <div class="free-mentor-field is-full fx-security-check">
+            <span class="fx-security-label">Verificare de securitate</span>
+            <div class="fx-turnstile" data-fx-action="enrollment"></div>
+          </div>
+          <div class="fx-honeypot" aria-hidden="true">
+            <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+          </div>
           <button id="free-mentor-submit" type="submit" class="free-mentor-submit">SOLICITĂ ȘEDINȚA GRATUITĂ →</button>
           <div id="free-mentor-status" class="free-mentor-status" aria-live="polite"></div>
         </form>
@@ -8570,6 +8612,15 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
             <span>Am citit <a href="/legal/confidentialitate/" target="_blank" rel="noopener">Politica de confidențialitate</a> și confirm că am cel puțin 16 ani sau că formularul este transmis de un părinte/tutore.</span>
           </label>
 
+          <div class="enrollment-field full fx-security-check">
+            <span class="fx-security-label">Verificare de securitate</span>
+            <div class="fx-turnstile" data-fx-action="enrollment"></div>
+          </div>
+          <div class="fx-honeypot" aria-hidden="true">
+            <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+          </div>
+
+
           <button class="enrollment-submit" type="submit">TRIMITE O CERERE DE ÎNSCRIERE →</button>
           <div class="enrollment-note">Transmiterea formularului este gratuită, nu reprezintă o plată și nu încheie prin ea însăși un contract. Echipa Formula X te va contacta separat.</div>
         </form>
@@ -8895,6 +8946,15 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
             <span>Am citit <a href="/legal/confidentialitate/" target="_blank" rel="noopener">Politica de confidențialitate</a> și confirm că am cel puțin 16 ani sau că formularul este transmis de un părinte/tutore.</span>
           </label>
 
+          <div class="enrollment-field full fx-security-check">
+            <span class="fx-security-label">Verificare de securitate</span>
+            <div class="fx-turnstile" data-fx-action="enrollment"></div>
+          </div>
+          <div class="fx-honeypot" aria-hidden="true">
+            <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+          </div>
+
+
           <button class="enrollment-submit" type="submit">TRIMITE O CERERE DE ÎNSCRIERE →</button>
           <div class="enrollment-note">Transmiterea formularului este gratuită, nu reprezintă o plată și nu încheie prin ea însăși un contract. Echipa Formula X te va contacta separat.</div>
         </form>
@@ -9130,6 +9190,15 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
             <span>Am citit <a href="/legal/confidentialitate/" target="_blank" rel="noopener">Politica de confidențialitate</a> și confirm că am cel puțin 16 ani sau că formularul este transmis de un părinte/tutore.</span>
           </label>
 
+          <div class="enrollment-field full fx-security-check">
+            <span class="fx-security-label">Verificare de securitate</span>
+            <div class="fx-turnstile" data-fx-action="enrollment"></div>
+          </div>
+          <div class="fx-honeypot" aria-hidden="true">
+            <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+          </div>
+
+
           <button class="enrollment-submit" type="submit">TRIMITE O CERERE DE ÎNSCRIERE →</button>
           <div class="enrollment-note">Transmiterea formularului este gratuită, nu reprezintă o plată și nu încheie prin ea însăși un contract. Echipa Formula X te va contacta separat.</div>
         </form>
@@ -9354,6 +9423,15 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
             <span>Am citit <a href="/legal/confidentialitate/" target="_blank" rel="noopener">Politica de confidențialitate</a> și confirm că am cel puțin 16 ani sau că formularul este transmis de un părinte/tutore.</span>
           </label>
 
+          <div class="enrollment-field full fx-security-check">
+            <span class="fx-security-label">Verificare de securitate</span>
+            <div class="fx-turnstile" data-fx-action="enrollment"></div>
+          </div>
+          <div class="fx-honeypot" aria-hidden="true">
+            <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+          </div>
+
+
           <button class="enrollment-submit" type="submit">TRIMITE O CERERE DE ÎNSCRIERE →</button>
           <div class="enrollment-note">Transmiterea formularului este gratuită, nu reprezintă o plată și nu încheie prin ea însăși un contract. Echipa Formula X te va contacta separat.</div>
         </form>
@@ -9576,6 +9654,15 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
             <span>Am citit <a href="/legal/confidentialitate/" target="_blank" rel="noopener">Politica de confidențialitate</a> și confirm că am cel puțin 16 ani sau că formularul este transmis de un părinte/tutore.</span>
           </label>
 
+          <div class="enrollment-field full fx-security-check">
+            <span class="fx-security-label">Verificare de securitate</span>
+            <div class="fx-turnstile" data-fx-action="enrollment"></div>
+          </div>
+          <div class="fx-honeypot" aria-hidden="true">
+            <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+          </div>
+
+
           <button class="enrollment-submit" type="submit">TRIMITE O CERERE DE ÎNSCRIERE →</button>
           <div class="enrollment-note">Transmiterea formularului este gratuită, nu reprezintă o plată și nu încheie prin ea însăși un contract. Echipa Formula X te va contacta separat.</div>
         </form>
@@ -9762,6 +9849,15 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
           <div class="enrollment-field"><label>Nota dorită la BAC</label><input type="text" name="Nota dorită" placeholder="Ex: 9+"></div>
           <div class="enrollment-field full"><label>Mesaj pentru mentor</label><textarea name="Mesaj" placeholder="Spune-ne pe scurt ce ai vrea să aprofundezi sau ce dificultăți ai."></textarea></div>
           <label class="enrollment-consent"><input type="checkbox" required><span>Am citit <a href="/legal/confidentialitate/" target="_blank" rel="noopener">Politica de confidențialitate</a> și confirm că am cel puțin 16 ani sau că formularul este transmis de un părinte/tutore.</span></label>
+
+          <div class="enrollment-field full fx-security-check">
+            <span class="fx-security-label">Verificare de securitate</span>
+            <div class="fx-turnstile" data-fx-action="enrollment"></div>
+          </div>
+          <div class="fx-honeypot" aria-hidden="true">
+            <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+          </div>
+
           <button type="submit" class="enrollment-submit">TRIMITE O CERERE DE ÎNSCRIERE →</button>
           <div class="enrollment-note">Transmiterea formularului este gratuită, nu reprezintă o plată și nu încheie prin ea însăși un contract. Echipa Formula X te va contacta separat.</div>
         </form>
@@ -9887,6 +9983,15 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
             <input type="checkbox" required>
             <span>Am citit <a href="/legal/confidentialitate/" target="_blank" rel="noopener">Politica de confidențialitate</a> și confirm că am cel puțin 16 ani sau că formularul este transmis de un părinte/tutore.</span>
           </label>
+
+          <div class="enrollment-field full fx-security-check">
+            <span class="fx-security-label">Verificare de securitate</span>
+            <div class="fx-turnstile" data-fx-action="enrollment"></div>
+          </div>
+          <div class="fx-honeypot" aria-hidden="true">
+            <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+          </div>
+
           <button class="enrollment-submit" type="submit">TRIMITE O CERERE DE ÎNSCRIERE →</button>
           <div class="enrollment-note">Transmiterea formularului este gratuită, nu reprezintă o plată și nu încheie prin ea însăși un contract. Echipa Formula X te va contacta separat.</div>
         </form>
@@ -10124,10 +10229,111 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     return '';
   }
 
-  async function fxSalveazaInscriereInSupabase(formData) {
-    const client = window.fxSupabaseClient;
-    if (!client) throw new Error('Clientul Supabase nu este disponibil.');
+  const FX_TURNSTILE_SITE_KEY = '0x4AAAAAAEr9mr3lEtuhLtId';
+  const fxTurnstileWidgets = new WeakMap();
 
+  function fxRenderTurnstileWidgets() {
+    if (!window.turnstile || typeof window.turnstile.render !== 'function') return false;
+
+    document.querySelectorAll('.fx-turnstile').forEach((container) => {
+      if (fxTurnstileWidgets.has(container)) return;
+
+      try {
+        let widgetId = null;
+        widgetId = window.turnstile.render(container, {
+          sitekey: FX_TURNSTILE_SITE_KEY,
+          action: container.dataset.fxAction || 'enrollment',
+          theme: 'light',
+          size: 'flexible',
+          'response-field': false,
+          callback: (token) => {
+            container.dataset.fxToken = token || '';
+          },
+          'expired-callback': () => {
+            container.dataset.fxToken = '';
+            try { if (widgetId !== null) window.turnstile.reset(widgetId); } catch (_) {}
+          },
+          'error-callback': () => {
+            container.dataset.fxToken = '';
+          },
+          'timeout-callback': () => {
+            container.dataset.fxToken = '';
+            try { if (widgetId !== null) window.turnstile.reset(widgetId); } catch (_) {}
+          }
+        });
+        fxTurnstileWidgets.set(container, widgetId);
+      } catch (error) {
+        console.warn('Formula X — Turnstile render:', error);
+      }
+    });
+
+    return true;
+  }
+
+  function fxGetTurnstileToken(form) {
+    const container = form?.querySelector('.fx-turnstile');
+    if (!container) return '';
+    const widgetId = fxTurnstileWidgets.get(container);
+    try {
+      if (widgetId !== undefined && widgetId !== null && window.turnstile) {
+        return window.turnstile.getResponse(widgetId) || container.dataset.fxToken || '';
+      }
+    } catch (_) {}
+    return container.dataset.fxToken || '';
+  }
+
+  function fxResetTurnstile(form) {
+    const container = form?.querySelector('.fx-turnstile');
+    if (!container) return;
+    container.dataset.fxToken = '';
+    const widgetId = fxTurnstileWidgets.get(container);
+    try {
+      if (widgetId !== undefined && widgetId !== null && window.turnstile) {
+        window.turnstile.reset(widgetId);
+      }
+    } catch (_) {}
+  }
+
+  function fxInitializeTurnstileSecurity() {
+    let attempts = 0;
+    const tryRender = () => {
+      attempts += 1;
+      if (fxRenderTurnstileWidgets()) return;
+      if (attempts < 20) window.setTimeout(tryRender, 250);
+    };
+    tryRender();
+  }
+
+  async function fxTrimiteCerereSecurizata(form, payload) {
+    const client = window.fxSupabaseClient;
+    if (!client) throw new Error('Serviciul de înscriere nu este disponibil.');
+
+    const turnstileToken = fxGetTurnstileToken(form);
+    if (!turnstileToken) {
+      throw new Error('Finalizează verificarea de securitate înainte de trimitere.');
+    }
+
+    const website = String(form?.querySelector('input[name="website"]')?.value || '').trim();
+
+    const { data, error } = await client.functions.invoke('submit-enrollment', {
+      body: {
+        ...payload,
+        website,
+        turnstileToken
+      }
+    });
+
+    if (error) {
+      const message = data?.message || error?.message || 'Cererea nu a putut fi trimisă.';
+      throw new Error(message);
+    }
+    if (!data?.success) {
+      throw new Error(data?.message || 'Cererea nu a putut fi trimisă.');
+    }
+    return true;
+  }
+
+  async function fxSalveazaInscriereInSupabase(form, formData) {
     const materie = formData.get('Materie') || '';
     const subject = fxCheieMateriePentruSupabase(materie);
     if (!subject) throw new Error('Materia nu a putut fi identificată pentru portalul profesorilor.');
@@ -10141,21 +10347,16 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     const className = String(formData.get('Clasa') || '').trim();
     const level = currentLevel || className || null;
 
-    const { error } = await client
-      .from('enrollments')
-      .insert({
-        full_name: fullName,
-        email,
-        phone,
-        subject,
-        level,
-        student_message: String(formData.get('Mesaj') || '').trim() || null,
-        desired_grade: String(formData.get('Nota dorită') || '').trim() || null,
-        request_type: 'inscriere'
-      });
-
-    if (error) throw error;
-    return true;
+    return fxTrimiteCerereSecurizata(form, {
+      full_name: fullName,
+      email,
+      phone,
+      subject,
+      level,
+      student_message: String(formData.get('Mesaj') || '').trim() || null,
+      desired_grade: String(formData.get('Nota dorită') || '').trim() || null,
+      request_type: 'inscriere'
+    });
   }
 
   async function gestioneazaTrimitereFormular(event) {
@@ -10203,29 +10404,32 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
 
     // 1. Salvăm cererea în baza de date pentru portalul mentorului.
     try {
-      await fxSalveazaInscriereInSupabase(formData);
+      await fxSalveazaInscriereInSupabase(form, formData);
       salvatInSupabase = true;
     } catch (error) {
       eroareSupabase = error;
       console.error('Eroare la salvarea înscrierii în Supabase:', error);
     }
 
-    // 2. Păstrăm și notificarea EmailJS existentă.
-    try {
-      if (emailjsConfigurat() && initializeazaEmailJSDacaEsteDisponibil()) {
-        await window.emailjs.send(
-          EMAILJS_CONFIG.serviceId,
-          EMAILJS_CONFIG.adminTemplateId,
-          adminParams
-        );
-        emailTrimis = true;
+    // 2. Trimitem notificarea EmailJS numai DUPĂ ce Edge Function a validat Turnstile
+    // și a salvat cererea. Astfel, formularul public nu poate ocoli protecția.
+    if (salvatInSupabase) {
+      try {
+        if (emailjsConfigurat() && initializeazaEmailJSDacaEsteDisponibil()) {
+          await window.emailjs.send(
+            EMAILJS_CONFIG.serviceId,
+            EMAILJS_CONFIG.adminTemplateId,
+            adminParams
+          );
+          emailTrimis = true;
+        }
+      } catch (error) {
+        eroareEmail = error;
+        console.error('Eroare la trimiterea formularului prin EmailJS:', error);
       }
-    } catch (error) {
-      eroareEmail = error;
-      console.error('Eroare la trimiterea formularului prin EmailJS:', error);
     }
 
-    if (salvatInSupabase || emailTrimis) {
+    if (salvatInSupabase) {
       form.reset();
 
       if (salvatInSupabase && emailTrimis) {
@@ -10240,21 +10444,18 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
           'Cererea a fost înregistrată cu succes. Echipa Formula X te va contacta cât mai curând. 💛',
           'success'
         );
-      } else {
-        seteazaStatusFormular(
-          form,
-          'Cererea a fost trimisă echipei Formula X. 💛',
-          'success'
-        );
       }
     } else {
       console.error('Înscriere nereușită.', { eroareSupabase, eroareEmail });
       seteazaStatusFormular(
         form,
-        'A apărut o eroare la trimitere. Reîncarcă pagina și încearcă din nou.',
+        eroareSupabase?.message || 'A apărut o eroare la trimitere. Reîncarcă pagina și încearcă din nou.',
         'error'
       );
     }
+
+    // Tokenurile Turnstile sunt single-use; resetăm widgetul după fiecare încercare.
+    fxResetTurnstile(form);
 
     if (button) {
       button.disabled = false;
@@ -10439,6 +10640,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     document.querySelectorAll('.enrollment-form[data-emailjs-form="true"]').forEach((form) => {
       form.addEventListener('submit', gestioneazaTrimitereFormular);
     });
+    fxInitializeTurnstileSecurity();
   }
 
 
@@ -10462,11 +10664,6 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     event.preventDefault();
     const form = event.currentTarget;
     const submit = document.getElementById('free-mentor-submit');
-
-    if (!emailjsConfigurat() || !initializeazaEmailJSDacaEsteDisponibil()) {
-      seteazaStatusSedintaGratuita('Serviciul de trimitere nu este disponibil momentan. Încearcă din nou în câteva minute.', 'error');
-      return;
-    }
 
     const name = document.getElementById('free-session-name')?.value.trim() || '';
     const email = document.getElementById('free-session-email')?.value.trim() || '';
@@ -10508,7 +10705,29 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     };
 
     try {
-      await window.emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.adminTemplateId, adminParams);
+      const subjectKey = fxCheieMateriePentruSupabase(materie);
+      if (!subjectKey) throw new Error('Materia selectată nu este validă.');
+
+      await fxTrimiteCerereSecurizata(form, {
+        full_name: name,
+        email: email.toLowerCase(),
+        phone,
+        subject: subjectKey,
+        level: cls || null,
+        student_message: `Zi preferată: ${zi}${topic ? ` • ${topic}` : ''}`,
+        desired_grade: null,
+        request_type: 'sedinta_gratuita'
+      });
+
+      // Notificarea pe email se încearcă doar DUPĂ validarea Turnstile și salvarea în Supabase.
+      // Dacă serviciul de email este indisponibil, cererea rămâne salvată în portal.
+      if (emailjsConfigurat() && initializeazaEmailJSDacaEsteDisponibil()) {
+        try {
+          await window.emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.adminTemplateId, adminParams);
+        } catch (emailError) {
+          console.warn('Formula X — notificarea email pentru ședința gratuită nu a fost trimisă:', emailError);
+        }
+      }
       form.reset();
       const dateInput = document.getElementById('free-session-date');
       if (dateInput) seteazaDataMinimaSedintaGratuita(dateInput);
@@ -10518,6 +10737,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
       console.error('Formula X — ședință gratuită:', error);
       seteazaStatusSedintaGratuita('Nu am putut trimite solicitarea. Încearcă din nou sau contactează-ne prin WhatsApp.', 'error');
     } finally {
+      fxResetTurnstile(form);
       if (submit) { submit.disabled = false; submit.textContent = 'SOLICITĂ ȘEDINȚA GRATUITĂ →'; }
     }
   }
@@ -38702,21 +38922,9 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
   // Client comun folosit și de formularele de înscriere Formula X.
   window.fxSupabaseClient = db;
 
-  // V22: analytics intern, agregabil, fără identificator de utilizator în tabel.
-  // Se salvează exclusiv cheia paginii din lista fixă de mai jos și momentul accesării.
-  const FX_ANALYTICS_ALLOWED = new Set(['acasa','romana','mate','bio','fizica','chimie','geo','logica','teste','camera-studiu','cont']);
-  let fxLastPageView = { key: null, at: 0 };
-  window.fxRecordPageView = async function(pageKey) {
-    const key = String(pageKey || '').trim();
-    if (!FX_ANALYTICS_ALLOWED.has(key)) return;
-    const now = Date.now();
-    if (fxLastPageView.key === key && now - fxLastPageView.at < 1000) return;
-    fxLastPageView = { key, at: now };
-    try {
-      const { error } = await db.from('page_views').insert({ page_key: key });
-      if (error && !String(error.message || '').toLowerCase().includes('page_views')) console.debug('Formula X analytics:', error.message);
-    } catch (_) {}
-  };
+  // V30 SECURITY: scrierea anonimă directă în page_views a fost dezactivată în Supabase.
+  // Nu mai trimitem requesturi REST publice către tabelul page_views.
+  window.fxRecordPageView = function(_pageKey) { return; };
   window.setTimeout(() => {
     const active = document.querySelector('.page-view.active');
     const key = active && active.id ? active.id.replace(/^view-/, '') : 'acasa';
