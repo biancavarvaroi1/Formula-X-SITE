@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src &#x27;self&#x27;; script-src &#x27;self&#x27;; script-src-attr &#x27;none&#x27;; style-src &#x27;self&#x27; &#x27;unsafe-inline&#x27;; connect-src &#x27;self&#x27; https://vooflhvdoutjplfbnahl.supabase.co wss://vooflhvdoutjplfbnahl.supabase.co; img-src &#x27;self&#x27; data:; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; upgrade-insecure-requests">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="theme-color" content="#081229">
+  <title>Intră în grupa Formula X | V33</title>
+  <style>
+    *{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:#20202a;background:#f8f6fb}
+    body{min-height:100vh;display:grid;place-items:center;padding:22px;background:radial-gradient(circle at 10% 0%,rgba(199,155,44,.14),transparent 28%),radial-gradient(circle at 100% 100%,rgba(122,48,69,.12),transparent 30%),#f8f6fb}
+    .shell{width:min(560px,100%);background:#fff;border:1px solid #eadfe4;border-radius:26px;box-shadow:0 26px 80px rgba(35,22,28,.13);overflow:hidden}
+    .head{padding:28px 26px 22px;background:linear-gradient(135deg,#17131a,#34252c);color:#fff}
+    .brand{display:flex;align-items:center;gap:12px;margin-bottom:24px}.x{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,#c9a24a,#f0d481);font-weight:950;font-size:24px}.brand strong{font-size:18px}.brand small{display:block;color:#ddd4d9;margin-top:3px}
+    h1{font-size:30px;line-height:1.08;margin:0 0 10px}.lead{margin:0;color:#e6dde2;line-height:1.55}
+    .groupbox{margin-top:18px;padding:13px 14px;border:1px solid rgba(255,255,255,.18);border-radius:14px;background:rgba(255,255,255,.08)}.groupbox strong{display:block}.groupbox span{display:block;margin-top:4px;color:#e7dfe3;font-size:13px}
+    .body{padding:25px 26px 28px}.field{display:grid;gap:7px;margin-bottom:16px}.field label{font-weight:850;font-size:13px}.field input{width:100%;min-height:49px;padding:12px 13px;border:1px solid #ded4d9;border-radius:12px;font-size:16px;outline:none;background:#fff}.field input:focus{border-color:#a96a7d;box-shadow:0 0 0 3px rgba(122,48,69,.10)}
+    .hint{font-size:12px;color:#776a71;line-height:1.5;margin:2px 0 18px}.btn{width:100%;min-height:50px;border:0;border-radius:13px;background:linear-gradient(135deg,#7a3045,#a35a70);color:#fff;font-size:15px;font-weight:900;cursor:pointer}.btn:disabled{opacity:.65;cursor:wait}.status{min-height:22px;margin-top:13px;font-size:13px;font-weight:750;line-height:1.45}.status.error{color:#a83030}.status.success{color:#19763b}.status.info{color:#76500e}
+    .done{padding:26px;border:1px solid #dcecdf;background:#f5fbf6;border-radius:16px;text-align:center}.done b{display:block;font-size:21px;color:#17682f;margin-bottom:8px}.done p{margin:0;color:#4f6655;line-height:1.55}
+    .invalid{padding:26px;text-align:center}.invalid h2{margin:0 0 8px}.invalid p{margin:0;color:#75686e;line-height:1.55}.hidden{display:none!important}
+    .hp{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}
+    footer{margin-top:18px;text-align:center;color:#8d8187;font-size:11px}
+    @media(max-width:600px){body{padding:10px}.shell{border-radius:20px}.head{padding:24px 19px 20px}.body{padding:21px 19px 24px}h1{font-size:27px}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="head">
+      <div class="brand"><div class="x">X</div><div><strong>Formula X</strong><small>Înscriere rapidă în grupă</small></div></div>
+      <h1>Intră în grupa profesorului tău</h1>
+      <p class="lead">Completezi doar numele și numărul de telefon. Nu ai nevoie de cont.</p>
+      <div id="groupBox" class="groupbox hidden"><strong id="groupName"></strong><span id="groupMeta"></span></div>
+    </section>
+    <section class="body">
+      <div id="loading" class="status info">Verificăm linkul grupei…</div>
+      <div id="invalid" class="invalid hidden"><h2>Link indisponibil</h2><p>Linkul este incorect, a fost dezactivat sau profesorul a generat unul nou.</p></div>
+      <form id="joinForm" class="hidden" novalidate>
+        <div class="field"><label for="studentName">Nume și prenume</label><input id="studentName" name="studentName" autocomplete="name" maxlength="120" required placeholder="Ex: Andrei Popescu"></div>
+        <div class="field"><label for="studentPhone">Număr de telefon</label><input id="studentPhone" name="studentPhone" type="tel" inputmode="tel" autocomplete="tel" maxlength="40" required placeholder="Ex: 07xx xxx xxx"></div>
+        <div class="hp" aria-hidden="true"><label>Website<input id="website" tabindex="-1" autocomplete="off"></label></div>
+        <p class="hint">Datele sunt folosite doar pentru organizarea grupei și evidența participării la curs.</p>
+        <button id="joinBtn" class="btn" type="submit">INTRĂ ÎN GRUPĂ</button>
+        <div id="status" class="status" aria-live="polite"></div>
+      </form>
+      <div id="success" class="done hidden"><b>Ai fost adăugat(ă) în grupă ✓</b><p>Profesorul te va vedea în lista grupei și îți va putea marca prezența la ședințe.</p></div>
+      <footer>Formula X · Pregătire BAC 2027</footer>
+    </section>
+  </main>
+  <script src="../assets/vendor/supabase.js?v=33"></script>
+  <script src="../assets/formula-x-group-join-v33.js?v=33"></script>
+</body>
+</html>
