@@ -419,11 +419,26 @@ async function saveStudent(id){
   await logActivity(r.subject,'student_updated','enrollment',id,{name:payload.full_name,status:payload.status});closeModal();await loadAll();
 }
 async function toggleArchive(id){
-  const r=students.find(x=>x.id===id);if(!r)return;const archived=!r.archived_at;
+  const r=students.find(x=>x.id===id);if(!r)return;
+  const archived=!r.archived_at;
   if(archived&&!confirm(`Elimini elevul ${r.full_name} din lista ta? Contul Formula X, progresul, testele și accesul la site rămân neschimbate. Îl poți restaura oricând.`))return;
-  const {error}=await sb.from('enrollments').update({archived_at:archived?new Date().toISOString():null}).eq('id',id);
-  if(error){console.error(error);alert(archived?'Elevul nu a putut fi eliminat din listă.':'Elevul nu a putut fi restaurat.');return}
-  await logActivity(r.subject,archived?'student_archived':'student_restored','enrollment',id,{name:r.full_name});await loadAll();
+
+  const {error}=await sb.rpc('staff_set_enrollment_archived',{
+    p_enrollment_id:id,
+    p_archived:archived
+  });
+
+  if(error){
+    console.error('Formula X V35 - staff_set_enrollment_archived:',error);
+    const missingRpc=String(error.code||'')==='PGRST202'||String(error.message||'').toLowerCase().includes('staff_set_enrollment_archived');
+    alert(missingRpc
+      ? 'Funcția de ștergere sigură nu este activată încă în Supabase. Rulează fișierul SQL V35 din pachet și încearcă din nou.'
+      : (archived?'Elevul nu a putut fi eliminat din listă.':'Elevul nu a putut fi restaurat.'));
+    return;
+  }
+
+  await logActivity(r.subject,archived?'student_archived':'student_restored','enrollment',id,{name:r.full_name});
+  await loadAll();
 }
 function renderGroups(){
   const arr=relevantGroups();
@@ -598,7 +613,7 @@ $('prevMonth').addEventListener('click',()=>{calendarDate=new Date(calendarDate.
       showLogin('Contul nu are acces la portalul profesorilor.');
     }
   }catch(error){
-    console.error('Formula X V32 - bootstrap:',error);
+    console.error('Formula X V35 - bootstrap:',error);
     showLogin('Nu am putut verifica sesiunea. Reîncarcă pagina și încearcă din nou.');
   }
 })();
