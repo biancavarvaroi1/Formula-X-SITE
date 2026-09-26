@@ -1,0 +1,13 @@
+FORMULA X — V37 / Harap-Alb public
+
+Ce pui pe GitHub:
+1. Înlocuiește index.html din rădăcina site-ului cu index.html din acest pachet.
+2. Creează folderele lectii/romana/ și pune acolo harap-alb.html.
+3. Publică modificările.
+
+Rezultat:
+- pe pagina Biancăi apare promovarea lecției gratuite Harap-Alb;
+- Harap-Alb este public complet, fără login;
+- pagina include toate cele 3 eseuri + chestionar + Scrie și verifică;
+- pe pagina Biancăi apare și biblioteca lecțiilor: Harap-Alb deblocat, următoarele marcate pentru cursanți;
+- nu am introdus încă protecția Supabase pe lecțiile viitoare, pentru că acele pagini nu există încă. Când le creăm, le legăm de grupa Biancăi.
