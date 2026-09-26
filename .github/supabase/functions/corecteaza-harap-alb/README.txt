@@ -1,0 +1,1 @@
+Funcția corecteaza-harap-alb rămâne cea deja deployată în Supabase. Frontendul V39 o folosește numai ca strat suplimentar; dacă funcția nu răspunde, atinge quota sau dă eroare, corectorul clasic local continuă automat.
