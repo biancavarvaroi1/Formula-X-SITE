@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Progresii — lecție gratuită Formula X</title>
+<style>
+:root{--navy:#071b38;--navy2:#0b2a5b;--blue:#2563eb;--sky:#60a5fa;--soft:#eff6ff;--line:#dbeafe;--ink:#0f172a;--muted:#64748b;--good:#166534;--goodbg:#ecfdf3;--bad:#991b1b;--badbg:#fff1f2;--gold:#f59e0b;--white:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--ink);background:linear-gradient(180deg,#041126 0,#071b38 26%,#f5f9ff 26%,#f8fbff 100%)}
+a{color:inherit}.wrap{max-width:1180px;margin:auto;padding:20px 18px 70px}.topbar{display:flex;justify-content:space-between;align-items:center;color:white;padding:4px 2px 22px}.brand{font-weight:900;font-size:22px;letter-spacing:.2px}.back{font-size:13px;font-weight:800;text-decoration:none;border:1px solid rgba(255,255,255,.2);padding:9px 13px;border-radius:999px;background:rgba(255,255,255,.08)}
+.hero{position:relative;overflow:hidden;border-radius:30px;padding:48px;background:linear-gradient(135deg,#0b2a5b,#123e7a 58%,#0b2a5b);color:white;box-shadow:0 24px 60px rgba(2,10,25,.3)}.hero:before{content:"aₙ   r   q   bₙ   ∑   n−1";position:absolute;right:-40px;top:28px;font-size:42px;letter-spacing:22px;color:rgba(255,255,255,.06);font-weight:900;transform:rotate(-4deg)}.eyebrow{display:inline-flex;padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.08);font-size:12px;font-weight:900;letter-spacing:1.4px;text-transform:uppercase}.hero h1{font-size:48px;line-height:1.05;margin:15px 0 12px;max-width:760px}.hero h1 span{color:#93c5fd}.hero p{max-width:780px;color:#dbeafe;line-height:1.7;font-size:17px;margin:0}.journey{display:flex;gap:9px;flex-wrap:wrap;margin-top:24px}.journey span{padding:8px 12px;border-radius:10px;background:rgba(255,255,255,.1);font-size:13px;font-weight:800}.journey i{font-style:normal;color:#93c5fd;padding:7px 0}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:20px 0}.tabs button{border:1px solid var(--line);background:white;border-radius:16px;padding:14px 12px;font-weight:900;color:#334155;cursor:pointer;box-shadow:0 8px 20px rgba(15,23,42,.05)}.tabs button.active{background:var(--navy2);color:white;border-color:var(--navy2)}
+.panel{display:none}.panel.active{display:block}.card{background:white;border:1px solid var(--line);border-radius:26px;padding:28px;box-shadow:0 16px 38px rgba(15,23,42,.08);margin-bottom:18px}.section-head{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px}.num{width:46px;height:46px;flex:none;border-radius:14px;background:var(--navy2);color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:20px}.section-head h2{margin:1px 0 4px;font-size:28px;color:var(--navy)}.section-head p{margin:0;color:var(--muted);line-height:1.55}
+.learn-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.theory{border:1px solid var(--line);border-radius:20px;padding:20px;background:linear-gradient(180deg,#fff,#f8fbff)}.theory .type{font-size:11px;text-transform:uppercase;letter-spacing:1.2px;font-weight:900;color:var(--blue)}.theory h3{font-size:20px;margin:7px 0 10px;color:var(--navy)}.theory p{line-height:1.62;color:#334155}.formula{font-family:"Cambria Math",Cambria,"Times New Roman",serif;font-size:25px;font-weight:700;text-align:center;background:#eff6ff;border:1px solid #bfdbfe;border-radius:14px;padding:15px;margin:13px 0;color:#0b2a5b}.micro{border-left:4px solid var(--sky);background:#f8fbff;border-radius:0 12px 12px 0;padding:10px 13px;font-size:13px;line-height:1.5;color:#475569}.compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}.compare>div{padding:14px;border-radius:16px;border:1px solid var(--line);background:#f8fbff}.compare b{display:block;color:var(--navy);margin-bottom:5px}
+.solve-card{border:1px solid var(--line);border-radius:20px;overflow:hidden;margin-bottom:14px;background:white}.solve-head{padding:18px 20px;background:#f8fbff;border-bottom:1px solid var(--line)}.solve-head small{font-weight:900;color:var(--blue);text-transform:uppercase;letter-spacing:1px}.solve-head h3{margin:5px 0 0;color:var(--navy);font-size:19px}.solve-body{padding:18px 20px}.step{display:none;border-left:3px solid #93c5fd;padding:10px 13px;margin:10px 0;background:#f8fbff;border-radius:0 12px 12px 0;line-height:1.55}.step.visible{display:block}.step b{color:var(--navy)}.solve-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}.btn{border:0;border-radius:11px;padding:10px 14px;font-weight:900;cursor:pointer}.primary{background:var(--blue);color:white}.secondary{background:#eaf2ff;color:#1e3a8a}.ghost{background:#f8fafc;color:#475569;border:1px solid #e2e8f0}
+.practice-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.practice{border:1px solid var(--line);border-radius:20px;padding:20px;background:white}.practice h3{font-size:19px;margin:0 0 9px;color:var(--navy)}.practice p{color:#475569;line-height:1.6}.answer-row{display:flex;gap:8px;margin-top:13px}.answer-row input{min-width:0;flex:1;border:1px solid #cbd5e1;border-radius:11px;padding:11px 12px;font:inherit}.answer-row input:focus{outline:3px solid rgba(37,99,235,.12);border-color:#60a5fa}.hint,.solution,.result{display:none;margin-top:12px;padding:12px;border-radius:12px;line-height:1.5;font-size:14px}.hint.show,.solution.show,.result.show{display:block}.hint{background:#fffbeb;border:1px solid #fde68a;color:#854d0e}.solution{background:#eff6ff;border:1px solid #bfdbfe;color:#1e3a8a}.result.good{background:var(--goodbg);border:1px solid #bbf7d0;color:var(--good)}.result.bad{background:var(--badbg);border:1px solid #fecdd3;color:var(--bad)}
+.error-box{margin-top:18px;border:1px dashed #fca5a5;border-radius:20px;padding:20px;background:#fffafa}.wrong-work{font-family:"Cambria Math",Cambria,serif;font-size:24px;text-align:center;padding:14px;background:white;border-radius:13px;border:1px solid #fee2e2;margin:12px 0}.error-options{display:grid;gap:8px}.error-options button{text-align:left;border:1px solid #e2e8f0;border-radius:12px;background:white;padding:11px 13px;cursor:pointer}.error-options button.correct{border-color:#86efac;background:#f0fdf4}.error-options button.wrong{border-color:#fca5a5;background:#fff1f2}.error-feedback{min-height:24px;margin-top:10px;font-size:14px;font-weight:800}
+.quiz-meta{display:flex;justify-content:space-between;gap:12px;align-items:center}.progress{height:8px;background:#e2e8f0;border-radius:99px;overflow:hidden;flex:1}.progress span{display:block;height:100%;background:var(--blue);width:0}.question{font-size:23px;font-weight:900;color:var(--navy);margin:20px 0 13px}.options{display:grid;gap:9px}.options button{border:1px solid #dbeafe;background:white;border-radius:13px;padding:13px 14px;text-align:left;cursor:pointer;font-weight:700}.options button.correct{background:#f0fdf4;border-color:#86efac}.options button.wrong{background:#fff1f2;border-color:#fca5a5}.quiz-feedback{display:none;margin-top:13px;padding:13px;border-radius:12px;background:#f8fbff;color:#475569;line-height:1.55}.quiz-feedback.show{display:block}
+.cta{margin-top:22px;background:linear-gradient(135deg,#071b38,#0b2a5b);color:white;border-radius:24px;padding:28px}.cta h2{margin:0 0 8px;font-size:28px}.cta p{color:#dbeafe;line-height:1.6;max-width:780px}.cta a{display:inline-block;margin-top:10px;background:white;color:#0b2a5b;text-decoration:none;font-weight:900;padding:12px 16px;border-radius:12px}.fine{margin-top:16px;color:#64748b;font-size:12px;line-height:1.55}
+@media(max-width:820px){body{background:linear-gradient(180deg,#041126 0,#071b38 18%,#f5f9ff 18%,#f8fbff 100%)}.wrap{padding:14px 12px 50px}.hero{padding:30px 22px;border-radius:22px}.hero h1{font-size:37px}.hero p{font-size:15px}.tabs{grid-template-columns:1fr 1fr}.learn-grid,.practice-grid,.compare{grid-template-columns:1fr}.card{padding:20px;border-radius:20px}.section-head h2{font-size:24px}.formula{font-size:21px}.topbar{padding-bottom:14px}.answer-row{flex-direction:column}.answer-row .btn{width:100%}}
+@media(max-width:480px){.hero h1{font-size:32px}.tabs{grid-template-columns:1fr}.journey{gap:6px}.journey i{display:none}.question{font-size:20px}.formula{font-size:19px;padding:12px}.solve-actions .btn{width:100%}.section-head{gap:10px}.num{width:40px;height:40px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar"><div class="brand">Formula X · Matematică</div><a class="back" href="../../index.html#mate">← Înapoi la Marius</a></div>
+  <section class="hero">
+    <span class="eyebrow">Lecție gratuită · Marius Benga</span>
+    <h1>Progresii — <span>înțelege, apoi rezolvă</span></h1>
+    <p>Nu memorăm mecanic formule. Învățăm să observăm tiparul, să alegem formula potrivită și să verificăm dacă rezultatul are sens.</p>
+    <div class="journey"><span>Observ</span><i>→</i><span>Aleg formula</span><i>→</i><span>Calculez</span><i>→</i><span>Verific</span></div>
+  </section>
+
+  <nav class="tabs">
+    <button class="active" data-panel="learn">Învață</button>
+    <button data-panel="solve">Rezolvăm împreună</button>
+    <button data-panel="practice">Încearcă singur</button>
+    <button data-panel="quiz">Quiz rapid</button>
+  </nav>
+
+  <section class="panel active" id="learn">
+    <div class="card">
+      <div class="section-head"><div class="num">1</div><div><h2>Două reguli, două progresii</h2><p>Prima întrebare este mereu aceeași: între termeni <b>adunăm</b> aceeași valoare sau <b>înmulțim</b> cu aceeași valoare?</p></div></div>
+      <div class="learn-grid">
+        <article class="theory"><span class="type">Progresie aritmetică</span><h3>Adunăm aceeași valoare</h3><p>Exemplu: <b>4, 7, 10, 13, ...</b>. De fiecare dată adunăm 3. Acest număr este rația <b>r</b>.</p><div class="formula">r = a₂ − a₁ = 7 − 4 = 3</div><div class="micro"><b>De reținut:</b> scădem termenul anterior din termenul următor. Rația poate fi și negativă.</div></article>
+        <article class="theory"><span class="type">Termen general</span><h3>Cum ajungem direct la aₙ?</h3><div class="formula">aₙ = a₁ + (n − 1)r</div><p><b>a₁</b> este punctul de plecare, <b>r</b> este pasul, iar <b>n−1</b> spune câte treceri facem de la primul termen.</p><div class="micro"><b>De ce n−1?</b> De la primul la al treilea termen facem două treceri, nu trei.</div></article>
+        <article class="theory"><span class="type">3 termeni consecutivi</span><h3>Termenul din mijloc</h3><div class="formula">2B = A + C</div><p>Pentru trei termeni consecutivi ai unei progresii aritmetice, termenul din mijloc este media aritmetică a vecinilor.</p><div class="formula">B = (A + C) / 2</div></article>
+        <article class="theory"><span class="type">Suma</span><h3>Adunăm primii n termeni</h3><div class="formula">Sₙ = ((a₁ + aₙ)n) / 2</div><p>Adunăm primul termen cu ultimul, înmulțim cu numărul termenilor și împărțim la 2.</p></article>
+        <article class="theory"><span class="type">Progresie geometrică</span><h3>Înmulțim cu aceeași valoare</h3><p>Exemplu: <b>4, 8, 16, 32, ...</b>. De fiecare dată înmulțim cu 2.</p><div class="formula">q = b₂ / b₁ = 8 / 4 = 2</div><div class="micro"><b>Atenție:</b> împărțim termenul următor la cel anterior, dacă termenul anterior este nenul.</div></article>
+        <article class="theory"><span class="type">Termen general</span><h3>Cum ajungem direct la bₙ?</h3><div class="formula">bₙ = b₁ · qⁿ⁻¹</div><p>Pornim de la <b>b₁</b> și înmulțim de <b>n−1</b> ori cu rația <b>q</b>.</p></article>
+        <article class="theory"><span class="type">3 termeni consecutivi</span><h3>Relația geometrică</h3><div class="formula">B² = A · C</div><p>Aceasta este relația pe care o folosim atunci când trei expresii sunt termeni consecutivi ai unei progresii geometrice.</p><div class="micro"><b>Important:</b> păstrăm relația B² = AC; nu presupunem automat că B = √(AC), fiindcă B poate fi negativ.</div></article>
+        <article class="theory"><span class="type">Suma</span><h3>Adunăm primii n termeni</h3><div class="formula">Sₙ = b₁ · (qⁿ − 1)/(q − 1), &nbsp; q ≠ 1</div><p>Dacă <b>q = 1</b>, toți termenii sunt egali.</p><div class="formula">Sₙ = n · b₁</div></article>
+      </div>
+      <div class="compare"><div><b>Aritmetică</b>Te întrebi: „cu cât se schimbă?” → folosești diferențe și rația r.</div><div><b>Geometrică</b>Te întrebi: „de câte ori se schimbă?” → folosești rapoarte și rația q.</div></div>
+    </div>
+  </section>
+
+  <section class="panel" id="solve">
+    <div class="card">
+      <div class="section-head"><div class="num">2</div><div><h2>Rezolvăm împreună</h2><p>Apasă „Arată următorul pas”. Ideea este să încerci să anticipezi pasul înainte să-l vezi.</p></div></div>
+      <div id="solvedList"></div>
+    </div>
+  </section>
+
+  <section class="panel" id="practice">
+    <div class="card">
+      <div class="section-head"><div class="num">3</div><div><h2>Încearcă singur</h2><p>Ai indiciu, verificare imediată și rezolvarea completă. Încearcă întâi fără ajutor.</p></div></div>
+      <div class="practice-grid">
+        <article class="practice" data-answer="3"><h3>Exercițiul 1</h3><p><b>2, 4, x + 5</b> sunt termeni consecutivi ai unei progresii geometrice. Află x.</p><div class="answer-row"><input inputmode="decimal" placeholder="x = ?"><button class="btn primary check-answer">Verifică</button></div><div class="solve-actions"><button class="btn secondary show-hint">Vreau un indiciu</button><button class="btn ghost show-solution">Vezi rezolvarea</button></div><div class="hint">Folosește relația <b>B² = A·C</b>.</div><div class="solution">4² = 2(x+5) → 16 = 2x + 10 → 6 = 2x → <b>x = 3</b>.</div><div class="result"></div></article>
+        <article class="practice" data-answer="10"><h3>Exercițiul 2</h3><p><b>a₁ = 1</b> și <b>a₂ = 4</b>. Află <b>a₄</b>.</p><div class="answer-row"><input inputmode="decimal" placeholder="a₄ = ?"><button class="btn primary check-answer">Verifică</button></div><div class="solve-actions"><button class="btn secondary show-hint">Vreau un indiciu</button><button class="btn ghost show-solution">Vezi rezolvarea</button></div><div class="hint">Află mai întâi rația, apoi folosește termenul general.</div><div class="solution">r = 4−1 = 3. Apoi a₄ = 1 + (4−1)·3 = 1+9 = <b>10</b>.</div><div class="result"></div></article>
+      </div>
+
+      <div class="error-box"><div class="type" style="color:#b91c1c;font-weight:900;text-transform:uppercase;letter-spacing:1px;font-size:11px">Găsește greșeala</div><h3>Un elev a scris:</h3><div class="wrong-work">a₃ = a₁ + 3r</div><p>Știm că formula termenului general este aₙ = a₁ + (n−1)r. Unde este greșeala?</p><div class="error-options" id="errorOptions"><button data-correct="false">A uitat să împartă la 2.</button><button data-correct="true">De la a₁ la a₃ sunt două treceri, deci trebuie a₃ = a₁ + 2r.</button><button data-correct="false">Trebuia să folosească o progresie geometrică.</button></div><div class="error-feedback" id="errorFeedback"></div></div>
+    </div>
+  </section>
+
+  <section class="panel" id="quiz">
+    <div class="card"><div class="section-head"><div class="num">4</div><div><h2>Quiz rapid</h2><p>Întrebări scurte care verifică dacă ai înțeles ideea, nu dacă ai memorat un tabel.</p></div></div>
+      <div class="quiz-meta"><strong id="quizCount">Întrebarea 1 / 6</strong><div class="progress"><span id="quizBar"></span></div></div><div class="question" id="quizQuestion"></div><div class="options" id="quizOptions"></div><div class="quiz-feedback" id="quizFeedback"></div><div class="solve-actions"><button class="btn ghost" id="quizRestart">Reia quiz-ul</button></div>
+    </div>
+  </section>
+
+  <section class="cta"><h2>Ți-a fost mai ușor când ai înțeles de ce?</h2><p>Acesta este tipul de lucru urmărit la pregătirea cu Marius: formule explicate logic, exerciții construite pas cu pas, teme și feedback. Lecțiile următoare vor păstra aceeași idee: <b>înțelege → încearcă → greșește → corectează → reușește</b>.</p><a href="../../index.html#mate">Vezi programul lui Marius →</a></section>
+  <p class="fine">Material demonstrativ Formula X · Matematică · Progresii aritmetice și geometrice.</p>
+</div>
+<script>
+const tabs=[...document.querySelectorAll('.tabs button')];
+tabs.forEach(btn=>btn.addEventListener('click',()=>{tabs.forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.panel).classList.add('active');window.scrollTo({top:document.querySelector('.tabs').offsetTop-10,behavior:'smooth'});}));
+
+const solved=[
+ {title:'Exercițiul 1 — determinăm necunoscuta',statement:'x + 2, 7, 2x sunt în progresie aritmetică. Determină x.',steps:['<b>Pasul 1. Recunoaștem situația.</b> Avem trei termeni consecutivi, deci folosim 2B = A + C.','<b>Pasul 2. Înlocuim.</b> 2·7 = (x+2)+2x.','<b>Pasul 3. Rezolvăm.</b> 14 = 3x+2 → 12 = 3x → <b>x = 4</b>.','<b>Verificăm.</b> Obținem 6, 7, 8. Diferențele sunt 1 și 1.']},
+ {title:'Exercițiul 2 — calculăm al treilea termen',statement:'a₁ = 4 și a₂ = 7. Determină a₃.',steps:['<b>Pasul 1. Aflăm rația.</b> r = 7−4 = 3.','<b>Pasul 2. Aplicăm formula.</b> a₃ = a₁ + (3−1)r = 4+2·3 = <b>10</b>.','<b>Observație.</b> Putem și direct: a₃ = a₂+r = 7+3 = 10.']},
+ {title:'Exercițiul 3 — mergem înapoi',statement:'a₃ = 10 și r = 3. Determină a₁.',steps:['<b>Pasul 1.</b> a₃ = a₁ + 2r.','<b>Pasul 2.</b> 10 = a₁+6 → <b>a₁ = 4</b>.','<b>Ideea.</b> De la primul la al treilea termen am făcut două treceri.']},
+ {title:'Exercițiul 4 — termen geometric',statement:'b₁ = 4 și q = 2. Determină b₂.',steps:['<b>Aplicăm termenul general.</b> b₂ = b₁·q²⁻¹ = 4·2 = <b>8</b>.','<b>Ideea.</b> De la primul la al doilea termen înmulțim o singură dată cu q.']},
+ {title:'Exercițiul 5 — aflăm rația',statement:'b₂ = 1 și b₅ = 8. Determină rația reală q.',steps:['<b>Pasul 1.</b> Între pozițiile 2 și 5 sunt trei treceri, deci b₅ = b₂·q³.','<b>Pasul 2.</b> 8 = 1·q³ → q³ = 8 → <b>q = 2</b>.','<b>Verificăm.</b> 1, 2, 4, 8.']}
+];
+const list=document.getElementById('solvedList');
+solved.forEach((ex,idx)=>{const el=document.createElement('article');el.className='solve-card';el.innerHTML=`<div class="solve-head"><small>Exemplu ${idx+1}</small><h3>${ex.title}</h3></div><div class="solve-body"><p>${ex.statement}</p><div class="steps">${ex.steps.map((s,i)=>`<div class="step" data-step="${i}">${s}</div>`).join('')}</div><div class="solve-actions"><button class="btn primary next-step">Arată următorul pas</button><button class="btn ghost reset-steps">Resetează</button></div></div>`;list.appendChild(el);let shown=0;const steps=[...el.querySelectorAll('.step')];const next=el.querySelector('.next-step');next.onclick=()=>{if(shown<steps.length){steps[shown].classList.add('visible');shown++;} if(shown===steps.length)next.textContent='Ai văzut toți pașii';};el.querySelector('.reset-steps').onclick=()=>{steps.forEach(s=>s.classList.remove('visible'));shown=0;next.textContent='Arată următorul pas';};});
+
+document.querySelectorAll('.practice').forEach(card=>{card.querySelector('.show-hint').onclick=()=>card.querySelector('.hint').classList.toggle('show');card.querySelector('.show-solution').onclick=()=>card.querySelector('.solution').classList.toggle('show');card.querySelector('.check-answer').onclick=()=>{const raw=card.querySelector('input').value.trim().replace(',','.');const result=card.querySelector('.result');result.className='result show';if(raw!=='' && Math.abs(Number(raw)-Number(card.dataset.answer))<1e-9){result.classList.add('good');result.textContent='Corect. Ai identificat metoda potrivită.';}else{result.classList.add('bad');result.textContent='Nu încă. Verifică relația folosită și încearcă din nou.';}};});
+
+document.querySelectorAll('#errorOptions button').forEach(btn=>btn.onclick=()=>{document.querySelectorAll('#errorOptions button').forEach(x=>x.classList.remove('correct','wrong'));const ok=btn.dataset.correct==='true';btn.classList.add(ok?'correct':'wrong');document.getElementById('errorFeedback').textContent=ok?'Corect. Pentru n = 3 avem n−1 = 2 treceri.':'Mai gândește-te la numărul de treceri dintre a₁ și a₃.';});
+
+const quiz=[
+ ['În progresia 4, 7, 10, 13, ... care este rația r?',['3','4','7','−3'],0,'Scădem termenul anterior din următorul: 7−4 = 3.'],
+ ['De ce apare n−1 în formula aₙ = a₁ + (n−1)r?',['Pentru că sunt n−1 treceri de la primul termen la al n-lea','Pentru că rația este mereu n−1','Pentru a împărți suma','Doar prin convenție'],0,'De la poziția 1 la poziția n facem n−1 pași.'],
+ ['Pentru trei termeni consecutivi A, B, C ai unei progresii aritmetice avem:',['2B=A+C','B²=AC','B=A+C','A²=BC'],0,'Termenul din mijloc este media aritmetică a vecinilor.'],
+ ['Pentru trei termeni consecutivi A, B, C ai unei progresii geometrice avem:',['B²=AC','2B=A+C','B=A·C','B²=A+C'],0,'Relația caracteristică este B² = AC.'],
+ ['Dacă b₁=4 și q=2, atunci b₃ este:',['16','8','12','32'],0,'b₃ = 4·2² = 16.'],
+ ['Dacă q=1, suma primilor n termeni geometrici este:',['n·b₁','b₁(qⁿ−1)/(q−1)','b₁+n','b₁ⁿ'],0,'Toți termenii sunt egali cu b₁, deci suma este n·b₁.']
+];
+let qi=0,score=0,locked=false;function renderQuiz(){locked=false;const q=quiz[qi];document.getElementById('quizCount').textContent=`Întrebarea ${qi+1} / ${quiz.length}`;document.getElementById('quizBar').style.width=`${(qi/quiz.length)*100}%`;document.getElementById('quizQuestion').textContent=q[0];const box=document.getElementById('quizOptions');box.innerHTML='';document.getElementById('quizFeedback').classList.remove('show');q[1].forEach((o,i)=>{const b=document.createElement('button');b.textContent=o;b.onclick=()=>answer(i);box.appendChild(b);});}function answer(i){if(locked)return;locked=true;const q=quiz[qi];[...document.querySelectorAll('#quizOptions button')].forEach((b,j)=>{if(j===q[2])b.classList.add('correct');if(j===i&&i!==q[2])b.classList.add('wrong');});if(i===q[2])score++;const f=document.getElementById('quizFeedback');f.classList.add('show');f.innerHTML=`${q[3]}<div class="solve-actions"><button class="btn primary" id="quizNext">${qi===quiz.length-1?'Vezi rezultatul':'Următoarea'}</button></div>`;document.getElementById('quizNext').onclick=()=>{if(qi<quiz.length-1){qi++;renderQuiz();}else{document.getElementById('quizBar').style.width='100%';document.getElementById('quizQuestion').textContent=`Rezultat: ${score}/${quiz.length}`;document.getElementById('quizOptions').innerHTML='';f.innerHTML=score>=5?'Foarte bine. Ai înțeles diferența dintre progresia aritmetică și cea geometrică.':'Mai treci o dată prin secțiunea „Învață”, apoi reia quiz-ul.';}};}document.getElementById('quizRestart').onclick=()=>{qi=0;score=0;renderQuiz();};renderQuiz();
+</script>
+</body>
+</html>
