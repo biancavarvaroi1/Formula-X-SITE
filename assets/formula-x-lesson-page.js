@@ -316,7 +316,18 @@
       return;
     }
     const tab=event.target.closest('[data-fxl-essay]');
-    if(tab && bundle){event.preventDefault();history.pushState(null,'',`?eseu=${tab.dataset.fxlEssay}`);render(displayedAccess||{state:'active'});verify();window.scrollTo({top:0,behavior:'smooth'});return;}
+    if(tab && bundle){
+      event.preventDefault();
+      history.pushState(null,'',`?eseu=${tab.dataset.fxlEssay}`);
+      if(tab.dataset.fxlEssay==='caracterizare' && version==='public-harap-particularitati'){
+        clearMaterial();
+        verify();
+      }else{
+        render(displayedAccess||{state:'active'});
+        verify();
+      }
+      window.scrollTo({top:0,behavior:'smooth'});return;
+    }
     const picture=event.target.closest('[data-fxl-image]');
     if(picture && bundle){const dialog=document.getElementById('fxl-zoom');const img=dialog.querySelector('img');img.src=assetUrls[picture.dataset.fxlImage] || meta.cover;img.alt=picture.querySelector('img').alt;dialog.showModal();}
   });
