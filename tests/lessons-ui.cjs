@@ -7,12 +7,12 @@ let checks=0;
   const node={innerHTML:'',replaceChildren(){this.innerHTML='';}};
   const callbacks={};
   const dialog={close(){},querySelector(){return {removeAttribute(){}};},addEventListener(){}};
-  const doc={body:{dataset:{lesson:'harap-alb'}},getElementById(id){if(id==='fxl-content')return node;if(id==='fxl-zoom')return dialog;if(id==='fxl-zoom-close')return {addEventListener(){}};return null;},addEventListener(name,fn){callbacks[name]=fn;}};
+  const doc={body:{dataset:{lesson:'moara-cu-noroc'}},getElementById(id){if(id==='fxl-content')return node;if(id==='fxl-zoom')return dialog;if(id==='fxl-zoom-close')return {addEventListener(){}};return null;},addEventListener(name,fn){callbacks[name]=fn;}};
   let user={id:'self-user',email:'elev<script>@example.test',email_confirmed_at:'2026-10-14T00:00:00Z'};
   let enrolled=false,state='locked',decrypts=0,linkChecks=0;
   const calls=[];
   const auth={getSession:async()=>({data:{session:user?{user}:null}}),onAuthStateChange(fn){callbacks.auth=fn;},signOut:async()=>{user=null;callbacks.auth('SIGNED_OUT');return {error:null};}};
-  const fx={lessons:[{slug:'harap-alb',title:'Harap-Alb'}],esc:escape,sb:()=>({auth}),linkAccount:async()=>{linkChecks++;},date:()=>'',decode:()=>new Uint8Array(),decryptBundle:async()=>{decrypts++;throw Error('Protected bundle must not be fetched');},rpc:async(name,args)=>{
+  const fx={lessons:[{slug:'moara-cu-noroc',title:'Moara cu noroc'}],esc:escape,sb:()=>({auth}),linkAccount:async()=>{linkChecks++;},date:()=>'',decode:()=>new Uint8Array(),decryptBundle:async()=>{decrypts++;throw Error('Protected bundle must not be fetched');},rpc:async(name,args)=>{
     calls.push({name,args});
     if(name==='fx_student_is_enrolled')return enrolled;
     return state==='active'?{access:{state,allowed:true},format:'text',body:'Private lesson',title:'Harap-Alb',subject:'romana'}:{access:{state,allowed:false}};

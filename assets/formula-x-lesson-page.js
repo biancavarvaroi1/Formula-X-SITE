@@ -222,7 +222,7 @@
       ['particularitati','Eseul 1 · Particularități de construcție ale operei','Două trăsături · tema · două scene · elemente de construcție'],
       ['caracterizare',`Eseul 2 · Caracterizarea lui ${meta.character}`,'Statut · trăsătura dominantă · două scene · caracterizare'],
     ].map(([id,title,detail])=>`<a href="?eseu=${id}" data-fxl-essay="${id}" ${selected===id?'aria-current="page"':''}><strong>${e(title)}</strong><span>${e(detail)}</span></a>`).join('')}</nav>
-    <p id="fxl-expiry" class="fxl-expiry">${access.state==='teacher'?'Previzualizare profesor · accesul elevilor se gestionează din portal.':access.endsAt?`Ai acces până la ${e(FX.date(access.endsAt))}.`:'Acces acordat de profesor.'}</p>
+    <p id="fxl-expiry" class="fxl-expiry">${access.state==='public'?'Eseul 1 este disponibil gratuit, fără cont.':access.state==='teacher'?'Previzualizare profesor · accesul elevilor se gestionează din portal.':access.endsAt?`Ai acces până la ${e(FX.date(access.endsAt))}.`:'Acces acordat de profesor.'}</p>
     `;
     if(Study.quizActive()){root.innerHTML=top+Study.quizHtml(image);return;}
     root.innerHTML=top+Study.toolbar()+`<div id="fxs-lesson-body" class="${Study.effectiveLevel()===4?'fxs-images-only':''}">
@@ -237,6 +237,17 @@
   async function verify() {
     const request=++sequence;
     try {
+      const publicParticularitati=slug==='harap-alb' && new URLSearchParams(location.search).get('eseu')!=='caracterizare';
+      if(publicParticularitati){
+        const response=await fetch('/assets/public-harap-alb-particularitati.json',{credentials:'omit'});
+        if(!response.ok)throw new Error('Material public indisponibil');
+        const publicBundle=await response.json();
+        if(request!==sequence)return;
+        clearMaterial();
+        bundle=publicBundle;version='public-harap-particularitati';
+        render({state:'public',allowed:true});
+        return;
+      }
       const {data:{session}}=await FX.sb().auth.getSession();
       if(request!==sequence)return;
       account=session?.user||null;
