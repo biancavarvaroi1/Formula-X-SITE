@@ -63,9 +63,11 @@ jobs:
               release.extractall('.')
           for name,contents in overrides.items():
               Path(name).write_bytes(contents)
+          lesson_script='formula-x-lesson-page.'+hashlib.sha256(overrides['assets/formula-x-lesson-page.js']).hexdigest()[:16]+'.js'
+          Path('assets',lesson_script).write_bytes(overrides['assets/formula-x-lesson-page.js'])
           for name in ['lectii/romana/harap-alb.html','lectii/romana/moara-cu-noroc.html','cursuri/lectie.html','profesori/index.html']:
               page=Path(name)
-              page.write_text(page.read_text().replace('formula-x-lesson-page.js?v=20261014','formula-x-lesson-page.js?v=20261014-1539').replace('formula-x-lesson-teacher.js?v=20261014','formula-x-lesson-teacher.js?v=20261014-1539'))
+              page.write_text(page.read_text().replace('formula-x-lesson-page.js?v=20261014',lesson_script).replace('formula-x-lesson-teacher.js?v=20261014','formula-x-lesson-teacher.js?v=20261014-1539'))
           print('Prepared 23 verified static website files and repository lesson UI updates.')
           PY
       - name: Setup Pages
