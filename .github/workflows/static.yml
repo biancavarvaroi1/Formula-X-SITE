@@ -56,11 +56,17 @@ jobs:
               'assets/lessons/moara-cu-noroc.1631e6d6b1db2d22f9a4fdcd29193a52d1fcc7e820fae8d3d387e38f74748f91.fxb',
               'assets/lessons/moara-cu-noroc/coperta.webp',
           }
+          overrides={name:Path(name).read_bytes() for name in ['assets/formula-x-lesson-page.js','assets/formula-x-lesson-teacher.js']}
           with zipfile.ZipFile(io.BytesIO(data)) as release:
               assert set(release.namelist())==allowed,'Unexpected release files'
               assert len(release.namelist())==len(allowed),'Duplicate release files'
               release.extractall('.')
-          print('Prepared 23 verified static website files.')
+          for name,contents in overrides.items():
+              Path(name).write_bytes(contents)
+          for name in ['lectii/romana/harap-alb.html','lectii/romana/moara-cu-noroc.html','cursuri/lectie.html','profesori/index.html']:
+              page=Path(name)
+              page.write_text(page.read_text().replace('formula-x-lesson-page.js?v=20261014','formula-x-lesson-page.js?v=20261014-1539').replace('formula-x-lesson-teacher.js?v=20261014','formula-x-lesson-teacher.js?v=20261014-1539'))
+          print('Prepared 23 verified static website files and repository lesson UI updates.')
           PY
       - name: Setup Pages
         uses: actions/configure-pages@v5
