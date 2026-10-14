@@ -37,11 +37,11 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-          import urllib.request, zipfile, hashlib, io
+          import subprocess, zipfile, hashlib, io
           url='https://formula-x-acces-cursuri.heartymink128.chatgpt.site/releases/Formula-X-integration-ccbaacba2caf.zip'
           expected='ccbaacba2caf347d0ee3502e181f4642d5f6f8355bda2a87e3cc64f28dd34c50'
-          with urllib.request.urlopen(url,timeout=120) as response:
-              data=response.read(10*1024*1024)
+          data=subprocess.run(['curl','--fail','--location','--silent','--show-error','--max-time','120',url],check=True,capture_output=True).stdout
+          assert len(data)<=10*1024*1024,'Release exceeds size limit'
           assert hashlib.sha256(data).hexdigest()==expected,'Release checksum mismatch'
           allowed={
               'index.html','profesori/index.html','assets/formula-x-portal.js',
