@@ -172,8 +172,12 @@
   const learn=(value,id)=>Study.text(value,id);
   let bundle=null,version=null,assetUrls={},sequence=0,heartbeat=null,expiryTimer=null;
   let account=null;
-  function clearMaterial() {
-    bundle=null;version=null;displayedAccess=null;Study?.reset();
+  function isPublicEssay() {
+    return slug==='harap-alb' && new URLSearchParams(location.search).get('eseu')!=='caracterizare';
+  }
+  function clearMaterial({preserveProgress=false}={}) {
+    bundle=null;version=null;displayedAccess=null;
+    if(!preserveProgress)Study?.reset();
     for(const url of Object.values(assetUrls)) if(url.startsWith('blob:')) URL.revokeObjectURL(url);
     assetUrls={};
     clearTimeout(expiryTimer);
@@ -183,7 +187,7 @@
     root.replaceChildren();
   }
   function status(access={},message,context={}) {
-    clearMaterial();
+    clearMaterial({preserveProgress:access.state==='error'});
     const titles={login:'Conectează-te la Formula X',scheduled:'Acces programat',expired:'Perioada de acces s-a încheiat',paused:'Profesorul a oprit accesul',locked:'Lecție protejată',unavailable:'Lecția este în curs de activare',missing:'Lecția nu a fost găsită',error:'Nu am putut verifica accesul'};
     const descriptions={scheduled:`Lecția se deschide automat la ${FX.date(access.startsAt)}.`,locked:'Bianca îți poate acorda acces direct sau prin grupa ta. Folosește contul cu emailul pe care i l-ai comunicat.',expired:'Profesorul poate prelungi perioada de acces.',paused:'Revino după ce profesorul redeschide lecția.',unavailable:'Materialul este pregătit. Activarea accesului se finalizează în Formula X.',login:'Folosește același cont pe care îl ai pe site.'};
     let detail='';
@@ -240,13 +244,15 @@
   async function verify() {
     const request=++sequence;
     try {
-      const publicParticularitati=slug==='harap-alb' && new URLSearchParams(location.search).get('eseu')!=='caracterizare';
-      if(publicParticularitati){
+      if(isPublicEssay()){
+        // A background check must not reinstall an unchanged public lesson.
+        // Reinstalling calls Study.reset(), discarding the current quiz.
+        if(bundle && version==='public-harap-particularitati')return;
         const response=await fetch('/assets/public-harap-alb-particularitati.json?v=20261015-original-images',{credentials:'omit',cache:'no-cache'});
         if(!response.ok)throw new Error('Material public indisponibil');
         const publicBundle=await response.json();
         if(request!==sequence)return;
-        clearMaterial();
+        clearMaterial({preserveProgress:true});
         bundle=publicBundle;version='public-harap-particularitati';
         for(const [path,url] of Object.entries(publicBundle.imageUrls||{})){
           if(typeof url!=='string'||!/^\/assets\/lessons\/harap-alb\/[a-z0-9-]+\.webp$/.test(url))throw new Error('Adresă de imagine publică invalidă');
@@ -257,7 +263,9 @@
       }
       const {data:{session}}=await FX.sb().auth.getSession();
       if(request!==sequence)return;
-      account=session?.user||null;
+      const nextAccount=session?.user||null;
+      if(account?.id!==nextAccount?.id)clearMaterial();
+      account=nextAccount;
       if(!session&&FX.lessons.some(l=>l.slug===slug)){status({state:'login'});return;}
       if(session)await FX.linkAccount();
       const result=await FX.rpc('fx_open_lesson',{p_slug:slug});
@@ -277,7 +285,7 @@
       else if(!bundle || version!==result.version) {
         const next=await FX.decryptBundle(slug,result.version,result.key);
         if(request!==sequence)return;
-        clearMaterial(); bundle=next; version=result.version;
+        clearMaterial({preserveProgress:true}); bundle=next; version=result.version;
         for(const [path,asset] of Object.entries(bundle.assets||{})) {
           if(asset.type!=='image/webp') throw new Error('Format de imagine invalid');
           assetUrls[path]=URL.createObjectURL(new Blob([FX.decode(asset.data)],{type:asset.type}));
@@ -355,13 +363,20 @@
     } catch {msg.textContent='Nu am putut realiza conectarea. Reîncearcă.';} finally {btn.disabled=false;}
   });
   FX.sb().auth.onAuthStateChange((event)=>{
-    if(event==='SIGNED_OUT'){sequence++;account=null;status({state:'login'});}
+    if(event==='SIGNED_OUT'){
+      sequence++;account=null;
+      if(isPublicEssay())verify();else status({state:'login'});
+    }
     else setTimeout(verify,0);
   });
-  window.addEventListener('popstate',()=>{if(bundle)render(displayedAccess||{state:'active'});verify();});
+  window.addEventListener('popstate',()=>{
+    const selected=new URLSearchParams(location.search).get('eseu')==='caracterizare'?'caracterizare':'particularitati';
+    if(bundle?.essays?.[selected])render(displayedAccess||{state:'active'});
+    verify();
+  });
   window.addEventListener('focus',verify);
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)verify();});
-  window.addEventListener('pagehide',()=>{sequence++;clearMaterial();clearInterval(heartbeat);heartbeat=null;});
+  window.addEventListener('pagehide',()=>{sequence++;clearMaterial({preserveProgress:true});clearInterval(heartbeat);heartbeat=null;});
   window.addEventListener('pageshow',()=>{if(!heartbeat)heartbeat=setInterval(verify,60000);verify();});
   heartbeat=setInterval(verify,60000);verify();
 })();
