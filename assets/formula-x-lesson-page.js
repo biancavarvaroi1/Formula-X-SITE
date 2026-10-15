@@ -174,7 +174,7 @@
   let account=null;
   function clearMaterial() {
     bundle=null;version=null;displayedAccess=null;Study?.reset();
-    for(const url of Object.values(assetUrls)) URL.revokeObjectURL(url);
+    for(const url of Object.values(assetUrls)) if(url.startsWith('blob:')) URL.revokeObjectURL(url);
     assetUrls={};
     clearTimeout(expiryTimer);
     const dialog=document.getElementById('fxl-zoom');
@@ -194,8 +194,11 @@
     }
     root.innerHTML=`<section class="fxl-status"><p class="fxl-eyebrow">${e(meta.title)}</p><h1>${e(titles[access.state]||titles.locked)}</h1>${account?.email&&access.state!=='login'?`<p class="fxl-note">Cont conectat: <strong>${e(account.email)}</strong></p>`:''}<p>${e(message||descriptions[access.state]||'Reîncearcă verificarea accesului.')}</p>${detail?`<p class="fxl-note" role="status">${e(detail)}</p>`:''}${access.state==='login'?`<form id="fxl-login" class="fxl-login"><label>Email<input name="email" type="email" autocomplete="username" required></label><label>Parolă<input name="password" type="password" autocomplete="current-password" required></label><button class="fxl-btn" type="submit">Intră în cont</button><p id="fxl-login-message" class="fxl-error" role="status"></p><a class="fxl-login-link" href="/parola-uitata/">Ai uitat parola?</a><a class="fxl-login-link" href="/#cont">Creează un cont Formula X</a></form>`:''}<div class="fxl-actions" style="justify-content:center"><button class="fxl-btn secondary" data-fxl-action="retry" type="button">Verifică accesul</button>${account&&access.state!=='login'?'<button class="fxl-btn secondary" data-fxl-action="switch-account" type="button">Schimbă contul</button>':''}<a class="fxl-btn secondary" href="/lectii/romana/">Toate lecțiile</a></div></section>`;
   }
+  function imageUrl(src) {
+    return assetUrls[src] || (src?.endsWith('/coperta.png')?meta.cover:'');
+  }
   function image(src,alt) {
-    const url=assetUrls[src] || (version==='public-harap-particularitati'?'/assets/lessons/harap-alb/coperta.webp':(src.endsWith('/coperta.png')?meta.cover:''));
+    const url=imageUrl(src);
     if(!url) return '';
     return `<figure class="fxl-image"><button type="button" data-fxl-image="${e(src)}" aria-label="Mărește imaginea: ${e(alt)}"><img src="${e(url)}" alt="${e(alt)}" loading="lazy"></button><figcaption>Apasă pe imagine pentru mărire</figcaption></figure>`;
   }
@@ -239,12 +242,16 @@
     try {
       const publicParticularitati=slug==='harap-alb' && new URLSearchParams(location.search).get('eseu')!=='caracterizare';
       if(publicParticularitati){
-        const response=await fetch('/assets/public-harap-alb-particularitati.json',{credentials:'omit'});
+        const response=await fetch('/assets/public-harap-alb-particularitati.json?v=20261015-original-images',{credentials:'omit',cache:'no-cache'});
         if(!response.ok)throw new Error('Material public indisponibil');
         const publicBundle=await response.json();
         if(request!==sequence)return;
         clearMaterial();
         bundle=publicBundle;version='public-harap-particularitati';
+        for(const [path,url] of Object.entries(publicBundle.imageUrls||{})){
+          if(typeof url!=='string'||!/^\/assets\/lessons\/harap-alb\/[a-z0-9-]+\.webp$/.test(url))throw new Error('Adresă de imagine publică invalidă');
+          assetUrls[path]=url;
+        }
         render({state:'public',allowed:true});
         return;
       }
@@ -329,7 +336,7 @@
       window.scrollTo({top:0,behavior:'smooth'});return;
     }
     const picture=event.target.closest('[data-fxl-image]');
-    if(picture && bundle){const dialog=document.getElementById('fxl-zoom');const img=dialog.querySelector('img');img.src=assetUrls[picture.dataset.fxlImage] || meta.cover;img.alt=picture.querySelector('img').alt;dialog.showModal();}
+    if(picture && bundle){const dialog=document.getElementById('fxl-zoom');const img=dialog.querySelector('img');img.src=imageUrl(picture.dataset.fxlImage);img.alt=picture.querySelector('img').alt;dialog.showModal();}
   });
   document.addEventListener('change',event=>{
     if(bundle&&event.target.matches?.('[data-fxs-choice]')&&Study.select(Number(event.target.value))){const button=document.getElementById('fxs-check');if(button)button.disabled=false;}
