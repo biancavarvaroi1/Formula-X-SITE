@@ -9,6 +9,22 @@
     return {id,reper,prompt,choices,correct:0,explanation:explanation||correct,image};
   }
   function makeQuestions(slug,essay,l){
+    // Data-driven questions for new works. Legacy works retain their existing questions.
+    if(Array.isArray(l.quizQuestions)){
+      const seen=new Set(),totals={1:0,2:0,3:0};
+      const rows=l.quizQuestions.map((item,index)=>{
+        if(!item||typeof item.id!=='string'||!item.id||seen.has(item.id)||![1,2,3].includes(item.reper)
+          ||typeof item.prompt!=='string'||!item.prompt.trim()
+          ||!Array.isArray(item.choices)||item.choices.length!==4
+          ||!Number.isInteger(item.correct)||item.correct<0||item.correct>3
+          ||typeof item.explanation!=='string'||!item.explanation.trim())throw new Error('Întrebare invalidă la poziția '+(index+1));
+        seen.add(item.id);totals[item.reper]++;
+        const wrong=item.choices.filter((_,i)=>i!==item.correct);
+        return question(item.id,item.reper,item.prompt,item.choices[item.correct],wrong,item.explanation,item.image||'');
+      });
+      if(rows.length!==18||Object.values(totals).some(n=>n!==6))throw new Error('Lecția trebuie să aibă șase întrebări pentru fiecare reper.');
+      return rows;
+    }
     const a=l.statusCards,s=l.scenes,t=l.structureCards,rows=[];
     const add=(r,prompt,correct,wrong,explanation,image)=>rows.push(question(essay+'-r'+r+'-'+(rows.filter(x=>x.reper===r).length+1),r,prompt,correct,wrong,explanation,image));
     const point=(card,index)=>card.points[index];
