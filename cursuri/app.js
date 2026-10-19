@@ -40,6 +40,11 @@
     }
   }
   async function openLesson(l){
+    // Interactive Baltagul lesson: never render the JSON payload as raw text.
+    if(l.slug==='baltagul'){
+      window.location.assign('/lectii/romana/baltagul.html');
+      return;
+    }
     activeLesson=l; message('');
     try {
       const data=await request(sb.from('fx_lesson_contents').select('body').eq('lesson_id',l.id).maybeSingle());
