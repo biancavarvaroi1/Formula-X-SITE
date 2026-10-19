@@ -166,6 +166,14 @@
   'use strict';
   const FX=window.FormulaXLessons, root=document.getElementById('fxl-content');
   const slug=document.body.dataset.lesson||new URLSearchParams(location.search).get('slug');
+  // The Baltagul bundle is a structured lesson, not a plain-text course.
+  // Route legacy lesson links to its dedicated protected renderer.
+  if(slug==='baltagul'){
+    const selected=new URLSearchParams(location.search).get('eseu');
+    const query=selected==='caracterizare'?'?eseu=caracterizare':'';
+    window.location.replace('/lectii/romana/baltagul.html'+query);
+    return;
+  }
   let meta=FX.lessons.find(l=>l.slug===slug)||{slug,title:'Lecție Formula X',author:'Formula X'};
   const e=FX.esc,Study=window.FormulaXEssayPractice;
   let displayedAccess=null;
