@@ -40,9 +40,9 @@
     }
   }
   async function openLesson(l){
-    // Interactive Baltagul lesson: never render the JSON payload as raw text.
-    if(l.slug==='baltagul'){
-      window.location.assign('/lectii/romana/baltagul.html');
+    // Structured private essays are rendered in dedicated protected pages.
+    if(l.slug==='baltagul'||l.slug==='ion'){
+      window.location.assign('/lectii/romana/'+l.slug+'.html');
       return;
     }
     activeLesson=l; message('');
