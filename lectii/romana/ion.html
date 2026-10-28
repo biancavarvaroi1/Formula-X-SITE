@@ -34,8 +34,8 @@ body.fx-unlocked #fx-access {display:none!important}
   <p class="fx-small"><a href="/">Înapoi la Formula X</a> · <a href="/parola-uitata/">Am uitat parola</a></p>
 </section>
  <section class="hero"><div><span class="caps">Învățăm din imagini, înțelegem prin exerciții</span><h1>Ion</h1><h2>de Liviu Rebreanu</h2></div><div class="hero-art"><img id="cover" alt="Ion în satul Pripas" /></div></section>
- <nav class="essay-tabs" aria-label="Alegere eseu"><button class="essay-tab active" data-essay="particularitati"><strong>Eseul 1 · Particularități</strong><span>Realism · temă · două scene · structură</span></button><button class="essay-tab" data-essay="caracterizare"><strong>Eseul 2 · Vitoria Lipan</strong><span>Statut · spirit investigativ · caracterizare</span></button></nav>
- <div class="info"><b>Lecție privată:</b> acces disponibil numai profesorului și elevilor care au primit permisiune prin Formula X.</div>
+ <nav class="essay-tabs" aria-label="Alegere eseu"><button class="essay-tab active" data-essay="particularitati"><strong>Eseul 1 · Particularități</strong><span>Realism · temă · două scene · structură</span></button><button class="essay-tab" data-essay="caracterizare"><strong>Eseul 2 · Caracterizarea lui Ion</strong><span>Statut · trăsătură dominantă · caracterizare</span></button></nav>
+ <div class="info"><b>Lecție privată:</b> accesul la material se acordă din portalul Formula X, individual sau pentru o grupă.</div>
  <section class="toolbar"><span class="caps">Exersează memorarea</span><h2>Tot mai puține indicii</h2><p>Învață la nivelul 0, apoi ascunde treptat cuvintele. Apasă pe un spațiu ascuns pentru a vedea cuvântul. La nivelul 4 rămân imaginile și titlurile.</p><div class="level-group" id="levels"></div><div class="controls"><button class="secondary" id="easier">Arată mai mult text</button><button class="secondary" id="harder">Ascunde mai mult</button><button class="primary" data-quiz="0">Chestionar complet · 18 întrebări</button><button class="secondary" id="print">Printează lecția</button></div></section>
  <main id="content" aria-live="polite"></main><footer class="footer">Formula X · Ion · Material pentru cursanți</footer>
 </div>
@@ -46,7 +46,7 @@ body.fx-unlocked #fx-access {display:none!important}
 function launchLesson(payload,userId){
 'use strict';
 const data=payload;const $=id=>document.getElementById(id);const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const KEY='fx-ion-course-v1:'+userId;let storage={};try{storage=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch{};
-let essay=storage.essay==='caracterizare'?'caracterizare':'particularitati';let levels=storage.levels&&typeof storage.levels==='object'?storage.levels:{};let revealed=storage.revealed&&typeof storage.revealed==='object'?storage.revealed:{};let quiz=storage.quiz||null;const images=data.embeddedImages||{};
+let essay=new URLSearchParams(location.search).get('eseu')==='caracterizare'?'caracterizare':storage.essay==='caracterizare'?'caracterizare':'particularitati';let levels=storage.levels&&typeof storage.levels==='object'?storage.levels:{};let revealed=storage.revealed&&typeof storage.revealed==='object'?storage.revealed:{};let quiz=storage.quiz||null;const images=data.embeddedImages||{};
 function save(){try{localStorage.setItem(KEY,JSON.stringify({essay,levels,revealed,quiz}))}catch{}}
 function makeScene(name){
  const palettes={cosit:['#f8e1cb','#e1b98e','#97745e','#768368'],sarut:['#efcbbf','#cb9683','#896a61','#778064'],tarani:['#eed6b9','#be9d7c','#75695a','#8b9673'],sat:['#f4dec3','#c7a98a','#977b67','#839277'],conflict:['#efc9c9','#c38e8f','#805f66','#7d796b'],drum:['#ebd9cb','#d3b79d','#917966','#8b966e']};
