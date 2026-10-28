@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Formula X · Ion · Lecție interactivă · BAC 2027</title>
+<style>
+:root {--cream:#fbf7f4;--paper:#fffefd;--ink:#31272c;--muted:#73656d;--rose:#a65e78;--wine:#62384f;--gold:#c89a54;--border:#eadde1;--sand:#f5ebe8;--green:#286e54;--red:#a33240;--shadow:0 14px 38px #67405011}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at top left,#fff5ee,transparent 30rem),var(--cream);font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:var(--ink)}button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid #dca955;outline-offset:3px}a{color:inherit;text-decoration:none}.shell{max-width:1140px;margin:auto;padding:18px 18px 90px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0 25px;border-bottom:1px solid var(--border)}.brand{font:700 26px Georgia,serif;color:var(--wine)}.brand b{color:#bc8a42}.caps{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:850;color:var(--rose)}.head-meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.pill{padding:8px 12px;background:white;border:1px solid var(--border);border-radius:25px;font-size:12px;color:#825f69}.hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(250px,.75fr);gap:25px;align-items:center;margin:26px 0 22px;padding:26px;border:1px solid var(--border);border-radius:28px;background:linear-gradient(140deg,#fffcfa,#f6e7e6 82%);box-shadow:var(--shadow)}.hero h1{font:700 clamp(40px,6vw,66px)/1.02 Georgia,serif;margin:8px 0;color:var(--wine)}.hero h2{font:italic clamp(18px,2.8vw,26px)/1.35 Georgia,serif;font-weight:normal;margin:0 0 14px;color:#8f6372}.hero p{font-size:14px;line-height:1.75;max-width:650px;color:#645860}.hero-art{height:295px;border-radius:20px;overflow:hidden;background:#faeeeb}.hero-art img{width:100%;height:100%;object-fit:contain}.essay-tabs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0 23px}.essay-tab{background:#fff;border:1px solid var(--border);padding:18px 20px;text-align:left;border-radius:17px;color:#755968;transition:.2s}.essay-tab strong{display:block;font:700 18px Georgia,serif;margin-bottom:4px}.essay-tab span{font-size:12px}.essay-tab.active{border:2px solid var(--wine);background:#f9edf0;color:var(--wine);box-shadow:0 4px 20px #a5678115}.info{padding:13px 18px;background:#f9f0e7;border:1px solid #e9d9c7;border-radius:13px;color:#725b50;font-size:12px;line-height:1.6;margin-bottom:17px}.toolbar{padding:22px;background:white;border:1px solid var(--border);border-radius:22px;box-shadow:var(--shadow);margin-bottom:22px}.toolbar h2{font:700 24px Georgia,serif;color:var(--wine);margin:7px 0}.toolbar p{font-size:13px;color:var(--muted);line-height:1.65}.level-group{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.level-group button,.secondary{border:1px solid #dbc8d2;background:white;border-radius:11px;padding:10px 13px;color:#69465b;font-size:12px;font-weight:750}.level-group button.active{background:var(--wine);color:white;border-color:var(--wine)}.controls{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0 0}.primary{background:var(--wine);color:white;border:none;border-radius:11px;padding:12px 16px;font-weight:800;font-size:12px}.secondary:disabled{opacity:.4;cursor:default}.toc{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:16px 0 23px}.toc a{display:block;background:#fff;padding:17px;border:1px solid var(--border);border-radius:15px}.toc a small{display:block;margin-bottom:6px;color:var(--rose);font-size:11px;font-weight:800}.toc strong{font:700 17px Georgia,serif;color:var(--wine)}.idea{background:linear-gradient(140deg,#fffaf2,#fff4e7);border:1px solid #eadbc1;border-radius:18px;margin:4px 0 28px;padding:22px 24px;box-shadow:var(--shadow)}.idea strong{display:block;font:700 23px/1.3 Georgia,serif;color:#76533f;margin:6px 0 10px}.idea p{margin:8px 0;color:#6e5d52;font-size:13px;line-height:1.75}.theme-bridge{margin-top:-4px}.section{margin:22px 0 38px}.section-head{display:flex;gap:20px;align-items:baseline;justify-content:space-between;margin-bottom:17px;border-bottom:1px solid #e7dadd;padding-bottom:13px}.section-head h2{font:700 28px Georgia,serif;color:var(--wine);margin:5px 0}.section-head p{max-width:575px;line-height:1.65;font-size:13px;color:#786a70}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.cards.triple{grid-template-columns:repeat(3,minmax(0,1fr))}.study-card{background:#fff;border:1px solid var(--border);border-radius:19px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}.study-card figure{position:relative;margin:0;min-height:240px;padding:14px;background:linear-gradient(165deg,#fffaf6,#f8ece9);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center}.study-card figure img{display:block;max-width:100%;max-height:320px;width:auto;height:auto;object-fit:contain;object-position:center;cursor:zoom-in}.study-card .content{padding:20px;flex:1}.study-card h3{font:700 21px Georgia,serif;color:#624052;margin:7px 0 13px}.study-card ul,.study-card ol{margin:10px 0;padding-left:21px;line-height:1.75;font-size:13px;color:#4d4648}.study-card li{margin:0 0 9px}.takeaway{background:#f5e8ed;padding:12px;border-radius:11px;color:#72475a!important;font-size:12px!important;font-weight:800;line-height:1.55}.relevance{padding:13px;background:#f3f0e8;border-left:3px solid var(--gold);border-radius:9px;margin-top:15px;font-size:13px;line-height:1.7;color:#665851}.relevance strong{color:#795637}.quiz-cta{display:flex;justify-content:flex-end;margin:16px 0 0}.conclusion{padding:23px 25px;background:linear-gradient(125deg,#f9ecee,#fffaf8);border:1px solid var(--border);border-radius:20px;font-size:14px;line-height:1.85}.conclusion strong{display:block;font:700 22px Georgia,serif;color:var(--wine);margin-bottom:7px}.masked{border:0;border-bottom:1px dashed #a96f8a;background:#f5e7ee;color:#67465a;padding:0 3px;border-radius:4px;font:inherit;line-height:1.5;cursor:pointer}.images-only .content>*:not(.caps):not(h3){display:none}.images-only .hero p,.images-only .idea p{display:none}.images-only .section-head p{display:none}.quiz-container{max-width:860px;margin:20px auto;background:#fff;border:1px solid var(--border);border-radius:23px;box-shadow:var(--shadow);padding:26px}.quiz-container h2{font:700 27px Georgia,serif;color:var(--wine)}.quiz-progress{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin-bottom:12px}.bar{height:8px;background:#efe5e8;border-radius:99px;overflow:hidden}.bar>span{display:block;height:100%;background:var(--rose);transition:width .2s}.opt{display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;padding:14px;margin-top:9px;background:white;color:#493d43;border:1px solid #e7d7df;border-radius:12px;font-size:14px;line-height:1.55;cursor:pointer}.opt b{width:20px;flex-shrink:0;color:#9d6077}.opt.selected{border:2px solid var(--rose);background:#fff5f7}.opt.correct{border:2px solid #83b19b;background:#edf8f1}.opt.incorrect{border:2px solid #e09ca3;background:#fff1f2}.feedback{margin:16px 0;padding:14px 16px;border-radius:12px;background:#f0f7ef;color:#28684f;line-height:1.7;font-size:13px}.feedback.bad{background:#fff1f1;color:#a33746}.score{text-align:center;font:700 50px Georgia,serif;color:var(--wine);margin:19px 0 8px}.review{border-top:1px solid var(--border);padding:11px 0;line-height:1.6;font-size:13px;color:#5e5257}.review p{margin:7px 0}.review .correct{color:var(--green)}.empty{color:var(--muted);font-size:14px}dialog{max-width:min(1000px,92vw);width:max-content;border:none;border-radius:18px;background:#fff;padding:20px;box-shadow:0 25px 80px #0007}dialog::backdrop{background:#191014b8}dialog img{display:block;max-width:85vw;max-height:78vh;object-fit:contain}.close{float:right;border:0;background:#f6edef;padding:9px;border-radius:50%;margin:-5px -5px 9px 9px}.muted{font-size:11px;color:#98838d}.footer{text-align:center;margin:36px 0;color:#8e7281;font-size:12px}.print-note{display:none}@media(max-width:850px){.hero{grid-template-columns:1fr}.hero-art{height:260px}.cards.triple{grid-template-columns:1fr 1fr}.section-head{display:block}.toc{grid-template-columns:1fr 1fr}}@media(max-width:570px){.shell{padding:12px 12px 75px}.hero{padding:21px;border-radius:19px}.hero-art{height:230px}.essay-tabs,.cards,.cards.triple,.toc{grid-template-columns:1fr}.study-card figure{min-height:220px;padding:12px}.study-card figure img{max-height:270px}.section-head h2{font-size:26px}.controls{display:grid}.controls button{width:100%}.quiz-container{padding:20px 16px}}@media print{body{background:white}.shell{max-width:none;padding:0}.top,.essay-tabs,.toolbar,.toc,.quiz-cta,.info,.footer{display:none!important}.study-card{break-inside:avoid;box-shadow:none}.masked{background:transparent!important;color:inherit!important;border:0}.cards{grid-template-columns:1fr 1fr}.cards.triple{grid-template-columns:repeat(3,1fr)}.print-note{display:block}.hero{box-shadow:none}}
+</style>
+<style>
+body:not(.fx-unlocked) .hero,body:not(.fx-unlocked) .essay-tabs,
+body:not(.fx-unlocked) .toolbar,body:not(.fx-unlocked) #content,
+body:not(.fx-unlocked) .info,body:not(.fx-unlocked) #zoom {display:none!important}
+.fx-access{max-width:660px;margin:36px auto;padding:28px;background:#fff;border:1px solid #eadde1;border-radius:22px;box-shadow:0 14px 38px #67405011;text-align:center}
+.fx-access h2{font:700 29px Georgia,serif;color:#62384f;margin:12px 0}.fx-access p{line-height:1.65;color:#73656d}
+.fx-access form{display:grid;gap:12px;text-align:left;margin:22px auto 0;max-width:400px}.fx-access form[hidden]{display:none}
+.fx-access label{display:grid;gap:6px;font-weight:700;font-size:13px}.fx-access input{padding:12px;border:1px solid #dbc8d2;border-radius:10px;font:inherit}
+.fx-access .fx-small{margin-top:22px;font-size:12px}.fx-access a{text-decoration:underline}
+body.fx-unlocked #fx-access {display:none!important}
+</style>
+</head>
+<body class="fx-locked">
+<div class="shell">
+ <header class="top"><div class="brand">Formula <b>X</b></div><div class="head-meta"><span class="pill">Limba și literatura română</span><span class="pill">BAC · Subiectul III</span><span class="pill">Acces privat</span></div></header>
+<section id="fx-access" class="fx-access" aria-live="polite">
+  <span class="caps">Bibliotecă privată Formula X</span><h2>Acces la „Ion”</h2>
+  <p id="fx-access-status">Se verifică sesiunea și permisiunile…</p>
+  <form id="fx-login" hidden>
+   <label>Email<input type="email" name="email" required autocomplete="username"></label>
+   <label>Parolă<input type="password" name="password" required autocomplete="current-password"></label>
+   <button type="submit" class="primary">Conectează-te</button>
+   <p id="fx-login-message" role="status"></p>
+  </form>
+  <p class="fx-small"><a href="/">Înapoi la Formula X</a> · <a href="/parola-uitata/">Am uitat parola</a></p>
+</section>
+ <section class="hero"><div><span class="caps">Învățăm din imagini, înțelegem prin exerciții</span><h1>Ion</h1><h2>de Liviu Rebreanu</h2></div><div class="hero-art"><img id="cover" alt="Ion în satul Pripas" /></div></section>
+ <nav class="essay-tabs" aria-label="Alegere eseu"><button class="essay-tab active" data-essay="particularitati"><strong>Eseul 1 · Particularități</strong><span>Realism · temă · două scene · structură</span></button><button class="essay-tab" data-essay="caracterizare"><strong>Eseul 2 · Vitoria Lipan</strong><span>Statut · spirit investigativ · caracterizare</span></button></nav>
+ <div class="info"><b>Lecție privată:</b> acces disponibil numai profesorului și elevilor care au primit permisiune prin Formula X.</div>
+ <section class="toolbar"><span class="caps">Exersează memorarea</span><h2>Tot mai puține indicii</h2><p>Învață la nivelul 0, apoi ascunde treptat cuvintele. Apasă pe un spațiu ascuns pentru a vedea cuvântul. La nivelul 4 rămân imaginile și titlurile.</p><div class="level-group" id="levels"></div><div class="controls"><button class="secondary" id="easier">Arată mai mult text</button><button class="secondary" id="harder">Ascunde mai mult</button><button class="primary" data-quiz="0">Chestionar complet · 18 întrebări</button><button class="secondary" id="print">Printează lecția</button></div></section>
+ <main id="content" aria-live="polite"></main><footer class="footer">Formula X · Ion · Material pentru cursanți</footer>
+</div>
+<dialog id="zoom"><button class="close" id="closeZoom" aria-label="Închide">✕</button><img id="zoomImage" alt="Ilustrație mărită"></dialog>
+<script src="/assets/vendor/supabase.js"></script>
+<script src="/cursuri/config.js"></script>
+<script>
+function launchLesson(payload,userId){
+'use strict';
+const data=payload;const $=id=>document.getElementById(id);const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const KEY='fx-ion-course-v1:'+userId;let storage={};try{storage=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch{};
+let essay=storage.essay==='caracterizare'?'caracterizare':'particularitati';let levels=storage.levels&&typeof storage.levels==='object'?storage.levels:{};let revealed=storage.revealed&&typeof storage.revealed==='object'?storage.revealed:{};let quiz=storage.quiz||null;const images=data.embeddedImages||{};
+function save(){try{localStorage.setItem(KEY,JSON.stringify({essay,levels,revealed,quiz}))}catch{}}
+function makeScene(name){
+ const palettes={cosit:['#f8e1cb','#e1b98e','#97745e','#768368'],sarut:['#efcbbf','#cb9683','#896a61','#778064'],tarani:['#eed6b9','#be9d7c','#75695a','#8b9673'],sat:['#f4dec3','#c7a98a','#977b67','#839277'],conflict:['#efc9c9','#c38e8f','#805f66','#7d796b'],drum:['#ebd9cb','#d3b79d','#917966','#8b966e']};
+ const c=palettes[name]||palettes.sat;
+ const title=({cosit:'ION LA COSIT',sarut:'SĂRUTAREA PĂMÂNTULUI',tarani:'LUMEA SATULUI',sat:'PRIPAS',conflict:'CONFLICTUL',drum:'DRUMUL ȘI CRUCEA'})[name]||'ION';
+ const figure=name==='cosit'?'<path d="M266 242 l18 -55 12 4 -5 54 21 48 -13 4 -22 -34 -26 35 -13 -5z" fill="#483b3b"/><circle cx="290" cy="179" r="15" fill="#483b3b"/><path d="M285 189 L324 201 L353 191" stroke="#483b3b" stroke-width="8" fill="none"/><path d="M350 186 Q380 162 414 167" stroke="#554b46" stroke-width="6" fill="none"/>':
+ name==='sarut'?'<path d="M300 238 Q270 240 246 265 L221 295 249 304 275 280 314 271" fill="#564648"/><circle cx="320" cy="231" r="17" fill="#564648"/><path d="M275 270 L321 291 L359 300" stroke="#564648" stroke-width="14" stroke-linecap="round" fill="none"/>':
+ name==='conflict'?'<g fill="#51444d"><circle cx="247" cy="227" r="18"/><path d="M229 245 L209 306 L269 306 L261 245z"/><circle cx="382" cy="225" r="18"/><path d="M365 245 L344 306 L406 306 L396 245z"/></g><path d="M305 241 l16 16 -16 17 16 15" stroke="#b5575d" stroke-width="7" fill="none"/>':
+ name==='drum'?'<path d="M310 185 Q360 270 307 360 L385 360 Q380 274 327 185z" fill="#e4d0af"/><path d="M310 155 L310 214 M288 172 L333 172" stroke="#514347" stroke-width="9" stroke-linecap="round"/>':
+ '<path d="M198 284 L198 222 L238 196 L278 222 L278 284z" fill="#7d6260"/><path d="M183 225 L238 176 L294 225" stroke="#5b4546" stroke-width="13" fill="none"/><path d="M220 284 L220 248 L247 248 L247 284" fill="#e9c9a0"/>';
+ const svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360"><defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="'+c[0]+'"/><stop offset="1" stop-color="#faf0df"/></linearGradient></defs><rect width="600" height="360" fill="url(#sky)"/><circle cx="466" cy="94" r="56" fill="#fff5d3" opacity=".77"/><path d="M0 228 Q105 176 225 220 Q350 157 600 226 V360 H0Z" fill="'+c[1]+'"/><path d="M0 260 Q160 224 292 272 Q448 227 600 253 V360 H0Z" fill="'+c[2]+'" opacity=".83"/><path d="M0 301 Q160 268 329 303 Q484 261 600 296 V360 H0Z" fill="'+c[3]+'"/><g stroke="#e9d5a8" stroke-width="3" opacity=".68"><path d="M20 350 Q140 296 268 300"/><path d="M38 360 Q196 300 340 307"/><path d="M388 310 Q474 271 575 285"/><path d="M412 347 Q510 299 602 311"/></g>'+figure+'<rect x="18" y="18" width="260" height="40" rx="20" fill="#fffcf4" opacity=".91"/><text x="34" y="44" font-family="Georgia,serif" font-size="17" font-weight="bold" fill="#604251">'+title+'</text></svg>';
+ return 'data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(svg);
+}
+function img(path,alt){return '<img src="'+makeScene(path)+'" loading="lazy" alt="'+escape(alt||'Ilustrație tematică')+'" data-zoom-src="'+escape(path)+'">';}
+function hash(t){let h=2166136261;for(const c of t){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return h>>>0}
+function level(){return levels[essay]||0}
+function learn(str,id){if(level()===0||!str)return escape(str);return String(str).split(/(\s+)/).map((t,i)=>{if(!t.trim()||t.replace(/[^\p{L}\p{N}]/gu,'').length<4)return escape(t);let k=essay+':'+id+':'+i;if(revealed[k]||hash(k+':'+t)%100>=[0,24,47,73,100][level()])return escape(t);return `<button class="masked" data-reveal="${escape(k)}" aria-label="Arată cuvântul ascuns">_____</button>`}).join('')}
+function cardHtml(c,id,numbered=false){return `<article class="study-card"><figure>${img(c.image,c.alt)}</figure><div class="content"><span class="caps">${escape(c.eyebrow||c.chapter||'Secvență')}</span><h3>${learn(c.title,id+'title')}</h3><${numbered?'ol':'ul'}>${c.points.map((p,i)=>`<li>${learn(p,id+'p'+i)}</li>`).join('')}</${numbered?'ol':'ul'}>${c.takeaway?`<p class="takeaway">${learn(c.takeaway,id+'key')}</p>`:''}${c.relevance?`<div class="relevance"><strong>RELEVANȚĂ</strong><p>${learn(c.relevance,id+'rel')}</p></div>`:''}</div></article>`}
+function buttons(){return [...document.querySelectorAll('[data-essay]')].forEach(el=>{el.classList.toggle('active',el.dataset.essay===essay);el.setAttribute('aria-pressed',el.dataset.essay===essay)}),$('levels').innerHTML=[0,1,2,3,4].map(i=>`<button class="${i===level()?'active':''}" data-level="${i}" aria-pressed="${i===level()}">${i} · ${['Text complet','Puține cuvinte ascunse','Mai puține indicii','Aproape tot ascuns','Doar imagini'][i]}</button>`).join(''),$('easier').disabled=level()===0,$('harder').disabled=level()===4}
+function studyHtml(){const l=data.essays[essay];const names=l.reperNames;return `<div class="${level()===4?'images-only':''}"><nav class="toc">${names.map((n,i)=>`<a href="#reper-${i+1}"><small>REPER ${i+1}</small><strong>${escape(n)}</strong></a>`).join('')}</nav><section class="section" id="reper-1"><div class="section-head"><div><span class="caps">REPER 1</span><h2>${escape(l.firstReperTitle)}</h2></div><p>${learn(l.firstReperDescription,'reper1')}</p></div><div class="cards ${l.statusCards.length===3?'triple':''}">${l.statusCards.map((c,i)=>cardHtml(c,'r1'+i)).join('')}</div><div class="quiz-cta"><button class="secondary" data-quiz="1">Chestionar Reper 1 · 6 întrebări →</button></div></section><section class="idea theme-bridge"><span class="caps">${escape(l.keyLabel)}</span><strong>${learn(l.keyIdea,'key')}</strong><p>${learn(l.secondaryIdea,'secondary')}</p><p>${learn(l.intro,'intro')}</p></section><section class="section" id="reper-2"><div class="section-head"><div><span class="caps">REPER 2</span><h2>Două scene reprezentative</h2></div><p>${learn(l.sceneDescription,'reper2')}</p></div><div class="cards">${l.scenes.map((c,i)=>cardHtml({...c,eyebrow:c.chapter},'r2'+i,true)).join('')}</div><div class="quiz-cta"><button class="secondary" data-quiz="2">Chestionar Reper 2 · 6 întrebări →</button></div></section><section class="section" id="reper-3"><div class="section-head"><div><span class="caps">REPER 3</span><h2>${escape(l.structureTitle)}</h2></div><p>${learn(l.structureDescription,'reper3')}</p></div><div class="cards ${l.structureCards.length===3?'triple':''}">${l.structureCards.map((c,i)=>cardHtml(c,'r3'+i)).join('')}</div><div class="quiz-cta"><button class="secondary" data-quiz="3">Chestionar Reper 3 · 6 întrebări →</button></div></section><section class="conclusion"><strong>Concluzie</strong><p>${learn(l.conclusion,'concluzie')}</p><span class="caps">De reținut</span><p>${learn(l.memoryLine,'memory')}</p></section></div>`}
+function shuffled(a){let res=a.slice();for(let i=res.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[res[i],res[j]]=[res[j],res[i]]}return res}
+function startQuiz(reper=0,retry=false){let pool;if(retry){if(!quiz?.done)return;pool=quiz.questions.filter((q,i)=>!quiz.answers[i]?.correct).map(q=>data.quizQuestions.find(x=>x.id===q.id)).filter(Boolean)}else pool=data.quizQuestions.filter(q=>q.essay===essay&&(!reper||q.reper===reper));let questions=shuffled(pool).map(q=>{let choices=shuffled(q.choices.map((text,i)=>({text,correct:i===q.correct})));return {id:q.id,reper:q.reper,prompt:q.prompt,explanation:q.explanation,choices:choices.map(x=>x.text),correct:choices.findIndex(x=>x.correct)}});quiz={essay,reper,questions,answers:[],index:0,selected:null,checked:false,done:false};save();render();scrollUp()}
+function quizHtml(){if(!quiz)return '';if(quiz.done){const count=quiz.answers.filter(x=>x?.correct).length;const wrong=quiz.questions.length-count;return `<section class="quiz-container"><span class="caps">REZULTAT</span><h2>Ai terminat chestionarul!</h2><div class="score">${count} / ${quiz.questions.length}</div><p style="text-align:center;color:var(--muted)">${wrong?`Mai ai ${wrong} întrebări de revizuit.`:'Felicitări! Ai răspuns corect la toate întrebările.'}</p><div class="controls" style="justify-content:center">${wrong?'<button class="primary" data-retry>Reia doar întrebările greșite</button>':''}<button class="secondary" data-restart>Chestionar nou</button><button class="secondary" data-back>Înapoi la lecție</button></div><details style="margin-top:20px"><summary>Vezi explicațiile fiecărei întrebări</summary>${quiz.questions.map((q,i)=>`<div class="review"><strong>${escape(q.prompt)}</strong><p>Răspunsul tău: ${escape(q.choices[quiz.answers[i].selected])}</p><p class="correct">Corect: ${escape(q.choices[q.correct])}</p><p>${escape(q.explanation)}</p></div>`).join('')}</details></section>`}const q=quiz.questions[quiz.index];if(!q)return '<p class="empty">Nu există întrebări pentru această selecție.</p>';let a=quiz.answers[quiz.index];return `<section class="quiz-container" id="quiz-start"><span class="caps">${quiz.reper?'REPER '+quiz.reper:'RECAPITULARE COMPLETĂ'} · ${quiz.essay==='caracterizare'?'Caracterizare':'Particularități'}</span><div class="quiz-progress"><span>Întrebarea ${quiz.index+1} din ${quiz.questions.length}</span><span>${quiz.answers.filter(x=>x?.correct).length} corecte</span></div><div class="bar"><span style="width:${100*(quiz.index)/quiz.questions.length}%"></span></div><h2>${escape(q.prompt)}</h2><div role="radiogroup" aria-label="Răspunsuri">${q.choices.map((v,i)=>`<button class="opt ${i===quiz.selected?'selected':''} ${quiz.checked?(i===q.correct?'correct':i===quiz.selected?'incorrect':''):''}" data-choice="${i}" role="radio" aria-checked="${i===quiz.selected}" ${quiz.checked?'disabled':''}><b>${'ABCD'[i]}.</b>${escape(v)}</button>`).join('')}</div>${quiz.checked?`<div class="feedback ${a?.correct?'':'bad'}" role="status"><strong>${a?.correct?'Corect!':'Răspunsul nu este corect.'}</strong><p>${escape(q.explanation)}</p></div>`:''}<div class="controls">${quiz.checked?'<button class="primary" data-next>'+(quiz.index===quiz.questions.length-1?'Vezi rezultatul':'Întrebarea următoare')+' →</button>':`<button class="primary" data-check ${quiz.selected===null?'disabled':''}>Verifică răspunsul</button>`}<button class="secondary" data-back>Înapoi la lecție</button></div></section>`}
+function render(){buttons();$('cover').src=makeScene('cosit');$('content').innerHTML=quiz?quizHtml():studyHtml();if(level()===4&&quiz===null){/* show only images and headings */}}
+function scrollUp(){window.scrollTo({top:180,behavior:'smooth'})}
+document.addEventListener('click',e=>{let t=e.target.closest('[data-essay],[data-level],[data-reveal],[data-quiz],[data-choice],[data-check],[data-next],[data-back],[data-restart],[data-retry],[data-zoom-src]');if(!t)return;if(t.hasAttribute('data-essay')){essay=t.dataset.essay;quiz=null;save();render();scrollUp()}else if(t.hasAttribute('data-level')){levels[essay]=Number(t.dataset.level);save();render()}else if(t.hasAttribute('data-reveal')){revealed[t.dataset.reveal]=true;save();render()}else if(t.hasAttribute('data-quiz')){startQuiz(Number(t.dataset.quiz))}else if(t.hasAttribute('data-choice')){if(!quiz?.checked){quiz.selected=Number(t.dataset.choice);save();render()}}else if(t.hasAttribute('data-check')){if(quiz&&quiz.selected!==null&&!quiz.checked){quiz.checked=true;quiz.answers[quiz.index]={selected:quiz.selected,correct:quiz.selected===quiz.questions[quiz.index].correct};save();render()}}else if(t.hasAttribute('data-next')){if(quiz&&quiz.checked){if(quiz.index===quiz.questions.length-1)quiz.done=true;else{quiz.index++;quiz.selected=null;quiz.checked=false}save();render()}}else if(t.hasAttribute('data-back')){quiz=null;save();render()}else if(t.hasAttribute('data-restart')){startQuiz(quiz?.reper||0)}else if(t.hasAttribute('data-retry')){startQuiz(quiz?.reper||0,true)}else if(t.hasAttribute('data-zoom-src')){let el=$('zoomImage');el.src=makeScene(t.dataset.zoomSrc);$('zoom').showModal()}});
+$('easier').addEventListener('click',()=>{levels[essay]=Math.max(0,level()-1);save();render()});$('harder').addEventListener('click',()=>{levels[essay]=Math.min(4,level()+1);save();render()});$('print').addEventListener('click',()=>{const old=level(),wasQuiz=quiz;quiz=null;levels[essay]=0;render();window.print();levels[essay]=old;quiz=wasQuiz;render()});$('closeZoom').addEventListener('click',()=>$('zoom').close());$('zoom').addEventListener('click',e=>{if(e.target===$('zoom'))$('zoom').close()});
+if(quiz&&(!Array.isArray(quiz.questions)||quiz.essay!==essay))quiz=null;render();
+
+}
+
+
+(async()=>{
+  'use strict';
+  const gate=document.getElementById('fx-access');
+  const status=document.getElementById('fx-access-status');
+  const form=document.getElementById('fx-login');
+  const loginMessage=document.getElementById('fx-login-message');
+  let unlocked=false, activeUid=null,checking=false;
+  function gateMessage(text,login=false){
+    document.body.classList.remove('fx-unlocked');
+    status.textContent=text;
+    form.hidden=!login;
+  }
+  if(!window.supabase?.createClient || !window.FX_SUPABASE_URL || !window.FX_SUPABASE_ANON_KEY){
+    gateMessage('Configurația Formula X nu a fost încărcată. Verifică fișierele Supabase ale site-ului.');
+    return;
+  }
+  const client=window.supabase.createClient(window.FX_SUPABASE_URL,window.FX_SUPABASE_ANON_KEY);
+  async function openCourse(){
+    status.textContent='Verificăm contul și accesul la lecție…';
+    const {data:{session},error:sessionError}=await client.auth.getSession();
+    if(sessionError){gateMessage('Nu am putut verifica sesiunea. Reîncarcă pagina.');return;}
+    if(!session?.user){gateMessage('Conectează-te cu contul Formula X care are acces la această lecție.',true);return;}
+    const {data:result,error}=await client.rpc('fx_open_lesson',{p_slug:'ion'});
+    if(error){gateMessage('Nu am putut verifica accesul în Supabase. Reîncearcă după reîncărcarea paginii.');return;}
+    if(!result?.access?.allowed){
+      const state=result?.access?.state;
+      const msgs={
+        locked:'Lecția este privată. Profesorul trebuie să îți acorde acces individual sau prin grupa de Română.',
+        paused:'Lecția nu este încă publicată pentru elevi. Profesorul o poate previzualiza.',
+        scheduled:'Accesul tău este programat pentru o dată ulterioară.',
+        expired:'Perioada de acces la lecție s-a încheiat.',
+        login:'Trebuie să fii autentificat cu un cont autorizat.',
+        missing:'Lecția nu există încă în catalogul Formula X.',
+        unavailable:'Conținutul lecției nu a fost încă încărcat.'
+      };
+      gateMessage(msgs[state]||'Nu ai acces la această lecție.');return;
+    }
+    if(result.format!=='text'||!result.body){
+      gateMessage('Conținutul este într-un format diferit. Verifică importul PASUL 2.');return;
+    }
+    let payload;
+    try{
+      payload=JSON.parse(result.body);
+      if(payload.slug!=='ion'||!payload.essays?.particularitati||!payload.essays?.caracterizare||!Array.isArray(payload.quizQuestions)||payload.quizQuestions.length!==36)throw Error('Invalid bundle');
+      // Only generic artwork is public. Protected essay content comes from Supabase.
+      const imgs={};
+      payload.embeddedImages=imgs;
+    }catch(err){gateMessage('Datele lecției sunt incomplete sau invalide. Verifică importul SQL al lecției.');return;}
+    if(unlocked)return;
+    activeUid=session.user.id;
+    document.body.classList.add('fx-unlocked');
+    gate.hidden=true;
+    unlocked=true;
+    launchLesson(payload,activeUid);
+  }
+  async function checkAccess(){
+    if(!unlocked||checking)return;
+    checking=true;
+    try{
+      const {data,error}=await client.rpc('fx_open_lesson',{p_slug:'ion'});
+      if(error)return; // Eroarea temporară de rețea nu resetează testul.
+      if(!data?.access?.allowed){
+        localStorage.removeItem('fx-ion-course-v1:'+activeUid);
+        document.body.classList.remove('fx-unlocked');
+        gate.hidden=false;
+        gateMessage('Accesul la lecție nu mai este activ. Reîncarcă pagina pentru reconectare.');
+        window.location.reload();
+      }
+    }finally{checking=false;}
+  }
+  form.addEventListener('submit',async(event)=>{
+    event.preventDefault();
+    const button=form.querySelector('button');
+    button.disabled=true;
+    loginMessage.textContent='Se verifică datele…';
+    try{
+      const email=form.querySelector('[name=email]').value.trim();
+      const pwd=form.querySelector('[name=password]').value;
+      const {error}=await client.auth.signInWithPassword({email,password:pwd});
+      form.querySelector('[name=password]').value='';
+      if(error){loginMessage.textContent='Autentificare nereușită. Verifică emailul, parola și confirmarea contului.';return;}
+      loginMessage.textContent='';
+      await openCourse();
+    }catch(err){loginMessage.textContent='Conexiunea nu a funcționat. Reîncearcă.';}
+    finally{button.disabled=false;}
+  });
+  client.auth.onAuthStateChange((event)=>{
+    if(event==='SIGNED_OUT'){
+      if(activeUid)localStorage.removeItem('fx-ion-course-v1:'+activeUid);
+      if(unlocked)window.location.reload();
+      else gateMessage('Conectează-te pentru a vedea lecția.',true);
+    }
+    // TOKEN_REFRESHED nu modifică întrebarea curentă.
+  });
+  window.addEventListener('focus',checkAccess);
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkAccess();});
+  setInterval(checkAccess,300000);
+  await openCourse();
+})();
+
+</script>
+</body>
+</html>
