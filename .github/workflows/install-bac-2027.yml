@@ -1,0 +1,22 @@
+name: Install BAC 2027 PDF models
+on:
+  push:
+    paths:
+      - '.github/workflows/install-bac-2027.yml'
+      - 'scripts/install-bac-2027.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch and validate official PDF archives
+        run: python scripts/install-bac-2027.py
+      - name: Commit verified PDFs
+        run: |
+          git config user.name "Formula X Auto"
+          git config user.email "actions@users.noreply.github.com"
+          git add modele-2027/pdf
+          git diff --staged --quiet || (git commit -m "Host verified BAC 2027 PDFs locally" && git push)
