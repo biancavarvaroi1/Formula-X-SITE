@@ -74,6 +74,20 @@ jobs:
               page.write_text(page.read_text().replace('formula-x-lesson-page.js?v=20261014',lesson_script).replace('formula-x-lesson-teacher.js?v=20261014','formula-x-lesson-teacher.js?v=20261014-1539'))
           print('Prepared verified lesson files; kept the version-controlled homepage and BAC 2027 catalog.')
           PY
+      - name: Add BAC 2027 shortcut to homepage
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          page=Path('index.html')
+          html=page.read_text(encoding='utf-8')
+          script='<script defer src="/assets/bac2027-link.js"></script>'
+          if script not in html:
+              if '</body>' not in html: raise RuntimeError('Homepage is missing body end tag')
+              html=html.replace('</body>',script+'</body>',1)
+              page.write_text(html,encoding='utf-8')
+          print('Installed BAC 2027 shortcut; legacy archive preserved')
+          PY
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
