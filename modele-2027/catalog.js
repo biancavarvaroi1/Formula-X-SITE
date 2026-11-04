@@ -1,5 +1,4 @@
-/* Formula X — modele oficiale BAC 2027, publicate în noiembrie 2026.
-   Linkuri către PDF-uri publice găzduite de Didactika și Edupedu, cu sursa oficială CNCE. */
+/* Modele BAC 2027: linkuri către paginile publice de descărcare, nu către PDF-uri încă neverificate. */
 window.FORMULA_X_BAC_2027 = [
   {
     "id": "romana-2027-model-real-tehnologic",
@@ -11,9 +10,9 @@ window.FORMULA_X_BAC_2027 = [
     "sesiuneScurta": "Model",
     "proba": "Proba E.a)",
     "titlu": "Real / tehnologic",
-    "detalii": "Model oficial 2027 • Proba E.a) • Subiect + barem",
-    "subiect": "https://www.didactika.ro/wp-content/uploads/2026/11/E_a_romana_real_tehn_2027_var_model.pdf",
-    "barem": "https://www.didactika.ro/wp-content/uploads/2026/11/E_a_romana_real_tehn_2027_bar_model.pdf",
+    "detalii": "Model oficial 2027 • Consultă sursa publică pentru subiect și barem",
+    "subiect": "https://www.didactika.ro/modele-de-subiecte-bacalaureat-2027/",
+    "barem": "https://www.didactika.ro/modele-de-subiecte-bacalaureat-2027/",
     "categorie": "standard",
     "pagina": "modele-2027/"
   },
@@ -27,9 +26,9 @@ window.FORMULA_X_BAC_2027 = [
     "sesiuneScurta": "Model",
     "proba": "Proba E.a)",
     "titlu": "Uman / pedagogic",
-    "detalii": "Model oficial 2027 • Proba E.a) • Subiect + barem",
-    "subiect": "https://www.didactika.ro/wp-content/uploads/2026/11/E_a_romana_uman_ped_2027_var_model.pdf",
-    "barem": "https://www.didactika.ro/wp-content/uploads/2026/11/E_a_romana_uman_ped_2027_bar_model.pdf",
+    "detalii": "Model oficial 2027 • Consultă sursa publică pentru subiect și barem",
+    "subiect": "https://www.didactika.ro/modele-de-subiecte-bacalaureat-2027/",
+    "barem": "https://www.didactika.ro/modele-de-subiecte-bacalaureat-2027/",
     "categorie": "standard",
     "pagina": "modele-2027/"
   },
@@ -43,9 +42,9 @@ window.FORMULA_X_BAC_2027 = [
     "sesiuneScurta": "Model",
     "proba": "Proba E.c)",
     "titlu": "Matematică-informatică",
-    "detalii": "Model oficial 2027 • Proba E.c) • Subiect + barem",
-    "subiect": "https://www.didactika.ro/wp-content/uploads/2026/11/E_c_matematica_M_mate-info_2027_var_model.pdf",
-    "barem": "https://www.didactika.ro/wp-content/uploads/2026/11/E_c_matematica_M_mate-info_2027_bar_model.pdf",
+    "detalii": "Model oficial 2027 • Consultă sursa publică pentru subiect și barem",
+    "subiect": "https://www.didactika.ro/modele-de-subiecte-bacalaureat-2027/",
+    "barem": "https://www.didactika.ro/modele-de-subiecte-bacalaureat-2027/",
     "categorie": "standard",
     "pagina": "modele-2027/"
   },
@@ -59,9 +58,9 @@ window.FORMULA_X_BAC_2027 = [
     "sesiuneScurta": "Model",
     "proba": "Proba E.c)",
     "titlu": "Științe ale naturii",
-    "detalii": "Model oficial 2027 • Proba E.c) • Subiect + barem",
-    "subiect": "https://www.didactika.ro/wp-content/uploads/2026/11/E_c_matematica_M_st-nat_2027_var_model.pdf",
-    "barem": "https://www.didactika.ro/wp-content/uploads/2026/11/E_c_matematica_M_st-nat_2027_bar_model.pdf",
+    "detalii": "Model oficial 2027 • Consultă sursa publică pentru subiect și barem",
+    "subiect": "https://www.didactika.ro/modele-de-subiecte-bacalaureat-2027/",
+    "barem": "https://www.didactika.ro/modele-de-subiecte-bacalaureat-2027/",
     "categorie": "standard",
     "pagina": "modele-2027/"
   },
@@ -75,9 +74,9 @@ window.FORMULA_X_BAC_2027 = [
     "sesiuneScurta": "Model",
     "proba": "Proba E.c)",
     "titlu": "Tehnologic",
-    "detalii": "Model oficial 2027 • Proba E.c) • Subiect + barem",
-    "subiect": "https://www.didactika.ro/wp-content/uploads/2026/11/E_c_matematica_M_tehnologic_2027_var_model.pdf",
-    "barem": "https://www.didactika.ro/wp-content/uploads/2026/11/E_c_matematica_M_tehnologic_2027_bar_model.pdf",
+    "detalii": "Model oficial 2027 • Consultă sursa publică pentru subiect și barem",
+    "subiect": "https://www.didactika.ro/modele-de-subiecte-bacalaureat-2027/",
+    "barem": "https://www.didactika.ro/modele-de-subiecte-bacalaureat-2027/",
     "categorie": "standard",
     "pagina": "modele-2027/"
   },
@@ -91,9 +90,9 @@ window.FORMULA_X_BAC_2027 = [
     "sesiuneScurta": "Model",
     "proba": "Proba E.c)",
     "titlu": "Pedagogic",
-    "detalii": "Model oficial 2027 • Proba E.c) • Subiect + barem",
-    "subiect": "https://www.didactika.ro/wp-content/uploads/2026/11/E_c_matematica_M_pedagogic_2027_var_model.pdf",
-    "barem": "https://www.didactika.ro/wp-content/uploads/2026/11/E_c_matematica_M_pedagogic_2027_bar_model.pdf",
+    "detalii": "Model oficial 2027 • Consultă sursa publică pentru subiect și barem",
+    "subiect": "https://www.didactika.ro/modele-de-subiecte-bacalaureat-2027/",
+    "barem": "https://www.didactika.ro/modele-de-subiecte-bacalaureat-2027/",
     "categorie": "standard",
     "pagina": "modele-2027/"
   },
@@ -107,9 +106,9 @@ window.FORMULA_X_BAC_2027 = [
     "sesiuneScurta": "Model",
     "proba": "Proba E.c)",
     "titlu": "Istorie — model",
-    "detalii": "Model oficial 2027 • Proba E.c) • Subiect + barem",
-    "subiect": "https://www.didactika.ro/wp-content/uploads/2026/11/E_c_istorie_2027_var_model.pdf",
-    "barem": "https://www.didactika.ro/wp-content/uploads/2026/11/E_c_istorie_2027_bar_model.pdf",
+    "detalii": "Model oficial 2027 • Consultă sursa publică pentru subiect și barem",
+    "subiect": "https://www.didactika.ro/modele-de-subiecte-bacalaureat-2027/",
+    "barem": "https://www.didactika.ro/modele-de-subiecte-bacalaureat-2027/",
     "categorie": "standard",
     "pagina": "modele-2027/"
   },
@@ -123,9 +122,9 @@ window.FORMULA_X_BAC_2027 = [
     "sesiuneScurta": "Model",
     "proba": "Proba E.d)",
     "titlu": "Anatomie, fiziologie, genetică și ecologie umană",
-    "detalii": "Model oficial 2027 • Proba E.d) • Subiect + barem",
-    "subiect": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_anat_fiz_gen_ec_um_2027_var_model.pdf",
-    "barem": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_anat_fiz_gen_ec_um_2027_bar_model.pdf",
+    "detalii": "Model oficial 2027 • Consultă sursa publică pentru subiect și barem",
+    "subiect": "https://www.didactika.ro/modele-de-subiecte-bacalaureat-2027/",
+    "barem": "https://www.didactika.ro/modele-de-subiecte-bacalaureat-2027/",
     "categorie": "standard",
     "pagina": "modele-2027/"
   },
@@ -139,9 +138,9 @@ window.FORMULA_X_BAC_2027 = [
     "sesiuneScurta": "Model",
     "proba": "Proba E.d)",
     "titlu": "Biologie vegetală și animală",
-    "detalii": "Model oficial 2027 • Proba E.d) • Subiect + barem",
-    "subiect": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_bio_veg_anim_2027_var_model.pdf",
-    "barem": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_bio_veg_anim_2027_bar_model.pdf",
+    "detalii": "Model oficial 2027 • Consultă sursa publică pentru subiect și barem",
+    "subiect": "https://www.didactika.ro/modele-de-subiecte-bacalaureat-2027/",
+    "barem": "https://www.didactika.ro/modele-de-subiecte-bacalaureat-2027/",
     "categorie": "standard",
     "pagina": "modele-2027/"
   },
@@ -155,9 +154,9 @@ window.FORMULA_X_BAC_2027 = [
     "sesiuneScurta": "Model",
     "proba": "Proba E.d)",
     "titlu": "Chimie organică",
-    "detalii": "Model oficial 2027 • Proba E.d) • Subiect + barem",
-    "subiect": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_chimie_organica_2027_var_model.pdf",
-    "barem": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_chimie_organica_2027_bar_model.pdf",
+    "detalii": "Model oficial 2027 • Consultă sursa publică pentru subiect și barem",
+    "subiect": "https://www.didactika.ro/modele-de-subiecte-bacalaureat-2027/",
+    "barem": "https://www.didactika.ro/modele-de-subiecte-bacalaureat-2027/",
     "categorie": "standard",
     "pagina": "modele-2027/"
   },
@@ -171,9 +170,9 @@ window.FORMULA_X_BAC_2027 = [
     "sesiuneScurta": "Model",
     "proba": "Proba E.d)",
     "titlu": "Chimie anorganică",
-    "detalii": "Model oficial 2027 • Proba E.d) • Subiect + barem",
-    "subiect": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_chimie_anorganica_2027_var_model.pdf",
-    "barem": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_chimie_anorganica_2027_bar_model.pdf",
+    "detalii": "Model oficial 2027 • Consultă sursa publică pentru subiect și barem",
+    "subiect": "https://www.didactika.ro/modele-de-subiecte-bacalaureat-2027/",
+    "barem": "https://www.didactika.ro/modele-de-subiecte-bacalaureat-2027/",
     "categorie": "standard",
     "pagina": "modele-2027/"
   },
@@ -187,9 +186,9 @@ window.FORMULA_X_BAC_2027 = [
     "sesiuneScurta": "Model",
     "proba": "Proba E.d)",
     "titlu": "Teoretic / vocațional",
-    "detalii": "Model oficial 2027 • Proba E.d) • Subiect + barem",
-    "subiect": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_fizica_teoretic_vocational_2027_var_model.pdf",
-    "barem": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_fizica_teoretic_vocational_2027_bar_model.pdf",
+    "detalii": "Model oficial 2027 • Consultă sursa publică pentru subiect și barem",
+    "subiect": "https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/",
+    "barem": "https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/",
     "categorie": "standard",
     "pagina": "modele-2027/"
   },
@@ -203,9 +202,9 @@ window.FORMULA_X_BAC_2027 = [
     "sesiuneScurta": "Model",
     "proba": "Proba E.d)",
     "titlu": "Tehnologic",
-    "detalii": "Model oficial 2027 • Proba E.d) • Subiect + barem",
-    "subiect": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_fizica_tehnologic_2027_var_model.pdf",
-    "barem": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_fizica_tehnologic_2027_bar_model.pdf",
+    "detalii": "Model oficial 2027 • Consultă sursa publică pentru subiect și barem",
+    "subiect": "https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/",
+    "barem": "https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/",
     "categorie": "standard",
     "pagina": "modele-2027/"
   },
@@ -219,9 +218,9 @@ window.FORMULA_X_BAC_2027 = [
     "sesiuneScurta": "Model",
     "proba": "Proba E.d)",
     "titlu": "Geografie — model",
-    "detalii": "Model oficial 2027 • Proba E.d) • Subiect + barem",
-    "subiect": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_geografie_2027_var_model.pdf",
-    "barem": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_geografie_2027_bar_model.pdf",
+    "detalii": "Model oficial 2027 • Consultă sursa publică pentru subiect și barem",
+    "subiect": "https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/",
+    "barem": "https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/",
     "categorie": "standard",
     "pagina": "modele-2027/"
   },
@@ -235,9 +234,9 @@ window.FORMULA_X_BAC_2027 = [
     "sesiuneScurta": "Model",
     "proba": "Proba E.d)",
     "titlu": "Mate-info — C/C++",
-    "detalii": "Model oficial 2027 • Proba E.d) • Subiect + barem",
-    "subiect": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_Informatica_2027_sp_MI_C_var_model.pdf",
-    "barem": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_informatica_2027_sp_MI_bar_model.pdf",
+    "detalii": "Model oficial 2027 • Consultă sursa publică pentru subiect și barem",
+    "subiect": "https://www.didactika.ro/modele-de-subiecte-bacalaureat-2027/",
+    "barem": "https://www.didactika.ro/modele-de-subiecte-bacalaureat-2027/",
     "categorie": "standard",
     "pagina": "modele-2027/"
   },
@@ -251,9 +250,9 @@ window.FORMULA_X_BAC_2027 = [
     "sesiuneScurta": "Model",
     "proba": "Proba E.d)",
     "titlu": "Mate-info — Pascal",
-    "detalii": "Model oficial 2027 • Proba E.d) • Subiect + barem",
-    "subiect": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_Informatica_2027_sp_MI_Pascal_var_model.pdf",
-    "barem": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_informatica_2027_sp_MI_bar_model.pdf",
+    "detalii": "Model oficial 2027 • Consultă sursa publică pentru subiect și barem",
+    "subiect": "https://www.didactika.ro/modele-de-subiecte-bacalaureat-2027/",
+    "barem": "https://www.didactika.ro/modele-de-subiecte-bacalaureat-2027/",
     "categorie": "standard",
     "pagina": "modele-2027/"
   },
@@ -267,9 +266,9 @@ window.FORMULA_X_BAC_2027 = [
     "sesiuneScurta": "Model",
     "proba": "Proba E.d)",
     "titlu": "Științe ale naturii — C/C++",
-    "detalii": "Model oficial 2027 • Proba E.d) • Subiect + barem",
-    "subiect": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_Informatica_2027_sp_SN_C_var_model.pdf",
-    "barem": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_informatica_2027_sp_SN_bar_model.pdf",
+    "detalii": "Model oficial 2027 • Consultă sursa publică pentru subiect și barem",
+    "subiect": "https://www.didactika.ro/modele-de-subiecte-bacalaureat-2027/",
+    "barem": "https://www.didactika.ro/modele-de-subiecte-bacalaureat-2027/",
     "categorie": "standard",
     "pagina": "modele-2027/"
   },
@@ -283,9 +282,9 @@ window.FORMULA_X_BAC_2027 = [
     "sesiuneScurta": "Model",
     "proba": "Proba E.d)",
     "titlu": "Științe ale naturii — Pascal",
-    "detalii": "Model oficial 2027 • Proba E.d) • Subiect + barem",
-    "subiect": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_Informatica_2027_sp_SN_Pascal_var_model.pdf",
-    "barem": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_informatica_2027_sp_SN_bar_model.pdf",
+    "detalii": "Model oficial 2027 • Consultă sursa publică pentru subiect și barem",
+    "subiect": "https://www.didactika.ro/modele-de-subiecte-bacalaureat-2027/",
+    "barem": "https://www.didactika.ro/modele-de-subiecte-bacalaureat-2027/",
     "categorie": "standard",
     "pagina": "modele-2027/"
   },
@@ -299,9 +298,9 @@ window.FORMULA_X_BAC_2027 = [
     "sesiuneScurta": "Model",
     "proba": "Proba E.d)",
     "titlu": "Economie — model",
-    "detalii": "Model oficial 2027 • Proba E.d) • Subiect + barem",
-    "subiect": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_economie_2027_var_model.pdf",
-    "barem": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_economie_2027_bar_model.pdf",
+    "detalii": "Model oficial 2027 • Consultă sursa publică pentru subiect și barem",
+    "subiect": "https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/",
+    "barem": "https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/",
     "categorie": "standard",
     "pagina": "modele-2027/"
   },
@@ -315,9 +314,9 @@ window.FORMULA_X_BAC_2027 = [
     "sesiuneScurta": "Model",
     "proba": "Proba E.d)",
     "titlu": "Filosofie — model",
-    "detalii": "Model oficial 2027 • Proba E.d) • Subiect + barem",
-    "subiect": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_filosofie_2027_var_model.pdf",
-    "barem": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_filosofie_2027_bar_model.pdf",
+    "detalii": "Model oficial 2027 • Consultă sursa publică pentru subiect și barem",
+    "subiect": "https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/",
+    "barem": "https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/",
     "categorie": "standard",
     "pagina": "modele-2027/"
   },
@@ -331,9 +330,9 @@ window.FORMULA_X_BAC_2027 = [
     "sesiuneScurta": "Model",
     "proba": "Proba E.d)",
     "titlu": "Logică și argumentare — model",
-    "detalii": "Model oficial 2027 • Proba E.d) • Subiect + barem",
-    "subiect": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_logica_2027_var_model.pdf",
-    "barem": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_logica_2027_bar_model.pdf",
+    "detalii": "Model oficial 2027 • Consultă sursa publică pentru subiect și barem",
+    "subiect": "https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/",
+    "barem": "https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/",
     "categorie": "standard",
     "pagina": "modele-2027/"
   },
@@ -347,9 +346,9 @@ window.FORMULA_X_BAC_2027 = [
     "sesiuneScurta": "Model",
     "proba": "Proba E.d)",
     "titlu": "Psihologie — model",
-    "detalii": "Model oficial 2027 • Proba E.d) • Subiect + barem",
-    "subiect": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_psihologie_2027_var_model.pdf",
-    "barem": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_psihologie_2027_bar_model.pdf",
+    "detalii": "Model oficial 2027 • Consultă sursa publică pentru subiect și barem",
+    "subiect": "https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/",
+    "barem": "https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/",
     "categorie": "standard",
     "pagina": "modele-2027/"
   },
@@ -363,9 +362,9 @@ window.FORMULA_X_BAC_2027 = [
     "sesiuneScurta": "Model",
     "proba": "Proba E.d)",
     "titlu": "Sociologie — model",
-    "detalii": "Model oficial 2027 • Proba E.d) • Subiect + barem",
-    "subiect": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_sociologie_2027_var_model.pdf",
-    "barem": "https://cdn.edupedu.ro/wp-content/uploads/2026/11/E_d_sociologie_2027_bar_model.pdf",
+    "detalii": "Model oficial 2027 • Consultă sursa publică pentru subiect și barem",
+    "subiect": "https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/",
+    "barem": "https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/",
     "categorie": "standard",
     "pagina": "modele-2027/"
   }
@@ -373,38 +372,38 @@ window.FORMULA_X_BAC_2027 = [
 window.FORMULA_X_BAC_2027_ARHIVE = [
   {
     "titlu": "Română",
-    "url": "https://cnprsv.ro/wp-content/uploads/2026/11/Bac_2027_E_a_Limba_si_literatura_romana_modele.zip"
+    "url": "https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/"
   },
   {
     "titlu": "Matematică",
-    "url": "https://cnprsv.ro/wp-content/uploads/2026/11/Bac_2027_E_c_Matematica_modele.zip"
+    "url": "https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/"
   },
   {
     "titlu": "Istorie",
-    "url": "https://cnprsv.ro/wp-content/uploads/2026/11/Bac_2027_E_c_Istorie_model.zip"
+    "url": "https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/"
   },
   {
     "titlu": "Biologie",
-    "url": "https://cnprsv.ro/wp-content/uploads/2026/11/Bac_2027_E_d_Anatomie_Biologie_modele.zip"
+    "url": "https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/"
   },
   {
     "titlu": "Chimie",
-    "url": "https://cnprsv.ro/wp-content/uploads/2026/11/Bac_2027_E_d_Chimie_modele.zip"
+    "url": "https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/"
   },
   {
     "titlu": "Fizică",
-    "url": "https://cnprsv.ro/wp-content/uploads/2026/11/Bac_2027_E_d_Fizica_modele.zip"
+    "url": "https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/"
   },
   {
     "titlu": "Geografie",
-    "url": "https://cnprsv.ro/wp-content/uploads/2026/11/Bac_2027_E_d_Geografie_model.zip"
+    "url": "https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/"
   },
   {
     "titlu": "Informatică",
-    "url": "https://cnprsv.ro/wp-content/uploads/2026/11/Bac_2027_E_d_Informatica_modele.zip"
+    "url": "https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/"
   },
   {
     "titlu": "Socio-umane",
-    "url": "https://cnprsv.ro/wp-content/uploads/2026/11/Bac_2027_E_d_Socio_umane_modele.zip"
+    "url": "https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/"
   }
 ];
