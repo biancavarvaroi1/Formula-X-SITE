@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Modele BAC 2027 — subiecte și bareme | Formula X</title>
+<meta name="description" content="Modelele oficiale BAC 2027: subiecte și bareme PDF pentru Română, Matematică, Istorie, Biologie, Chimie, Fizică, Geografie, Informatică și discipline socio-umane.">
+<meta name="robots" content="index,follow"><link rel="canonical" href="https://formula-x.ro/modele-2027/">
+<style>
+:root{color-scheme:light;--ink:#102544;--muted:#64748b;--line:#dce4ee;--blue:#173e69;--gold:#ffc94c}
+*{box-sizing:border-box}body{margin:0;font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:#f5f7fb}
+a{color:inherit}header{background:#081a34;color:white}nav{max-width:1100px;margin:auto;padding:17px 22px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+nav a{text-decoration:none;font-weight:700;font-size:13px}nav .brand{font-size:22px;letter-spacing:.4px;color:#fff}
+.hero{background:radial-gradient(circle at 80% 10%,#214b83,transparent 45%),linear-gradient(120deg,#091a35,#163557);color:#fff;padding:55px 22px 52px}
+.wrap{width:min(1100px,calc(100% - 32px));margin:auto}.eyebrow{color:var(--gold);font-size:12px;letter-spacing:.13em;font-weight:900;text-transform:uppercase}
+h1{font-size:clamp(30px,5vw,52px);line-height:1.07;letter-spacing:-.035em;margin:10px 0 12px}.hero p{max-width:700px;color:#e1eaf4;font-size:16px}
+.kpis{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.kpis span{border:1px solid #456388;border-radius:999px;padding:7px 13px;font-weight:700;font-size:12px;background:#173a63}
+main{padding:28px 0 55px}.filters{background:white;border:1px solid var(--line);border-radius:14px;padding:17px;display:grid;grid-template-columns:1fr 220px;gap:12px;box-shadow:0 5px 25px #18355b08}
+label{display:block;font-size:12px;font-weight:800;margin-bottom:5px;color:#51647d}input,select{width:100%;border:1px solid #c6d4e2;border-radius:9px;padding:12px;font:inherit;background:white;color:#102544}
+.tip{margin:15px 0 20px;color:#596b80;font-size:13px}
+.subject-group{margin-top:22px}.subject-group h2{font-size:21px;margin:0 0 10px;display:flex;gap:12px;align-items:center}.subject-group h2 span{font-size:12px;background:#e8f0f8;color:#2c5075;padding:4px 8px;border-radius:999px}
+.model-card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:15px;align-items:center;background:white;border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:9px 0;box-shadow:0 3px 14px #10254408}
+.model-card h3{font-size:15px;margin:0 0 5px}.model-card p{margin:0;color:var(--muted);font-size:12px}.actions{display:flex;gap:8px;flex-wrap:wrap}
+.actions a,.archive a{display:inline-flex;align-items:center;justify-content:center;min-width:100px;text-align:center;border-radius:8px;border:1px solid var(--blue);padding:9px 12px;background:var(--blue);color:white;text-decoration:none;font-size:12px;font-weight:800}
+.actions a.barem{color:var(--blue);background:white}
+.archive{background:white;border:1px solid var(--line);border-radius:14px;padding:24px;margin-top:32px}
+.archive h2{margin-top:0}.archive p{color:#58687e;font-size:13px}.archive-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.archive-cell{border:1px solid #e2e9f1;padding:12px;border-radius:9px;display:flex;flex-direction:column;justify-content:space-between;gap:10px}
+.archive-cell b{font-size:13px}.archive a{min-width:0;background:#f5f9ff;color:#173e69}.notice{background:#f6f9fd;border-left:4px solid #d9aa41;padding:13px 15px;border-radius:6px;margin-top:16px;font-size:13px}
+footer{padding:20px;text-align:center;background:#071b34;color:#bacadd;font-size:12px}footer a{color:#ffcf55}
+@media(max-width:680px){.filters{grid-template-columns:1fr}.model-card{grid-template-columns:1fr}.actions a{flex:1}.archive-grid{grid-template-columns:1fr}.hero{padding:35px 18px}.kpis{gap:7px}}
+</style>
+<script src="catalog.js"></script>
+</head>
+<body>
+<header><nav><a class="brand" href="/">FORMULA X</a><a href="/#teste">← Toate testele BAC</a></nav></header>
+<section class="hero"><div class="wrap"><div class="eyebrow">Nou • Modelele oficiale publicate</div><h1>Modele BAC <span style="color:#ffcf55">2027</span></h1><p>Exersează pe modelele publicate pentru BAC 2027. Alege materia și profilul, deschide subiectul PDF, apoi verifică rezolvarea folosind baremul corespunzător.</p><div class="kpis"><span>📄 <strong id="total">23</strong> variante de model</span><span>✅ Subiect + barem</span><span>🎓 13 discipline</span></div></div></section>
+<main class="wrap">
+<div class="filters"><div><label for="search">Caută un model</label><input id="search" type="search" placeholder="Ex.: mate-info, fizică, real, logică…"></div><div><label for="subject">Materia</label><select id="subject"><option value="">Toate materiile</option></select></div></div>
+<p class="tip">Modelele nu sunt subiectele examenului din iunie 2027; sunt variante orientative publicate pentru pregătire. Documentele PDF se deschid de pe sursele publice care le găzduiesc.</p>
+<div id="results" aria-live="polite"></div>
+<section class="archive"><h2>📦 Descarcă arhivele complete</h2><p>Vrei toate profilurile dintr-o materie într-un singur pachet? Poți descărca arhivele oficiale în format ZIP.</p><div class="archive-grid" id="archives"></div>
+<div class="notice"><strong>Limbi materne și Română pentru secțiile cu predare în limba maghiară:</strong> modelele pentru aceste probe se găsesc în <a style="display:inline;min-width:0;background:none;color:#173e69;padding:0;border:0;text-decoration:underline" href="https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/" target="_blank" rel="noopener">colecția oficială de modele BAC 2027</a>.</div>
+<p style="margin-top:16px">Sursa documentelor: <a href="https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/" style="display:inline;min-width:0;padding:0;background:none;border:0;color:#173e69;text-decoration:underline" target="_blank" rel="noopener">Centrul Național pentru Curriculum și Evaluare</a>.</p>
+</section></main><footer>Formula X • Pregătire pentru BAC 2027 • <a href="/">Înapoi pe site</a></footer>
+<script>
+(function(){
+const models=window.FORMULA_X_BAC_2027||[];
+const zips=window.FORMULA_X_BAC_2027_ARHIVE||[];
+const subject=document.getElementById('subject'), search=document.getElementById('search'), results=document.getElementById('results'), archives=document.getElementById('archives');
+document.getElementById('total').textContent=models.length;
+const names=[...new Set(models.map(x=>x.materieLabel))].sort((a,b)=>a.localeCompare(b,'ro'));
+names.forEach(n=>{const opt=document.createElement('option');opt.textContent=n;opt.value=n;subject.appendChild(opt)});
+function render(){
+const q=search.value.toLocaleLowerCase('ro').trim(), name=subject.value;
+const set=models.filter(x=>(!name||x.materieLabel===name)&&(!q||[x.titlu,x.materieLabel,x.detalii].join(' ').toLocaleLowerCase('ro').includes(q)));
+results.textContent='';
+if(!set.length){results.innerHTML='<p style="padding:25px;background:white;border-radius:12px">Nu există modele pentru filtrele alese.</p>';return}
+const groups=[...new Set(set.map(x=>x.materieLabel))].sort((a,b)=>a.localeCompare(b,'ro'));
+for(const groupName of groups){
+const section=document.createElement('section');section.className='subject-group';
+const h2=document.createElement('h2');h2.textContent=groupName+' ';const nr=document.createElement('span');nr.textContent=set.filter(x=>x.materieLabel===groupName).length+' modele';h2.appendChild(nr);section.appendChild(h2);
+for(const m of set.filter(x=>x.materieLabel===groupName)){
+const card=document.createElement('article');card.className='model-card';
+const info=document.createElement('div'), h3=document.createElement('h3'), p=document.createElement('p');h3.textContent=m.titlu;p.textContent='BAC 2027 • '+m.proba+' • Model oficial';info.append(h3,p);
+const acts=document.createElement('div');acts.className='actions';
+for(const [label,url,type] of [['📄 Subiect PDF',m.subiect,'subiect'],['✅ Barem PDF',m.barem,'barem']]){const a=document.createElement('a');a.textContent=label;a.href=url;a.className=type;a.target='_blank';a.rel='noopener noreferrer';acts.appendChild(a)}
+card.append(info,acts);section.appendChild(card)
+}results.appendChild(section);
+}}
+for(const f of zips){const cell=document.createElement('div');cell.className='archive-cell';const b=document.createElement('b');b.textContent=f.titlu;const a=document.createElement('a');a.href=f.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='↓ Arhivă ZIP';cell.append(b,a);archives.appendChild(cell)}
+subject.addEventListener('change',render);search.addEventListener('input',render);render();
+})();
+</script></body></html>
