@@ -9,7 +9,7 @@ EXPECTED_SHA256='6798173a3a39b07558986f39996f0f51e10e71f38161e83971bc8a56dd54137
 chunks=sorted(PARTS.glob('part-*.bin'))
 if len(chunks)!=17:
     raise RuntimeError(f'BAC 2027 archive incomplete: {len(chunks)} of 17 parts found')
-payload=base64.b64decode(b''.join(p.read_bytes() for p in chunks),validate=True)
+payload=b''.join(p.read_bytes() for p in chunks)
 actual_sha256=hashlib.sha256(payload).hexdigest()
 if actual_sha256!=EXPECTED_SHA256:
     raise RuntimeError('BAC 2027 archive SHA-256 mismatch')
