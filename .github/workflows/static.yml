@@ -88,6 +88,8 @@ jobs:
               page.write_text(html,encoding='utf-8')
           print('Installed BAC 2027 shortcut; legacy archive preserved')
           PY
+      - name: Install supplied BAC 2027 PDFs and verify every link
+        run: python scripts/install-supplied-bac2027.py
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
