@@ -8175,7 +8175,16 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
       </div>
     </section>
 
-    <div style="max-width:1100px;margin:16px auto;padding:17px 19px;background:#e8f2ff;border:1px solid #bad7f7;border-radius:12px;display:flex;flex-wrap:wrap;align-items:center;gap:12px;justify-content:space-between"><div><strong style="display:block;color:#123c68">📚 Modelele oficiale BAC 2027 sunt disponibile!</strong><span style="font-size:13px;color:#395c7e">Alege materia, profilul și consultă subiectul împreună cu baremul.</span></div><a href="modele-2027/" style="background:#173d69;color:white;padding:11px 16px;border-radius:8px;text-decoration:none;font-weight:800;font-size:13px">Vezi modelele 2027 →</a></div>
+    <div class="fx-tests-archive-banner" style="max-width:1100px;margin:16px auto;padding:18px 20px;background:#e8f2ff;border:1px solid #bad7f7;border-radius:12px;display:flex;flex-wrap:wrap;align-items:center;gap:14px;justify-content:space-between">
+      <div style="flex:1 1 290px"><strong style="display:block;color:#123c68;font-size:16px;">Toate testele BAC sunt păstrate aici 📚</strong>
+        <span style="display:block;margin-top:5px;font-size:13px;color:#395c7e">Arhiva <b>2012–2026: 1.707 teste</b> + <b>modelele 2027: 23 variante</b>. Poți alege orice an din filtrul de mai jos.</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <button type="button" id="tests-show-history" style="background:white;color:#173d69;border:1px solid #173d69;padding:11px 14px;border-radius:8px;font-weight:800;cursor:pointer;">Arhiva 2012–2026</button>
+        <button type="button" id="tests-show-2027" style="background:#173d69;color:white;border:1px solid #173d69;padding:11px 14px;border-radius:8px;font-weight:800;cursor:pointer;">Modele 2027</button>
+        <button type="button" id="tests-show-all" style="background:white;color:#173d69;border:1px solid #a6bfd8;padding:11px 14px;border-radius:8px;font-weight:800;cursor:pointer;">Toate testele</button>
+      </div>
+    </div>
     <div class="simple-tests-layout">
 
       <aside class="simple-subjects">
@@ -39333,7 +39342,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
       }).join('');
 
       return `
-        <section class="simple-year-box">
+        <section class="simple-year-box" data-test-year="${escapeHtmlTeste(an)}">
           <div class="simple-year-head">
             <strong>TESTE și BAREME ${escapeHtmlTeste(an)}</strong>
             <span>${escapeHtmlTeste(an)}</span>
@@ -39463,6 +39472,28 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     if (resetBtn) {
       resetBtn.addEventListener('click', reseteazaFiltreBibliotecaTeste);
     }
+    // Acces rapid la testele vechi, noile modele și întreaga bibliotecă.
+    const allYearsButton = document.getElementById('tests-show-all');
+    const legacyButton = document.getElementById('tests-show-history');
+    const modelButton = document.getElementById('tests-show-2027');
+    if (allYearsButton) allYearsButton.addEventListener('click', () => {
+      reseteazaFiltreBibliotecaTeste();
+      document.getElementById('tests-year-filter')?.scrollIntoView({ behavior:'smooth', block:'center' });
+    });
+    if (legacyButton) legacyButton.addEventListener('click', () => {
+      reseteazaFiltreBibliotecaTeste();
+      const year2026 = document.querySelector('#tests-library .simple-year-box[data-test-year="2026"]');
+      year2026?.scrollIntoView({ behavior:'smooth', block:'start' });
+    });
+    if (modelButton) modelButton.addEventListener('click', () => {
+      reseteazaFiltreBibliotecaTeste();
+      const yearSelect = document.getElementById('tests-year-filter');
+      if (yearSelect) yearSelect.value = '2027';
+      populeazaSesiuniTeste('2027','model');
+      actualizeazaNumarTestePeMaterii();
+      randareTesteAntrenament();
+      document.getElementById('tests-library')?.scrollIntoView({ behavior:'smooth', block:'start' });
+    });
   }
 
   function paginaDinURL() {
