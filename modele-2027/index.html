@@ -32,12 +32,12 @@ footer{padding:20px;text-align:center;background:#071b34;color:#bacadd;font-size
 </head>
 <body>
 <header><nav><a class="brand" href="/">FORMULA X</a><a href="/#teste">← Toate testele BAC</a></nav></header>
-<section class="hero"><div class="wrap"><div class="eyebrow">Nou • Modelele oficiale publicate</div><h1>Modele BAC <span style="color:#ffcf55">2027</span></h1><p>Exersează pe modelele publicate pentru BAC 2027. Alege materia și profilul, deschide subiectul PDF, apoi verifică rezolvarea folosind baremul corespunzător.</p><div class="kpis"><span>📄 <strong id="total">23</strong> variante de model</span><span>✅ Subiect + barem</span><span>🎓 13 discipline</span></div></div></section>
+<section class="hero"><div class="wrap"><div class="eyebrow">Nou • Modelele oficiale publicate</div><h1>Modele BAC <span style="color:#ffcf55">2027</span></h1><p>Exersează pe modelele publicate pentru BAC 2027. Alege materia și profilul, deschide subiectul PDF, apoi verifică rezolvarea folosind baremul corespunzător.</p><div class="kpis"><span>📄 <strong id="total">23</strong> variante de model</span><span>✅ Subiecte și bareme la sursă</span><span>🎓 13 discipline</span></div></div></section>
 <main class="wrap">
 <div class="filters"><div><label for="search">Caută un model</label><input id="search" type="search" placeholder="Ex.: mate-info, fizică, real, logică…"></div><div><label for="subject">Materia</label><select id="subject"><option value="">Toate materiile</option></select></div></div>
-<p class="tip">Modelele nu sunt subiectele examenului din iunie 2027; sunt variante orientative publicate pentru pregătire. Documentele PDF se deschid de pe sursele publice care le găzduiesc.</p>
+<p class="tip">Modelele nu sunt subiectele examenului din iunie 2027; sunt variante orientative publicate pentru pregătire. Linkurile te trimit la sursele care publică modelele. Fișierele PDF nu sunt încă găzduite direct de Formula X.</p>
 <div id="results" aria-live="polite"></div>
-<section class="archive"><h2>📦 Descarcă arhivele complete</h2><p>Vrei toate profilurile dintr-o materie într-un singur pachet? Poți descărca arhivele oficiale în format ZIP.</p><div class="archive-grid" id="archives"></div>
+<section class="archive"><h2>📦 Arhivele oficiale BAC 2027</h2><p>Vrei toate profilurile dintr-o materie într-un singur pachet? Accesează colecția oficială pentru arhivele complete în format ZIP.</p><div class="archive-grid" id="archives"></div>
 <div class="notice"><strong>Limbi materne și Română pentru secțiile cu predare în limba maghiară:</strong> modelele pentru aceste probe se găsesc în <a style="display:inline;min-width:0;background:none;color:#173e69;padding:0;border:0;text-decoration:underline" href="https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/" target="_blank" rel="noopener">colecția oficială de modele BAC 2027</a>.</div>
 <p style="margin-top:16px">Sursa documentelor: <a href="https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/" style="display:inline;min-width:0;padding:0;background:none;border:0;color:#173e69;text-decoration:underline" target="_blank" rel="noopener">Centrul Național pentru Curriculum și Evaluare</a>.</p>
 </section></main><footer>Formula X • Pregătire pentru BAC 2027 • <a href="/">Înapoi pe site</a></footer>
@@ -62,11 +62,11 @@ for(const m of set.filter(x=>x.materieLabel===groupName)){
 const card=document.createElement('article');card.className='model-card';
 const info=document.createElement('div'), h3=document.createElement('h3'), p=document.createElement('p');h3.textContent=m.titlu;p.textContent='BAC 2027 • '+m.proba+' • Model oficial';info.append(h3,p);
 const acts=document.createElement('div');acts.className='actions';
-for(const [label,url,type] of [['📄 Subiect PDF',m.subiect,'subiect'],['✅ Barem PDF',m.barem,'barem']]){const a=document.createElement('a');a.textContent=label;a.href=url;a.className=type;a.target='_blank';a.rel='noopener noreferrer';acts.appendChild(a)}
+for(const [label,url,type] of [['📄 Vezi subiectul',m.subiect,'subiect'],['✅ Vezi baremul',m.barem,'barem']]){const a=document.createElement('a');a.textContent=label;a.href=url;a.className=type;a.target='_blank';a.rel='noopener noreferrer';acts.appendChild(a)}
 card.append(info,acts);section.appendChild(card)
 }results.appendChild(section);
 }}
-for(const f of zips){const cell=document.createElement('div');cell.className='archive-cell';const b=document.createElement('b');b.textContent=f.titlu;const a=document.createElement('a');a.href=f.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='↓ Arhivă ZIP';cell.append(b,a);archives.appendChild(cell)}
+for(const f of zips){const cell=document.createElement('div');cell.className='archive-cell';const b=document.createElement('b');b.textContent=f.titlu;const a=document.createElement('a');a.href=f.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Vezi arhiva oficială';cell.append(b,a);archives.appendChild(cell)}
 subject.addEventListener('change',render);search.addEventListener('input',render);render();
 })();
 </script></body></html>
