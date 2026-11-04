@@ -38821,6 +38821,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
 
 
   let filtruMaterieTeste = 'toate';
+  let modBibliotecaTeste = 'toate'; // 'toate' | 'istoric' — păstrează biblioteca 2012–2026 separată de modelele 2027.
   let categorieBibliotecaTeste = 'standard';
 
   function escapeHtmlTeste(value) {
@@ -38853,6 +38854,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
   }
 
   function testeDinCategoriaCurenta() {
+    if (modBibliotecaTeste === 'istoric') return TESTE_ANTRENAMENT.filter(test => Number(test.an) <= 2026);
     return TESTE_ANTRENAMENT;
   }
 
@@ -39396,6 +39398,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
   window.deschideTesteMaterie = deschideTesteMaterie;
 
   function reseteazaFiltreBibliotecaTeste() {
+    modBibliotecaTeste = 'toate';
     filtruMaterieTeste = 'toate';
 
     const subjects = document.getElementById('tests-subject-filters');
@@ -39482,8 +39485,10 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     });
     if (legacyButton) legacyButton.addEventListener('click', () => {
       reseteazaFiltreBibliotecaTeste();
-      const year2026 = document.querySelector('#tests-library .simple-year-box[data-test-year="2026"]');
-      year2026?.scrollIntoView({ behavior:'smooth', block:'start' });
+      modBibliotecaTeste = 'istoric';
+      populeazaFiltreTeste();
+      randareTesteAntrenament();
+      document.getElementById('tests-library')?.scrollIntoView({ behavior:'smooth', block:'start' });
     });
     if (modelButton) modelButton.addEventListener('click', () => {
       reseteazaFiltreBibliotecaTeste();
