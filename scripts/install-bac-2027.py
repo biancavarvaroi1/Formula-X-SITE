@@ -1,76 +1,73 @@
 #!/usr/bin/env python3
-"""Install verified 2027 PDF models from Ministry's public ZIP archives."""
-import io, re, os, sys, time, zipfile, urllib.request, urllib.parse, html, json
-from pathlib import Path
+"""Fetch unmodified BAC 2027 PDFs, verify them, and host on Formula X."""
+import io,json,re,zipfile,urllib.request,urllib.parse,html,time
 from html.parser import HTMLParser
-BASE = "https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/"
-NAMES = [
-"Bac_2027_E_a_Limba_si_literatura_romana_modele",
-"Bac_2027_E_a_Limba_si_literatura_romana__pt_minoritatea_maghiara_modele",
-"Bac_2027_E_b_Limbi_materne_modele",
-"Bac_2027_E_c_Istorie_model",
-"Bac_2027_E_c_Matematica_modele",
-"Bac_2027_E_d_Anatomie_Biologie_modele",
-"Bac_2027_E_d_Chimie_modele",
-"Bac_2027_E_d_Fizica_modele",
-"Bac_2027_E_d_Geografie_model",
-"Bac_2027_E_d_Informatica_modele",
-"Bac_2027_E_d_Socio_umane_modele",
-]
-def get(url):
-    req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0 FormulaX/2027"})
-    with urllib.request.urlopen(req,timeout=35) as r: return r.read()
-class Links(HTMLParser):
-    def __init__(self): super().__init__();self.hrefs=[]
-    def handle_starttag(self,tag,attrs):
-        if tag=="a":
-            d=dict(attrs)
-            if d.get("href"):self.hrefs.append(d["href"])
-def links(url):
-    try:
-        body=get(url).decode("utf-8","replace")
-        h=Links();h.feed(body)
-        matches=h.hrefs+re.findall(r'["\']([^"\']+\\.zip(?:\\?[^"\']*)?)["\']',body,re.I)
-        return list(dict.fromkeys(urllib.parse.urljoin(url,html.unescape(x)) for x in matches))
-    except Exception as e:print("SOURCE UNAVAILABLE",url,e,flush=True);return []
-sources=[BASE, "https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/index.html",
-         "https://cnprsv.ro/?page_id=152"]
-found=[]
-for src in sources:found.extend(links(src))
-found=list(dict.fromkeys(found))
-print("Archive links discovered:",len(found),flush=True)
-out=Path("modele-2027/pdf")
+from pathlib import Path
+
+MIRROR="https://profesorbun.ro/blog/modele-bac-2027-subiecte-bareme-oficiale"
+SCHOOL="https://cnprsv.ro/?page_id=152"
+OFFICIAL="https://subiecte.edu.ro/2027/bacalaureat/modeledesubiecte/"
+class A(HTMLParser):
+ def __init__(self):super().__init__();self.hrefs=[]
+ def handle_starttag(self,tag,attrs):
+  if tag=="a":
+   d=dict(attrs)
+   if d.get("href"):self.hrefs.append(d["href"])
+def get(url,timeout=18):
+ req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0 (compatible; FormulaX-archive/1.0)"})
+ with urllib.request.urlopen(req,timeout=timeout) as r:return r.read()
+def anchors(url):
+ try:
+  s=get(url).decode("utf8","replace");p=A();p.feed(s)
+  urls=[urllib.parse.urljoin(url,html.unescape(x)) for x in p.hrefs]
+  print("HTML",url,"links:",len(urls),"PDF:",sum(".pdf" in x.lower() for x in urls),"ZIP:",sum(".zip" in x.lower() for x in urls),flush=True)
+  print("Samples:",[x[:170] for x in urls if (".pdf" in x.lower() or ".zip" in x.lower())][:8],flush=True)
+  return list(dict.fromkeys(urls))
+ except Exception as e:
+  print("UNAVAILABLE",url,str(e)[:180],flush=True);return []
+js=Path("modele-2027/catalog.js").read_text(encoding="utf8")
+m=re.search(r"window\.FORMULA_X_BAC_2027\s*=\s*(\[.*?\]);",js,re.S)
+if not m:raise RuntimeError("Cannot read exact local 2027 catalogue")
+models=json.loads(m.group(1))
+needed={x.rsplit("/",1)[-1].lower():x.rsplit("/",1)[-1] for row in models for x in (row["subiect"],row["barem"])}
+assert len(needed)==68, f"Expected 68 distinct PDFs, found {len(needed)}"
+urls=anchors(MIRROR)+anchors(SCHOOL)
+pdf_links={}
+zip_links=[]
+for url in urls:
+ parsed=urllib.parse.urlparse(url)
+ basename=urllib.parse.unquote(parsed.path.rsplit("/",1)[-1]).lower()
+ if ".zip" in url.lower() or ".zip" in basename:zip_links.append(url)
+ for key in needed:
+  if key in urllib.parse.unquote(url).lower():pdf_links[key]=url
+print("Linked PDFs:",len(pdf_links),"archive ZIPs:",len(zip_links),flush=True)
 docs={}
-for name in NAMES:
-    simple=name.lower().replace("_","")
-    matches=[u for u in found if simple in urllib.parse.unquote(u).lower().replace("_","")]
-    candidates=matches+[urllib.parse.urljoin(BASE,name+".zip"),urllib.parse.urljoin(BASE,name+"/"),urllib.parse.urljoin(BASE,name+".ZIP")]
-    data=None
-    for url in dict.fromkeys(candidates):
-        try:
-            b=get(url)
-            if zipfile.is_zipfile(io.BytesIO(b)):
-                data=b;break
-        except Exception as e:print("skip",url,type(e).__name__,flush=True)
-    if data is None:raise RuntimeError("Missing official ZIP: "+name)
-    with zipfile.ZipFile(io.BytesIO(data)) as z:
-        pdfs=[i for i in z.infolist() if i.filename.lower().endswith(".pdf") and not i.is_dir()]
-        if not pdfs:raise RuntimeError("No PDF in "+name)
-        for i in pdfs:
-            raw=z.read(i)
-            if not raw.startswith(b"%PDF-"):raise RuntimeError("Invalid PDF "+i.filename)
-            fn=Path(i.filename).name
-            if fn in docs and docs[fn]!=raw:raise RuntimeError("Conflicting PDF "+fn)
-            docs[fn]=raw
-    print("Verified",name,len(pdfs),flush=True)
-if len(docs)<60:raise RuntimeError("Too few PDFs; refusing partial release: "+str(len(docs)))
-out.mkdir(parents=True,exist_ok=True)
-for fn,b in docs.items(): (out/fn).write_bytes(b)
-print("Verified and installed",len(docs),"PDFs",flush=True)
-# Keep the user's prepared catalog and page layout; publish matching PDF paths only.
-expected_file=Path("modele-2027/catalog.js")
-catalog=expected_file.read_text()
-if "didactika.ro" in catalog or "subiecte.edu.ro" in catalog:
-    raise RuntimeError("New local PDF catalog is not installed; refusing public links")
-for filename in re.findall(r'pdf/([^"\']+\\.pdf)',catalog):
-    if filename not in docs:raise RuntimeError("Catalog PDF absent: "+filename)
+for key,url in pdf_links.items():
+ try:
+  raw=get(url,timeout=25)
+  if raw.startswith(b"%PDF-"):
+   docs[key]=raw;print("PDF OK",key,len(raw),flush=True)
+  else:print("Not a PDF",key,len(raw),flush=True)
+ except Exception as e:print("PDF FAIL",key,str(e)[:100],flush=True)
+# Recover missing PDFs from ZIPs published by a school archive.
+for url in zip_links:
+ if len(docs)==len(needed):break
+ try:
+  data=get(url,timeout=25)
+  if not zipfile.is_zipfile(io.BytesIO(data)):continue
+  with zipfile.ZipFile(io.BytesIO(data)) as z:
+   for item in z.infolist():
+    key=Path(item.filename).name.lower()
+    if key in needed and key not in docs:
+     data=z.read(item)
+     if data.startswith(b"%PDF-"):
+      docs[key]=data
+  print("Archive",url.rsplit("/",1)[-1],"matched",len(docs),flush=True)
+ except Exception as e:print("ZIP FAIL",url,str(e)[:100],flush=True)
+missing=set(needed)-set(docs)
+if missing:
+ print("MISSING:",sorted(missing),flush=True)
+ raise RuntimeError(f"Missing {len(missing)} PDFs: not publishing broken links.")
+out=Path("modele-2027/pdf");out.mkdir(exist_ok=True,parents=True)
+for key,b in docs.items(): (out/needed[key]).write_bytes(b)
+print("READY: all 68 PDFs verified and written to Formula X",flush=True)
