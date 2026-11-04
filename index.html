@@ -8076,13 +8076,14 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
 
 
 
+  <section class="fx-bac27-announcement" aria-label="Modele BAC 2027" style="padding:22px 18px;background:linear-gradient(110deg,#0e2850,#173f70);color:#fff;"><div style="max-width:1120px;margin:auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;"><div><span style="font-size:11px;font-weight:900;letter-spacing:.12em;color:#ffcf5a;">NOU • BAC 2027</span><h2 style="font-size:clamp(22px,3vw,29px);margin:4px 0 6px;color:white;">Au apărut modelele oficiale BAC 2027! 📚</h2><p style="margin:0;max-width:720px;font-size:14px;color:#e5eefb;">Subiecte și bareme organizate pe materii și profiluri, într-un singur loc.</p></div><a href="modele-2027/" style="white-space:nowrap;background:#ffcf59;border-radius:9px;padding:13px 19px;text-decoration:none;font-weight:900;color:#122844;">VEZI MODELELE 2027 →</a></div></section>
   <!-- ================= ACCES RAPID: ARHIVĂ TESTE BAC ================= -->
   <section class="home-tests-promo" aria-labelledby="home-tests-promo-title">
     <div class="home-tests-promo-wrap">
       <div>
         <span class="home-tests-promo-badge">📄 Resurse gratuite pentru BAC</span>
-        <h2 id="home-tests-promo-title">Subiecte și bareme <span>BAC 2012–2026</span></h2>
-        <p>Accesează biblioteca de teste Formula X. Găsești subiectele și baremele împreună, organizate după materie, an și sesiune, cu subiectul și baremul disponibile direct.</p>
+        <h2 id="home-tests-promo-title">Subiecte și bareme <span>BAC 2012–2027</span></h2>
+        <p>Descoperă modelele BAC 2027 și arhiva de teste Formula X. Găsești subiectele și baremele organizate după materie, profil, an și sesiune.</p>
         <div class="home-tests-promo-meta">
           <span>✓ Subiect + barem</span>
           <span>✓ Toate materiile disponibile</span>
@@ -8174,6 +8175,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
       </div>
     </section>
 
+    <div style="max-width:1100px;margin:16px auto;padding:17px 19px;background:#e8f2ff;border:1px solid #bad7f7;border-radius:12px;display:flex;flex-wrap:wrap;align-items:center;gap:12px;justify-content:space-between"><div><strong style="display:block;color:#123c68">📚 Modelele oficiale BAC 2027 sunt disponibile!</strong><span style="font-size:13px;color:#395c7e">Alege materia, profilul și consultă subiectul împreună cu baremul.</span></div><a href="modele-2027/" style="background:#173d69;color:white;padding:11px 16px;border-radius:8px;text-decoration:none;font-weight:800;font-size:13px">Vezi modelele 2027 →</a></div>
     <div class="simple-tests-layout">
 
       <aside class="simple-subjects">
@@ -10664,10 +10666,10 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
   ========================================== */
   const PROGRAM_WEEK_ENDS = {
     romana: [
-      '2026-09-21', '2026-09-28', '2026-10-05', '2026-10-12', '2026-10-19',
-      '2026-10-26', '2026-11-02', '2026-11-09', '2026-11-16', '2026-11-23',
-      '2026-11-30', '2026-12-07', '2026-12-14', '2026-12-21', '2027-01-11',
-      '2027-01-18', '2027-01-25'
+      '2026-10-09', '2026-10-16', '2026-10-23', '2026-10-30', '2026-11-06',
+      '2026-11-13', '2026-11-20', '2026-11-27', '2026-12-04', '2026-12-11',
+      '2026-12-18', '2026-12-25', '2027-01-08', '2027-01-15', '2027-01-22',
+      '2027-01-29', '2027-02-05'
     ],
     mate: [
       '2026-09-21', '2026-09-28', '2026-10-05', '2026-10-12', '2026-10-19',
@@ -10736,7 +10738,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     if (row.querySelector('.calendar-past-badge')) return;
     const badge = document.createElement('span');
     badge.className = 'calendar-past-badge';
-    badge.textContent = '✓ Parcursă';
+    badge.textContent = '✓ Dată trecută';
     row.appendChild(badge);
   }
 
