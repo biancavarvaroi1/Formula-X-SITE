@@ -24,6 +24,7 @@ function createPage(protectedEssay=false){
   }};
   const location={search:protectedEssay?'?eseu=caracterizare':'?eseu=particularitati'};
   const scope={window:{FormulaXLessons:fx,scrollTo(){},addEventListener(name,fn){windowEvents[name]=fn;}},document:doc,location,history:{pushState(_,__,url){location.search=url;}},URL,URLSearchParams,Blob,Uint8Array,Date,Intl,setInterval(fn,ms){const id=++timerId;intervals.set(id,{fn,ms});return id;},clearInterval(id){intervals.delete(id);},setTimeout(fn,ms){const id=++timerId;timeouts.set(id,{fn,ms});return id;},clearTimeout(id){timeouts.delete(id);},fetch:async()=>{fetches++;if(offline)throw Error('Temporary connection failure');return {ok:true,json:async()=>publicBundle};}};
+  scope.window.FormulaXUniversalEditor=require('./fixtures/editor-stub.cjs');
   vm.runInNewContext(source,scope);
   const study=scope.window.FormulaXEssayPractice;
   const click=dataset=>callbacks.click({preventDefault(){},target:{closest(selector){return selector==='[data-fxs-action]'?{dataset}:null;}}});

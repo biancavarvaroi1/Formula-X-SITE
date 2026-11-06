@@ -109,6 +109,7 @@ check(study.snapshot().context===null&&study.snapshot().quiz===null&&study.snaps
   const auth={getSession:async()=>({data:{session:user?{user}:null}}),onAuthStateChange(fn){callbacks.auth=fn;}};
   const fx={lessons:[{slug,title:'Moara cu noroc',character:'Ghiță',cover:'/cover.png'}],esc,sb:()=>({auth}),linkAccount:async()=>{},date:value=>value,decode:value=>Uint8Array.from(Buffer.from(value,'base64')),decryptBundle:async()=>{decrypts++;return bundle;},rpc:async name=>name==='fx_student_is_enrolled'?false:{access:{state:allowed?'active':'locked',allowed,endsAt:accessEnd},key:allowed?'test-key':null,version:'test-version'}};
   const page={window:{FormulaXLessons:fx,addEventListener(){},scrollTo(){}},document:doc,location:{search:''},history:{pushState(_,__,url){page.location.search=url;}},URL,URLSearchParams,Blob,Uint8Array,Date,setInterval:()=>1,clearInterval(){},setTimeout:()=>1,clearTimeout(){}};
+  page.window.FormulaXUniversalEditor=require('./fixtures/editor-stub.cjs');
   vm.runInNewContext(pageSource.replace('  heartbeat=setInterval(verify,60000);verify();\n})();','  globalThis.qa={verify};\n})();'),page);
   const practice=page.window.FormulaXEssayPractice;
   const click=dataset=>callbacks.click({preventDefault(){},target:{closest(selector){return selector==='[data-fxs-action]'?{dataset}:null;}}});

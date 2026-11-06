@@ -170,7 +170,10 @@
   // Structured essays have their own protected interactive renderers.
   if(slug==='baltagul'||slug==='ion'){
     const selected=new URLSearchParams(location.search).get('eseu');
-    const query=selected==='caracterizare'?'?eseu=caracterizare':'';
+    const redirectParams=new URLSearchParams();
+    if(selected==='caracterizare')redirectParams.set('eseu',selected);
+    if(new URLSearchParams(location.search).get('editor')==='1')redirectParams.set('editor','1');
+    const query=redirectParams.size?'?'+redirectParams.toString():'';
     window.location.replace('/lectii/romana/'+slug+'.html'+query);
     return;
   }
@@ -261,7 +264,11 @@
         const publicBundle=await response.json();
         if(request!==sequence)return;
         clearMaterial({preserveProgress:true});
-        bundle=publicBundle;version='public-harap-particularitati';
+        await universalEditorReady;
+        await window.FormulaXUniversalEditor?.ready();
+        bundle=window.FormulaXUniversalEditor?.patchModel(publicBundle)||publicBundle;
+        window.FormulaXUniversalEditor?.registerModel(bundle);
+        version='public-harap-particularitati';
         for(const [path,url] of Object.entries(publicBundle.imageUrls||{})){
           if(typeof url!=='string'||!/^\/assets\/lessons\/harap-alb\/[a-z0-9-]+\.webp$/.test(url))throw new Error('Adresă de imagine publică invalidă');
           assetUrls[path]=url;
@@ -287,6 +294,9 @@
         status(result?.access||{state:'locked'},undefined,{enrolled});return;
       }
       if(result.format==='text'){
+        await universalEditorReady;
+        await window.FormulaXUniversalEditor?.setLesson({slug,subject:result.subject});
+        if(request!==sequence)return;
         meta={...meta,title:result.title};
         if(!bundle||bundle.text!==result.body){clearMaterial();bundle={text:result.body,title:result.title,subject:result.subject};version='text';render(result.access);}
       }

@@ -19,6 +19,7 @@ let checks=0;
   }};
   const scope={window:{FormulaXLessons:fx,addEventListener(){}},document:doc,location:{search:''},URL,URLSearchParams,Blob,Uint8Array,Date,Intl,setInterval:()=>1,clearInterval(){},setTimeout:()=>1,clearTimeout(){}};
   const js=fs.readFileSync(path.join(root,'assets/formula-x-lesson-page.js'),'utf8').replace('  heartbeat=setInterval(verify,60000);verify();\n})();','  globalThis.qa={verify,status};\n})();');
+  scope.window.FormulaXUniversalEditor=require('./fixtures/editor-stub.cjs');
   vm.runInNewContext(js,scope);
   await scope.qa.verify();
   assert(node.innerHTML.includes('Contul acesta nu este asociat unei înscrieri active'));checks++;
