@@ -43,10 +43,11 @@ body.fx-unlocked #fx-access {display:none!important}
 <dialog id="zoom"><button class="close" id="closeZoom" aria-label="Închide">✕</button><img id="zoomImage" alt="Ilustrație mărită"></dialog>
 <script src="/assets/vendor/supabase.js"></script>
 <script src="/cursuri/config.js"></script>
+<script src="/assets/fx-editor-all.js"></script>
 <script>
 function launchLesson(payload,userId){
 'use strict';
-const data=payload;const $=id=>document.getElementById(id);const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const KEY='fx-ion-course-v1:'+userId;let storage={};try{storage=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch{};
+const data=window.FormulaXUniversalEditor?.patchModel(payload)||payload;window.FormulaXUniversalEditor?.registerModel(data);const $=id=>document.getElementById(id);const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const KEY='fx-ion-course-v1:'+userId;let storage={};try{storage=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch{};
 let essay=new URLSearchParams(location.search).get('eseu')==='caracterizare'?'caracterizare':storage.essay==='caracterizare'?'caracterizare':'particularitati';let levels=storage.levels&&typeof storage.levels==='object'?storage.levels:{};let revealed=storage.revealed&&typeof storage.revealed==='object'?storage.revealed:{};let quiz=storage.quiz||null;const images=data.embeddedImages||{};
 function save(){try{localStorage.setItem(KEY,JSON.stringify({essay,levels,revealed,quiz}))}catch{}}
 
@@ -128,6 +129,7 @@ if(quiz&&(!Array.isArray(quiz.questions)||quiz.essay!==essay))quiz=null;render()
     document.body.classList.add('fx-unlocked');
     gate.hidden=true;
     unlocked=true;
+    await window.FormulaXUniversalEditor?.ready();
     launchLesson(payload,activeUid);
   }
   async function checkAccess(){

@@ -1,0 +1,45 @@
+name: Validate lesson editor JavaScript
+on:
+  pull_request:
+    paths:
+      - "assets/fx-editor-all.js"
+      - "assets/fx-course-existing-editor.js"
+      - "assets/formula-x-lesson-page.js"
+      - "assets/formula-x-lesson-teacher.js"
+      - "lectii/**/*.html"
+      - "assets/lectii/**/*.html"
+      - ".github/workflows/verify-lesson-editor.yml"
+  push:
+    paths:
+      - "assets/fx-editor-all.js"
+      - "assets/fx-course-existing-editor.js"
+      - "assets/formula-x-lesson-page.js"
+      - "assets/formula-x-lesson-teacher.js"
+      - ".github/workflows/verify-lesson-editor.yml"
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check standalone scripts
+        run: |
+          node --check assets/fx-editor-all.js
+          node --check assets/fx-course-existing-editor.js
+          node --check assets/formula-x-lesson-page.js
+          node --check assets/formula-x-lesson-teacher.js
+      - name: Check edited inline HTML scripts
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re, subprocess, tempfile
+          paths=['lectii/romana/ion.html','lectii/romana/baltagul.html','lectii/matematica/progresii.html','assets/lectii/matematica/progresii.html']
+          for path in paths:
+              text=Path(path).read_text(encoding='utf-8')
+              chunks=re.findall(r'<script\b[^>]*>(.*?)</script>',text,flags=re.I|re.S)
+              for i,chunk in enumerate(chunks):
+                  if not chunk.strip(): continue
+                  with tempfile.NamedTemporaryFile(suffix='.js') as f:
+                      f.write(chunk.encode('utf-8')); f.flush()
+                      subprocess.run(['node','--check',f.name],check=True)
+              print('OK',path)
+          PY

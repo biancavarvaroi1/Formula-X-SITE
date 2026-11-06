@@ -165,6 +165,7 @@
 (() => {
   'use strict';
   const FX=window.FormulaXLessons, root=document.getElementById('fxl-content');
+  const universalEditorReady=new Promise(resolve=>{if(window.FormulaXUniversalEditor)return resolve();const script=document.createElement('script');script.src='/assets/fx-editor-all.js';script.onload=resolve;script.onerror=resolve;document.head.append(script);});
   const slug=document.body.dataset.lesson||new URLSearchParams(location.search).get('slug');
   // Structured essays have their own protected interactive renderers.
   if(slug==='baltagul'||slug==='ion'){
@@ -292,7 +293,7 @@
       else if(!bundle || version!==result.version) {
         const next=await FX.decryptBundle(slug,result.version,result.key);
         if(request!==sequence)return;
-        clearMaterial({preserveProgress:true}); bundle=next; version=result.version;
+        clearMaterial({preserveProgress:true}); await universalEditorReady; await window.FormulaXUniversalEditor?.ready(); bundle=window.FormulaXUniversalEditor?.patchModel(next)||next; window.FormulaXUniversalEditor?.registerModel(bundle); version=result.version;
         for(const [path,asset] of Object.entries(bundle.assets||{})) {
           if(asset.type!=='image/webp') throw new Error('Format de imagine invalid');
           assetUrls[path]=URL.createObjectURL(new Blob([FX.decode(asset.data)],{type:asset.type}));
