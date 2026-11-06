@@ -14,6 +14,8 @@ Profesorul mentor poate salva doar pentru materia lui; administratorul poate sal
 - `assets/fx-editor-all.js` — editor comun pentru pagini cu texte și imagini; acolo unde există un model JS expus, permite și schimbarea datelor structurate
 - `assets/fx-course-existing-editor.js` — lecții din biblioteca /cursuri/
 - `assets/formula-x-lesson-teacher.js` — buton „Editează lecția” în portal
+- `assets/formula-x-lessons-core.js` — buton „Editează lecția” pe fiecare card din bibliotecă, numai pentru administrator sau profesorul materiei
+- `scripts/install-lesson-editor.py` — păstrează integrarea și actualizează versiunile scripturilor după extragerea pachetului folosit la publicare
 - `SUPABASE-EDITOR-TOATE-LECTIILE.sql` — stocare, acces RLS, imagini
 
 ## Limite și precauții
@@ -22,4 +24,10 @@ Profesorul mentor poate salva doar pentru materia lui; administratorul poate sal
 - Editorul universal este **inactiv la salvare** până când rulezi SQL-ul. Lecțiile existente pot fi citite în continuare fără SQL.
 - Pentru lecțiile private trebuie păstrat accesul prin `fx_open_lesson`. Testează cu un cont de profesor și un cont de elev înainte de a publica schimbări importante.
 - Conținutul modificat este memorat ca diferențe (patches) în Supabase. Nu suprascrie fișierul original din GitHub.
+
+## Integrarea la publicare
+
+Fluxul Pages extrage un pachet mai vechi care înlocuiește paginile bibliotecii și ale lecțiilor. Păstrează sursele curente `formula-x-lessons-core.js`, `formula-x-lesson-page.js` și `formula-x-lesson-teacher.js` peste acel pachet, apoi rulează `python scripts/install-lesson-editor.py`. Editorul trebuie încărcat înainte de renderer, inclusiv în `cursuri/lectie.html?slug=...`. Pentru aceste lecții, materia este preluată din răspunsul autorizat `fx_open_lesson`, prin `FormulaXUniversalEditor.setLesson`.
+
+Verificări: `node tests/lesson-editor.cjs` pentru roluri, autentificare, rute și salvare; `python tests/lesson-editor-deploy.py` pe rezultatul pregătit pentru publicare. Testele existente pentru chestionare și acces trebuie să treacă în continuare.
 

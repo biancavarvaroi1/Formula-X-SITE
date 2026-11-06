@@ -40,6 +40,7 @@ let checks=0;
   const location={search:'?eseu=particularitati'};
   const scope={window:{FormulaXLessons:fx,addEventListener(){},scrollTo(){}},document:doc,location,history:{pushState(_,__,url){location.search=url;}},URL,URLSearchParams,Blob,Uint8Array,Date,Intl,setInterval:()=>1,clearInterval(){},setTimeout:()=>1,clearTimeout(){},fetch:async(url,options)=>{fetches++;assert(url.startsWith('/assets/public-harap-alb-particularitati.json?'));assert.equal(options.credentials,'omit');assert.equal(options.cache,'no-cache');return {ok:true,json:async()=>bundle};}};
   const js=fs.readFileSync(path.join(root,'assets/formula-x-lesson-page.js'),'utf8').replace('  heartbeat=setInterval(verify,60000);verify();\n})();','  globalThis.qa={verify,render,imageUrl};\n})();');
+  scope.window.FormulaXUniversalEditor=require('./fixtures/editor-stub.cjs');
   vm.runInNewContext(js,scope);
   await scope.qa.verify();
   assert.equal(sessionCalls,0);assert.equal(rpcCalls,0);assert.equal(decryptCalls,0);

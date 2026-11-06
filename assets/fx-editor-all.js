@@ -2,8 +2,12 @@
 (function(){
 'use strict';
 var path=location.pathname.match(/^\/(?:assets\/)?lectii\/([a-z-]+)\/([a-z0-9-]+)\.html$/i);
-if(!path)return;
-var subject=path[1],slug=path[2],page=subject+'/'+slug;
+var params=new URLSearchParams(location.search);
+var slug=path?.[2]||document.body?.dataset.lesson||params.get('slug')||'';
+if(!/^[a-z0-9-]+$/.test(slug))return;
+var subject=path?.[1]||document.body?.dataset.fxEditorSubject||'';
+if(!subject&&window.FormulaXLessons?.lessons.some(function(l){return l.slug===slug}))subject='romana';
+var page=subject?subject+'/'+slug:null;
 var state={sb:null,patches:{texts:{},images:{},model:{},answers:{}},revision:null,edit:false,allowed:false,dirty:false,model:null};
 var nodes=new WeakMap(),images=new WeakMap();
 function $(id){return document.getElementById(id)}
@@ -13,7 +17,7 @@ function keyText(s){return 't-'+hash(String(s).replace(/\s+/g,' ').trim())}
 function keyImage(x){var v=images.get(x);return 'i-'+hash((v.src||'')+'|'+v.alt+'|'+v.id)}
 function changed(){state.dirty=true;if($('fxe-save'))$('fxe-save').disabled=false;note('Modificari nesalvate.')}
 function note(v){if($('fxe-message'))$('fxe-message').textContent=v}
-function valid(){return !!(window.supabase&&window.supabase.createClient&&window.FX_SUPABASE_URL&&window.FX_SUPABASE_ANON_KEY)}
+function valid(){return typeof window.FormulaXLessons?.sb==='function'||!!(window.supabase&&window.supabase.createClient&&window.FX_SUPABASE_URL&&window.FX_SUPABASE_ANON_KEY)}
 function normal(o){var p={texts:{},images:{},model:{},answers:{}};if(o&&typeof o==='object')Object.keys(p).forEach(function(k){if(o[k]&&typeof o[k]==='object'&&!Array.isArray(o[k]))p[k]=o[k]});return p}
 function patchModel(value){if(!value||typeof value!=='object')return value;Object.entries(state.patches.model).forEach(function(e){var ks=e[0].slice(1).split('/').map(function(s){return s.replace(/~1/g,'/').replace(/~0/g,'~')});var cur=value;for(var i=0;i<ks.length-1;i++){if(cur==null||!Object.hasOwn(cur,ks[i]))return;cur=cur[ks[i]]}var k=ks[ks.length-1];if(cur&&Object.hasOwn(cur,k)&&typeof cur[k]===typeof e[1])cur[k]=e[1]});return value}
 function registerModel(x){state.model=x}
@@ -86,22 +90,46 @@ function ui(){
  document.addEventListener('click',function(e){if(!state.edit||e.target.closest('[data-fxe-ui],dialog'))return;var img=e.target.closest('img'),target=e.target.closest('p,li,h1,h2,h3,h4,blockquote,.formula,.relevance,.takeaway');if(!img&&!target)return;e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();if(img)uploadImage(img);else editText(target)},true);
  window.addEventListener('beforeunload',function(e){if(state.dirty){e.preventDefault();e.returnValue=''}});
 }
+var refreshSequence=0;
 async function refresh(){
- if(!state.sb||state.dirty)return;
- var r=await state.sb.from('fx_universal_lesson_edits').select('patches,revision').eq('page',page).maybeSingle();
- if(!r.error){state.patches=normal(r.data&&r.data.patches);state.revision=r.data?r.data.revision:null;schedule()}
- var s=await state.sb.rpc('get_my_staff_profile');
+ if(!state.sb)return;
+ var request=++refreshSequence;
+ if(!state.dirty){
+  try{
+   var r=await state.sb.from('fx_universal_lesson_edits').select('patches,revision').eq('page',page).maybeSingle();
+   if(request!==refreshSequence)return;
+   if(!r.error){state.patches=normal(r.data&&r.data.patches);state.revision=r.data?r.data.revision:null;schedule()}
+  }catch(error){console.warn('Formula X: modificarile lectiei nu au putut fi incarcate.',error)}
+ }
+ var session=await state.sb.auth.getSession();
+ var s=session.data?.session?.user?await state.sb.rpc('get_my_staff_profile'):{data:null};
+ if(request!==refreshSequence)return;
  var staff=Array.isArray(s.data)?s.data[0]:s.data;
  state.allowed=!s.error&&!!staff&&(staff.role==='admin'||(staff.role==='mentor'&&staff.subject===subject));
- if(state.allowed){$('fxe-start').hidden=false;if(location.search.includes('editor=1')&&!state.edit)$('fxe-start').click()}
+ if(!state.allowed){state.edit=false;document.body.classList.remove('fxe-editing');$('fxe-panel').hidden=true;if($('fxe-dialog').open)$('fxe-dialog').close()}
+ $('fxe-start').hidden=!state.allowed||state.edit;
+ if(state.allowed&&params.get('editor')==='1'&&!state.edit)$('fxe-start').click();
 }
-async function init(){
- if(!valid())return;
- state.sb=window.supabase.createClient(window.FX_SUPABASE_URL,window.FX_SUPABASE_ANON_KEY);
- ui();await refresh();
- new MutationObserver(schedule).observe(document.body,{childList:true,characterData:true,subtree:true});
- state.sb.auth.onAuthStateChange(function(ev){if(ev==='SIGNED_IN')setTimeout(function(){refresh().catch(console.warn)},100)});
+var initTask;
+function init(){
+ if(!subject||!valid())return Promise.resolve();
+ if(initTask)return initTask;
+ initTask=(async function(){
+  state.sb=typeof window.FormulaXLessons?.sb==='function'?window.FormulaXLessons.sb():(window.FormulaXAuthClient||window.supabase.createClient(window.FX_SUPABASE_URL,window.FX_SUPABASE_ANON_KEY));
+  ui();await refresh();
+  new MutationObserver(schedule).observe(document.body,{childList:true,characterData:true,subtree:true});
+  state.sb.auth.onAuthStateChange(function(){setTimeout(function(){refresh().catch(console.warn)},0)});
+ })();
+ return initTask;
 }
-var ready=new Promise(function(resolve){function start(){init().finally(resolve)}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start()});
-window.FormulaXUniversalEditor={ready:function(){return ready},patchModel:patchModel,registerModel:registerModel};
+var ready=new Promise(function(resolve){function start(){init().catch(console.warn).finally(resolve)}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start()});
+window.FormulaXUniversalEditor={
+ ready:function(){return ready},patchModel:patchModel,registerModel:registerModel,
+ async setLesson(lesson){
+  if(lesson?.slug!==slug||!/^[a-z-]+$/.test(lesson.subject||''))return;
+  if(subject&&subject!==lesson.subject)return;
+  subject=lesson.subject;page=subject+'/'+slug;
+  await ready;await init();
+ }
+};
 })();
