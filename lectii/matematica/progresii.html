@@ -110,6 +110,10 @@ const quiz=[
  ['Dacă q=1, suma primilor n termeni geometrici este:',['n·b₁','b₁(qⁿ−1)/(q−1)','b₁+n','b₁ⁿ'],0,'Toți termenii sunt egali cu b₁, deci suma este n·b₁.']
 ];
 let qi=0,score=0,locked=false;function renderQuiz(){locked=false;const q=quiz[qi];document.getElementById('quizCount').textContent=`Întrebarea ${qi+1} / ${quiz.length}`;document.getElementById('quizBar').style.width=`${(qi/quiz.length)*100}%`;document.getElementById('quizQuestion').textContent=q[0];const box=document.getElementById('quizOptions');box.innerHTML='';document.getElementById('quizFeedback').classList.remove('show');q[1].forEach((o,i)=>{const b=document.createElement('button');b.textContent=o;b.onclick=()=>answer(i);box.appendChild(b);});}function answer(i){if(locked)return;locked=true;const q=quiz[qi];[...document.querySelectorAll('#quizOptions button')].forEach((b,j)=>{if(j===q[2])b.classList.add('correct');if(j===i&&i!==q[2])b.classList.add('wrong');});if(i===q[2])score++;const f=document.getElementById('quizFeedback');f.classList.add('show');f.innerHTML=`${q[3]}<div class="solve-actions"><button class="btn primary" id="quizNext">${qi===quiz.length-1?'Vezi rezultatul':'Următoarea'}</button></div>`;document.getElementById('quizNext').onclick=()=>{if(qi<quiz.length-1){qi++;renderQuiz();}else{document.getElementById('quizBar').style.width='100%';document.getElementById('quizQuestion').textContent=`Rezultat: ${score}/${quiz.length}`;document.getElementById('quizOptions').innerHTML='';f.innerHTML=score>=5?'Foarte bine. Ai înțeles diferența dintre progresia aritmetică și cea geometrică.':'Mai treci o dată prin secțiunea „Învață”, apoi reia quiz-ul.';}};}document.getElementById('quizRestart').onclick=()=>{qi=0;score=0;renderQuiz();};renderQuiz();
+window.FormulaXUniversalEditor?.ready().then(()=>{window.FormulaXUniversalEditor.patchModel({quiz});window.FormulaXUniversalEditor.registerModel({quiz});renderQuiz();});
 </script>
+<script src="/assets/vendor/supabase.js"></script>
+<script src="/cursuri/config.js"></script>
+<script src="/assets/fx-editor-all.js"></script>
 </body>
 </html>
