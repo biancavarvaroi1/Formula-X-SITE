@@ -60,7 +60,7 @@ jobs:
               'assets/lessons/moara-cu-noroc.1631e6d6b1db2d22f9a4fdcd29193a52d1fcc7e820fae8d3d387e38f74748f91.fxb',
               'assets/lessons/moara-cu-noroc/coperta.webp',
           }
-          overrides={name:Path(name).read_bytes() for name in ['assets/formula-x-lessons-core.js','assets/formula-x-lesson-page.js','assets/formula-x-lesson-teacher.js']}
+          overrides={name:Path(name).read_bytes() for name in ['assets/formula-x-lessons-core.js','assets/formula-x-lesson-page.js','assets/formula-x-lesson-teacher.js','cursuri/app.js']}
           with zipfile.ZipFile(io.BytesIO(data)) as release:
               assert set(release.namelist())==allowed,'Unexpected release files'
               assert len(release.namelist())==len(allowed),'Duplicate release files'
@@ -76,20 +76,16 @@ jobs:
           PY
       - name: Install the current teacher editor on every lesson page
         run: python scripts/install-lesson-editor.py
-      - name: Keep Ultima noapte route in deployed course library
+      - name: Verify Ultima noapte uses its private lesson page
         shell: bash
         run: |
           python - <<'PY'
           from pathlib import Path
-          page=Path('cursuri/app.js')
-          code=page.read_text(encoding='utf-8')
-          old="if(l.slug==='baltagul'||l.slug==='ion'){"
-          new="if(l.slug==='baltagul'||l.slug==='ion'||l.slug==='ultima-noapte'){"
-          if new not in code:
-              if old not in code:
-                  raise RuntimeError('Course-library lesson routing structure changed')
-              page.write_text(code.replace(old,new,1),encoding='utf-8')
-          print('Ultima noapte route is present in the deployed course library.')
+          code=Path('cursuri/app.js').read_text(encoding='utf-8')
+          assert "l.slug==='ultima-noapte'" in code, 'Dedicated Ultima noapte route is missing'
+          page=Path('lectii/romana/ultima-noapte.html').read_text(encoding='utf-8')
+          assert "fx_open_lesson" in page and "formula-x-ultima-noapte-v1" in page, 'Protected lesson page is missing'
+          print('Ultima noapte: private route and page verified.')
           PY
       - name: Check teacher editor visibility and deployed lesson integration
         run: |
