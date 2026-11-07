@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Formula X · Studio pentru profesori</title>
+<link rel="stylesheet" href="/assets/fx-lesson-studio.css?v=1">
+</head>
+<body class="fxstudio">
+<header class="fxs-top">
+  <a href="/profesori/" class="fxs-logo" aria-label="Formula X, portal profesori">Formula <b>X</b></a>
+  <div><strong>Studio de lecții</strong><div><small id="fxs-user">Conectare în curs…</small></div></div>
+  <div class="fxs-top-actions">
+    <a class="fxs-button" href="/profesori/">← Portal profesori</a>
+    <button type="button" class="fxs-button" id="fxs-print">Printează previzualizarea</button>
+    <button class="fxs-button primary" type="button" id="fxs-save" disabled>Salvează lecția</button>
+  </div>
+</header>
+<main class="fxs-layout">
+ <aside class="fxs-sidebar" aria-label="Setări și blocuri">
+  <h2>Setările lecției</h2>
+  <div class="fxs-fields">
+    <label class="fxs-field">Titlu<input id="fxs-title" type="text" maxlength="190"></label>
+    <label class="fxs-field">Descriere / subtitlu<textarea id="fxs-subtitle" rows="3"></textarea></label>
+    <label class="fxs-field">Materie<select id="fxs-subject">
+      <option value="romana">Limba română</option><option value="matematica">Matematică</option>
+      <option value="biologie">Biologie</option><option value="chimie">Chimie</option>
+      <option value="fizica">Fizică</option><option value="geografie">Geografie</option>
+      <option value="logica">Logică</option>
+    </select></label>
+    <label class="fxs-field">Paletă de culori<select id="fxs-theme"><option value="rose">Roz pudrat</option><option value="ocean">Albastru</option><option value="sage">Verde salvie</option><option value="sand">Nisipiu</option></select></label>
+  </div>
+  <div class="fxs-divider"></div>
+  <h2>Șabloane de lecție</h2>
+  <p class="fxs-muted">Un punct de plecare cu repere și activități pe care le personalizezi.</p>
+  <div class="fxs-palette" id="fxs-templates"></div>
+  <div class="fxs-divider"></div>
+  <h2>Adaugă un bloc</h2>
+  <p class="fxs-muted">Compune lecția din elemente vizuale. Nu ai nevoie de cod.</p>
+  <div id="fxs-palette" class="fxs-palette"></div>
+ </aside>
+ <section class="fxs-workspace" aria-label="Editor lecție">
+   <div class="fxs-row"><h2>Structura lecției</h2><span class="fxs-muted" id="fxs-count">0 blocuri</span></div>
+   <p class="fxs-muted">Mută blocurile cu săgețile, duplică-le, șterge-le sau editează-le. Ciorna se păstrează local în acest browser.</p>
+   <div id="fxs-items" class="fxs-items"></div>
+   <div class="fxs-divider"></div>
+   <h2>Editează blocul ales</h2>
+   <div id="fxs-fields"></div>
+   <div class="fxs-divider"></div>
+   <p class="fxs-message" id="fxs-message" role="status" aria-live="polite"></p>
+ </section>
+ <section class="fxs-preview-wrap" aria-label="Previzualizare">
+  <div class="fxs-preview-head"><strong>Previzualizarea elevului</strong><button id="fxs-screen" class="fxs-button" type="button">📱 Telefon</button></div>
+  <div class="fxs-preview-stage" id="fxs-preview-stage"><div id="fxs-preview"></div></div>
+ </section>
+</main>
+<script src="/assets/vendor/supabase.js"></script>
+<script src="/cursuri/config.js"></script>
+<script src="/assets/fx-lesson-studio-renderer.js?v=1"></script>
+<script src="/assets/fx-lesson-studio.js?v=1"></script>
+</body>
+</html>
