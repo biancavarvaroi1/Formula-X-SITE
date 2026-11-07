@@ -52,19 +52,13 @@ const templates=[
  {type:"heading",title:"REPERUL 1 — Ce învățăm?",text:"Obiectivele lecției"},
  {type:"text",text:"Explică mai întâi noțiunile esențiale, într-un limbaj accesibil."},
  {type:"split",eyebrow:"EXEMPLU VIZUAL",title:"Cum funcționează?",text:"Explică imaginea, graficul sau schema.",image:"",side:"left"},
- {type:"steps",title:"Rezolvare pas cu pas",text:"Identifică datele
-Alege metoda
-Aplică formula
-Verifică rezultatul"},
+ {type:"steps",title:"Rezolvare pas cu pas",text:"Identifică datele\nAlege metoda\nAplică formula\nVerifică rezultatul"},
  {type:"callout",variant:"success",label:"REȚINE",title:"Formula / principiul important",text:"Scrie regula de bază și când se folosește."},
  {type:"quiz",question:"Aplică regula într-un exemplu.",options:["Răspuns A","Răspuns B","Răspuns C","Răspuns D"],correct:0,explanation:"Prezintă rezolvarea."}
 ]],
 ["recap","🎯","Recapitulare",[
  {type:"heading",title:"Recapitulare — Ce trebuie să știi?",text:"Principalele noțiuni"},
- {type:"cards",title:"Cele mai importante 4 idei",text:"Prima idee
-A doua idee
-A treia idee
-A patra idee"},
+ {type:"cards",title:"Cele mai importante 4 idei",text:"Prima idee\nA doua idee\nA treia idee\nA patra idee"},
  {type:"callout",variant:"important",label:"GREȘEALĂ FRECVENTĂ",title:"La ce să fii atent",text:"Explică o confuzie obișnuită."},
  {type:"quiz",question:"Întrebarea 1",options:["A","B","C","D"],correct:0,explanation:"Argumentează răspunsul."},
  {type:"quiz",question:"Întrebarea 2",options:["A","B","C","D"],correct:1,explanation:"Argumentează răspunsul."}
