@@ -76,6 +76,21 @@ jobs:
           PY
       - name: Install the current teacher editor on every lesson page
         run: python scripts/install-lesson-editor.py
+      - name: Keep Ultima noapte route in deployed course library
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          page=Path('cursuri/app.js')
+          code=page.read_text(encoding='utf-8')
+          old="if(l.slug==='baltagul'||l.slug==='ion'){"
+          new="if(l.slug==='baltagul'||l.slug==='ion'||l.slug==='ultima-noapte'){"
+          if new not in code:
+              if old not in code:
+                  raise RuntimeError('Course-library lesson routing structure changed')
+              page.write_text(code.replace(old,new,1),encoding='utf-8')
+          print('Ultima noapte route is present in the deployed course library.')
+          PY
       - name: Check teacher editor visibility and deployed lesson integration
         run: |
           node tests/lesson-editor.cjs
