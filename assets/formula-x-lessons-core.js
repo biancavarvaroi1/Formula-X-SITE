@@ -3,6 +3,7 @@
   const lessons = [
     {slug:'harap-alb',title:'Povestea lui Harap-Alb',author:'Ion Creangă',cover:'/assets/lessons/harap-alb/coperta.webp',character:'Harap-Alb'},
     {slug:'moara-cu-noroc',title:'Moara cu noroc',author:'Ioan Slavici',cover:'/assets/lessons/moara-cu-noroc/coperta.webp',character:'Ghiță'},
+    {slug:'ultima-noapte',title:'Ultima noapte de dragoste, întâia noapte de război',author:'Camil Petrescu',cover:'/assets/lessons/ultima-noapte/coperta.webp',character:'Ștefan Gheorghidiu'},
   ];
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   let client;
@@ -23,7 +24,7 @@
     if(session)await rpc('fx_link_my_enrollments');
   }
   function lessonUrl(slug) {
-    if(slug==='ion'||slug==='baltagul')return `/lectii/romana/${slug}.html`;
+    if(slug==='ion'||slug==='baltagul'||slug==='ultima-noapte')return `/lectii/romana/${slug}.html`;
     return lessons.some(l=>l.slug===slug)?`/lectii/romana/${slug}.html`:`/cursuri/lectie.html?slug=${encodeURIComponent(slug)}`;
   }
   function editorUrl(slug){
