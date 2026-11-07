@@ -125,6 +125,7 @@ async function save(){
  state.saving=true;$("fxs-save").disabled=true;tell("Se verifică și se salvează lecția…");
  try{
    const body=ensureValid();
+   const previousDraftKey=draftKey();
    if(state.slug){
      const {error}=await state.sb.rpc("fx_studio_update_lesson",{p_slug:state.slug,p_title:state.doc.title,p_summary:state.doc.subtitle||"",p_body:body});
      if(error)throw error;
@@ -140,7 +141,7 @@ async function save(){
      }
      if(!state.slug)tell("Lecția a fost creată. O găsești în panoul profesorului; pentru editare, deschide-o de acolo.");
    }
-   localStorage.removeItem(draftKey());state.dirty=false;
+   localStorage.removeItem(previousDraftKey);state.dirty=false;
    tell("Lecția a fost salvată în Formula X. Accesul elevilor se acordă separat din portal.");
    $("fxs-save").disabled=false;
  }catch(e){
@@ -156,7 +157,7 @@ async function uploadImage(key){
    const file=picker.files?.[0];if(!file)return;
    if(!["image/png","image/jpeg","image/webp"].includes(file.type)||file.size>8*1024*1024){tell("Imaginea trebuie să fie PNG, JPG sau WEBP, maximum 8 MB.",true);return}
    const ext=file.type==="image/jpeg"?"jpg":file.type.split("/")[1];
-   const directory=state.doc.subject+"/"+(state.slug||"draft")+"/studio/";
+   const directory=state.doc.subject+"/"+(state.slug||"draft")+"/";
    const name=directory+(crypto.randomUUID?.()||newId())+"."+ext;
    tell("Se încarcă imaginea…");
    try{
@@ -198,7 +199,7 @@ async function init(){
    const staff=state.staff=Array.isArray(data)?data[0]:data;
    if(!staff||!["mentor","admin"].includes(staff.role))throw Error("Doar profesorii și administratorii pot utiliza Studio.");
    if(!Object.hasOwn(subjects,staff.subject||"")&&staff.role!=="admin")throw Error("Materia profesorului nu este recunoscută.");
-   if(staff.role!=="admin"){state.doc.subject=staff.subject;$("fxs-subject").disabled=true}
+   if(staff.role!=="admin"||state.slug){if(staff.role!=="admin")state.doc.subject=staff.subject;$("fxs-subject").disabled=true}
    if(state.slug)await openLesson();
    else{
      const stored=localStorage.getItem(draftKey());
@@ -238,7 +239,7 @@ $("fxs-fields").addEventListener("input",e=>{
  const b=state.doc.blocks[state.selected],key=el.dataset.field;if(!b)return;
  if(key.startsWith("option"))b.options[Number(key.slice(6))]=el.value;
  else b[key]=key==="correct"?Number(el.value):el.value;
- mark();renderBlocks();
+ mark();
 });
 $("fxs-fields").addEventListener("change",e=>{
  const el=e.target.closest("[data-field]");if(!el)return;
