@@ -228,6 +228,10 @@
   }
   function render(access) {
     displayedAccess=access;
+    if(bundle?.studio){
+      window.FormulaXStudioRenderer.render(root,bundle.studio,meta,access);
+      return;
+    }
     if(Object.hasOwn(bundle,'text')){
       root.innerHTML=`<p class="fxl-expiry">${access.endsAt?`Ai acces până la ${e(FX.date(access.endsAt))}.`:'Acces acordat de profesor.'}</p><article class="fxl-text-course"><p class="fxl-eyebrow">${e(bundle.subject)}</p><h1>${e(bundle.title)}</h1><div class="fxl-text-body">${e(bundle.text)}</div></article>`;
       return;
@@ -251,6 +255,24 @@
     <section id="reper-2" class="fxl-section">${heading('Reper 2','Două scene semnificative',lesson.sceneDescription||`Ambele scene demonstrează trăsătura dominantă: ${lesson.keyIdea.toLocaleLowerCase('ro-RO')}.`)}<div class="fxl-grid">${lesson.scenes.map(scene=>`<article class="fxl-card">${image(scene.image,scene.alt)}<div class="fxl-card-copy"><p class="fxl-eyebrow">${e(scene.number)} · ${e(scene.chapter)}</p><h3>${learn(scene.title,'scene-title-'+scene.number)}</h3>${points(scene.points,true,'scene-'+scene.number)}<div class="fxl-relevance"><p class="fxl-eyebrow">Relevanță</p><p>${learn(scene.relevance,'relevance-'+scene.number)}</p></div></div></article>`).join('')}</div>${Study.reperButton(2)}</section>
     <section id="reper-3" class="fxl-section">${heading('Reper 3',lesson.structureTitle||'Elemente de construcție a personajului',lesson.structureDescription||'Leagă trăsăturile de mijloacele de caracterizare, de nume și de conflicte.')}<div class="fxl-grid">${lesson.structureCards.map((item,index)=>card(item,'structure-'+index)).join('')}</div>${Study.reperButton(3)}</section>
     <section class="fxl-conclusion"><div class="fxl-conclusion-label">Concluzie</div><p>${learn(lesson.conclusion,'conclusion')}</p></section></div>`;
+  }
+  let studioRendererPromise;
+  function loadStudioRenderer(){
+    if(window.FormulaXStudioRenderer)return Promise.resolve();
+    if(!studioRendererPromise){
+      studioRendererPromise=new Promise((resolve,reject)=>{
+        if(!document.querySelector('link[data-fxs-studio]')){
+          const sheet=document.createElement('link');sheet.rel='stylesheet';
+          sheet.href='/assets/fx-lesson-studio.css?v=1';sheet.dataset.fxsStudio='1';
+          document.head.appendChild(sheet);
+        }
+        const script=document.createElement('script');
+        script.src='/assets/fx-lesson-studio-renderer.js?v=1';script.onload=resolve;
+        script.onerror=()=>reject(new Error('Rendererul Studio nu este disponibil.'));
+        document.head.appendChild(script);
+      }).catch(error=>{studioRendererPromise=null;throw error});
+    }
+    return studioRendererPromise;
   }
   async function verify() {
     const request=++sequence;
@@ -294,6 +316,28 @@
         status(result?.access||{state:'locked'},undefined,{enrolled});return;
       }
       if(result.format==='text'){
+        // Lecțiile Studio sunt JSON structurat, nu text brut.
+        let studio=null;
+        if(typeof result.body==='string' && result.body.includes('"fx_format"')){
+          try{const parsed=JSON.parse(result.body);
+            if(parsed?.fx_format==='formula-x-blocks-v1' && Array.isArray(parsed.blocks))studio=parsed;
+          }catch(_){}
+        }
+        if(studio){
+          await loadStudioRenderer();
+          await universalEditorReady;
+          await window.FormulaXUniversalEditor?.setLesson({slug,subject:result.subject});
+          if(request!==sequence)return;
+          meta={...meta,title:result.title};
+          if(!bundle?.studio || version!=='studio' || bundle.studioText!==result.body){
+            clearMaterial();bundle={studio:window.FormulaXUniversalEditor?.patchModel(studio)||studio,studioText:result.body};version='studio';
+            window.FormulaXUniversalEditor?.registerModel(bundle.studio);
+            render(result.access);
+          }else{
+            displayedAccess=result.access;
+          }
+          return;
+        }
         await universalEditorReady;
         await window.FormulaXUniversalEditor?.setLesson({slug,subject:result.subject});
         if(request!==sequence)return;
