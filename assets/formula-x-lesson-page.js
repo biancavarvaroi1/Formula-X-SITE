@@ -168,7 +168,7 @@
   const universalEditorReady=new Promise(resolve=>{if(window.FormulaXUniversalEditor)return resolve();const script=document.createElement('script');script.src='/assets/fx-editor-all.js';script.onload=resolve;script.onerror=resolve;document.head.append(script);});
   const slug=document.body.dataset.lesson||new URLSearchParams(location.search).get('slug');
   // Structured essays have their own protected interactive renderers.
-  if(slug==='baltagul'||slug==='ion'){
+  if(slug==='baltagul'||slug==='ion'||slug==='ultima-noapte'){
     const selected=new URLSearchParams(location.search).get('eseu');
     const redirectParams=new URLSearchParams();
     if(selected==='caracterizare')redirectParams.set('eseu',selected);
