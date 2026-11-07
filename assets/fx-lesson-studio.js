@@ -37,6 +37,39 @@ const presets={
  video:{title:"Material suplimentar",url:"",text:"Link către un video educativ sau o resursă."},
  divider:{}
 };
+const templates=[
+["bac","📖","Eseu BAC",[
+ {type:"heading",title:"REPERUL 1 — Context și particularități",text:"Încadrare, trăsături și tema operei"},
+ {type:"split",eyebrow:"TRĂSĂTURA 1",title:"Prima trăsătură",text:"Explică și folosește un exemplu sugestiv.",image:"",side:"left"},
+ {type:"split",eyebrow:"TRĂSĂTURA 2",title:"A doua trăsătură",text:"Prezintă elementele reprezentative.",image:"",side:"right"},
+ {type:"callout",variant:"important",label:"RELEVANȚĂ",title:"Concluzia primului reper",text:"Cum demonstrează cele două trăsături apartenența operei?"},
+ {type:"heading",title:"REPERUL 2 — Scene și structură",text:"Două scene semnificative"},
+ {type:"split",eyebrow:"SCENA 1",title:"Prima scenă",text:"Prezintă evenimentul, apoi explică relevanța.",image:"",side:"left"},
+ {type:"split",eyebrow:"SCENA 2",title:"A doua scenă",text:"Explică legătura scenei cu tema sau cu personajul.",image:"",side:"right"},
+ {type:"quiz",question:"Ce idee este esențială pentru această operă?",options:["Completează A","Completează B","Completează C","Completează D"],correct:0,explanation:"Explică de ce acesta este răspunsul corect."}
+]],
+["stem","🧪","Științe / STEM",[
+ {type:"heading",title:"REPERUL 1 — Ce învățăm?",text:"Obiectivele lecției"},
+ {type:"text",text:"Explică mai întâi noțiunile esențiale, într-un limbaj accesibil."},
+ {type:"split",eyebrow:"EXEMPLU VIZUAL",title:"Cum funcționează?",text:"Explică imaginea, graficul sau schema.",image:"",side:"left"},
+ {type:"steps",title:"Rezolvare pas cu pas",text:"Identifică datele
+Alege metoda
+Aplică formula
+Verifică rezultatul"},
+ {type:"callout",variant:"success",label:"REȚINE",title:"Formula / principiul important",text:"Scrie regula de bază și când se folosește."},
+ {type:"quiz",question:"Aplică regula într-un exemplu.",options:["Răspuns A","Răspuns B","Răspuns C","Răspuns D"],correct:0,explanation:"Prezintă rezolvarea."}
+]],
+["recap","🎯","Recapitulare",[
+ {type:"heading",title:"Recapitulare — Ce trebuie să știi?",text:"Principalele noțiuni"},
+ {type:"cards",title:"Cele mai importante 4 idei",text:"Prima idee
+A doua idee
+A treia idee
+A patra idee"},
+ {type:"callout",variant:"important",label:"GREȘEALĂ FRECVENTĂ",title:"La ce să fii atent",text:"Explică o confuzie obișnuită."},
+ {type:"quiz",question:"Întrebarea 1",options:["A","B","C","D"],correct:0,explanation:"Argumentează răspunsul."},
+ {type:"quiz",question:"Întrebarea 2",options:["A","B","C","D"],correct:1,explanation:"Argumentează răspunsul."}
+]]
+];
 const subjects={romana:"Română",matematica:"Matematică",biologie:"Biologie",chimie:"Chimie",fizica:"Fizică",geografie:"Geografie",logica:"Logică"};
 const clone=x=>JSON.parse(JSON.stringify(x));
 const params=new URLSearchParams(location.search);
@@ -220,6 +253,14 @@ async function init(){
    renderAll();
  }
 }
+$("fxs-templates").innerHTML=templates.map(([id,icon,label])=>'<button type="button" data-template="'+id+'"><span aria-hidden="true">'+icon+'</span>'+esc(label)+'</button>').join("");
+$("fxs-templates").addEventListener("click",e=>{
+ const button=e.target.closest("[data-template]");if(!button||!state.loaded)return;
+ const template=templates.find(x=>x[0]===button.dataset.template);if(!template)return;
+ if(state.doc.blocks.length&&!confirm("Acest șablon înlocuiește blocurile actuale. Continui?"))return;
+ state.doc.blocks=clone(template[3]).map(b=>({...b,id:newId()}));
+ state.selected=0;renderAll();mark();tell("Șablonul a fost încărcat. Personalizează imaginile și explicațiile.");
+});
 $("fxs-palette").innerHTML=types.map(([id,icon,label])=>'<button type="button" data-add="'+id+'"><span aria-hidden="true">'+icon+'</span>'+esc(label)+'</button>').join("");
 $("fxs-palette").addEventListener("click",e=>{
  const a=e.target.closest("[data-add]");if(!a||!state.loaded)return;
