@@ -41,7 +41,7 @@
   }
   async function openLesson(l){
     // Structured private essays are rendered in dedicated protected pages.
-    if(l.slug==='baltagul'||l.slug==='ion'){
+    if(l.slug==='baltagul'||l.slug==='ion'||l.slug==='ultima-noapte'){
       window.location.assign('/lectii/romana/'+l.slug+'.html');
       return;
     }
