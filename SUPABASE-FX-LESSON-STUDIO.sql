@@ -47,7 +47,7 @@ BEGIN
  IF NOT EXISTS(
   SELECT 1 FROM public.fx_lesson_contents c
   WHERE c.lesson_id=lesson.id
-    AND (c.body::jsonb)->>'fx_format'='formula-x-blocks-v1'
+    AND c.body LIKE '%"fx_format":"formula-x-blocks-v1"%'
  ) THEN
    RAISE EXCEPTION 'Această lecție nu este o lecție Studio; folosește editorul original';
  END IF;
