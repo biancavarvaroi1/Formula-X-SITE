@@ -62,7 +62,7 @@ function portalNotice(message=''){
   el.classList.toggle('show',Boolean(message));
 }
 function goToPublicSite(){
-  location.assign('https://formula-x.ro/?portal=site#acasa');
+  location.assign('https://formula-x.ro/#acasa');
 }
 function openModal(title,body,foot=''){ $('modalTitle').textContent=title;$('modalBody').innerHTML=body;$('modalFoot').innerHTML=foot;$('modal').classList.remove('hidden')}
 function closeModal(){ $('modal').classList.add('hidden');$('modalBody').innerHTML='';$('modalFoot').innerHTML=''}
