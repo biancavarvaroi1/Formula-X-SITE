@@ -24,6 +24,12 @@
         "variant": "important"
       },
       {
+        "type": "image",
+        "image": "/assets/luceafarul-patru-tablouri.svg",
+        "alt": "Schemă vizuală a celor patru tablouri: atracție, iubire terestră, dialog cu Demiurgul, despărțire",
+        "caption": "Reține ordinea: chemare → idilă terestră → Demiurg → final."
+      },
+      {
         "type": "cards",
         "title": "Personajele pe care trebuie să le deosebești",
         "text": "HYPERION / LUCEAFĂRUL — ființă cosmică, simbol al omului de geniu.\nFATA DE ÎMPĂRAT / CĂTĂLINA — ființă muritoare, fascinată de astrul îndepărtat.\nCĂTĂLIN — pajul, reprezentant al iubirii pământene.\nDEMIURGUL — ordinea cosmică, vocea care îi dezvăluie lui Hyperion limita cererii sale."
@@ -322,6 +328,12 @@
         "text": "Imaginează-ți un cavou închis: sicrie, flori, coroane, vânt și frig. Apoi înțelege că acest peisaj exterior oglindește singurătatea din sufletul eului liric.",
         "label": "IDEA CENTRALĂ",
         "variant": "important"
+      },
+      {
+        "type": "image",
+        "image": "/assets/plumb-doua-strofe.svg",
+        "alt": "Schemă vizuală Plumb cu două strofe, exterior funerar și interior sufletesc",
+        "caption": "Strofa I = decorul exterior; strofa a II-a = neliniștea interioară."
       },
       {
         "type": "cards",
