@@ -2,6 +2,10 @@ name: Validate lesson editor JavaScript
 on:
   pull_request:
     paths:
+      - "assets/fx-curated-literature-2027.js"
+      - "assets/fx-curated-importer.js"
+      - "profesori/importa-literatura.html"
+      - "tests/curated-lessons.cjs"
       - "assets/fx-editor-all.js"
       - "assets/fx-lesson-studio*.js"
       - "assets/fx-lesson-studio.css"
@@ -15,6 +19,10 @@ on:
       - ".github/workflows/verify-lesson-editor.yml"
   push:
     paths:
+      - "assets/fx-curated-literature-2027.js"
+      - "assets/fx-curated-importer.js"
+      - "profesori/importa-literatura.html"
+      - "tests/curated-lessons.cjs"
       - "assets/fx-editor-all.js"
       - "assets/fx-lesson-studio*.js"
       - "assets/fx-lesson-studio.css"
