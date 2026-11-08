@@ -40816,7 +40816,8 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
   async function redirectStaffToPortal(user, force=false) {
     if (!user || state.recoveryMode) return false;
     if (staffRedirectInProgress) return true;
-    if (!force && staffRequestedPublicSite()) return false;
+    // Navigarea obișnuită pe site nu trebuie să trimită profesorii în portal.
+    if (!force) return false;
 
     const staff = await getCurrentStaffAccount(user.id);
     if (!staff || !['mentor','admin'].includes(staff.role)) return false;
@@ -40851,7 +40852,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     }
 
     // Dacă utilizatorul este mentor/admin, același login îl duce direct în portalul privat.
-    if (data?.user && await redirectStaffToPortal(data.user, true)) return;
+    if (data?.user && await redirectStaffToPortal(data.user)) return;
 
     if (!staffRedirectInProgress) setMessage($('fx-auth-message'),'Autentificare reușită.','success');
   }
@@ -41004,7 +41005,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
     if (state.user) {
       await new Promise(resolve => setTimeout(resolve, 600));
       if (state.recoveryMode) return;
-      // Un profesor care deschide pagina principală fiind deja autentificat ajunge direct în portal.
+      // Profesorul rămâne pe pagina cerută; portalul se deschide doar la click explicit.
       if (await redirectStaffToPortal(state.user)) return;
     }
 

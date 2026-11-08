@@ -70,7 +70,7 @@ function portalNotice(message=''){
   el.classList.toggle('show',Boolean(message));
 }
 function goToPublicSite(){
-  location.assign('https://formula-x.ro/?portal=site#acasa');
+  location.assign('https://formula-x.ro/#acasa');
 }
 function openModal(title,body,foot=''){ $('modalTitle').textContent=title;$('modalBody').innerHTML=body;$('modalFoot').innerHTML=foot;$('modal').classList.remove('hidden')}
 function closeModal(){ $('modal').classList.add('hidden');$('modalBody').innerHTML='';$('modalFoot').innerHTML=''}
@@ -605,6 +605,13 @@ async function logoutProfessor(){
 }
 $('logoutBtn').addEventListener('click',logoutProfessor);
 $('backSiteBtn').addEventListener('click',goToPublicSite);
+// Acces direct la testele BAC și pentru mentor/admin, fără schimbarea contului.
+if($('backSiteBtn') && !$('goTestsFromPortal')){
+  const tests=document.createElement('a');
+  tests.id='goTestsFromPortal';tests.className='btn btn-soft';
+  tests.href='https://formula-x.ro/#teste';tests.textContent='Teste BAC';
+  $('backSiteBtn').insertAdjacentElement('afterend',tests);
+}
 $('loginBackSiteBtn').addEventListener('click',goToPublicSite);
 $('refreshBtn').addEventListener('click',loadAll);
 $('viewsRange')?.addEventListener('change',renderViews);
