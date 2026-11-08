@@ -590,6 +590,13 @@ async function logoutProfessor(){
 }
 $('logoutBtn').addEventListener('click',logoutProfessor);
 $('backSiteBtn').addEventListener('click',goToPublicSite);
+// Acces direct la testele BAC și pentru mentor/admin, fără schimbarea contului.
+if($('backSiteBtn') && !$('goTestsFromPortal')){
+  const tests=document.createElement('a');
+  tests.id='goTestsFromPortal';tests.className='btn btn-soft';
+  tests.href='https://formula-x.ro/#teste';tests.textContent='Teste BAC';
+  $('backSiteBtn').insertAdjacentElement('afterend',tests);
+}
 $('loginBackSiteBtn').addEventListener('click',goToPublicSite);
 $('refreshBtn').addEventListener('click',loadAll);
 $('viewsRange')?.addEventListener('change',renderViews);
