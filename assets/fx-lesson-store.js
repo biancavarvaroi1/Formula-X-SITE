@@ -63,6 +63,8 @@
       if (!result?.access?.allowed || !result.key || !window.FormulaXLessons) throw Error('Materialul protejat nu poate fi încărcat.');
       parsed.doc = await window.FormulaXLessons.decryptBundle(slug, result.version, result.key);
       parsed.kind = 'overlay';
+      // Binary artwork stays in the encrypted bundle; the editor sends model changes only.
+      delete parsed.doc.assets; delete parsed.doc.embeddedImages; delete parsed.doc.imageData;
     }
     if (parsed.doc) patchModel(parsed.doc, record.patches);
     return {...record, ...parsed, original: parsed.doc ? clone(parsed.doc) : null};

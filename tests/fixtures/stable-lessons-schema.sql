@@ -14,6 +14,10 @@ CREATE FUNCTION private.can_manage_subject(text) RETURNS boolean LANGUAGE sql ST
 $$;
 CREATE TABLE public.fx_lessons(id uuid PRIMARY KEY DEFAULT gen_random_uuid(),slug text UNIQUE NOT NULL,subject text NOT NULL,title text NOT NULL,summary text,published boolean DEFAULT false,is_demo boolean DEFAULT false,created_by uuid REFERENCES auth.users,sort_order int DEFAULT 0,created_at timestamptz DEFAULT now());
 CREATE TABLE public.fx_lesson_contents(lesson_id uuid PRIMARY KEY REFERENCES public.fx_lessons,body text);
+-- The existing lesson schema exposes catalog metadata, with RLS on the rows.
+GRANT SELECT ON public.fx_lessons TO anon,authenticated;
+CREATE POLICY baseline_lesson_metadata ON public.fx_lessons FOR SELECT TO anon,authenticated
+USING(published OR private.can_manage_subject(subject));
 CREATE TABLE storage.buckets(id text PRIMARY KEY,name text,public boolean,file_size_limit bigint,allowed_mime_types text[]);
 CREATE TABLE storage.objects(id uuid PRIMARY KEY DEFAULT gen_random_uuid(),bucket_id text,name text);
 ALTER TABLE storage.objects ENABLE ROW LEVEL SECURITY;

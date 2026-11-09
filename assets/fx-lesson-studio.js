@@ -177,7 +177,7 @@ async function save(){
    state.record={...(state.record||{}),...receipt,kind:state.record?.kind||"studio",original:doc};
    const url=new URL(location.href);url.searchParams.set("slug",state.slug);history.replaceState(null,"",url.pathname+url.search);
    state.dirty=JSON.stringify(state.doc)!==snapshot;
-   localStorage.removeItem(draft);
+   try{localStorage.removeItem(draft);}catch(_){}
    if(state.dirty)saveLocal();
    $("fxs-open").hidden=false;$("fxs-open").href=window.FormulaXLessons.lessonUrl(state.slug);
    tell(state.dirty?"Versiunea a fost salvată. Mai ai modificări noi de salvat.":"Lecția a fost salvată. Accesul elevilor se gestionează din portal.");

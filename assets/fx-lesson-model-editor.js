@@ -1,7 +1,7 @@
 /* Adapter for existing essay/quiz models; preserves their original renderer. */
 (function () {
   'use strict';
-  const labels = {essays:'Eseuri',particularitati:'Particularități',caracterizare:'Caracterizare',repere:'Repere',scenes:'Scene',points:'Idei',statusCards:'Statut / trăsături',structureCards:'Elemente de construcție',quizQuestions:'Chestionare',quiz:'Chestionare',question:'Întrebare',options:'Variante de răspuns',correct:'Răspuns corect (numărul variantei, de la 0)',explanation:'Explicație',title:'Titlu',text:'Text',intro:'Introducere',conclusion:'Concluzie',relevance:'Relevanță',takeaway:'De reținut',image:'Imagine',alt:'Descriere imagine',theme:'Temă',keyIdea:'Idee centrală'};
+  const labels = {essays:'Eseuri',particularitati:'Particularități',caracterizare:'Caracterizare',repere:'Repere',scenes:'Scene',points:'Idei',statusCards:'Statut / trăsături',structureCards:'Elemente de construcție',quizQuestions:'Chestionare',quiz:'Chestionare',question:'Întrebare',choices:'Variante de răspuns',options:'Variante de răspuns',correct:'Răspuns corect (numărul variantei, de la 0)',explanation:'Explicație',title:'Titlu',text:'Text',intro:'Introducere',conclusion:'Concluzie',relevance:'Relevanță',takeaway:'De reținut',image:'Imagine',alt:'Descriere imagine',theme:'Temă',keyIdea:'Idee centrală'};
   const excluded = new Set(['assets','embeddedImages','imageData','ciphertext','fx_format','slug','subject','id','__proto__','constructor','prototype']);
   const esc = x => window.FormulaXStudioRenderer.escape(x);
   const key = x => x.replace(/~/g,'~0').replace(/\//g,'~1');
@@ -19,10 +19,10 @@
     const arr=Array.isArray(value);
     return '<details class="fxs-model-group" '+(depth<2?'open':'')+'><summary>'+esc(label)+'</summary>'+entries.map(([name,item])=>{
       const p=path+'/'+key(name),nameLabel=arr?String(Number(name)+1)+'. '+String(item?.title||item?.question||'Element').slice(0,55):labels[name]||name;
-      const fixed=/\/(quizQuestions|options)$/.test(path);
+      const fixed=/\/(quizQuestions|options|choices)$/.test(path);
       const controls=arr&&!fixed?'<div class="fxs-row"><button type="button" class="fxs-button" data-model-move="'+esc(p)+'" data-direction="-1">↑</button><button type="button" class="fxs-button" data-model-move="'+esc(p)+'" data-direction="1">↓</button><button type="button" class="fxs-button" data-model-duplicate="'+esc(p)+'">Duplică</button><button type="button" class="fxs-button" data-model-remove="'+esc(p)+'">Șterge</button></div>':'';
       return '<div class="fxs-model-entry">'+fields(item,p,nameLabel,depth+1)+controls+'</div>';
-    }).join('')+(arr&&value.length&&typeof value[0]==='string'&& !/\/options$/.test(path)?'<button type="button" class="fxs-button" data-model-add="'+esc(path)+'">+ Adaugă idee</button>':'')+'</details>';
+    }).join('')+(arr&&value.length&&typeof value[0]==='string'&& !/\/(options|choices)$/.test(path)?'<button type="button" class="fxs-button" data-model-add="'+esc(path)+'">+ Adaugă idee</button>':'')+'</details>';
   }
   function mount(target,doc,onChange,context={}) {
     target.innerHTML=fields(doc);
