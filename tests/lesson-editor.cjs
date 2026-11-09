@@ -58,7 +58,7 @@ function page(db,pathname='/lectii/romana/moara-cu-noroc.html',search=''){
     addEventListener(name,fn){events[name]=fn;}
   };
   const window={FormulaXLessons:{lessons:[{slug:'moara-cu-noroc'},{slug:'harap-alb'}],sb:()=>db.client},addEventListener(){}};
-  vm.runInNewContext(editor,{window,document,location:{pathname,search},URLSearchParams,NodeFilter:{SHOW_TEXT:4,FILTER_ACCEPT:1,FILTER_REJECT:2},MutationObserver:class{observe(){}},requestAnimationFrame:fn=>queueMicrotask(fn),setTimeout:fn=>queueMicrotask(fn),console,confirm:()=>true});
+  vm.runInNewContext(editor,{window,document,location:{pathname,search,assign(url){window.destination=url;}},URLSearchParams,NodeFilter:{SHOW_TEXT:4,FILTER_ACCEPT:1,FILTER_REJECT:2},MutationObserver:class{observe(){}},requestAnimationFrame:fn=>queueMicrotask(fn),setTimeout:fn=>queueMicrotask(fn),console,confirm:()=>true});
   return {window,document,ids,text,events,uiCount:()=>uiCount,
     async editText(value){
       const target={closest(selector){if(selector==='[data-fxe-ui],dialog'||selector==='img')return null;return textParent;}};
@@ -83,9 +83,9 @@ function catalog(db){
     const html=fixture.api.catalogMarkup(rows,null,staff);
     assert.equal((html.match(/Editează lecția/g)||[]).length,count);checks++;
   }
-  assert.equal(fixture.api.editorUrl('reactii'),'/cursuri/lectie.html?slug=reactii&editor=1');
-  assert.equal(fixture.api.editorUrl('moara-cu-noroc'),'/lectii/romana/moara-cu-noroc.html?editor=1');
-  assert.equal(fixture.api.editorUrl('ion'),'/lectii/romana/ion.html?editor=1');checks++;
+  assert.equal(fixture.api.editorUrl('reactii'),'/profesori/studio.html?slug=reactii');
+  assert.equal(fixture.api.editorUrl('moara-cu-noroc'),'/profesori/studio.html?slug=moara-cu-noroc');
+  assert.equal(fixture.api.editorUrl('ion'),'/profesori/studio.html?slug=ion');checks++;
 
   for(const [role,subject,loggedIn,allowed] of [['mentor','romana',true,true],['admin','chimie',true,true],['mentor','chimie',true,false],['student','romana',true,false],['admin','romana',false,false]]){
     const db=database(role,subject,loggedIn),p=page(db);
@@ -94,25 +94,25 @@ function catalog(db){
     assert(db.state.queries.some(q=>q.page==='romana/moara-cu-noroc'));checks++;
   }
 
-  const db=database('mentor','chimie'),p=page(db,'/cursuri/lectie.html','?slug=reactii&editor=1');
+  const db=database('mentor','matematica'),p=page(db,'/cursuri/lectie.html','?slug=progresii&editor=1');
   await p.window.FormulaXUniversalEditor.ready();assert.equal(p.uiCount(),0);
-  await p.window.FormulaXUniversalEditor.setLesson({slug:'reactii',subject:'chimie'});await flush();
+  await p.window.FormulaXUniversalEditor.setLesson({slug:'progresii',subject:'matematica'});await flush();
   assert.equal(p.ids.get('fxe-panel').hidden,false,'Generic lessons must automatically enter edit mode');
   await p.editText('Material corectat de profesor.');
   assert.equal(p.text.nodeValue,'Material corectat de profesor.');
   await p.ids.get('fxe-save').onclick();
-  assert(db.state.rows.has('chimie/reactii'),'Save under the server-provided subject and requested slug');
-  assert.equal(db.state.rows.get('chimie/reactii').revision,1);checks++;
-  const reopened=page(db,'/cursuri/lectie.html','?slug=reactii');
+  assert(db.state.rows.has('matematica/progresii'),'Save under the server-provided subject and requested slug');
+  assert.equal(db.state.rows.get('matematica/progresii').revision,1);checks++;
+  const reopened=page(db,'/cursuri/lectie.html','?slug=progresii');
   await reopened.window.FormulaXUniversalEditor.ready();
-  await reopened.window.FormulaXUniversalEditor.setLesson({slug:'reactii',subject:'chimie'});await flush();
+  await reopened.window.FormulaXUniversalEditor.setLesson({slug:'progresii',subject:'matematica'});await flush();
   assert.equal(reopened.text.nodeValue,'Material corectat de profesor.','Changes must survive a fresh lesson load');checks++;
-  await p.window.FormulaXUniversalEditor.setLesson({slug:'reactii',subject:'chimie'});assert.equal(p.uiCount(),1);checks++;
+  await p.window.FormulaXUniversalEditor.setLesson({slug:'progresii',subject:'matematica'});assert.equal(p.uiCount(),1);checks++;
 
   await p.editText('Modificare încă nesalvată.');
   db.state.loggedIn=false;for(const callback of db.state.auth)callback('SIGNED_OUT');await flush();
   assert.equal(p.ids.get('fxe-start').hidden,true);assert.equal(p.ids.get('fxe-panel').hidden,true);
-  await p.ids.get('fxe-save').onclick();assert.equal(db.state.rows.get('chimie/reactii').revision,1,'Signing out must revoke editing even with unsaved changes');checks++;
+  await p.ids.get('fxe-save').onclick();assert.equal(db.state.rows.get('matematica/progresii').revision,1,'Signing out must revoke editing even with unsaved changes');checks++;
 
   const missing=database();missing.state.readError=true;const m=page(missing);
   await m.window.FormulaXUniversalEditor.ready();assert.equal(m.ids.get('fxe-start').hidden,false,'A missing edits table must not hide a verified teacher button');checks++;
@@ -123,3 +123,4 @@ function catalog(db){
   live.state.loggedIn=false;await c.api.refreshCatalog();assert(!c.target.innerHTML.includes('Editează lecția'));checks++;
   console.log(`PASS: ${checks} teacher editor scenarios: catalog links, roles, shared session, generic routes, saving/reloading, sign-out and missing SQL.`);
 })().catch(error=>{console.error(error);process.exitCode=1;});
+

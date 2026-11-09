@@ -2,7 +2,9 @@ let contactMessages=[];
 
 const SUPABASE_URL='https://vooflhvdoutjplfbnahl.supabase.co';
 const SUPABASE_PUBLIC_KEY='sb_publishable_iuJBis3q_83zNlYFER2AXQ_o8gzpDPA';
-const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLIC_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,flowType:'pkce'}});
+const sb=window.FormulaXAuthClient||window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLIC_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,flowType:'pkce'}});
+window.FormulaXAuthClient=sb;
+let portalSequence=0;
 const resetSb=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLIC_KEY,{auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false,storageKey:'formula-x-password-reset-request'}});
 const SUBJECTS={
   romana:{label:'Limba Română',icon:'✒️',primary:'#a83d83',soft:'#da91bf',bg:'#fff4fa',tint:'#f9e7f3'},
@@ -41,6 +43,7 @@ function showLogin(msg=''){
   $('boot')?.classList.add('hidden');
   $('app').classList.add('hidden');
   $('login').classList.remove('hidden');
+  window.FormulaXLessonTeacher?.reset();
   $('loginMsg').textContent=msg;
   $('loginBtn').disabled=false;
   $('loginBtn').textContent='Intră în portal';
@@ -62,7 +65,7 @@ function portalNotice(message=''){
   el.classList.toggle('show',Boolean(message));
 }
 function goToPublicSite(){
-  location.assign('https://formula-x.ro/#acasa');
+  location.assign('/#acasa');
 }
 function openModal(title,body,foot=''){ $('modalTitle').textContent=title;$('modalBody').innerHTML=body;$('modalFoot').innerHTML=foot;$('modal').classList.remove('hidden')}
 function closeModal(){ $('modal').classList.add('hidden');$('modalBody').innerHTML='';$('modalFoot').innerHTML=''}
@@ -119,6 +122,7 @@ function populateSubjectFilters(){
   $('adminSubject').innerHTML='<option value="">Toate materiile</option>'+Object.entries(SUBJECTS).map(([k,v])=>`<option value="${k}">${v.label}</option>`).join('');
 }
 async function openPortal(){
+  const request=++portalSequence;
   try{
     staff=await staffForCurrentUser()
   }catch(e){
@@ -133,7 +137,7 @@ async function openPortal(){
     showLogin(txt);
     return false
   }
-  if(!staff)return false;
+  if(request!==portalSequence||!staff)return false;
   document.body.classList.toggle('admin',staff.role==='admin');theme();populateSubjectFilters();
   $('hello').textContent=`Bună, ${staff.display_name}!`;
   if(staff.role==='admin'){
@@ -143,9 +147,11 @@ async function openPortal(){
     $('heroText').textContent=`Gestionezi elevii, mesajele, grupele și programările pentru ${SUBJECTS[staff.subject]?.label||staff.subject}.`;
     $('subjectPill').textContent=subjectLabel(staff.subject);
   }
-  await loadAll();showApp();return true;
+  await loadAll();if(request!==portalSequence)return false;showApp();return true;
 }
 async function loadAll(){
+  if(!staff)return;
+  const request=portalSequence;
   portalNotice('');
   await Promise.all([
     loadStaff(),
@@ -158,6 +164,7 @@ async function loadAll(){
     loadPageViews(),
     loadContactMessages()
   ]);
+  if(request!==portalSequence||!staff)return;
   renderAll();
 }
 async function loadStaff(){
@@ -280,8 +287,9 @@ function renderViews(){
 async function logActivity(subject,action,entityType,entityId,details={}){
   try{await sb.from('teacher_activity').insert({actor_id:user.id,subject,action,entity_type:entityType,entity_id:String(entityId||''),details})}catch(e){console.debug('Activity log:',e)}
 }
-function renderAll(){renderStats();renderStudents();renderAttendance();renderGroups();renderCalendar();renderActivity();renderViews();renderContactMessages()}
+function renderAll(){renderStats();renderStudents();renderAttendance();renderGroups();renderCalendar();renderActivity();renderViews();renderContactMessages();mountLessonManagement()}
 function relevantStudents(){return students.filter(s=>visibleSubject(s.subject))}
+function mountLessonManagement(){if(staff)window.FormulaXLessonTeacher?.mount({sb,staff,subject:selectedSubject(),students,groups,members,openModal,closeModal,portalNotice});}
 function relevantGroups(){return groups.filter(g=>visibleSubject(g.subject))}
 function relevantSessions(){return sessions.filter(s=>visibleSubject(s.subject))}
 function renderStats(){
@@ -312,7 +320,7 @@ function renderStudents(){
       <td data-label="Mesaj elev"><div class="message-preview ${msg?'':'message-empty'}">${msg?esc(msg.length>170?msg.slice(0,170)+'…':msg):'Nu a lăsat mesaj.'}</div></td>
       <td data-label="Grupă">${gs.length?gs.map(g=>`<span class="badge">${esc(g.name)}</span>`).join(' '):'<span class="subtext">Nealocat</span>'}</td>
       <td data-label="Status">${statusBadge(r.status,r.archived_at)}</td>
-      <td data-label="Acțiuni"><div class="actions"><button class="btn btn-soft btn-sm" data-fx-action="editStudent" data-fx-id="${esc(r.id)}">Detalii</button><button class="btn ${r.archived_at?'btn-soft':'btn-danger'} btn-sm" data-fx-action="toggleArchive" data-fx-id="${esc(r.id)}">${r.archived_at?'Restaurează':'Șterge'}</button></div></td>
+      <td data-label="Acțiuni"><div class="actions"><button class="btn btn-soft btn-sm" data-fx-action="editStudent" data-fx-id="${esc(r.id)}">Detalii</button><button class="btn btn-soft btn-sm" data-fxlt-action="student" data-fxlt-id="${esc(r.id)}">Acces la lecții</button><button class="btn ${r.archived_at?'btn-soft':'btn-danger'} btn-sm" data-fx-action="toggleArchive" data-fx-id="${esc(r.id)}">${r.archived_at?'Restaurează':'Șterge'}</button></div></td>
     </tr>`;
   }
   h+='</tbody></table></div>';$('studentsContent').innerHTML=h;
@@ -446,7 +454,7 @@ function renderGroups(){
   $('groupsContent').innerHTML=arr.map(g=>{
     const cnt=members.filter(m=>m.group_id===g.id).length;const owner=staffList.find(s=>s.user_id===g.owner_id);
     const schedule=g.weekday?`${WEEKDAYS[g.weekday]}${g.start_time?' · '+timeShort(g.start_time):''}${g.end_time?'–'+timeShort(g.end_time):''}`:'Program flexibil';
-    return `<article class="group-card"><h3>${esc(g.name)}</h3><div class="group-meta">${esc(subjectLabel(g.subject))}<br>${esc(schedule)}${staff.role==='admin'?`<br>Profesor: ${esc(owner?.display_name||'—')}`:''}</div><span class="group-count">${cnt} elev${cnt===1?'':'i'}</span>${g.notes?`<div class="group-meta" style="margin-bottom:12px">${esc(g.notes)}</div>`:''}<div class="group-actions"><button class="btn btn-soft btn-sm" data-fx-action="manageMembers" data-fx-id="${esc(g.id)}">Elevi</button><button class="btn btn-soft btn-sm" data-fx-action="editGroup" data-fx-id="${esc(g.id)}">Editează</button><button class="btn btn-danger btn-sm" data-fx-action="deleteGroup" data-fx-id="${esc(g.id)}">Șterge</button></div></article>`
+    return `<article class="group-card"><h3>${esc(g.name)}</h3><div class="group-meta">${esc(subjectLabel(g.subject))}<br>${esc(schedule)}${staff.role==='admin'?`<br>Profesor: ${esc(owner?.display_name||'—')}`:''}</div><span class="group-count">${cnt} elev${cnt===1?'':'i'}</span>${g.notes?`<div class="group-meta" style="margin-bottom:12px">${esc(g.notes)}</div>`:''}<div class="group-actions"><button class="btn btn-soft btn-sm" data-fxlt-action="group" data-fxlt-id="${esc(g.id)}">Acces la lecții</button><button class="btn btn-soft btn-sm" data-fx-action="manageMembers" data-fx-id="${esc(g.id)}">Elevi</button><button class="btn btn-soft btn-sm" data-fx-action="editGroup" data-fx-id="${esc(g.id)}">Editează</button><button class="btn btn-danger btn-sm" data-fx-action="deleteGroup" data-fx-id="${esc(g.id)}">Șterge</button></div></article>`
   }).join('');
 }
 function groupFormBody(g=null){
@@ -567,7 +575,6 @@ $('loginForm').addEventListener('submit',async e=>{
 
   if(!ok){
     // Nu ascundem mesajul diagnostic afișat de openPortal.
-    await sb.auth.signOut();
     return;
   }
 })
@@ -582,6 +589,7 @@ async function logoutProfessor(){
     portalNotice('Nu am putut închide sesiunea. Încearcă din nou.');
     return;
   }
+  portalSequence++;window.FormulaXLessonTeacher?.reset();
   staff=null;user=null;students=[];groups=[];members=[];sessions=[];activities=[];staffList=[];pageViews=[];attendance=[];attendanceAvailable=true;contactMessages=[];closeModal();
   for(const id of ['studentsContent','attendanceContent','groupsContent','upcomingSessions','activityContent','contactMessages']){if($(id))$(id).textContent='';}
   $('password').value='';
@@ -615,10 +623,7 @@ $('prevMonth').addEventListener('click',()=>{calendarDate=new Date(calendarDate.
       return;
     }
     const ok=await openPortal();
-    if(!ok){
-      await sb.auth.signOut();
-      showLogin('Contul nu are acces la portalul profesorilor.');
-    }
+    if(!ok)return;
   }catch(error){
     console.error('Formula X V35 - bootstrap:',error);
     showLogin('Nu am putut verifica sesiunea. Reîncarcă pagina și încearcă din nou.');
@@ -641,3 +646,14 @@ function renderContactMessages(){
   if(staff?.role!=='admin'){if($('contactMessages'))$('contactMessages').textContent='';return;}
   $('contactMessages').innerHTML=contactMessages.length?contactMessages.map(m=>`<article class="activity"><small>${fmtDateTime(m.created_at)}</small><div><strong>${esc(m.full_name)}</strong><div>${esc(m.email)}</div><p style="white-space:pre-wrap">${esc(m.message)}</p></div></article>`).join(''):'<div class="empty">Nu există mesaje de contact.</div>';
 }
+
+
+// Public browsing never depends on the teacher guard. Revoke only this private view.
+sb.auth.onAuthStateChange((event,session)=>{
+  if(event==='SIGNED_OUT'||!session?.user){
+    portalSequence++;staff=null;user=null;
+    window.FormulaXLessonTeacher?.reset();closeModal();showLogin('Conectează-te pentru a deschide portalul.');
+  }else if(event==='SIGNED_IN'&&session.user.id!==user?.id){
+    showBoot();setTimeout(()=>{openPortal().catch(()=>showLogin('Nu am putut verifica accesul.'));},0);
+  }
+});

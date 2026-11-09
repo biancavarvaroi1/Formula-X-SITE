@@ -9,7 +9,7 @@
   let client;
   function sb() {
     if (window.FormulaXAuthClient) return window.FormulaXAuthClient;
-    if (!client) client = window.supabase.createClient('https://vooflhvdoutjplfbnahl.supabase.co','sb_publishable_iuJBis3q_83zNlYFER2AXQ_o8gzpDPA',{
+    if (!client) client = window.FormulaXAuthClient = window.supabase.createClient('https://vooflhvdoutjplfbnahl.supabase.co','sb_publishable_iuJBis3q_83zNlYFER2AXQ_o8gzpDPA',{
       auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,flowType:'pkce'},
     });
     return client;
@@ -23,13 +23,19 @@
     const {data:{session}}=await sb().auth.getSession();
     if(session)await rpc('fx_link_my_enrollments');
   }
+  // Compatibility routes preserve the established layout of existing lessons.
+  // Every new lesson uses the same generic reader and Studio; no new mapping is needed.
+  const legacyPages={
+    'harap-alb':'/lectii/romana/harap-alb.html','moara-cu-noroc':'/lectii/romana/moara-cu-noroc.html',
+    'ultima-noapte':'/lectii/romana/ultima-noapte.html','ion':'/lectii/romana/ion.html',
+    'baltagul':'/lectii/romana/baltagul.html','progresii':'/lectii/matematica/progresii.html'
+  };
   function lessonUrl(slug) {
-    if(slug==='ion'||slug==='baltagul'||slug==='ultima-noapte')return `/lectii/romana/${slug}.html`;
-    return lessons.some(l=>l.slug===slug)?`/lectii/romana/${slug}.html`:`/cursuri/lectie.html?slug=${encodeURIComponent(slug)}`;
+    return legacyPages[slug]||`/cursuri/lectie.html?slug=${encodeURIComponent(slug)}`;
   }
   function editorUrl(slug){
-    const url=lessonUrl(slug);
-    return url+(url.includes('?')?'&':'?')+'editor=1';
+    // Progresii is a static worksheet, without a database lesson body.
+    return slug==='progresii'?legacyPages[slug]+'?editor=1':`/profesori/studio.html?slug=${encodeURIComponent(slug)}`;
   }
   function canEditLesson(staff,lesson){
     return !!staff&&(staff.role==='admin'||(staff.role==='mentor'&&staff.subject===lesson.subject));
@@ -97,3 +103,4 @@
     window.addEventListener('pageshow',refreshCatalog);
   }
 })();
+

@@ -82,3 +82,9 @@ body.fxstudio{margin:0;background:var(--fxbg);color:var(--fxink);font:14px/1.55 
 @media(max-width:1260px){.fxs-layout{grid-template-columns:260px minmax(300px,1fr)}.fxs-preview-wrap{position:relative;top:0;grid-column:1/-1;max-height:none}}
 @media(max-width:720px){.fxs-layout{display:block}.fxs-sidebar,.fxs-workspace,.fxs-preview-wrap{position:static;max-height:none;margin-bottom:15px}.fxs-studio-view .fxs-split{grid-template-columns:1fr}.fxs-studio-view .fxs-reverse .fxs-split-visual{order:0}.fxs-studio-view .fxs-mini-grid{grid-template-columns:1fr}}
 @media print{.fxs-top,.fxs-sidebar,.fxs-workspace,.fxs-preview-head{display:none!important}.fxs-layout{display:block;padding:0}.fxs-preview-wrap{border:0;box-shadow:none;max-height:none}.fxs-preview-stage{padding:0}.fxs-studio-view .fxs-block{break-inside:avoid}}
+
+
+/* Existing essay/quiz adapter */
+.fxs-model-group{padding:12px 0;border-top:1px solid #e4d5dd}.fxs-model-group summary{cursor:pointer;font-weight:700;padding:7px 0}.fxs-model-entry{margin:8px 0 8px 12px}.fxs-model-entry textarea{min-height:80px}.fxs-model-entry .fxs-row{justify-content:flex-end;gap:5px}.fxs-model-entry button{font-size:12px}
+
+.fxstudio [hidden]{display:none!important}

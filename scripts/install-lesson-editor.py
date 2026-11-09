@@ -7,9 +7,10 @@ import re
 
 def install(root: Path):
     versions = {}
-    for name in ("fx-editor-all", "formula-x-lessons-core", "formula-x-lesson-teacher"):
+    for name in ("fx-editor-all", "formula-x-lessons-core", "formula-x-lesson-teacher", "formula-x-portal", "fx-lesson-store", "fx-lesson-model-editor", "fx-lesson-studio", "fx-lesson-studio-renderer"):
         source = root / "assets" / f"{name}.js"
-        versions[name] = hashlib.sha256(source.read_bytes()).hexdigest()[:16]
+        if source.exists():
+            versions[name] = hashlib.sha256(source.read_bytes()).hexdigest()[:16]
 
     def script(name):
         return f'<script defer src="/assets/{name}.js?v={versions[name]}"></script>'
@@ -59,3 +60,4 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", type=Path, default=Path.cwd())
     install(parser.parse_args().root.resolve())
+

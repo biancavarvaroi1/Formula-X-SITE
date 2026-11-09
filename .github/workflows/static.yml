@@ -43,38 +43,14 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-          import subprocess, zipfile, hashlib, io
+          import subprocess
           url='https://formula-x-acces-cursuri.heartymink128.chatgpt.site/releases/Formula-X-integration-ccbaacba2caf.zip'
-          expected='ccbaacba2caf347d0ee3502e181f4642d5f6f8355bda2a87e3cc64f28dd34c50'
           data=subprocess.run(['curl','--fail','--location','--silent','--show-error','--max-time','120',url],check=True,capture_output=True).stdout
           assert len(data)<=10*1024*1024,'Release exceeds size limit'
-          assert hashlib.sha256(data).hexdigest()==expected,'Release checksum mismatch'
-          allowed={
-              'index.html','profesori/index.html','assets/formula-x-portal.js',
-              'assets/formula-x-lessons.css','assets/formula-x-lessons-core.js',
-              'assets/formula-x-lesson-page.js','assets/formula-x-lesson-teacher.js',
-              'lectii/romana/index.html','lectii/romana/harap-alb.html','lectii/romana/moara-cu-noroc.html',
-              'cursuri/index.html','cursuri/app.js','cursuri/style.css','cursuri/lectie.html','cursuri/INTEGRARE-V48.md',
-              'supabase/migrations/20261013_lessons_access.sql','docs/lectii-romana.md',
-              'tests/lessons-access.cjs','tests/fixtures/v48-schema.sql',
-              'assets/lessons/harap-alb.ab961091e73c78026604f1fe2c1667ec48e3b3ce548ac7a4db548719d96ef637.fxb',
-              'assets/lessons/harap-alb/coperta.webp',
-              'assets/lessons/moara-cu-noroc.1631e6d6b1db2d22f9a4fdcd29193a52d1fcc7e820fae8d3d387e38f74748f91.fxb',
-              'assets/lessons/moara-cu-noroc/coperta.webp',
-          }
-          overrides={name:Path(name).read_bytes() for name in ['assets/formula-x-lessons-core.js','assets/formula-x-lesson-page.js','assets/formula-x-lesson-teacher.js','cursuri/app.js']}
-          with zipfile.ZipFile(io.BytesIO(data)) as release:
-              assert set(release.namelist())==allowed,'Unexpected release files'
-              assert len(release.namelist())==len(allowed),'Duplicate release files'
-              release.extractall('.')
-          for name,contents in overrides.items():
-              Path(name).write_bytes(contents)
-          lesson_script='formula-x-lesson-page.'+hashlib.sha256(overrides['assets/formula-x-lesson-page.js']).hexdigest()[:16]+'.js'
-          Path('assets',lesson_script).write_bytes(overrides['assets/formula-x-lesson-page.js'])
-          for name in ['lectii/romana/harap-alb.html','lectii/romana/moara-cu-noroc.html','cursuri/lectie.html','profesori/index.html']:
-              page=Path(name)
-              page.write_text(page.read_text().replace('formula-x-lesson-page.js?v=20261014',lesson_script).replace('formula-x-lesson-teacher.js?v=20261014','formula-x-lesson-teacher.js?v=20261014-1539'))
-          print('Prepared verified lesson files; kept the version-controlled homepage and BAC 2027 catalog.')
+          import importlib.util
+          spec=importlib.util.spec_from_file_location('release','scripts/prepare-lesson-release.py')
+          helper=importlib.util.module_from_spec(spec);spec.loader.exec_module(helper)
+          helper.install(data,Path.cwd())
           PY
       - name: Install the current teacher editor on every lesson page
         run: python scripts/install-lesson-editor.py
@@ -84,13 +60,16 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           code=Path('cursuri/app.js').read_text(encoding='utf-8')
-          assert "l.slug==='ultima-noapte'" in code, 'Dedicated Ultima noapte route is missing'
+          assert 'FX.lessonUrl' in code or 'FX.catalogMarkup' in code, 'Shared lesson routing is missing'
           page=Path('lectii/romana/ultima-noapte.html').read_text(encoding='utf-8')
           assert "fx_open_lesson" in page and "formula-x-ultima-noapte-v1" in page, 'Protected lesson page is missing'
           print('Ultima noapte: private route and page verified.')
           PY
       - name: Check teacher editor visibility and deployed lesson integration
         run: |
+          node tests/curated-lessons.cjs
+          node tests/stable-lessons.cjs
+          python tests/release-source.py
           node tests/lesson-editor.cjs
           python tests/lesson-editor-deploy.py
       - name: Add BAC 2027 shortcut to homepage
@@ -119,3 +98,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
+
