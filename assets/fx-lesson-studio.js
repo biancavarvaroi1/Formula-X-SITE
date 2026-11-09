@@ -68,16 +68,21 @@ const subjects={romana:"Română",matematica:"Matematică",biologie:"Biologie",c
 const clone=x=>JSON.parse(JSON.stringify(x));
 const params=new URLSearchParams(location.search);
 const existingSlug=params.get("slug");
-let state={doc:{fx_format:fmt,title:"Lecție nouă",subtitle:"Învață logic, vizual și interactiv.",subject:"romana",theme:"rose",blocks:[]},selected:-1,subject:"romana",staff:null,sb:null,loaded:false,saving:false,dirty:false,slug:existingSlug||null,viewer:"desktop",lastSavedHash:""};
+let state={record:null,mode:"studio",userId:null,createId:crypto.randomUUID(),doc:{fx_format:fmt,title:"Lecție nouă",subtitle:"Învață logic, vizual și interactiv.",subject:"romana",theme:"rose",blocks:[]},selected:-1,subject:"romana",staff:null,sb:null,loaded:false,saving:false,dirty:false,slug:existingSlug||null,viewer:"desktop",lastSavedHash:""};
 const newId=()=>Math.random().toString(36).slice(2)+Date.now().toString(36);
 const tell=(message,error=false)=>{const el=$("fxs-message");el.textContent=message;el.classList.toggle("fxs-error",error)};
-function draftKey(){return "fx-studio-draft-"+(state.slug||"new")+"-"+(state.staff?.user_id||state.staff?.id||state.sb?.auth?.user?.id||"staff")}
+function draftKey(){return "fx-studio-draft-"+(state.slug||"new")+"-"+(state.userId||"anonymous")}
 function saveLocal(){
- try{localStorage.setItem(draftKey(),JSON.stringify({doc:state.doc,when:new Date().toISOString()}));}catch(_){}
+ try{localStorage.setItem(draftKey(),JSON.stringify({doc:state.doc,createId:state.createId,revision:state.record?.revision,when:new Date().toISOString()}));}catch(_){}
 }
-function mark(){state.dirty=true;saveLocal();renderPreview();$("fxs-save").disabled=!state.loaded;}
+function mark(){if(!state.loaded)return;state.dirty=true;saveLocal();renderPreview();$("fxs-save").disabled=!state.loaded;}
 function newBlock(type){const b=clone(presets[type]||{});b.type=type;b.id=newId();return b}
 function renderBlocks(){
+ if(state.mode!=="studio"){
+   window.FormulaXLessonModelEditor.mount($("fxs-items"),state.doc,mark,{subject:state.doc.subject,slug:state.slug});
+   $("fxs-fields").textContent="Editează reperele, scenele și întrebările de mai sus. Structura originală a lecției se păstrează.";
+   return;
+ }
  const target=$("fxs-items");
  target.innerHTML=state.doc.blocks.map((b,i)=>{
    const title=b.title||b.question||b.text||types.find(x=>x[0]===b.type)?.[2]||b.type;
@@ -107,7 +112,7 @@ function renderForm(){
  $("fxs-fields").innerHTML='<p class="fxs-muted">Bloc '+(state.selected+1)+' · '+esc(types.find(x=>x[0]===b.type)?.[2]||b.type)+'</p><div class="fxs-form">'+(fields[b.type]||[]).map(def=>field(b,def)).join("")+'</div>';
 }
 function renderPreview(){
- try{window.FormulaXStudioRenderer.render($("fxs-preview"),state.doc,{author:"Profesor Formula X"},{},{preview:true})}
+ try{if(state.mode!=="studio"){window.FormulaXLessonModelEditor.preview($("fxs-preview"),state.doc);return;}window.FormulaXStudioRenderer.render($("fxs-preview"),state.doc,{author:"Profesor Formula X"},{},{preview:true})}
  catch(err){tell("Previzualizarea a eșuat: "+err.message,true)}
 }
 function renderAll(){
@@ -115,7 +120,11 @@ function renderAll(){
  $("fxs-subtitle").value=state.doc.subtitle||"";
  $("fxs-subject").value=state.doc.subject||"romana";
  $("fxs-theme").value=state.doc.theme||"rose";
- $("fxs-count").textContent=state.doc.blocks.length+" blocuri";
+ $("fxs-count").textContent=state.mode==="studio"?state.doc.blocks.length+" blocuri":"Formatul original al lecției";
+ $("fxs-palette").hidden=state.mode!=="studio";$("fxs-templates").hidden=state.mode!=="studio";
+ $("fxs-theme").disabled=state.mode!=="studio";
+ $("fxs-open").hidden=!state.slug;
+ if(state.slug)$("fxs-open").href=window.FormulaXLessons.lessonUrl(state.slug);
  renderBlocks();renderPreview();
 }
 function select(i){state.selected=i;renderBlocks()}
@@ -130,8 +139,13 @@ function mutateIndex(i,action){
 }
 function ensureValid(){
  const d=state.doc;
- if(!d.title.trim()||d.title.length>190)throw Error("Titlul trebuie să aibă între 1 și 190 de caractere.");
+ if(d.title.trim().length<2||d.title.length>190)throw Error("Titlul trebuie să aibă între 2 și 190 de caractere.");
  if(!Object.hasOwn(subjects,d.subject))throw Error("Materia nu este validă.");
+ if(state.mode!=="studio"){
+   const content=JSON.stringify(d);
+   if(new TextEncoder().encode(content).length>400000)throw Error("Lecția depășește limita de 400 KB.");
+   return content;
+ }
  if(d.blocks.length<1||d.blocks.length>150)throw Error("Adaugă între 1 și 150 de blocuri.");
  for(const b of d.blocks){
    if(!fields[b.type])throw Error("Tip de bloc invalid.");
@@ -144,37 +158,31 @@ function ensureValid(){
    }
  }
  const content=JSON.stringify(d);
- if(content.length>175000)throw Error("Lecția depășește limita de 175 KB. Folosește încărcarea de imagini, nu imagini introduse ca date base64.");
+ if(new TextEncoder().encode(content).length>175000)throw Error("Lecția depășește limita de 175 KB. Folosește încărcarea de imagini, nu imagini introduse ca date base64.");
  return content;
 }
 async function save(){
  if(state.saving||!state.loaded)return;
  state.saving=true;$("fxs-save").disabled=true;tell("Se verifică și se salvează lecția…");
  try{
-   const body=ensureValid();
-   const previousDraftKey=draftKey();
-   if(state.slug){
-     const {error}=await state.sb.rpc("fx_studio_update_lesson",{p_slug:state.slug,p_title:state.doc.title,p_summary:state.doc.subtitle||"",p_body:body});
-     if(error)throw error;
-   }else{
-     const {data,error}=await state.sb.rpc("fx_create_lesson",{p_subject:state.doc.subject,p_title:state.doc.title,p_summary:state.doc.subtitle||"",p_body:body});
-     if(error)throw error;
-     // Slugul exact este stabilit de server; nu ghicim. Îl identificăm după catalogul profesorului.
-     const {data:cat,error:ce}=await state.sb.rpc("fx_teacher_lesson_catalog");
-     if(!ce){
-       const rows=cat?.lessons||[];
-       const found=rows.filter(x=>x.title===state.doc.title&&x.subject===state.doc.subject);
-       if(found.length===1&&found[0].slug)state.slug=found[0].slug;
-     }
-     if(!state.slug)tell("Lecția a fost creată. O găsești în panoul profesorului; pentru editare, deschide-o de acolo.");
-   }
-   localStorage.removeItem(previousDraftKey);state.dirty=false;
-   tell("Lecția a fost salvată în Formula X. Accesul elevilor se acordă separat din portal.");
-   $("fxs-save").disabled=false;
- }catch(e){
-   tell("Salvarea nu a reușit: "+(e.code==="42883"||e.code==="PGRST202"?"trebuie activată funcția SQL a studioului pentru editarea lecțiilor existente.":e.message),true);
-   $("fxs-save").disabled=false;
- }finally{state.saving=false}
+   const snapshot=ensureValid(),doc=JSON.parse(snapshot),draft=draftKey(),userId=state.userId;
+   const {user}=await window.FormulaXLessonStore.requireStaff();
+   if(user.id!==userId)throw Error("Contul a fost schimbat. Redeschide editorul.");
+   const receipt=state.record
+     ?await window.FormulaXLessonStore.save(state.record,doc.title,doc.subtitle||"",doc)
+     :await window.FormulaXLessonStore.create(state.createId,doc);
+   if(state.userId!==userId||!state.loaded)return;
+   if(!receipt?.slug||!Number.isFinite(Number(receipt.revision)))throw Error("Serverul nu a confirmat versiunea salvată.");
+   state.slug=receipt.slug;
+   state.record={...(state.record||{}),...receipt,kind:state.record?.kind||"studio",original:doc};
+   const url=new URL(location.href);url.searchParams.set("slug",state.slug);history.replaceState(null,"",url.pathname+url.search);
+   state.dirty=JSON.stringify(state.doc)!==snapshot;
+   localStorage.removeItem(draft);
+   if(state.dirty)saveLocal();
+   $("fxs-open").hidden=false;$("fxs-open").href=window.FormulaXLessons.lessonUrl(state.slug);
+   tell(state.dirty?"Versiunea a fost salvată. Mai ai modificări noi de salvat.":"Lecția a fost salvată. Accesul elevilor se gestionează din portal.");
+ }catch(e){tell("Salvarea nu a reușit: "+window.FormulaXLessonStore.errorMessage(e),true);}
+ finally{state.saving=false;$("fxs-save").disabled=!state.loaded;}
 }
 async function uploadImage(key){
  const b=state.doc.blocks[state.selected];
@@ -198,47 +206,42 @@ async function uploadImage(key){
  picker.click();
 }
 async function openLesson(){
- const {data:result,error}=await state.sb.rpc("fx_open_lesson",{p_slug:state.slug});
- if(error)throw error;
- if(!result?.access?.allowed)throw Error("Contul nu are permisiunea de a deschide această lecție.");
- if(result.format!=="text"||typeof result.body!=="string")throw Error("Lecția este într-un format protejat diferit. Folosește editorul existent.");
- let obj;
- try{obj=JSON.parse(result.body)}catch{obj=null}
- if(!obj||obj.fx_format!==fmt){
-   throw Error("Lecția utilizează un format mai vechi. Pentru a o păstra intactă, se editează din editorul original. Studio este pentru lecțiile noi.");
- }
- state.doc=obj;state.doc.title=result.title||obj.title;
+ const record=await window.FormulaXLessonStore.load(state.slug);
+ state.record=record;
+ state.mode=["studio","text"].includes(record.kind)?"studio":"model";
+ state.doc=record.kind==="text"
+   ?{fx_format:fmt,subject:record.subject,title:record.title,subtitle:record.summary||"",theme:"rose",blocks:[{type:"text",id:newId(),text:record.body}]}
+   :record.doc;
+ state.doc.title=record.title;state.doc.subtitle=record.summary||"";state.doc.subject=record.subject;
  const draft=localStorage.getItem(draftKey());
- if(draft){
-   try{const parsed=JSON.parse(draft);
-     if(parsed.doc?.fx_format===fmt&&confirm("Am găsit o ciornă nesalvată pentru această lecție. Vrei să o recuperezi?"))state.doc=parsed.doc;
-   }catch(_){}
- }
+ if(draft){try{const saved=JSON.parse(draft);
+   if(saved.doc?.subject===record.subject&&confirm("Recuperezi ciorna nesalvată pentru această lecție?")){state.doc=saved.doc;state.dirty=true;if(Number.isFinite(saved.revision))state.record.revision=saved.revision;}
+ }catch(_){} }
 }
+let initSequence=0;
 async function init(){
  try{
    if(!window.supabase?.createClient||!window.FX_SUPABASE_URL||!window.FX_SUPABASE_ANON_KEY)throw Error("Configurația Supabase lipsește.");
-   const sb=state.sb=window.FormulaXAuthClient||window.supabase.createClient(window.FX_SUPABASE_URL,window.FX_SUPABASE_ANON_KEY);
-   const {data:{session}}=await sb.auth.getSession();
-   if(!session?.user)throw Error("Conectează-te în portalul profesorului înainte să deschizi Studio.");
-   const {data,error}=await sb.rpc("get_my_staff_profile");
-   if(error)throw error;
-   const staff=state.staff=Array.isArray(data)?data[0]:data;
-   if(!staff||!["mentor","admin"].includes(staff.role))throw Error("Doar profesorii și administratorii pot utiliza Studio.");
+   const request=++initSequence;
+   const sb=state.sb=window.FormulaXLessonStore.client();
+   const {staff,user}=await window.FormulaXLessonStore.requireStaff();
+   if(request!==initSequence)return;
+   state.staff=staff;state.userId=user.id;
    if(!Object.hasOwn(subjects,staff.subject||"")&&staff.role!=="admin")throw Error("Materia profesorului nu este recunoscută.");
    if(staff.role!=="admin"||state.slug){if(staff.role!=="admin")state.doc.subject=staff.subject;$("fxs-subject").disabled=true}
    if(state.slug)await openLesson();
    else{
      const stored=localStorage.getItem(draftKey());
      if(stored){
-       try{const val=JSON.parse(stored);if(val.doc?.fx_format===fmt&&confirm("Recuperezi ciorna nesalvată?"))state.doc=val.doc}catch(_){}
+       try{const val=JSON.parse(stored);if(val.doc?.fx_format===fmt&&confirm("Recuperezi ciorna nesalvată?")){state.doc=val.doc;state.dirty=true;if(/^[a-f0-9-]{36}$/.test(val.createId||""))state.createId=val.createId;}}catch(_){}
      }
      if(staff.role!=="admin")state.doc.subject=staff.subject;
    }
    if(staff.role!=="admin"&&state.doc.subject!==staff.subject)throw Error("Nu ai acces să editezi lecțiile acestei materii.");
+   if(request!==initSequence)return;
    state.loaded=true;
    $("fxs-save").disabled=false;
-   $("fxs-user").textContent=session.user.email;
+   $("fxs-user").textContent=user.email;
    renderAll();tell(state.slug?"Lecție încărcată. Poți modifica blocurile și salva.":"Poți începe o lecție nouă.");
  }catch(e){
    $("fxs-save").disabled=true;
@@ -250,6 +253,7 @@ async function init(){
 $("fxs-templates").innerHTML=templates.map(([id,icon,label])=>'<button type="button" data-template="'+id+'"><span aria-hidden="true">'+icon+'</span>'+esc(label)+'</button>').join("");
 $("fxs-templates").addEventListener("click",e=>{
  const button=e.target.closest("[data-template]");if(!button||!state.loaded)return;
+ if(state.mode!=="studio")return;
  const template=templates.find(x=>x[0]===button.dataset.template);if(!template)return;
  if(state.doc.blocks.length&&!confirm("Acest șablon înlocuiește blocurile actuale. Continui?"))return;
  state.doc.blocks=clone(template[3]).map(b=>({...b,id:newId()}));
@@ -257,12 +261,13 @@ $("fxs-templates").addEventListener("click",e=>{
 });
 $("fxs-palette").innerHTML=types.map(([id,icon,label])=>'<button type="button" data-add="'+id+'"><span aria-hidden="true">'+icon+'</span>'+esc(label)+'</button>').join("");
 $("fxs-palette").addEventListener("click",e=>{
- const a=e.target.closest("[data-add]");if(!a||!state.loaded)return;
+ const a=e.target.closest("[data-add]");if(!a||!state.loaded||state.mode!=="studio")return;
  if(state.doc.blocks.length>=150){tell("Ai atins limita de 150 de blocuri.",true);return}
  state.doc.blocks.push(newBlock(a.dataset.add));state.selected=state.doc.blocks.length-1;
  renderBlocks();mark();
 });
 $("fxs-items").addEventListener("click",e=>{
+ if(state.mode!=="studio"||!state.loaded)return;
  const a=e.target.closest("[data-select],[data-up],[data-down],[data-duplicate],[data-remove]");
  if(!a)return;
  for(const name of ["select","up","down","duplicate","remove"])if(a.hasAttribute("data-"+name)){
@@ -297,5 +302,14 @@ $("fxs-screen").onclick=()=>{
 window.addEventListener("beforeunload",e=>{
  if(state.dirty){e.preventDefault();e.returnValue=""}
 });
-renderAll();await init();
+renderAll();
+window.FormulaXLessonStore.client().auth.onAuthStateChange((event,session)=>{
+ if(!session?.user||state.userId&&session.user.id!==state.userId){
+   initSequence++;state.loaded=false;state.record=null;state.userId=null;state.dirty=false;state.mode="studio";
+   state.doc={fx_format:fmt,title:"Lecție",subject:"romana",blocks:[]};
+   $("fxs-save").disabled=true;$("fxs-items").oninput=null;$("fxs-items").onclick=null;
+   renderAll();tell("Sesiunea a fost închisă sau contul a fost schimbat. Reconectează-te în portal.",true);
+ }
+});
+await init();
 })();

@@ -84,7 +84,7 @@ async function save(){
 function ui(){
  var css=document.createElement('style');css.textContent='.fxe-toggle,.fxe-panel{position:fixed;z-index:2147483000;bottom:15px;right:15px;background:#fff7f6;color:#63394d;padding:13px;border:1px solid #d9b8c6;border-radius:14px;box-shadow:0 12px 28px #0003;font:13px system-ui}.fxe-toggle{background:#63394d;color:white;cursor:pointer}.fxe-panel{left:15px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}.fxe-panel[hidden],.fxe-toggle[hidden]{display:none!important}.fxe-panel button,.fxe-dialog button{padding:9px;border:1px solid #cba7b9;background:white;border-radius:9px;color:#63394d;cursor:pointer}.fxe-dialog{width:min(790px,94vw);max-height:88vh;border-radius:16px;padding:20px;border:1px solid #cba7b9;color:#372734}.fxe-dialog::backdrop{background:#20152299}.fxe-fields{max-height:65vh;overflow:auto}.fxe-field{display:block;margin:10px 0;font:13px system-ui}.fxe-field textarea,.fxe-field input{display:block;width:100%;box-sizing:border-box;border:1px solid #d8c3ce;border-radius:7px;padding:9px;font:14px system-ui}.fxe-editing p,.fxe-editing h1,.fxe-editing h2,.fxe-editing h3,.fxe-editing li,.fxe-editing img{cursor:crosshair!important}';document.head.append(css);
  var div=document.createElement('div');div.dataset.fxeUi='1';div.innerHTML='<button id="fxe-start" class="fxe-toggle" hidden>✎ Editeaza lectia</button><div id="fxe-panel" class="fxe-panel" hidden><strong>Editor profesor</strong><button id="fxe-model">Repere si grile</button><button id="fxe-answers">Raspunsuri</button><button id="fxe-save" disabled>Salveaza modificarile</button><button id="fxe-cancel">Inchide</button><small id="fxe-message"></small></div><dialog id="fxe-dialog" class="fxe-dialog"><h2 id="fxe-title"></h2><div id="fxe-fields" class="fxe-fields"></div><button id="fxe-confirm">Aplica</button><button id="fxe-close">Anuleaza</button></dialog>';document.body.append(div);
- $('fxe-start').onclick=function(){state.edit=true;document.body.classList.add('fxe-editing');$('fxe-start').hidden=true;$('fxe-panel').hidden=false;note('Apasa pe un text sau pe o imagine.')};
+ $('fxe-start').onclick=function(){if(page!=='matematica/progresii'){location.assign('/profesori/studio.html?slug='+encodeURIComponent(slug));return;}state.edit=true;document.body.classList.add('fxe-editing');$('fxe-start').hidden=true;$('fxe-panel').hidden=false;note('Apasa pe un text sau pe o imagine.')};
  $('fxe-model').onclick=editModel;$('fxe-answers').onclick=editAnswers;$('fxe-save').onclick=save;$('fxe-close').onclick=function(){$('fxe-dialog').close()};
  $('fxe-cancel').onclick=function(){if(state.dirty&&!confirm('Renunti la schimbarile nesalvate?'))return;location.reload()};
  document.addEventListener('click',function(e){if(!state.edit||e.target.closest('[data-fxe-ui],dialog'))return;var img=e.target.closest('img'),target=e.target.closest('p,li,h1,h2,h3,h4,blockquote,.formula,.relevance,.takeaway');if(!img&&!target)return;e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();if(img)uploadImage(img);else editText(target)},true);
@@ -108,6 +108,7 @@ async function refresh(){
  state.allowed=!s.error&&!!staff&&(staff.role==='admin'||(staff.role==='mentor'&&staff.subject===subject));
  if(!state.allowed){state.edit=false;document.body.classList.remove('fxe-editing');$('fxe-panel').hidden=true;if($('fxe-dialog').open)$('fxe-dialog').close()}
  $('fxe-start').hidden=!state.allowed||state.edit;
+ if(page!=='matematica/progresii')$('fxe-start').textContent='✎ Deschide editorul complet';
  if(state.allowed&&params.get('editor')==='1'&&!state.edit)$('fxe-start').click();
 }
 var initTask;
@@ -133,3 +134,4 @@ window.FormulaXUniversalEditor={
  }
 };
 })();
+

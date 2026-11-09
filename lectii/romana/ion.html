@@ -55,6 +55,7 @@ const IMAGE_FILES={"particularitati":{"r10":"Eseul_1_01_Trasatura_1_Constructia_
 
 function assetUrl(name){return '/assets/lessons/ion/'+encodeURIComponent(name);}
 function imageHtml(path,alt,id){
+ if(typeof path==='string'&&/^(https:\/\/[^\s<>"']+|\/assets\/[A-Za-z0-9/_\-.%]+)$/.test(path))return '<img src="'+escape(path)+'" loading="lazy" alt="'+escape(alt||'Ilustrație')+'">';
  const name=IMAGE_FILES[essay]?.[id];
  return name?'<img src="'+assetUrl(name)+'" loading="lazy" decoding="async" alt="'+escape(alt||'Ilustrație în acuarelă pentru Ion')+'" data-zoom-src="'+name+'">':'';
 }
@@ -180,3 +181,4 @@ if(quiz&&(!Array.isArray(quiz.questions)||quiz.essay!==essay))quiz=null;render()
 </script>
 </body>
 </html>
+

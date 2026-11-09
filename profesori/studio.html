@@ -14,6 +14,7 @@
   <div class="fxs-top-actions">
     <a class="fxs-button" href="/profesori/">← Portal profesori</a>
     <a class="fxs-button" href="/profesori/importa-literatura.html">Importă lecțiile BAC</a>
+    <a id="fxs-open" class="fxs-button" target="_blank" rel="noopener" hidden>Vezi lecția salvată</a>
     <button type="button" class="fxs-button" id="fxs-print">Printează previzualizarea</button>
     <button class="fxs-button primary" type="button" id="fxs-save" disabled>Salvează lecția</button>
   </div>
@@ -43,7 +44,7 @@
  </aside>
  <section class="fxs-workspace" aria-label="Editor lecție">
    <div class="fxs-row"><h2>Structura lecției</h2><span class="fxs-muted" id="fxs-count">0 blocuri</span></div>
-   <p class="fxs-muted">Mută blocurile cu săgețile, duplică-le, șterge-le sau editează-le. Ciorna se păstrează local în acest browser.</p>
+   <p class="fxs-muted">Mută blocurile cu săgețile, duplică-le, șterge-le sau editează-le. Ciorna se păstrează local pentru contul tău. Lecțiile existente își păstrează formatul original.</p>
    <div id="fxs-items" class="fxs-items"></div>
    <div class="fxs-divider"></div>
    <h2>Editează blocul ales</h2>
@@ -58,6 +59,9 @@
 </main>
 <script src="/assets/vendor/supabase.js"></script>
 <script src="/cursuri/config.js"></script>
+<script src="/assets/formula-x-lessons-core.js"></script>
+<script src="/assets/fx-lesson-store.js"></script>
+<script src="/assets/fx-lesson-model-editor.js"></script>
 <script src="/assets/fx-lesson-studio-renderer.js?v=1"></script>
 <script src="/assets/fx-lesson-studio.js?v=1"></script>
 </body>

@@ -39670,6 +39670,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
 
   // Client comun folosit și de formularele de înscriere Formula X.
   window.fxSupabaseClient = db;
+  window.FormulaXAuthClient = db;
 
   // V30 SECURITY: scrierea anonimă directă în page_views a fost dezactivată în Supabase.
   // Nu mai trimitem requesturi REST publice către tabelul page_views.
@@ -40827,7 +40828,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
 
     // Nu randăm mai întâi dashboardul de elev; profesorul merge direct în portal.
     try { document.documentElement.setAttribute('data-staff-redirect','1'); } catch (_) {}
-    window.location.replace('https://formula-x.ro/profesori/?v=29');
+    window.location.assign('/profesori/');
     return true;
   }
 
@@ -40851,7 +40852,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
       return;
     }
 
-    // Dacă utilizatorul este mentor/admin, același login îl duce direct în portalul privat.
+    // Autentificarea păstrează pagina solicitată. Portalul se deschide din butonul contului.
     if (data?.user && await redirectStaffToPortal(data.user)) return;
 
     if (!staffRedirectInProgress) setMessage($('fx-auth-message'),'Autentificare reușită.','success');

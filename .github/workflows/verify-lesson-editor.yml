@@ -1,37 +1,8 @@
 name: Validate lesson editor JavaScript
 on:
   pull_request:
-    paths:
-      - "assets/fx-curated-literature-2027.js"
-      - "assets/fx-curated-importer.js"
-      - "profesori/importa-literatura.html"
-      - "tests/curated-lessons.cjs"
-      - "assets/fx-editor-all.js"
-      - "assets/fx-lesson-studio*.js"
-      - "assets/fx-lesson-studio.css"
-      - "profesori/studio.html"
-      - "tests/lesson-studio.cjs"
-      - "assets/fx-course-existing-editor.js"
-      - "assets/formula-x-lesson-page.js"
-      - "assets/formula-x-lesson-teacher.js"
-      - "lectii/**/*.html"
-      - "assets/lectii/**/*.html"
-      - ".github/workflows/verify-lesson-editor.yml"
   push:
-    paths:
-      - "assets/fx-curated-literature-2027.js"
-      - "assets/fx-curated-importer.js"
-      - "profesori/importa-literatura.html"
-      - "tests/curated-lessons.cjs"
-      - "assets/fx-editor-all.js"
-      - "assets/fx-lesson-studio*.js"
-      - "assets/fx-lesson-studio.css"
-      - "profesori/studio.html"
-      - "tests/lesson-studio.cjs"
-      - "assets/fx-course-existing-editor.js"
-      - "assets/formula-x-lesson-page.js"
-      - "assets/formula-x-lesson-teacher.js"
-      - ".github/workflows/verify-lesson-editor.yml"
+    branches-ignore: [main]
 jobs:
   syntax:
     runs-on: ubuntu-latest
@@ -46,6 +17,9 @@ jobs:
           node --check assets/fx-lesson-studio-renderer.js
           node --check assets/fx-lesson-studio.js
           node tests/lesson-studio.cjs
+          node tests/stable-lessons.cjs
+          node tests/lesson-editor.cjs
+          python tests/release-source.py
           node --check assets/fx-curated-literature-2027.js
           node --check assets/fx-curated-importer.js
           node tests/curated-lessons.cjs
@@ -65,3 +39,35 @@ jobs:
                       subprocess.run(['node','--check',f.name],check=True)
               print('OK',path)
           PY
+
+
+  database:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: test-only
+          POSTGRES_DB: formula_x_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      PGHOST: localhost
+      PGPORT: 5432
+      PGUSER: postgres
+      PGPASSWORD: test-only
+      PGDATABASE: formula_x_test
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create disposable database contract
+        run: psql -v ON_ERROR_STOP=1 -f tests/fixtures/stable-lessons-schema.sql
+      - name: Install and rerun the universal migration
+        run: |
+          psql -v ON_ERROR_STOP=1 -f SUPABASE-UNIVERSAL-LECTII-2026.sql
+          psql -v ON_ERROR_STOP=1 -f SUPABASE-UNIVERSAL-LECTII-2026.sql
+      - name: Verify authorization and transactional persistence
+        run: psql -v ON_ERROR_STOP=1 -f tests/stable-lessons.sql

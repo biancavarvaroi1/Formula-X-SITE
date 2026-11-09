@@ -49,7 +49,7 @@ function launchLesson(payload,userId){
 const data=window.FormulaXUniversalEditor?.patchModel(payload)||payload;window.FormulaXUniversalEditor?.registerModel(data);const $=id=>document.getElementById(id);const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const KEY='fx-baltagul-course-v1:'+userId;let storage={};try{storage=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch{};
 let essay=storage.essay==='caracterizare'?'caracterizare':'particularitati';let levels=storage.levels&&typeof storage.levels==='object'?storage.levels:{};let revealed=storage.revealed&&typeof storage.revealed==='object'?storage.revealed:{};let quiz=storage.quiz||null;const images=data.embeddedImages||{};
 function save(){try{localStorage.setItem(KEY,JSON.stringify({essay,levels,revealed,quiz}))}catch{}}
-function img(path,alt){const src=images[path]||'';return src?`<img src="${src}" alt="${escape(alt||'Ilustrație')}" loading="lazy" data-zoom-src="${escape(path)}">`:''}
+function img(path,alt){const src=typeof path==='string'&&/^(https:\/\/[^\s<>"']+|\/assets\/[A-Za-z0-9/_\-.%]+)$/.test(path)?path:images[path]||'';return src?`<img src="${src}" alt="${escape(alt||'Ilustrație')}" loading="lazy" data-zoom-src="${escape(path)}">`:''}
 function hash(t){let h=2166136261;for(const c of t){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return h>>>0}
 function level(){return levels[essay]||0}
 function learn(str,id){if(level()===0||!str)return escape(str);return String(str).split(/(\s+)/).map((t,i)=>{if(!t.trim()||t.replace(/[^\p{L}\p{N}]/gu,'').length<4)return escape(t);let k=essay+':'+id+':'+i;if(revealed[k]||hash(k+':'+t)%100>=[0,24,47,73,100][level()])return escape(t);return `<button class="masked" data-reveal="${escape(k)}" aria-label="Arată cuvântul ascuns">_____</button>`}).join('')}
@@ -180,3 +180,4 @@ if(quiz&&(!Array.isArray(quiz.questions)||quiz.essay!==essay))quiz=null;render()
 </script>
 </body>
 </html>
+

@@ -1,3 +1,5 @@
+> Actualizare 9 noiembrie: vezi [analiza fluxului stabil și instalarea actuală](FLUX-LECTII-STABIL-2026.md). Se folosește versiunea actuală a instalatorului SQL din această ramură.
+
 # Formula X · Lecții universale (8 noiembrie 2026)
 
 ## Ce s-a făcut în GitHub
@@ -38,3 +40,4 @@ node --check assets/fx-curated-importer.js
 node tests/curated-lessons.cjs
 node tests/lesson-studio.cjs
 ```
+
