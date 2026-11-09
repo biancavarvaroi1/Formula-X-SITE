@@ -8,6 +8,7 @@ Analiză pornită de la `main`, commit `85fb069f4c54b5afeebbab279046e13caf08a757
 | --- | --- | --- |
 | Corecția navigării putea dispărea la publicare | `.github/workflows/static.yml`, pasul `Prepare verified Formula X lesson files`: `release.extractall('.')`, urmat de restaurarea a numai patru fișiere JS | Arhiva veche înlocuia `index.html`, `profesori/index.html`, `assets/formula-x-portal.js` și pagina bibliotecii. Mesajul workflow-ului spunea că pagina principală era păstrată, dar codul nu o păstra. |
 | Redirecționarea era legată istoric de autentificare | `index.html`, `redirectStaffToPortal()`, apelurile din `signIn`, `bootstrapSession` și `onAuthStateChange` | În commitul analizat există deja `if (!force) return false;`. Acea corecție este corectă în sursă, dar nu era protejată de suprascrierea de mai sus. Numai clickul explicit pe butonul contului trebuie să deschidă portalul profesorului. |
+| Profilul de elev putea întrerupe navigarea profesorului | `index.html`, `renderAuthState()` → `openOnboarding(false)` | Un profesor fără profil de elev primea formularul de completare inclusiv peste teste. Rolul este acum verificat separat; formularul automat se deschide numai în pagina de cont, pentru utilizatorii fără rol didactic. |
 | Verificarea portalului închidea sesiunea comună | `assets/formula-x-portal.js`, eșecul `openPortal()` după login și în bootstrap | O eroare RPC sau un cont fără rol de profesor producea `auth.signOut()`, afectând și accesul normal la teste din celelalte pagini. |
 | Portalul din sursă nu monta administrarea lecțiilor | `profesori/index.html` și `assets/formula-x-portal.js` | Integrarea disponibilă la publicare depindea de HTML și JS scoase din arhivă. Fișierele urmărite în GitHub nu conțineau tabul și legătura completă cu `FormulaXLessonTeacher`. |
 | Ruta comună nu exista în repository | `assets/formula-x-lessons-core.js`, `lessonUrl()` → `/cursuri/lectie.html` | Fișierul apărea numai după extragerea arhivei. O lecție nouă depindea de o resursă absentă din sursa proiectului. |
@@ -63,7 +64,7 @@ Ciornele sunt legate de UUID-ul real al utilizatorului. Deconectarea blochează 
 
 | Fișiere | Schimbare |
 | --- | --- |
-| `index.html` | Expune clientul comun de sesiune și păstrează navigarea explicită spre portal. |
+| `index.html` | Expune clientul comun de sesiune, păstrează navigarea explicită spre portal și limitează formularul automat de elev la pagina de cont. |
 | `profesori/index.html`, `assets/formula-x-portal.js` | Tabul Lecții și acces, integrarea cu administrarea lecțiilor, butoane pe elev/grupă, verificare de sesiune fără deconectare forțată. |
 | `assets/formula-x-lessons-core.js`, `assets/formula-x-lesson-teacher.js` | Rute comune spre cititor și editor; păstrează rutele istorice pentru citirea lecțiilor existente. |
 | `profesori/studio.html`, `assets/fx-lesson-studio.js`, `assets/fx-lesson-studio.css` | Același editor pentru formatele din bază, identitate stabilă, ciorne per utilizator, protecție la conflicte. |
@@ -90,3 +91,6 @@ Instalatorul poate fi rulat din nou, fără ștergerea lecțiilor, grupelor sau 
 Local: scenariile de editor, bibliotecă, adaptoare și salvare, testul arhivei, lecțiile lirice, rendererul Studio, accesul lecțiilor, continuitatea chestionarelor, imaginile publice Harap-Alb și exercițiile pe repere. Sunt verificate și sintaxa modulelor și scripturile inline modificate.
 
 CI include PostgreSQL 16: instalarea repetată a migrației, drepturi pe materie, respingerea elevului/anonimului, salvare atomică inclusiv eșec după scrierea corpului, conflicte de versiune, creare reluată și păstrarea funcției originale de acces. Testele folosesc o schemă contractuală izolată; nu substituie verificarea configurației efective din proiectul Supabase.
+
+
+Rezultate verificate în GitHub Actions pentru commitul `5a644fba5df5f288acdef9d995be7da925d10711`: ambele joburi, `syntax` și `database`, au trecut. Verificările ulterioare ale PR-ului apar în fila Checks; configurația Supabase reală rămâne de verificat prin pașii de aplicare.

@@ -40014,12 +40014,15 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
   async function loadUserData() {
     if (!state.user) return;
     const uid = state.user.id;
-    const [profileRes, progressRes, attemptsRes, goalRes] = await Promise.all([
+    const [profileRes, progressRes, attemptsRes, goalRes, staffAccount] = await Promise.all([
       db.from('profiles').select('*').eq('user_id', uid).maybeSingle(),
       db.from('test_progress').select('*').eq('user_id', uid),
       db.from('test_attempts').select('*').eq('user_id', uid).order('completed_at', { ascending: true }),
-      db.from('goals').select('*').eq('user_id', uid).maybeSingle()
+      db.from('goals').select('*').eq('user_id', uid).maybeSingle(),
+      getCurrentStaffAccount(uid)
     ]);
+    if (state.user?.id !== uid) return;
+    state.staffAccount = staffAccount && ['mentor','admin'].includes(staffAccount.role) ? staffAccount : null;
 
     if (profileRes.error) console.error(profileRes.error);
     if (progressRes.error) console.error(progressRes.error);
@@ -40049,7 +40052,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
 
   function openOnboarding(force) {
     if (!state.user) return;
-    if (!force && profileComplete()) return;
+    if (!force && (state.staffAccount || window.location.hash !== '#cont' || profileComplete())) return;
     const modal = $('fx-onboarding');
     if (!modal) return;
     $('fx-profile-name').value = state.profile?.name || state.user.user_metadata?.name || '';
@@ -41116,6 +41119,7 @@ html.fx-user-anonymous #fx-auth-section { display:grid !important; }
       else {
         resetStudyRoom(false);
         state.profile=null;
+        state.staffAccount=null;
         state.progress=new Map();
         state.attempts=[];
         state.goal={weekly_target:3};

@@ -48,7 +48,14 @@ function studio(existing=false){
  assert.equal(fresh.createCount(),1,'Save twice creates exactly one lesson');assert.equal(fresh.writes[1].r.slug,'server-id','Use server slug, never a title lookup');
  await fresh.signout();assert.equal(fresh.win.qa.state.loaded,false);assert.equal(fresh.nodes.get('fxs-save').disabled,true);const count=fresh.writes.length;await fresh.win.qa.save();assert.equal(fresh.writes.length,count);
  const existing=studio(true);await flush();existing.win.qa.state.record.revision=4;await existing.win.qa.save();assert.equal(existing.writes[0].r.revision,4);
- const html=source('index.html');assert(html.includes('if (!force) return false;'));assert(!html.includes('redirectStaffToPortal(data.user, true)'));
+ const html=source('index.html');
+ const onboarding=html.slice(html.indexOf('  function openOnboarding(force) {'),html.indexOf('  function closeOnboarding() {'));
+ for(const [staff,hash,opens] of [[{role:'mentor'},'#teste',false],[{role:'mentor'},'#cont',false],[null,'#teste',false],[null,'#cont',true]]){
+   const modal={hidden:true},elements={};
+   vm.runInNewContext(onboarding+';openOnboarding(false);',{state:{user:{user_metadata:{}},staffAccount:staff,profile:null},window:{location:{hash}},profileComplete:()=>false,$:id=>id==='fx-onboarding'?modal:(elements[id]||={}),populateSpecializations(){},document:{body:{style:{}}}});
+   assert.equal(!modal.hidden,opens,'Student onboarding must not interrupt teacher or test browsing');
+ }
+ assert(html.includes('if (!force) return false;'));assert(!html.includes('redirectStaffToPortal(data.user, true)'));
  assert(source('assets/formula-x-portal.js').includes('onAuthStateChange'));assert(!/if\(!ok\)\{[^}]*auth\.signOut/s.test(source('assets/formula-x-portal.js')));
  assert(source('profesori/index.html').includes('id="tab-lessons"'));assert(source('profesori/index.html').includes('formula-x-lesson-teacher.js'));
  assert(!source('cursuri/app.js').includes("from('fx_lesson_contents')"));assert(source('cursuri/app.js').includes("FX.rpc('fx_lesson_catalog')"));
