@@ -263,11 +263,11 @@
       studioRendererPromise=new Promise((resolve,reject)=>{
         if(!document.querySelector('link[data-fxs-studio]')){
           const sheet=document.createElement('link');sheet.rel='stylesheet';
-          sheet.href='/assets/fx-lesson-studio.css?v=1';sheet.dataset.fxsStudio='1';
+          sheet.href='/assets/fx-lesson-studio.css?v=3';sheet.dataset.fxsStudio='1';
           document.head.appendChild(sheet);
         }
         const script=document.createElement('script');
-        script.src='/assets/fx-lesson-studio-renderer.js?v=1';script.onload=resolve;
+        script.src='/assets/fx-lesson-studio-renderer.js?v=3';script.onload=resolve;
         script.onerror=()=>reject(new Error('Rendererul Studio nu este disponibil.'));
         document.head.appendChild(script);
       }).catch(error=>{studioRendererPromise=null;throw error});
