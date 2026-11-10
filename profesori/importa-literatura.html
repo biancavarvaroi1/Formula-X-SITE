@@ -31,10 +31,10 @@ button:disabled{opacity:.55;cursor:not-allowed}.actions{display:flex;flex-wrap:w
 <main>
 <div class="eyebrow">Biblioteca de literatură · BAC 2027</div>
 <h1>Importă lecțiile pregătite pentru elevi</h1>
-<p class="lead">Două lecții cu repere, imagini de memorare, secvențe relevante, planuri de eseu și verificare interactivă. Importul se face în contul profesorului, nu în pagini publice neprotejate.</p>
+<p class="lead">Lecțiile „Luceafărul” și „Plumb” au fost rescrise după eseurile profesoarei, cu repere, explicații numerotate, RELEVANȚĂ, imagini de memorare și grile. Dacă lecțiile există deja, folosește butonul de actualizare.</p>
 <div class="note">
 <strong>Cum funcționează:</strong> (1) rulează o singură dată fișierul <code>SUPABASE-UNIVERSAL-LECTII-2026.sql</code> în SQL Editor; (2) autentifică-te ca profesor de Română sau administrator; (3) apasă <strong>Importă</strong>; (4) din Portal profesori alegi momentul publicării și accesul pentru grupe sau elevi.
-<div class="small">Importul nu redeschide automat accesul elevilor. Materialele existente cu același titlu nu sunt suprascrise.</div>
+<div class="small">Importul nu redeschide automat accesul elevilor. Pentru lecțiile existente de tip Studio, poți înlocui conținutul după confirmare, fără să modifici accesul elevilor, grupele sau identificatorii lecțiilor.</div>
 </div>
 <p id="global-status" aria-live="polite">Se verifică drepturile contului și biblioteca...</p>
 <section class="grid" aria-label="Lecții de importat">
@@ -51,10 +51,10 @@ button:disabled{opacity:.55;cursor:not-allowed}.actions{display:flex;flex-wrap:w
 <div class="actions"><button type="button" data-import="plumb" disabled>Importă în Formula X</button><a href="/profesori/studio.html" class="button alt">Studio</a></div><p class="status" data-status="plumb" aria-live="polite"></p>
 </article>
 </section>
-<p class="small">Dacă ai deja lecția, deschide-o din Portal profesori și continuă să o modifici în Studio. Nu trebuie să mai rulezi alt cod SQL pentru viitoarele lecții.</p>
+<p class="small">Dacă ai deja aceste lecții, apasă „Actualizează lecția existentă” pentru fiecare. Conținutul este salvat în Supabase numai după autentificarea ca profesor autorizat. Alte lecții nu sunt afectate.</p>
 </main>
 <script defer src="/assets/vendor/supabase.js"></script>
 <script defer src="/cursuri/config.js"></script>
-<script defer src="/assets/fx-curated-literature-2027.js?v=1"></script>
-<script defer src="/assets/fx-curated-importer.js?v=1"></script>
+<script defer src="/assets/fx-curated-literature-2027.js?v=2"></script>
+<script defer src="/assets/fx-curated-importer.js?v=2"></script>
 </body></html>
