@@ -41,12 +41,33 @@
       default:return "";
     }
   }
+  // Eseurile BAC păstrează blocurile și chestionarele, dar sunt citite ca
+  // secțiuni legate între ele, nu ca zeci de panouri individuale.
+  function renderEssayChapters(blocks,preview){
+    let html="",isOpen=false;
+    blocks.slice(0,150).forEach((b,index)=>{
+      if(b?.type==="heading"){
+        if(isOpen)html+="</article>";
+        const label=String(b.title||"");
+        const kind=/^REPERUL\s+[12]\b/i.test(label)?" fxs-chapter-reper":/^Cum scrii/i.test(label)?" fxs-chapter-recap":"";
+        html+='<article class="fxs-essay-chapter'+kind+'">';
+        isOpen=true;
+      } else if(!isOpen){
+        html+='<article class="fxs-essay-chapter">';
+        isOpen=true;
+      }
+      html+=block(b,index,preview);
+    });
+    if(isOpen)html+="</article>";
+    return html;
+  }
   function render(root,doc,meta={},access={},options={}){
     if(!root||!doc||doc.fx_format!==FMT||!Array.isArray(doc.blocks))throw new Error("Format de lecție necunoscut");
     const preview=options.preview===true;
     const variant=["rose","ocean","sage","sand"].includes(doc.theme)?doc.theme:"rose";
+    const essay=/^(?:Luceafărul|Plumb)\s*[—–-]/i.test(String(doc.title||"")) && doc.subject==="romana";
     const titles=doc.blocks.map((b,i)=>({b,i})).filter(({b})=>b.type==="heading"&&b.title);
-    const html='<div class="fxs-studio-view fxs-theme-'+variant+'">'+
+    const html='<div class="fxs-studio-view fxs-theme-'+variant+(essay?' fxs-bac-essay':'')+'">'+
       '<header class="fxs-hero"><span class="fxs-overline">FORMULA X · LECȚIE INTERACTIVĂ</span>'+
       '<h1>'+text(doc.title||meta.title||"Lecție nouă")+'</h1>'+
       '<p>'+text(doc.subtitle||"Învață logic, vizual și interactiv.")+'</p>'+
@@ -54,7 +75,7 @@
       (preview?'<span>Previzualizare profesor</span>':access.endsAt?'<span>Acces până la '+esc(new Date(access.endsAt).toLocaleDateString("ro-RO"))+'</span>':"")+
       '</div></header>'+
       (titles.length?'<nav class="fxs-toc" aria-label="Cuprinsul lecției"><strong>Cuprins</strong>'+titles.map(({b,i})=>'<a href="#fxs-block-'+i+'">'+esc(b.title)+'</a>').join("")+'</nav>':"")+
-      '<div class="fxs-content">'+doc.blocks.slice(0,150).map((b,i)=>block(b,i,preview)).join("")+'</div>'+
+      '<div class="fxs-content">'+(essay?renderEssayChapters(doc.blocks,preview):doc.blocks.slice(0,150).map((b,i)=>block(b,i,preview)).join(""))+'</div>'+
       '<footer class="fxs-end">Formula X · Ai parcurs lecția. Revino la reperele importante și verifică-ți cunoștințele!</footer></div>';
     root.innerHTML=html;
     root.__fxStudioDoc=doc;
