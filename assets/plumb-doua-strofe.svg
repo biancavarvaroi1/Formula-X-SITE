@@ -1,30 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="740" height="1150" viewBox="0 0 740 1150" role="img" aria-label="PLUMB · 2 STROFE">
-<rect width="740" height="1150" fill="#fffafc"/>
-<text x="370" y="66" font-family="Georgia,serif" font-size="43" font-weight="bold" fill="#533e56" text-anchor="middle">PLUMB · 2 STROFE</text>
-<text x="370" y="111" font-family="Arial,sans-serif" font-size="25" fill="#806777" text-anchor="middle">Aceleași simboluri · două planuri</text>
-<rect x="30" y="152" width="680" height="212" rx="25" fill="#fae7ed" stroke="#dcd2d8" stroke-width="2"/>
-<rect x="49" y="173" width="72" height="72" rx="20" fill="#fff" fill-opacity=".68"/>
-<text x="85" y="221" text-anchor="middle" fill="#553d53" font-size="35" font-family="Georgia,serif" font-weight="bold">1</text>
-<text x="145" y="216" fill="#3f3040" font-family="Georgia,serif" font-size="39" font-weight="bold">STROFA I</text>
-<text x="50" y="268" fill="#4b3b49" font-family="Arial,sans-serif" font-size="27">EXTERIOR: cavou, sicrie, flori</text>
-<text x="50" y="311" fill="#4b3b49" font-family="Arial,sans-serif" font-size="27">Vânt + scârțâit = neliniște</text>
-<rect x="30" y="391" width="680" height="212" rx="25" fill="#ede9f6" stroke="#dcd2d8" stroke-width="2"/>
-<rect x="49" y="412" width="72" height="72" rx="20" fill="#fff" fill-opacity=".68"/>
-<text x="85" y="460" text-anchor="middle" fill="#553d53" font-size="35" font-family="Georgia,serif" font-weight="bold">2</text>
-<text x="145" y="455" fill="#3f3040" font-family="Georgia,serif" font-size="39" font-weight="bold">STROFA II</text>
-<text x="50" y="507" fill="#4b3b49" font-family="Arial,sans-serif" font-size="27">INTERIOR: amor, strigăt, frig</text>
-<text x="50" y="550" fill="#4b3b49" font-family="Arial,sans-serif" font-size="27">Aripile de plumb nu mai pot zbura</text>
-<rect x="30" y="630" width="680" height="212" rx="25" fill="#ebe6f0" stroke="#dcd2d8" stroke-width="2"/>
-<rect x="49" y="651" width="72" height="72" rx="20" fill="#fff" fill-opacity=".68"/>
-<text x="85" y="699" text-anchor="middle" fill="#553d53" font-size="35" font-family="Georgia,serif" font-weight="bold">3</text>
-<text x="145" y="694" fill="#3f3040" font-family="Georgia,serif" font-size="39" font-weight="bold">SIMBOLUL CENTRAL</text>
-<text x="50" y="746" fill="#4b3b49" font-family="Arial,sans-serif" font-size="27">PLUMB = greutate + închidere</text>
-<text x="50" y="789" fill="#4b3b49" font-family="Arial,sans-serif" font-size="27">Repetat de 6 ori, unește poemul</text>
-<rect x="30" y="869" width="680" height="212" rx="25" fill="#f8eee9" stroke="#dcd2d8" stroke-width="2"/>
-<rect x="49" y="890" width="72" height="72" rx="20" fill="#fff" fill-opacity=".68"/>
-<text x="85" y="938" text-anchor="middle" fill="#553d53" font-size="35" font-family="Georgia,serif" font-weight="bold">4</text>
-<text x="145" y="933" fill="#3f3040" font-family="Georgia,serif" font-size="39" font-weight="bold">SENSUL FINAL</text>
-<text x="50" y="985" fill="#4b3b49" font-family="Arial,sans-serif" font-size="27">Peisajul = oglinda sufletului</text>
-<text x="50" y="1028" fill="#4b3b49" font-family="Arial,sans-serif" font-size="27">Singurătate + iubire imposibilă</text>
-<text x="370" y="1126" fill="#8d7986" font-size="22" font-family="Arial,sans-serif" text-anchor="middle">Formula X · schemă de memorare</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="480" viewBox="0 0 980 480" role="img" aria-label="Ilustrație în acuarelă: cavou, flori ofilite, coroană și aripi grele simbolizând cele două strofe din Plumb">
+<defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="#d9cbd5"/><stop offset=".5" stop-color="#e6dfe2"/><stop offset="1" stop-color="#faf3ee"/></linearGradient><linearGradient id="crypt" x2=".1" x1=".9" y2="1"><stop stop-color="#625f71"/><stop offset="1" stop-color="#a9a2aa"/></linearGradient><filter id="wash"><feGaussianBlur stdDeviation="11"/></filter><filter id="soft"><feGaussianBlur stdDeviation="2.2"/></filter><pattern id="grain" width="26" height="29" patternUnits="userSpaceOnUse"><circle cx="4" cy="8" r="1" fill="#795e7d" opacity=".09"/><circle cx="20" cy="20" r="1.3" fill="#9f7b83" opacity=".12"/></pattern></defs>
+<rect width="980" height="480" rx="22" fill="url(#sky)"/>
+<path d="M0 375Q110 317 220 376T440 362T670 372T980 350V480H0Z" fill="#b6a1ad" opacity=".22" filter="url(#wash)"/>
+<circle cx="205" cy="91" r="73" fill="#fcf4f0" opacity=".65" filter="url(#wash)"/>
+<path d="M82 401Q230 375 412 412" fill="none" stroke="#a99ba7" stroke-width="36" opacity=".25" filter="url(#wash)"/>
+<!-- Funeral arch, hand-painted irregular edges -->
+<path d="M137 369V190Q137 109 230 103Q325 113 325 190V369Z" fill="#8a8290" opacity=".22" filter="url(#soft)"/>
+<path d="M153 371V196Q153 132 230 125Q308 132 308 196V371Z" fill="url(#crypt)" stroke="#8c8290" stroke-width="5"/>
+<path d="M178 359V198Q178 147 230 145Q284 153 284 198V359Z" fill="#393c4c" opacity=".85"/>
+<path d="M228 173V252M201 206H257" stroke="#c1b4bc" stroke-width="10" stroke-linecap="round" opacity=".85"/>
+<path d="M126 373Q232 386 337 370" stroke="#847687" stroke-width="13" stroke-linecap="round"/>
+<path d="M100 389Q187 381 262 388T364 391" fill="none" stroke="#eee7e7" stroke-width="7" opacity=".9"/>
+<!-- Wilting flowers -->
+<g fill="none" stroke-linecap="round">
+<path d="M405 393Q434 338 441 275M441 396Q463 330 500 295M459 389Q510 350 518 325" stroke="#626d69" stroke-width="6"/>
+<path d="M430 343Q386 327 399 302Q430 307 430 343M475 339Q513 329 514 310Q485 306 475 339" fill="#8d968d" stroke="#768079" stroke-width="2"/>
+<path d="M435 283Q412 271 421 257Q439 247 447 271Q464 245 478 268Q473 289 445 300Z" fill="#aa7d91" stroke="#947183" stroke-width="4"/>
+<path d="M499 297Q476 273 489 261Q514 248 518 275Q538 256 544 278Q540 297 509 311Z" fill="#98758b" stroke="#947183" stroke-width="4"/>
+<path d="M518 332Q497 314 512 301Q535 292 535 315Q551 306 557 328Q543 348 518 339Z" fill="#b79ba4" stroke="#947183" stroke-width="3"/>
+</g>
+<!-- Raised wing losing its feathers -->
+<path d="M652 323Q677 255 707 201Q722 176 765 143Q730 185 720 225Q763 189 795 175Q762 223 748 248Q778 228 820 217Q767 280 726 307Q699 324 652 323Z" fill="#d8c9d1" stroke="#978b9e" stroke-width="4" stroke-linejoin="round"/>
+<g fill="none" stroke="#a49aaa" stroke-width="3" opacity=".76"><path d="M657 320Q705 246 765 143"/><path d="M686 308Q728 248 795 175"/><path d="M698 310Q770 264 820 217"/></g>
+<g opacity=".4" fill="#69596e"><path d="M830 316q30-9 40 9q-20 4-40-9"/><path d="M856 351q33-4 36 12q-19 6-36-12"/><path d="M805 372q22-2 28 13q-16 4-28-13"/></g>
+<path d="M583 408Q706 379 892 408" stroke="#e7dce2" stroke-width="22" fill="none" opacity=".6" filter="url(#wash)"/>
+<rect width="980" height="480" fill="url(#grain)" rx="22"/>
 </svg>
