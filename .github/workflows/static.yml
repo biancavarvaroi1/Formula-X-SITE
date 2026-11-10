@@ -78,6 +78,8 @@ jobs:
           PY
       - name: Install the current teacher editor on every lesson page
         run: python scripts/install-lesson-editor.py
+      - name: Install authenticated group invitations
+        run: python scripts/instaleaza-invitatii.py
       - name: Verify Ultima noapte uses its private lesson page
         shell: bash
         run: |
