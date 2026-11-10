@@ -91,4 +91,59 @@ USING (private.fx_can_manage_student_payment(teacher_id,enrollment_id));
 COMMENT ON TABLE public.fx_private_student_payments IS
 'Registru intern manual per profesor, elev si luna; nu reprezinta dovada fiscala sau procesare de plati.';
 
+
+-- =============================================================
+-- EXTENSIE V2: 4 sedinte pe fiecare luna
+-- Registrul lunar vechi ramane intact; platile pe sedinte se
+-- pastreaza separat si NU sunt convertite automat in mod fictiv.
+-- =============================================================
+
+CREATE TABLE IF NOT EXISTS public.fx_private_session_payments (
+  teacher_id uuid NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  enrollment_id uuid NOT NULL REFERENCES public.enrollments(id) ON DELETE CASCADE,
+  month_start date NOT NULL,
+  session_number smallint NOT NULL CHECK (session_number BETWEEN 1 AND 4),
+  paid boolean NOT NULL DEFAULT false,
+  amount_ron numeric(10,2) DEFAULT 40.00,
+  paid_at timestamptz,
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  PRIMARY KEY (teacher_id,enrollment_id,month_start,session_number),
+  CONSTRAINT fx_session_month_first_day CHECK (EXTRACT(DAY FROM month_start)=1),
+  CONSTRAINT fx_session_amount_range CHECK (amount_ron IS NULL OR (amount_ron>=0 AND amount_ron<=100000))
+);
+
+CREATE INDEX IF NOT EXISTS fx_private_sessions_teacher_month_idx
+  ON public.fx_private_session_payments(teacher_id,month_start DESC);
+
+-- Acces strict pentru profesorul propriu: foloseste aceeasi
+-- verificare securizata ca registrul lunar existent.
+ALTER TABLE public.fx_private_session_payments ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.fx_private_session_payments FORCE ROW LEVEL SECURITY;
+REVOKE ALL ON TABLE public.fx_private_session_payments FROM PUBLIC,anon,authenticated;
+GRANT SELECT,INSERT,UPDATE,DELETE ON TABLE public.fx_private_session_payments TO authenticated;
+
+DROP POLICY IF EXISTS fx_session_select_teacher ON public.fx_private_session_payments;
+CREATE POLICY fx_session_select_teacher
+  ON public.fx_private_session_payments FOR SELECT TO authenticated
+  USING (private.fx_can_manage_student_payment(teacher_id,enrollment_id));
+
+DROP POLICY IF EXISTS fx_session_insert_teacher ON public.fx_private_session_payments;
+CREATE POLICY fx_session_insert_teacher
+  ON public.fx_private_session_payments FOR INSERT TO authenticated
+  WITH CHECK (private.fx_can_manage_student_payment(teacher_id,enrollment_id));
+
+DROP POLICY IF EXISTS fx_session_update_teacher ON public.fx_private_session_payments;
+CREATE POLICY fx_session_update_teacher
+  ON public.fx_private_session_payments FOR UPDATE TO authenticated
+  USING (private.fx_can_manage_student_payment(teacher_id,enrollment_id))
+  WITH CHECK (private.fx_can_manage_student_payment(teacher_id,enrollment_id));
+
+DROP POLICY IF EXISTS fx_session_delete_teacher ON public.fx_private_session_payments;
+CREATE POLICY fx_session_delete_teacher
+  ON public.fx_private_session_payments FOR DELETE TO authenticated
+  USING (private.fx_can_manage_student_payment(teacher_id,enrollment_id));
+
+COMMENT ON TABLE public.fx_private_session_payments IS
+  '4 bife pe luna, fiecare cu suma sa; exclusiv registru intern al profesorului. Nu procesa plati si nu emite chitante.';
+
 COMMIT;
