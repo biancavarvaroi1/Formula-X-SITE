@@ -25,6 +25,7 @@
   const cleanError=e=>{
     const code=String(e?.code||"");
     if(code==="42883"||code==="PGRST202")return "Funcțiile de lecții nu sunt încă instalate în Supabase. Rulează SQL-ul unic și reîncarcă pagina.";
+    if(/nu este o lecție Studio|editorul original/i.test(e?.message||""))return "Această lecție a fost realizată cu editorul vechi și nu poate fi suprascrisă în siguranță de import. Deschide editorul original.";
     if(code==="42501"||/permission|permis|autori/i.test(e?.message||""))return "Contul nu are drepturi de administrare pentru această materie.";
     return "Nu am putut salva: "+String(e?.message||"eroare necunoscută");
   };
@@ -42,8 +43,8 @@
   }
   function markImported(lesson,row,text){
     const btn=document.querySelector('[data-import="'+lesson.slug+'"]');
-    if(btn){btn.dataset.done="1";btn.disabled=true;btn.textContent="Lecția există";}
-    status(lesson.slug,text||"Materialul există deja. Nu am suprascris conținutul.");
+    if(btn && btn.dataset.done!=="1"){btn.disabled=false;btn.textContent="Actualizează lecția existentă";}
+    status(lesson.slug,text||"Lecția există. Poți înlocui doar conținutul ei din eseul profesorului; drepturile elevilor rămân intacte.");
     const card=document.querySelector('[data-lesson="'+lesson.slug+'"]');
     if(card && row?.slug && !card.querySelector("[data-edit-curated]")){
       const a=document.createElement("a");
@@ -67,12 +68,26 @@
     try{
       let rows=await catalog();
       let present=exists(rows,lesson);
-      if(present){markImported(lesson,present);return;}
       const body=JSON.stringify({
         fx_format:lesson.fx_format,subject:lesson.subject,theme:lesson.theme,
         title:lesson.title,subtitle:lesson.subtitle,blocks:lesson.blocks
       });
       if(body.length>175000)throw Error("Materialul depășește limita editorului.");
+      if(present){
+        if(!present.slug)throw Error("Lecția existentă nu are un identificator valid.");
+        if(!confirm("Actualizezi conținutul lecției „"+lesson.title+"” după eseul nou? Accesul și progresul elevilor se păstrează."))
+          {markImported(lesson,present);return;}
+        await rpc("fx_studio_update_lesson",{
+          p_slug:present.slug,
+          p_title:lesson.title,
+          p_summary:lesson.summary,
+          p_body:body
+        });
+        btn.dataset.done="1";
+        btn.textContent="Actualizare efectuată";
+        status(lesson.slug,"Lecția existentă a fost actualizată în Supabase. Accesul, grupele și progresul nu au fost modificate.");
+        return;
+      }
       await rpc("fx_create_lesson",{
         p_subject:"romana",p_title:lesson.title,p_summary:lesson.summary,p_body:body
       });
