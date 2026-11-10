@@ -80,6 +80,10 @@ jobs:
         run: python scripts/install-lesson-editor.py
       - name: Install authenticated group invitations
         run: python scripts/instaleaza-invitatii.py
+      - name: Validate private payment panel JavaScript and installer
+        run: |
+          node --check assets/fx-private-payments.js
+          python -m py_compile scripts/instaleaza-invitatii.py
       - name: Verify Ultima noapte uses its private lesson page
         shell: bash
         run: |

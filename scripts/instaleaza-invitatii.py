@@ -18,4 +18,12 @@ if tag not in page:
 target = Path('grup/index.html')
 target.parent.mkdir(parents=True, exist_ok=True)
 target.write_text(invite_html.read_text(encoding='utf-8'), encoding='utf-8')
+payment_js = Path('assets/fx-private-payments.js')
+if not payment_js.is_file():
+    raise SystemExit('Missing private payments script')
+payment_tag = '<script defer src="/assets/fx-private-payments.js?v=1"></script>'
+if payment_tag not in page:
+    page = page.replace('</body>', payment_tag + '\n</body>', 1)
+    portal.write_text(page, encoding='utf-8')
+
 print('Automatic group invitations installed in teacher portal and /grup/')
