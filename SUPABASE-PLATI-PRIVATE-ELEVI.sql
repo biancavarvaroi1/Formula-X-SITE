@@ -57,7 +57,9 @@ AS $fx$
     );
 $fx$;
 REVOKE ALL ON FUNCTION private.fx_can_manage_student_payment(uuid,uuid)
-  FROM PUBLIC,anon,authenticated;
+  FROM PUBLIC,anon;
+GRANT EXECUTE ON FUNCTION private.fx_can_manage_student_payment(uuid,uuid)
+  TO authenticated;
 
 ALTER TABLE public.fx_private_student_payments ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.fx_private_student_payments FORCE ROW LEVEL SECURITY;
