@@ -1,0 +1,17 @@
+{
+  "id": "/",
+  "name": "Formula X",
+  "short_name": "Formula X",
+  "description": "Pregătire BAC, lecții și teste Formula X, direct de pe ecranul telefonului.",
+  "lang": "ro",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#081229",
+  "theme_color": "#081229",
+  "prefer_related_applications": false,
+  "icons": [
+    {"src": "/assets/pwa/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "/assets/pwa/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"}
+  ]
+}

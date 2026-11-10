@@ -1,0 +1,31 @@
+.fx-install-entry { display:flex; align-items:center; flex-wrap:wrap; gap:10px 16px; margin-top:24px; color:#cbd5e1; }
+.fx-install-entry[hidden], .fx-install-dialog [hidden] { display:none !important; }
+.fx-install-open { display:inline-flex; align-items:center; justify-content:center; gap:9px; min-height:46px; padding:10px 17px; border:1px solid #b68b32; border-radius:999px; background:#081229; color:#ffe08b; font:700 14px/1.4 system-ui,-apple-system,sans-serif; cursor:pointer; text-transform:none; letter-spacing:0; }
+.fx-install-open:hover { background:#15213a; border-color:#ffca28; }
+.fx-install-open:focus-visible, .fx-install-dialog button:focus-visible { outline:3px solid #d79b12; outline-offset:4px; }
+.fx-install-open svg { width:21px; height:21px; flex-shrink:0; }
+.fx-install-hint { font:400 13px/1.5 system-ui,-apple-system,sans-serif; }
+.fx-install-footer { justify-content:center; padding:18px 16px; background:#081229; margin:24px 0 0; }
+.fx-install-dialog { position:fixed; inset:0; width:calc(100% - 32px); max-width:480px; max-height:calc(100% - 32px); max-height:calc(100dvh - 32px); margin:auto; padding:0; overflow:auto; border:1px solid #e3d5b7; border-radius:24px; color:#14213b; background:#fffdf8; box-shadow:0 24px 90px #0006; font:400 15px/1.6 system-ui,-apple-system,sans-serif; text-align:left; }
+.fx-install-dialog::backdrop { background:rgb(5 12 26 / 72%); }
+.fx-install-panel { position:relative; padding:30px; }
+.fx-install-dialog .fx-install-close { position:absolute; top:12px; right:12px; display:grid; place-items:center; width:44px; height:44px; border:0; border-radius:50%; background:#f0ece2; color:#14213b; font:400 28px/1 system-ui,sans-serif; cursor:pointer; }
+.fx-install-logo { display:block; border-radius:15px; margin:0 0 20px; }
+.fx-install-dialog .fx-install-eyebrow { margin:0 0 8px; color:#72520d; font:800 10px/1.5 system-ui,sans-serif; letter-spacing:1.4px; }
+.fx-install-dialog h2 { margin:0 0 12px; color:#081229; font:800 27px/1.2 system-ui,-apple-system,sans-serif; letter-spacing:-.6px; }
+.fx-install-dialog p { margin:0 0 15px; font-family:inherit; }
+.fx-install-dialog .fx-install-steps { display:grid; gap:12px; margin:22px 0; padding-left:24px; font:inherit; list-style:decimal outside; }
+.fx-install-steps li { padding-left:4px; font:inherit; }
+.fx-install-steps li::marker { color:#8a6010; font-weight:800; }
+.fx-install-dialog .fx-install-note { margin:18px 0 0; color:#657082; font-size:12px; }
+.fx-install-dialog .fx-install-browser-note { padding:12px; border:1px solid #e2ce98; border-radius:12px; background:#fff3cf; font-size:13px; }
+.fx-install-dialog .fx-install-native { width:100%; min-height:48px; padding:12px 18px; border:0; border-radius:13px; background:#ffca28; color:#081229; font:800 15px/1.4 system-ui,sans-serif; cursor:pointer; }
+.fx-install-dialog .fx-install-native:disabled { opacity:.65; cursor:wait; }
+.fx-install-dialog .fx-install-status { margin:12px 0 0; font-size:13px; }
+.fx-install-status:empty { display:none; }
+@media(max-width:480px) {
+  .fx-install-panel { padding:24px; }
+  .fx-install-dialog h2 { font-size:25px; }
+  .fx-install-entry { gap:8px 12px; }
+}
+@media(display-mode:standalone) { .fx-install-entry { display:none !important; } }
