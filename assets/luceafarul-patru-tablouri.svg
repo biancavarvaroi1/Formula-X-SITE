@@ -1,30 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="740" height="1150" viewBox="0 0 740 1150" role="img" aria-label="LUCEAFĂRUL · 4 TABLOURI">
-<rect width="740" height="1150" fill="#fffafc"/>
-<text x="370" y="66" font-family="Georgia,serif" font-size="43" font-weight="bold" fill="#533e56" text-anchor="middle">LUCEAFĂRUL · 4 TABLOURI</text>
-<text x="370" y="111" font-family="Arial,sans-serif" font-size="25" fill="#806777" text-anchor="middle">De la chemare la imposibilitatea iubirii</text>
-<rect x="30" y="152" width="680" height="212" rx="25" fill="#e8ebfa" stroke="#dcd2d8" stroke-width="2"/>
-<rect x="49" y="173" width="72" height="72" rx="20" fill="#fff" fill-opacity=".68"/>
-<text x="85" y="221" text-anchor="middle" fill="#553d53" font-size="35" font-family="Georgia,serif" font-weight="bold">1</text>
-<text x="145" y="216" fill="#3f3040" font-family="Georgia,serif" font-size="39" font-weight="bold">I · ATRACȚIA</text>
-<text x="50" y="268" fill="#4b3b49" font-family="Arial,sans-serif" font-size="27">Cătălina ↔ Luceafărul</text>
-<text x="50" y="311" fill="#4b3b49" font-family="Arial,sans-serif" font-size="27">Două metamorfoze · două lumi</text>
-<rect x="30" y="391" width="680" height="212" rx="25" fill="#f7e8ef" stroke="#dcd2d8" stroke-width="2"/>
-<rect x="49" y="412" width="72" height="72" rx="20" fill="#fff" fill-opacity=".68"/>
-<text x="85" y="460" text-anchor="middle" fill="#553d53" font-size="35" font-family="Georgia,serif" font-weight="bold">2</text>
-<text x="145" y="455" fill="#3f3040" font-family="Georgia,serif" font-size="39" font-weight="bold">II · IUBIREA TERESTRĂ</text>
-<text x="50" y="507" fill="#4b3b49" font-family="Arial,sans-serif" font-size="27">Cătălin + Cătălina</text>
-<text x="50" y="550" fill="#4b3b49" font-family="Arial,sans-serif" font-size="27">Apropiere posibilă între muritori</text>
-<rect x="30" y="630" width="680" height="212" rx="25" fill="#eee9f8" stroke="#dcd2d8" stroke-width="2"/>
-<rect x="49" y="651" width="72" height="72" rx="20" fill="#fff" fill-opacity=".68"/>
-<text x="85" y="699" text-anchor="middle" fill="#553d53" font-size="35" font-family="Georgia,serif" font-weight="bold">3</text>
-<text x="145" y="694" fill="#3f3040" font-family="Georgia,serif" font-size="39" font-weight="bold">III · DEMIURGUL</text>
-<text x="50" y="746" fill="#4b3b49" font-family="Arial,sans-serif" font-size="27">Hyperion cere să fie muritor</text>
-<text x="50" y="789" fill="#4b3b49" font-family="Arial,sans-serif" font-size="27">Nemurirea nu se poate abandona</text>
-<rect x="30" y="869" width="680" height="212" rx="25" fill="#e2eef6" stroke="#dcd2d8" stroke-width="2"/>
-<rect x="49" y="890" width="72" height="72" rx="20" fill="#fff" fill-opacity=".68"/>
-<text x="85" y="938" text-anchor="middle" fill="#553d53" font-size="35" font-family="Georgia,serif" font-weight="bold">4</text>
-<text x="145" y="933" fill="#3f3040" font-family="Georgia,serif" font-size="39" font-weight="bold">IV · DESPĂRȚIREA</text>
-<text x="50" y="985" fill="#4b3b49" font-family="Arial,sans-serif" font-size="27">Fata rămâne cu Cătălin</text>
-<text x="50" y="1028" fill="#4b3b49" font-family="Arial,sans-serif" font-size="27">Hyperion: „nemuritor și rece”</text>
-<text x="370" y="1126" fill="#8d7986" font-size="22" font-family="Arial,sans-serif" text-anchor="middle">Formula X · schemă de memorare</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="480" viewBox="0 0 980 480" role="img" aria-label="Ilustrație picturală: fata de împărat la fereastră privește spre Luceafăr, iar două lumi se despart între cer și pământ">
+<defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="#243b60"/><stop offset=".58" stop-color="#576d8f"/><stop offset="1" stop-color="#d8a9ad"/></linearGradient><radialGradient id="star"><stop stop-color="#fff7c8"/><stop offset=".36" stop-color="#f8e8b9" stop-opacity=".92"/><stop offset="1" stop-color="#ecdcbd" stop-opacity="0"/></radialGradient><filter id="blur"><feGaussianBlur stdDeviation="11"/></filter><pattern id="flecks" width="39" height="35" patternUnits="userSpaceOnUse"><circle cx="6" cy="10" r="1.3" fill="#ffffff" opacity=".65"/><circle cx="27" cy="26" r=".8" fill="#fbe4d7" opacity=".5"/></pattern></defs>
+<rect width="980" height="480" rx="22" fill="url(#sky)"/><rect width="980" height="330" fill="url(#flecks)"/>
+<circle cx="610" cy="115" r="110" fill="url(#star)"/>
+<path d="M612 33L625 97L689 113L625 128L612 194L599 128L536 114L599 98Z" fill="#fff6d1" opacity=".87"/>
+<circle cx="612" cy="114" r="17" fill="#fff9e8"/>
+<path d="M0 378Q176 282 359 351Q480 286 638 376Q828 279 980 343V480H0Z" fill="#3b4c6b" opacity=".57"/>
+<path d="M395 394Q573 322 746 389Q881 344 980 378V480H395Z" fill="#283b59" opacity=".5"/>
+<path d="M0 0H342V480H0Z" fill="#c6b1b7" opacity=".12"/>
+<!-- Palace window -->
+<path d="M72 460V132Q72 37 194 37Q317 37 317 132V460" fill="#eee1dc" stroke="#bdafc5" stroke-width="14"/>
+<path d="M104 458V136Q104 74 195 70Q285 72 285 136V458" fill="#334b73" opacity=".84"/>
+<path d="M194 80V460M106 241H283" fill="none" stroke="#d0bbbd" stroke-width="10"/>
+<path d="M54 457H331" stroke="#efe6e1" stroke-width="19" stroke-linecap="round"/>
+<!-- Woman from back -->
+<path d="M151 368Q175 341 211 351Q259 371 286 450H120Q127 405 151 368Z" fill="#e2c2c4"/>
+<path d="M163 367Q169 344 187 342Q213 341 219 367L231 391Q189 406 146 389Z" fill="#f4d9cb"/>
+<path d="M168 342Q150 310 165 275Q178 247 204 258Q230 277 222 316Q214 335 198 347Z" fill="#b18a6f"/>
+<path d="M173 318Q165 284 184 273Q205 266 214 293Q220 328 199 346Z" fill="#f1cdbb"/>
+<path d="M163 305Q163 258 197 253Q227 257 227 306Q218 284 202 275Q181 282 163 305" fill="#8c6e68"/>
+<path d="M211 373Q269 355 319 303" fill="none" stroke="#e4bda8" stroke-width="15" stroke-linecap="round"/>
+<path d="M316 304Q331 299 339 306" stroke="#e4bda8" stroke-width="11" stroke-linecap="round"/>
+<!-- Cosmic figure, airy silhouette -->
+<path d="M749 317Q719 285 724 243Q721 204 750 171Q776 152 798 172Q821 198 817 237Q808 265 805 283Q853 305 891 381Q829 355 755 360Q704 358 674 384Z" fill="#c4ccdc" opacity=".52"/>
+<path d="M749 214Q746 176 776 165Q804 175 805 215Q806 253 781 264Q749 253 749 214Z" fill="#e0dbe0" opacity=".62"/>
+<path d="M750 209Q738 181 763 161Q794 151 813 184Q794 175 781 181Q764 197 750 209Z" fill="#f0e5dd" opacity=".6"/>
+<path d="M757 305Q676 311 634 337M760 323Q684 355 649 390" fill="none" stroke="#d7dae4" stroke-width="25" opacity=".34" filter="url(#blur)"/>
+<path d="M491 313Q566 248 609 198" fill="none" stroke="#f8dfc4" stroke-width="4" stroke-dasharray="2 15" opacity=".6"/>
+<path d="M392 415Q496 372 615 404T909 409" fill="none" stroke="#f2d0ce" stroke-width="24" opacity=".25" filter="url(#blur)"/>
 </svg>
