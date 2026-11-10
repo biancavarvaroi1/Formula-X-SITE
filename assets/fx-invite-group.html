@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ro"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive"><meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://vooflhvdoutjplfbnahl.supabase.co wss://vooflhvdoutjplfbnahl.supabase.co; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests">
+<title>Invitație la grupă · Formula X</title>
+<script defer src="/assets/vendor/supabase.js"></script>
+<script defer src="/assets/fx-invite-join.js?v=1"></script>
+<style>
+:root{font-family:Inter,system-ui,Arial,sans-serif;background:#fff8fb;color:#30232c}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 0 0,#fbe7f2,transparent 50%),#fff8fb;min-height:100vh}
+header{padding:24px max(22px,calc((100vw - 900px)/2))}header a{font-weight:800;color:#91365d;text-decoration:none;font-size:21px}
+main{display:flex;justify-content:center;padding:24px 16px 75px}.card{width:min(100%,510px);padding:clamp(22px,5vw,42px);background:white;border:1px solid #f0dce7;border-radius:24px;box-shadow:0 16px 60px #55244015}
+h1{font-size:clamp(24px,5vw,32px);line-height:1.2}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.13em;color:#a6477e;text-transform:uppercase}
+p{line-height:1.55;color:#675663}label{display:block;font-size:14px;font-weight:700;margin:17px 0 7px}
+input{display:block;width:100%;padding:14px;font:inherit;border:1px solid #dcc4d2;border-radius:12px}
+button,.btn{display:inline-block;text-decoration:none;text-align:center;background:#8b3669;color:#fff;border:0;border-radius:12px;padding:14px 19px;font:inherit;font-weight:750;cursor:pointer}
+button:disabled{opacity:.6}form button{width:100%;margin-top:18px}.hidden{display:none!important}.muted{font-size:13px;color:#7e6c78}
+.soft{background:#fbf1f6;border:1px solid #f2dfeb;padding:16px;border-radius:13px}.message{min-height:20px;margin:14px 0 0}.error{color:#a52b44}.success{color:#146c3a}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}.btn.secondary{background:#f6e9f1;color:#702e54}
+</style></head>
+<body><header><a href="/">✦ Formula X</a></header>
+<main><section class="card" aria-live="polite">
+<p class="eyebrow">Invitație la grupă</p><h1 id="title">Se verifică invitația…</h1>
+<p>Ai nevoie doar de contul existent Formula X.</p>
+<div id="groupInfo" class="soft hidden"><strong id="groupName"></strong><p id="groupMeta" class="muted"></p></div>
+<div id="loading" class="muted">Verificăm sesiunea…</div>
+<div id="loginBox" class="hidden">
+<p>Autentifică-te și vei fi înscris automat, fără alte formulare.</p>
+<form id="loginForm"><label for="email">Email</label><input id="email" type="email" autocomplete="email" required>
+<label for="password">Parolă</label><input id="password" type="password" autocomplete="current-password" required>
+<button id="loginButton" type="submit">Intră în grupă</button></form>
+<p class="muted">Nu ai cont? <a href="/#cont">Creează unul</a> și revino la acest link.</p>
+</div>
+<div id="doneBox" class="hidden"><p id="doneText" class="message success"></p>
+<div class="actions"><a class="btn" href="/cursuri/">Deschide lecțiile</a><a class="btn secondary" href="/">Acasă</a></div></div>
+<p id="status" class="message" role="status"></p>
+</section></main></body></html>
