@@ -84,6 +84,22 @@ jobs:
         run: |
           node --check assets/fx-private-payments.js
           python -m py_compile scripts/instaleaza-invitatii.py
+      - name: Refresh Studio essay styles in all deployed lesson pages
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          for file in Path('.').rglob('*.html'):
+              if '.git' in file.parts or 'node_modules' in file.parts:
+                  continue
+              html=file.read_text(encoding='utf-8')
+              if 'fx-lesson-studio-renderer.js' not in html and 'fx-lesson-studio.css' not in html:
+                  continue
+              updated=html.replace('fx-lesson-studio-renderer.js?v=1','fx-lesson-studio-renderer.js?v=2').replace('fx-lesson-studio.css?v=1','fx-lesson-studio.css?v=2')
+              if updated!=html:
+                  file.write_text(updated,encoding='utf-8')
+          PY
+          node --check assets/fx-lesson-studio-renderer.js
       - name: Verify Ultima noapte uses its private lesson page
         shell: bash
         run: |
