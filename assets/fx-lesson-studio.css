@@ -127,3 +127,20 @@ body.fxstudio{margin:0;background:var(--fxbg);color:var(--fxink);font:14px/1.55 
  .fxs-bac-essay .fxs-art{max-height:300px}
 }
 @media print{.fxs-bac-essay .fxs-essay-chapter{break-inside:auto;box-shadow:none}.fxs-bac-essay .fxs-block{break-inside:avoid}}
+
+/* Finisaj editorial pentru lecțiile lirice BAC */
+.fxs-bac-essay .fxs-hero{background:linear-gradient(135deg,#fffdfc 7%,var(--soft));border-color:var(--edge)}
+.fxs-bac-essay .fxs-essay-chapter{background:linear-gradient(180deg,#fff 0%,#fffdfc 100%);position:relative}
+.fxs-bac-essay .fxs-essay-chapter:before{content:"";position:absolute;top:0;left:0;bottom:0;width:5px;background:var(--accent);opacity:.20}
+.fxs-bac-essay .fxs-chapter-reper:before{width:7px;opacity:.8}
+.fxs-bac-essay .fxs-essay-chapter .fxs-block+.fxs-block{margin-top:3px}
+.fxs-bac-essay .fxs-figure{max-width:790px;margin:6px auto}
+.fxs-bac-essay .fxs-figure .fxs-art{width:100%;max-height:none;aspect-ratio:49/24;object-fit:cover;border-radius:15px}
+.fxs-bac-essay .fxs-split-visual .fxs-art{width:100%;max-height:none;aspect-ratio:49/24;object-fit:cover}
+.fxs-bac-essay .fxs-split{grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);align-items:center}
+.fxs-bac-essay .fxs-split-visual{background:transparent;padding:0;overflow:hidden}
+.fxs-bac-essay .fxs-mini-card:nth-child(4n+1){background:color-mix(in srgb,var(--soft) 75%,white)}
+.fxs-bac-essay .fxs-mini-card:nth-child(4n+2){background:#f8f3ec}
+.fxs-bac-essay .fxs-mini-card:nth-child(4n+3){background:#f1f6f3}
+.fxs-bac-essay .fxs-mini-card:nth-child(4n+4){background:#f4f2fa}
+@media(max-width:760px){.fxs-bac-essay .fxs-split{grid-template-columns:1fr}.fxs-bac-essay .fxs-figure .fxs-art{aspect-ratio:49/30}.fxs-bac-essay .fxs-essay-chapter{padding:18px}}
