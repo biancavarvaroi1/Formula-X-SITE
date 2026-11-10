@@ -4,54 +4,51 @@
   const lessons=[
   {
     "slug": "luceafarul",
-    "summary": "Romantismul, patru tablouri, condiția geniului, antiteză și grile BAC.",
+    "summary": "Eseu BAC din materialul profesoarei: romantism, folclor, genuri literare, tema geniului, două secvențe și patru tablouri.",
     "fx_format": "formula-x-blocks-v1",
     "subject": "romana",
     "theme": "ocean",
     "title": "Luceafărul — Mihai Eminescu",
-    "subtitle": "BAC 2027 • Învață povestea în 4 tablouri, argumentează romantismul și construiește un eseu cu două secvențe relevante.",
+    "subtitle": "Eseul explicat pas cu pas • două repere BAC • scene și relevanță • imagini și grile pentru învățare",
     "blocks": [
       {
         "type": "heading",
-        "title": "Înainte să începi: ideea de bază",
-        "text": "Poem romantic • prima publicare: 1883, în Almanahul „România Jună” (Viena) • în volumul „Poesii”: 1884."
+        "title": "Înainte să începi — datele esențiale",
+        "text": "Mihai Eminescu • „Luceafărul” • romantism • prima publicare în 1883, la Viena; inclus în volumul „Poesii” din 1884."
       },
       {
-        "type": "callout",
-        "title": "Două lumi, două feluri de iubire",
-        "text": "LUMEA COSMICĂ = Hyperion, nemurire, cunoaștere, absolut. LUMEA TERESTRĂ = Cătălina și Cătălin, iubire omenească, timp, apropiere. Cele două lumi se atrag, dar nu pot deveni una.",
-        "label": "REȚINE",
-        "variant": "important"
+        "type": "text",
+        "text": "**Romantismul** este o mișcare artistică apărută în Europa la sfârșitul secolului al XVIII-lea, ca reacție împotriva rigorilor clasicismului. El promovează exprimarea liberă a imaginației și a sentimentelor. În literatura română, este pregătit de scriitorii pașoptiști și ajunge la expresia sa deplină în creația lui Mihai Eminescu."
+      },
+      {
+        "type": "cards",
+        "title": "Ce trebuie să recunoști la romantism?",
+        "text": "**SURSE** — istoria, folclorul, frumusețile naturii.\n**ANTITEZA** — confruntarea contrariilor.\n**PERSPECTIVA ASUPRA TIMPULUI** — glorificarea trecutului și ironizarea prezentului.\n**LIBERTATEA CREAȚIEI** — amestecul genurilor și al speciilor."
+      },
+      {
+        "type": "text",
+        "text": "„Luceafărul” este o **alegorie despre condiția omului de geniu**, prezentată printr-o poveste de iubire imposibilă. Nu trebuie doar povestită acțiunea: la BAC, fiecare exemplu trebuie legat de semnificația lui."
       },
       {
         "type": "image",
         "image": "/assets/luceafarul-patru-tablouri.svg",
-        "alt": "Schemă vizuală a celor patru tablouri: atracție, iubire terestră, dialog cu Demiurgul, despărțire",
-        "caption": "Reține ordinea: chemare → idilă terestră → Demiurg → final."
-      },
-      {
-        "type": "cards",
-        "title": "Personajele pe care trebuie să le deosebești",
-        "text": "HYPERION / LUCEAFĂRUL — ființă cosmică, simbol al omului de geniu.\nFATA DE ÎMPĂRAT / CĂTĂLINA — ființă muritoare, fascinată de astrul îndepărtat.\nCĂTĂLIN — pajul, reprezentant al iubirii pământene.\nDEMIURGUL — ordinea cosmică, vocea care îi dezvăluie lui Hyperion limita cererii sale."
+        "alt": "Patru tablouri în Luceafărul: chemarea, idila, Demiurgul și finalul",
+        "caption": "Privește schema, apoi reconstruiește în ordine cele patru tablouri."
       },
       {
         "type": "heading",
-        "title": "REPERUL 1 — Romantismul și sursele de inspirație",
-        "text": "În eseu, nu e suficient să scrii că opera este romantică. Trebuie să explici și să exemplifici două trăsături."
-      },
-      {
-        "type": "text",
-        "text": "**Ce este romantismul?** Un curent care valorifică fantezia, sentimentul, natura, istoria și folclorul și cultivă antiteza. În „Luceafărul”, tema iubirii imposibile este transformată într-o alegorie despre condiția geniului."
+        "title": "REPERUL 1 — Încadrarea în romantism",
+        "text": "Două trăsături din eseul-model: folclorul ca sursă de inspirație și amestecul genurilor/speciilor."
       },
       {
         "type": "steps",
-        "title": "Trăsătura 1: valorificarea folclorului",
-        "text": "1. Punct de plecare: basmul „Fata în grădina de aur”, povestea unei iubiri între ființe din lumi diferite.\n2. Eminescu modifică deznodământul basmului: Luceafărul nu se răzbună, ci înțelege diferența dintre condiția sa și cea umană.\n3. Este valorificat și motivul Zburătorului: chemarea nocturnă, visul și neliniștea iubirii."
+        "title": "Trăsătura 1 — FOLOSIREA FOLCLORULUI CA SURSĂ DE INSPIRAȚIE",
+        "text": "**Basmul „Fata în grădina de aur”** prezintă iubirea dintre o fată de împărat și un zmeu, personaje din lumi diferite. De aici pornește nucleul fantastic al poemului.\nEminescu preia conflictul, dar **schimbă deznodământul**: în locul răzbunării din basm, Luceafărul își asumă condiția superioară și incompatibilitatea dintre lumi.\nPoemul valorifică și **mitul Zburătorului**, prin chemarea nocturnă, visarea fetei și tulburarea provocată de iubire."
       },
       {
         "type": "callout",
-        "title": "De ce contează această trăsătură?",
-        "text": "Elementul folcloric nu rămâne simplă poveste fantastică; devine o meditație despre sacrificiu, absolut și limitele iubirii dintre muritor și nemuritor.",
+        "title": "De ce este relevant folclorul?",
+        "text": "Povestea fantastică nu este preluată mecanic: ea devine o meditație romantică despre sacrificiu, iubire și destinul geniului.",
         "label": "RELEVANȚĂ",
         "variant": "important"
       },
@@ -82,14 +79,19 @@
         "explanation": "Finalul poemului accentuează superioritatea și singurătatea geniului, nu răzbunarea."
       },
       {
+        "type": "cards",
+        "title": "Imagine de reținut: basmul și mitul",
+        "text": "**BASMUL** → fata de împărat + ființa fantastică + două lumi incompatibile.\n**PRELUCRAREA EMINESCIANĂ** → geniul renunță la răzbunare și rămâne în lumea sa.\n**ZBURĂTORUL** → neliniștea îndrăgostirii și întâlnirea prin vis."
+      },
+      {
         "type": "steps",
-        "title": "Trăsătura 2: amestecul genurilor și al speciilor",
-        "text": "EPIC — există personaje și un fir al întâmplărilor: fata, Luceafărul, Cătălin, călătoria spre Demiurg.\nLIRIC — discursul este în versuri și folosește imagini artistice pentru a exprima sentimente și idei.\nDRAMATIC — dialogurile pun față în față perspective incompatibile: fata–Luceafăr, Cătălin–Cătălina, Hyperion–Demiurg.\nBASM — incipitul „A fost odată ca-n povești” introduce fantasticul."
+        "title": "Trăsătura 2 — AMESTECUL GENURILOR ȘI AL SPECIILOR",
+        "text": "**Epic:** există un fir narativ, întâmplări și personaje (fata, Luceafărul, Cătălin, Demiurgul).\n**Liric:** textul este scris în versuri, iar imaginile artistice exprimă sentimente și idei.\n**Dramatic:** dialogurile dintre fata de împărat și Luceafăr, Cătălin și Cătălina, respectiv Hyperion și Demiurg confruntă perspective diferite.\n**Specific basmului:** formula de început „A fost odată ca-n povești” introduce întâmplările într-un cadru fantastic."
       },
       {
         "type": "callout",
-        "title": "Legătura cu romantismul",
-        "text": "Amestecul formelor literare eliberează poemul de regulile rigide și permite trecerea dintre iubirea omenească și reflecția filozofică.",
+        "title": "De ce contează amestecul?",
+        "text": "Romantismul depășește limitele stricte ale genurilor: poemul poate spune o poveste, poate exprima trăiri și poate problematiza prin dialog destinul geniului.",
         "label": "RELEVANȚĂ",
         "variant": "important"
       },
@@ -108,28 +110,28 @@
       },
       {
         "type": "heading",
-        "title": "Harta poveștii: cele 4 tablouri",
-        "text": "Memorează fiecare tablou printr-o formulă simplă: chemare → iubire pământeană → cererea de schimbare → despărțirea definitivă."
+        "title": "Harta celor patru tablouri",
+        "text": "Învață întâi structura, apoi cele două idei poetice analizate în eseu."
       },
       {
         "type": "cards",
-        "title": "Tabloul I — PLAN TERESTRU + COSMIC",
-        "text": "Cătălina vede Luceafărul și îl cheamă în vis.\nLuceafărul se metamorfozează de două ori pentru a i se apropia.\nFata îi cere să renunțe la nemurire.\n**Ideea-cheie:** atracția contrariilor nu învinge diferența de condiție."
+        "title": "I — Atracția dintre lumi",
+        "text": "Fata de împărat îl cheamă pe Luceafăr; el se metamorfozează de două ori; diferența cosmic–terestru împiedică iubirea."
       },
       {
         "type": "cards",
-        "title": "Tabloul II — PLAN TERESTRU",
-        "text": "Cătălin o curtează pe Cătălina.\nCei doi sunt muritori și aparțin aceleiași lumi.\n**Ideea-cheie:** iubirea obișnuită este accesibilă oamenilor, spre deosebire de idealul cosmic."
+        "title": "II — Iubirea pământeană",
+        "text": "Pajul Cătălin o curtează pe Cătălina. Cei doi aparțin aceleiași lumi și pot trăi o iubire firească."
       },
       {
         "type": "cards",
-        "title": "Tabloul III — PLAN COSMIC",
-        "text": "Hyperion pornește spre Demiurg și cere să devină muritor.\nDemiurgul îi arată că renunțarea la natura lui nu este posibilă.\n**Ideea-cheie:** geniul aparține unei ordini superioare, incompatibile cu limitarea omenească."
+        "title": "III — Drumul către Demiurg",
+        "text": "Hyperion cere să fie dezlegat de nemurire, dar Demiurgul îi arată că nu poate renunța la propria condiție cosmică."
       },
       {
         "type": "cards",
-        "title": "Tabloul IV — COSMICUL PRIVIND TERESTRUL",
-        "text": "Hyperion îi vede pe Cătălin și Cătălina împreună.\nFata nu îi mai cere iubirea, ci să îi lumineze norocul.\nReplica finală reia opoziția dintre efemer și etern.\n**Ideea-cheie:** geniul rămâne singur, „nemuritor și rece”."
+        "title": "IV — Finalul",
+        "text": "Hyperion vede cuplul Cătălin–Cătălina; fata îi cere să îi lumineze norocul; el rămâne „nemuritor și rece”."
       },
       {
         "type": "quiz",
@@ -172,22 +174,35 @@
       },
       {
         "type": "heading",
-        "title": "REPERUL 2 — Tema și două secvențe importante",
-        "text": "Tema centrală este condiția omului de geniu; iubirea imposibilă o face vizibilă prin poveste."
+        "title": "REPERUL 2 — Tema și două secvențe poetice",
+        "text": "Argumentarea trebuie să arate cum faptele și imaginile din poem susțin ideea de geniu și iubirea imposibilă."
       },
       {
         "type": "text",
-        "text": "**Tema principală:** geniul, definit prin aspirația spre absolut, nu poate avea o fericire identică aceleia a oamenilor obișnuiți. **Tema complementară:** iubirea imposibilă dintre două ființe situate în planuri ontologice diferite."
+        "text": "**Tema principală:** condiția omului de geniu, imposibil de armonizat cu fericirea obișnuită. **Tema complementară:** iubirea imposibilă dintre două ființe aparținând unor lumi diferite, cea cosmică și cea terestră. Eseul le corelează prin două momente-cheie."
+      },
+      {
+        "type": "split",
+        "eyebrow": "SECVENȚA 1 · TABLOUL I",
+        "title": "Atracția contrariilor",
+        "text": "Fata îl cheamă pe Luceafăr în lumea ei. El răspunde și capătă înfățișări umane, dar păstrează o natură inaccesibilă muritorilor. Dorința ei de a-l iubi se lovește de diferența dintre cele două condiții.",
+        "image": "/assets/luceafarul-patru-tablouri.svg",
+        "side": "right"
       },
       {
         "type": "steps",
-        "title": "Secvența I: chemările și cele două metamorfoze",
-        "text": "1. Fata, fascinată de Luceafăr, îl cheamă din lumea ei.\n2. El capătă chip uman, dar păstrează o natură străină lumii ei: apar imagini angelice și demonice.\n3. Fata se teme de diferența care îi separă și îi cere să devină muritor.\n4. Hyperion este gata de sacrificiul suprem: să renunțe la nemurire."
+        "title": "Prima idee poetică — întâlnirea dintre fată și Luceafăr",
+        "text": "Fata de împărat, unică prin frumusețe, este fascinată de astrul nocturn și îl cheamă să coboare.\nLuceafărul se îndrăgostește și **se metamorfozează** pentru a răspunde chemării, însă fata îl respinge pentru că înțelege diferența dintre lumea umană și cea cosmică.\nEa îi cere să devină muritor, iar Hyperion acceptă sacrificiul și pleacă spre Demiurg pentru a cere dezlegarea de nemurire."
+      },
+      {
+        "type": "quote",
+        "text": "Tu te coboară pe pământ, / Fii muritor ca mine.",
+        "author": "Mihai Eminescu, „Luceafărul”"
       },
       {
         "type": "callout",
-        "title": "RELEVANȚA secvenței I",
-        "text": "Iubirea nu este respinsă din lipsa sentimentelor, ci din imposibilitatea unirii unei ființe nemuritoare cu una muritoare.",
+        "title": "RELEVANȚA primei idei poetice",
+        "text": "Această secvență evidențiază **incompatibilitatea dintre lumea geniului și lumea oamenilor obișnuiți**: intensitatea sentimentului nu este suficientă pentru ca iubirea să se împlinească.",
         "label": "RELEVANȚĂ",
         "variant": "important"
       },
@@ -205,14 +220,27 @@
         "explanation": "Condițiile lor incompatibile stau la baza conflictului."
       },
       {
+        "type": "split",
+        "eyebrow": "SECVENȚA 2 · TABLOUL IV",
+        "title": "Finalul și condiția geniului",
+        "text": "Hyperion revine în sfera cosmică și privește spre Cătălin și Cătălina, uniți prin iubirea omenească. Chemarea fetei are acum alt sens: ea cere ocrotirea norocului lor.",
+        "image": "/assets/luceafarul-patru-tablouri.svg",
+        "side": "left"
+      },
+      {
         "type": "steps",
-        "title": "Secvența II: finalul, după întâlnirea cu Demiurgul",
-        "text": "1. Hyperion revine și vede cuplul Cătălin–Cătălina.\n2. Fata îi cere acum să îi lumineze norocul, nu să o iubească.\n3. Hyperion înțelege până la capăt separarea dintre cele două lumi.\n4. Finalul îl fixează în condiția de ființă eternă: „nemuritor și rece”."
+        "title": "A doua idee poetică — finalul",
+        "text": "Revenit după dialogul cu Demiurgul, Hyperion îi vede pe Cătălin și Cătălina trăind o iubire pământeană, într-un cadru natural romantic.\nFata îl invocă din nou, **nu pentru a-i cere iubirea**, ci pentru a-i ocroti dragostea față de Cătălin. Această schimbare îi confirmă lui Hyperion distanța dintre cele două lumi.\nÎn final, el o numește „chip de lut”, simbol al condiției muritoare, în timp ce el rămâne „nemuritor și rece”."
+      },
+      {
+        "type": "quote",
+        "text": "Ce-ți pasă ție, chip de lut, / Dac-oi fi eu sau altul?",
+        "author": "Mihai Eminescu, „Luceafărul”"
       },
       {
         "type": "callout",
-        "title": "RELEVANȚA secvenței II",
-        "text": "Destinul geniului implică luciditate și singurătate. Împlinirea iubirii pământene nu poate fi trăită în același mod de Hyperion.",
+        "title": "RELEVANȚA celei de-a doua idei poetice",
+        "text": "Finalul arată **destinul geniului: superioritate, luciditate și singurătate**. El nu poate avea aceeași fericire ca ființele din lumea comună.",
         "label": "RELEVANȚĂ",
         "variant": "important"
       },
@@ -231,17 +259,25 @@
       },
       {
         "type": "heading",
-        "title": "REPERUL 3 — Structură, antiteză, limbaj",
-        "text": "Aceste argumente sunt utile la cerința despre elementele de compoziție și limbaj."
+        "title": "Două elemente de structură, compoziție și limbaj",
+        "text": "Le poți folosi în ultima parte a eseului, după cele două secvențe."
       },
       {
-        "type": "cards",
-        "title": "Antitezele pe care le poți folosi în eseu",
-        "text": "COSMIC ↔ TERESTRU: Hyperion ↔ Cătălina/Cătălin.\nNEMURIRE ↔ EFEMER: durata infinită ↔ timpul limitat al oamenilor.\nABSOLUT ↔ COTIDIAN: idealul inaccesibil ↔ iubirea firească.\nANGELIC ↔ DEMONIC: cele două reprezentări ale Luceafărului."
+        "type": "steps",
+        "title": "Elementul 1 — ORGANIZAREA ÎN PATRU TABLOURI",
+        "text": "Primul tablou prezintă iubirea dintre fata de împărat și Luceafăr; al doilea, idila Cătălin–Cătălina.\nAl treilea urmărește călătoria cosmică a lui Hyperion și dialogul cu Demiurgul; al patrulea, revenirea și despărțirea definitivă.\n**Relevanță:** alternanța planurilor cosmic și terestru accentuează opoziția dintre condiția geniului și existența umană."
       },
       {
-        "type": "text",
-        "text": "**Limbajul artistic** îmbină expresii populare, imagini fantastice și o expresie limpede, susținută de antiteză. Versul „Căci eu sunt vie, tu ești mort” concentrează imposibilitatea apropierii dintre lumi."
+        "type": "steps",
+        "title": "Elementul 2 — ANTITEZA ȘI LIMBAJUL ARTISTIC",
+        "text": "Expresia poetică eminesciană îmbină construcții populare cu neologisme și se distinge prin limpezime și rafinament.\nAntiteza esențială este cea dintre muritor și nemuritor, concentrată în replica fetei: „Căci eu sunt vie, tu ești mort”.\nAntiteza se observă și în cele două ipostaze ale Luceafărului: **angelică** și **demonică**."
+      },
+      {
+        "type": "callout",
+        "title": "Ce să argumentezi aici?",
+        "text": "Cele patru tablouri arată în plan compozițional separarea lumilor, iar antiteza o exprimă în limbaj. Ambele susțin tema imposibilității iubirii.",
+        "label": "RELEVANȚĂ",
+        "variant": "important"
       },
       {
         "type": "quiz",
@@ -271,19 +307,19 @@
       },
       {
         "type": "heading",
-        "title": "Cum redactezi la BAC — schelet de eseu",
-        "text": "Construiește un eseu coerent, nu o listă de idei."
+        "title": "Cum scrii eseul la BAC",
+        "text": "Păstrează ordinea argumentelor din materialul profesoarei și leagă fiecare exemplu de semnificație."
       },
       {
         "type": "steps",
-        "title": "Ordine recomandată pentru Subiectul III",
-        "text": "1. Introducere: autor, titlu, 1883, romantism, alegoria geniului.\n2. Două trăsături romantice: folclorul și amestecul genurilor/speciilor, explicate cu exemple.\n3. Tema: condiția geniului și iubirea imposibilă.\n4. Două secvențe relevante: metamorfozele și finalul.\n5. Două elemente de structură/compoziție/limbaj: cele 4 tablouri și antiteza.\n6. Concluzie: tensiunea dintre dorința de iubire și condiția superioară."
+        "title": "Plan de redactare",
+        "text": "Introducere: romantismul, Eminescu, publicarea din 1883 și includerea în „Poesii” în 1884.\nDouă trăsături: folclorul și amestecul genurilor/speciilor.\nTemele: condiția geniului și iubirea imposibilă.\nPrima secvență: chemarea și metamorfozele; apoi **RELEVANȚA**.\nA doua secvență: finalul cu Hyperion și perechea pământeană; apoi **RELEVANȚA**.\nDouă elemente: cele patru tablouri și antiteza; concluzia."
       },
       {
         "type": "callout",
-        "title": "De reținut în 20 de secunde",
-        "text": "BASM + ZBURĂTOR → ROMANTISM. PATRU TABLOURI → două lumi. METAMORFOZE + FINAL → iubire imposibilă. ANTITEZĂ → geniul etern și omul efemer.",
-        "label": "FIȘĂ RAPIDĂ",
+        "title": "Concluzie de eseu",
+        "text": "„Luceafărul” este o sinteză a universului poetic eminescian: teme și motive romantice, imagini ale eternității și o amplă alegorie despre condiția omului de geniu.",
+        "label": "CONCLUZIE",
         "variant": "success"
       },
       {
@@ -301,63 +337,60 @@
       },
       {
         "type": "callout",
-        "title": "Ai terminat?",
-        "text": "Închide lecția și încearcă să povestești cele patru tablouri fără să le privești. Apoi revino la întrebările greșite.",
-        "label": "AUTOEVALUARE",
+        "title": "Recapitulare în 20 de secunde",
+        "text": "**FOLCLOR + AMESTECUL GENURILOR** → romantism. **PRIMUL ȘI ULTIMUL TABLOU** → iubire imposibilă. **PATRU TABLOURI + ANTITEZĂ** → destinul geniului.",
+        "label": "FIȘĂ RAPIDĂ",
         "variant": "success"
       }
     ]
   },
   {
     "slug": "plumb",
-    "summary": "Simbolismul, simboluri, paralelism sintactic, două strofe și grile BAC.",
+    "summary": "Eseu BAC din materialul profesoarei: simboluri, muzicalitate, două strofe, plumbul, titlul și relevanța secvențelor.",
     "fx_format": "formula-x-blocks-v1",
     "subject": "romana",
     "theme": "rose",
     "title": "Plumb — George Bacovia",
-    "subtitle": "BAC 2027 • Simbolismul în imagini, două strofe explicate, repere de eseu și verificare prin grile.",
+    "subtitle": "Eseu explicat în două repere • strofe, simboluri, interpretări numerotate și verificare prin grile",
     "blocks": [
       {
         "type": "heading",
-        "title": "Înainte să începi: esențialul",
-        "text": "George Bacovia • „Plumb” • 1916 • poezia deschide volumul omonim • simbolism."
+        "title": "Înainte să începi — datele esențiale",
+        "text": "George Bacovia • „Plumb” • 1916 • simbolism • poezia deschide volumul omonim."
       },
       {
-        "type": "callout",
-        "title": "O imagine pe care o reții",
-        "text": "Imaginează-ți un cavou închis: sicrie, flori, coroane, vânt și frig. Apoi înțelege că acest peisaj exterior oglindește singurătatea din sufletul eului liric.",
-        "label": "IDEA CENTRALĂ",
-        "variant": "important"
+        "type": "text",
+        "text": "**Simbolismul** este un curent literar apărut în Franța la sfârșitul secolului al XIX-lea. Printre trăsăturile sale se numără asocierea iubirii cu moartea, evocarea orașului provincial, sugestia, sinestezia, cromatica și muzicalitatea."
+      },
+      {
+        "type": "text",
+        "text": "George Bacovia este un poet reprezentativ al simbolismului românesc, format sub influența simbolismului francez. În lirica sa revin singurătatea, dezolarea și monotonia existenței. „Plumb” concentrează acest univers apăsător și lipsit de perspectivă."
       },
       {
         "type": "image",
         "image": "/assets/plumb-doua-strofe.svg",
-        "alt": "Schemă vizuală Plumb cu două strofe, exterior funerar și interior sufletesc",
-        "caption": "Strofa I = decorul exterior; strofa a II-a = neliniștea interioară."
+        "alt": "Cele două strofe din Plumb: exteriorul funerar și interiorul sufletesc",
+        "caption": "Reține: strofa I = exterior funerar; strofa II = interior afectiv."
       },
       {
         "type": "cards",
-        "title": "Cod de interpretare: 5 simboluri",
-        "text": "PLUMB = greutate, apăsare, lipsa eliberării.\nCAVOU = închidere, claustrare, izolare.\nFLORI DE PLUMB = viață și frumusețe fără vitalitate.\nVÂNT / FRIG = neliniște, ostilitatea universului.\nARIPI DE PLUMB = imposibilitatea înălțării și a salvării."
+        "title": "Cod vizual pentru simboluri",
+        "text": "**PLUMB** → apăsare sufletească și imposibilitatea eliberării.\n**CAVOU** → spațiu închis, claustrare și izolare.\n**VÂNT / FRIG** → neliniște, ostilitate, suferință.\n**AMOR / ARIPI DE PLUMB** → iubire pierdută și zbor imposibil."
       },
       {
         "type": "heading",
-        "title": "REPERUL 1 — Simbolismul: două trăsături",
-        "text": "Simbolismul pune accentul pe sugestie, muzicalitate, cromatică și corespondența dintre lumea exterioară și trăirea interioară."
-      },
-      {
-        "type": "text",
-        "text": "**Definiție scurtă:** simbolismul este un curent apărut în Franța la sfârșitul secolului al XIX-lea, preocupat să sugereze stări sufletești prin simboluri, sonorități și imagini senzoriale. În „Plumb”, nu primim o confesiune directă, ci descifrăm depresia și singurătatea din obiectele și spațiul poetic."
+        "title": "REPERUL 1 — Două trăsături simboliste",
+        "text": "La BAC, menționează trăsătura, exemplul din poem și efectul obținut."
       },
       {
         "type": "steps",
-        "title": "Trăsătura 1: utilizarea simbolurilor",
-        "text": "1. „Plumb” revine de șase ori și contaminează simbolic sicriele, florile, coroanele, amorul și aripile.\n2. Cavoul sugerează un spațiu închis și sufocant.\n3. Vântul și frigul intensifică sentimentul de neliniște.\n4. Formula „Stam singur” devine un laitmotiv al izolării."
+        "title": "Trăsătura 1 — UTILIZAREA SIMBOLURILOR",
+        "text": "Repetarea simetrică a cuvântului **„plumb”** transmite apăsarea sufletească și neputința eului liric de a evada dintr-o existență lipsită de perspectivă.\n**„Cavoul”** sugerează un spațiu închis și sufocant, care poate reprezenta societatea sau chiar propria existență.\n**„Vântul”** este semnul neliniștii interioare, al unei vieți care continuă doar ca suferință.\nReluarea expresiei **„Stam singur”** devine laitmotivul izolării și al pustiirii sufletești."
       },
       {
         "type": "callout",
-        "title": "De ce este relevant simbolul plumbului?",
-        "text": "Poetul transformă greutatea metalului într-o senzație sufletească: tristețea, stagnarea și imposibilitatea evadării dintr-un univers dominat de moarte.",
+        "title": "RELEVANȚA simbolurilor",
+        "text": "Obiectele și imaginile nu sunt simple elemente de decor: ele sugerează **singurătatea, apăsarea și imposibilitatea ieșirii dintr-un univers al morții**.",
         "label": "RELEVANȚĂ",
         "variant": "important"
       },
@@ -388,14 +421,21 @@
         "explanation": "Cuvântul apare de trei ori în fiecare strofă."
       },
       {
-        "type": "steps",
-        "title": "Trăsătura 2: muzicalitate și paralelism sintactic",
-        "text": "1. Cele două strofe au construcții aproape identice.\n2. „Dormeau adânc sicriele de plumb” corespunde lui „Dormea întors amorul meu de plumb”.\n3. „Stam singur” se reia, accentuând izolarea.\n4. Monotonia repetițiilor creează o cadență apăsătoare, asemănătoare unui marș funebru."
+        "type": "cards",
+        "title": "Laitmotivul, pe înțelesul tău",
+        "text": "Un **laitmotiv** este o idee, un motiv sau o formulă care revine într-o operă.\nÎn „Plumb”, **„Stam singur”** accentuează sentimentul de izolare.\nCuvântul **„plumb”** leagă simbolic obiectele exterioare de trăirea interioară."
       },
       {
-        "type": "cards",
-        "title": "Ce este paralelismul sintactic?",
-        "text": "DEFINIȚIE — reluarea unei structuri de propoziție/vers în altă secvență.\nÎN „PLUMB” — începuturile de strofă au construcții asemănătoare: „Dormeau...” / „Dormea...”.\nEFECT — muzicalitate, monotonie și sugestia unui univers fără ieșire."
+        "type": "steps",
+        "title": "Trăsătura 2 — MUZICALITATEA PRIN PARALELISM SINTACTIC",
+        "text": "**Paralelismul sintactic** înseamnă repetarea unor structuri asemănătoare în versuri sau enunțuri diferite.\nÎnceputurile strofelor au construcții apropiate: „Dormeau adânc sicriele de plumb” și „Dormea întors amorul meu de plumb”.\nFormula **„Stam singur”** se reia în ambele strofe, construind ritmul monoton al singurătății.\nRepetiția și simetria creează o muzicalitate apăsătoare, asemenea unui marș funebru, sugerând un univers încremenit, din care eul liric nu poate scăpa."
+      },
+      {
+        "type": "callout",
+        "title": "RELEVANȚA paralelismului",
+        "text": "Prin simetria morfosintactică a celor două catrene, **planul exterior al morții se reflectă în planul interior al iubirii**, iar monotoniei îi corespunde sentimentul claustrării.",
+        "label": "RELEVANȚĂ",
+        "variant": "important"
       },
       {
         "type": "quiz",
@@ -426,21 +466,25 @@
       {
         "type": "heading",
         "title": "REPERUL 2 — Tema și cele două strofe",
-        "text": "Poemul poate fi înțeles ca o coborâre din spațiul exterior funerar spre spațiul interior al iubirii pierdute."
+        "text": "Tema este singurătatea eului liric într-un univers apăsător, marcat de moarte, lipsa iubirii și imposibilitatea salvării."
       },
       {
-        "type": "text",
-        "text": "**Tema:** singurătatea, moartea și apăsarea existențială, însoțite de imposibilitatea împlinirii iubirii. Eul liric trăiește un sentiment de claustrare și de înstrăinare."
+        "type": "split",
+        "eyebrow": "SECVENȚA 1 · STROFA I",
+        "title": "Spațiul funerar",
+        "text": "Prima strofă construiește un decor închis: sicrie, flori, coroane de plumb, cavou și vânt. Obiectele asociate morții devin oglinda suferinței eului liric.",
+        "image": "/assets/plumb-doua-strofe.svg",
+        "side": "right"
       },
       {
         "type": "steps",
-        "title": "Strofa I — LUMEA EXTERIOARĂ",
-        "text": "1. „Sicriele de plumb” și „funerar vestmânt” construiesc cadrul mortuar.\n2. „Stam singur în cavou” fixează izolarea într-un spațiu închis.\n3. Vântul și scârțâitul coroanelor produc neliniște și disconfort auditiv.\n4. Florile, deși trimit la viață, sunt și ele de plumb: vitalitatea se stinge."
+        "title": "Prima strofă — patru idei esențiale",
+        "text": "Structura „dormeau adânc”, alături de **„sicriele de plumb”**, sugerează un somn al morții și fixează un spațiu apăsător.\nVersul **„Stam singur în cavou... și era vânt...”** accentuează izolarea și neliniștea. Cavoul închide eul într-un univers funerar.\nImaginea auditivă a **coroanelor care scârțâie** întreține atmosfera sumbră, macabră, iar repetiția plumbului accentuează monotonia.\nChiar și **florile**, în mod obișnuit semne ale vieții, își pierd vitalitatea prin asocierea cu plumbul."
       },
       {
         "type": "callout",
-        "title": "RELEVANȚA strofei I",
-        "text": "Spațiul exterior este mort, rece și apăsător; decorul funerar reflectă singurătatea și neliniștea eului liric.",
+        "title": "RELEVANȚA primei strofe",
+        "text": "Strofa inițială introduce universul liric bacovian, în care decorul funerar, natura și starea de spirit se întrepătrund într-o viziune dominată de **apăsare, singurătate și moarte**.",
         "label": "RELEVANȚĂ",
         "variant": "important"
       },
@@ -458,18 +502,6 @@
         "explanation": "Prima strofă pune în prim-plan cavoul și obiectele funerare."
       },
       {
-        "type": "steps",
-        "title": "Strofa a II-a — LUMEA INTERIOARĂ",
-        "text": "1. „Amorul meu de plumb” exprimă o iubire inertă, fără perspectivă de împlinire.\n2. Strigătul eului liric dezvăluie disperarea și dorința imposibilă de comunicare.\n3. „Stam singur lângă mort” amplifică izolarea.\n4. „Aripile de plumb” răstoarnă simbolul înălțării: nu se poate zbura din acest univers."
-      },
-      {
-        "type": "callout",
-        "title": "RELEVANȚA strofei a II-a",
-        "text": "Decorul exterior se interiorizează: cavoul devine metafora unui suflet captiv, iar iubirea apare degradată și lipsită de speranță.",
-        "label": "RELEVANȚĂ",
-        "variant": "important"
-      },
-      {
         "type": "quiz",
         "id": "p-r2-2",
         "question": "Ce reprezintă „aripile de plumb”?",
@@ -481,6 +513,26 @@
         ],
         "correct": 1,
         "explanation": "Aripile, de obicei asociate zborului, sunt îngreunate de plumb."
+      },
+      {
+        "type": "split",
+        "eyebrow": "SECVENȚA 2 · STROFA A II-A",
+        "title": "Iubirea decăzută și zborul imposibil",
+        "text": "În strofa a doua, perspectiva trece de la decorul funerar la trăirea interioară. Iubirea apare inertă, iar eul încearcă zadarnic să o readucă la viață.",
+        "image": "/assets/plumb-doua-strofe.svg",
+        "side": "left"
+      },
+      {
+        "type": "steps",
+        "title": "A doua strofă — trei idei esențiale",
+        "text": "Metafora **„amorul meu de plumb”** înfățișează o iubire decăzută, lipsită de viață, dar încă dureroasă pentru eul liric.\nStructura **„și-am început să-l strig”** exprimă încercarea disperată, dar imposibilă, de recuperare a iubirii; singurătatea și frigul se intensifică.\nMetafora finală **„aripile de plumb”** sugerează neputința înălțării și imposibilitatea eliberării dintr-o lume închisă, stagnantă și dominată de moarte."
+      },
+      {
+        "type": "callout",
+        "title": "RELEVANȚA celei de-a doua strofe",
+        "text": "**Spațiul exterior se transformă în spațiu interior.** Imaginea iubirii pierdute oglindește drama sufletească a eului liric și imposibilitatea eliberării.",
+        "label": "RELEVANȚĂ",
+        "variant": "important"
       },
       {
         "type": "quiz",
@@ -497,17 +549,18 @@
       },
       {
         "type": "heading",
-        "title": "REPERUL 3 — Compoziție și limbaj",
-        "text": "Când argumentezi, precizează mecanismul și apoi efectul asupra cititorului."
+        "title": "Două elemente de structură și compoziție",
+        "text": "După secvențele poetice, prezintă două elemente interpretate: motivul repetat al plumbului și titlul."
+      },
+      {
+        "type": "steps",
+        "title": "Elementul 1 — TROPUL „DE PLUMB”",
+        "text": "Sintagma **„de plumb”** se repetă și se asociază cu sicriele, florile, coroanele, amorul și aripile.\nRepetiția conferă poeziei unitate tematică și tonală: greutatea materială devine apăsare sufletească.\nObiectele își pierd vitalitatea și devin semne ale unui univers inert, în care domină moartea și singurătatea.\n**RELEVANȚĂ:** motivul plumbului unifică cele două strofe și exprimă psihologic suferința eului liric."
       },
       {
         "type": "cards",
-        "title": "Două elemente esențiale de structură",
-        "text": "1. TITLUL „Plumb” — metal greu, cenușiu, rece; devine simbol al apăsării. Repetiția sa unifică cele două strofe.\n2. SIMETRIA / PARALELISMUL — două catrene, repetarea structurilor și a simbolului; accentuează monotonia și lipsa oricărei ieșiri."
-      },
-      {
-        "type": "text",
-        "text": "**Sonoritate și sugestie:** repetițiile, verbele la imperfect și imaginile auditive („scârțâiau”, „strig”) participă la atmosfera funebră. Corespondența dintre decor și trăire este o marcă a liricii simboliste."
+        "title": "Ce sugerează cele șase apariții ale plumbului?",
+        "text": "**Strofa I** — sicriele, florile și coroanele: decorul exterior.\n**Strofa II** — amorul, florile și aripile: universul interior.\n**Efect comun** — paralelism, monotonie, sufocare și lipsa speranței."
       },
       {
         "type": "quiz",
@@ -536,20 +589,32 @@
         "explanation": "Poezia este alcătuită din două strofe de câte patru versuri."
       },
       {
-        "type": "heading",
-        "title": "Cum redactezi la BAC — traseu de eseu",
-        "text": "Rezolvă fiecare reper prin trăsătură → exemplu → interpretare."
-      },
-      {
         "type": "steps",
-        "title": "Plan de eseu",
-        "text": "1. Introducere: George Bacovia, „Plumb”, 1916, simbolism.\n2. Două trăsături simboliste: simbolurile și muzicalitatea/paralelismul.\n3. Tema: singurătate, moarte și iubire degradată.\n4. Secvența I: strofa funerară (cavou, plumb, vânt).\n5. Secvența II: strofa interioară (amor, strigăt, aripi).\n6. Două elemente de structură: titlul și simetria compozițională.\n7. Concluzie: universul liric închis și apăsător."
+        "title": "Elementul 2 — TITLUL",
+        "text": "**Sens propriu:** plumbul este un metal greu, dens și cenușiu.\n**Valoare fonetică:** grupurile consonantice și vocala închisă „u” pot sugera apăsarea și lipsa de deschidere.\n**Sens simbolic:** culoarea cenușie și greutatea metalului evocă monotonia, moartea, tristețea și sufocarea.\n**Rol compozițional:** titlul reunește simbolurile poeziei și pregătește interpretarea versurilor; devine cheia universului bacovian."
       },
       {
         "type": "callout",
-        "title": "Reține în 20 de secunde",
-        "text": "PLUMB = APĂSARE • CAVOU = ÎNCHIDERE • STAM SINGUR = IZOLARE • DOUĂ STROFE = EXTERIOR / INTERIOR • ARIPI DE PLUMB = FĂRĂ SCĂPARE.",
-        "label": "FIȘĂ RAPIDĂ",
+        "title": "De ce este important titlul?",
+        "text": "Un singur cuvânt concentrează întreaga stare lirică: **plumbul transformă obiectele și sentimentele în semne ale apăsării interioare**.",
+        "label": "RELEVANȚĂ",
+        "variant": "important"
+      },
+      {
+        "type": "heading",
+        "title": "Cum scrii eseul la BAC",
+        "text": "Urmează ordinea din materialul profesoarei și adaugă după fiecare exemplu interpretarea lui."
+      },
+      {
+        "type": "steps",
+        "title": "Planul tău de redactare",
+        "text": "Introducere: definiția simbolismului, autorul, anul 1916 și volumul omonim.\nTrăsătura 1: simbolurile (plumb, cavou, vânt, „Stam singur”).\nTrăsătura 2: muzicalitatea prin paralelism sintactic.\nTema: singurătatea și apăsarea; prezintă prima strofă + **RELEVANȚĂ**.\nPrezintă a doua strofă + **RELEVANȚĂ**.\nElementele de compoziție: tropul repetat „de plumb” și titlul.\nConcluzie: poemul deschide volumul și sintetizează universul liric bacovian."
+      },
+      {
+        "type": "callout",
+        "title": "Concluzia eseului",
+        "text": "Așezată în fruntea volumului omonim, poezia „Plumb” este reprezentativă pentru lirica lui George Bacovia, sugerând prin simboluri și muzicalitate o existență dominată de singurătate și apăsare.",
+        "label": "CONCLUZIE",
         "variant": "success"
       },
       {
@@ -567,9 +632,9 @@
       },
       {
         "type": "callout",
-        "title": "Ai terminat?",
-        "text": "Explică, fără să privești, diferența dintre cele două strofe și sensul fiecăruia dintre cele cinci simboluri din fișa de început.",
-        "label": "AUTOEVALUARE",
+        "title": "Fișă rapidă pentru recapitulare",
+        "text": "**SIMBOLURI + MUZICALITATE** → simbolism. **STROFA I** → cavou și moarte. **STROFA II** → iubire pierdută. **TROPUL „DE PLUMB” + TITLUL** → apăsare și claustrare.",
+        "label": "REȚINE",
         "variant": "success"
       }
     ]
