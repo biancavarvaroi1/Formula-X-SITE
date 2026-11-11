@@ -6,6 +6,57 @@
     {slug:'ultima-noapte',title:'Ultima noapte de dragoste, întâia noapte de război',author:'Camil Petrescu',cover:'/assets/lessons/ultima-noapte/coperta.webp',character:'Ștefan Gheorghidiu'},
   ];
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  // Covers are public catalog artwork, separate from protected lesson contents.
+  const covers = [
+    {key:'harap-alb',subject:'romana',cover:lessons[0].cover,author:'Ion Creangă',alt:'Harap-Alb și calul său pe drumul spre împărăție'},
+    {key:'moara-cu-noroc',subject:'romana',cover:lessons[1].cover,author:'Ioan Slavici',alt:'Ilustrație pentru nuvela Moara cu noroc'},
+    {key:'ultima-noapte',subject:'romana',cover:lessons[2].cover,author:'Camil Petrescu',alt:'Ștefan Gheorghidiu între experiența iubirii și cea a războiului'},
+    {key:'ion',subject:'romana',cover:'/assets/lessons/ion/Eseul_1_04_Scena_2_Sarutarea_pamantului.webp',author:'Liviu Rebreanu',alt:'Ion și pământul, simbolul patimii sale'},
+    {key:'baltagul',subject:'romana',cover:'/assets/lessons/baltagul/vitoria.webp',author:'Mihail Sadoveanu',alt:'Vitoria Lipan, protagonista romanului Baltagul'},
+    {key:'plumb',subject:'romana',cover:'/assets/lessons/plumb/coperta.webp',author:'George Bacovia',alt:'Cavou, sicriu de plumb și flori cenușii în lumina rece'},
+    {key:'luceafarul',subject:'romana',cover:'/assets/lessons/luceafarul/coperta.webp',author:'Mihai Eminescu',alt:'Fata de împărat privește Luceafărul de la fereastra castelului'},
+    {key:'progresii',subject:'matematica',cover:'/assets/lesson-covers/progresii.svg',alt:'Șir de trepte și puncte care sugerează creșterea unei progresii'},
+  ];
+  const coverSubjects = ['romana','matematica','biologie','chimie','fizica','geografie','logica'];
+  const normalize = value => String(value || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+  function safeCover(value) {
+    if (typeof value !== 'string') return '';
+    const url = value.trim();
+    return /^(?:\/(?!\/)[^\s\\]*|https:\/\/[^\s\\]+)$/i.test(url) ? url : '';
+  }
+  function coverInfo(item = {}) {
+    const subject = normalize(item.subject);
+    // Match titles as well: newly imported lessons can have server-generated slugs.
+    const slug = normalize(item.slug), title = normalize(item.title);
+    const identity = '-'+slug+'-'+title+'-';
+    const known = covers.find(c => (!subject || subject === c.subject) && (c.key === 'ion'
+      ? slug === 'ion' || slug.startsWith('ion-') || title === 'ion' || title.startsWith('ion-')
+      : identity.includes('-'+c.key+'-')));
+    const fallback = '/assets/lesson-covers/'+(coverSubjects.includes(subject) ? subject : 'general')+'.svg';
+    return {
+      cover:safeCover(item.cover_url) || safeCover(item.cover) || known?.cover || fallback,
+      fallback,
+      author:item.author || known?.author || 'Formula X',
+      alt:known?.alt || 'Ilustrație pentru '+(item.title || 'lecție'),
+    };
+  }
+  function coverMarkup(item) {
+    const art = coverInfo(item);
+    return `<div class="fxl-cover"><img data-fxl-cover data-fxl-fallback="${esc(art.fallback)}" src="${esc(art.cover)}" alt="${esc(art.alt)}" loading="lazy" decoding="async" width="900" height="900" style="width:100%;height:100%;object-fit:contain;object-position:center"></div>`;
+  }
+  function recoverCover(event) {
+    const img = event.target;
+    if (!img?.hasAttribute?.('data-fxl-cover')) return;
+    const fallback = img.getAttribute('data-fxl-fallback');
+    if (fallback && img.getAttribute('src') !== fallback) {
+      img.setAttribute('src',fallback);
+      return;
+    }
+    // A small inline book also works when a fallback file cannot be loaded.
+    const frame = img.parentElement;
+    if (frame) frame.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Carte deschisă"><path fill="#f2e8dc" d="M0 0h400v300H0z"/><g fill="#fffcf6" stroke="#795660" stroke-width="5" stroke-linejoin="round"><path d="M200 90Q130 50 55 80v150q75-30 145 10Z"/><path d="M200 90q70-40 145-10v150q-75-30-145 10Z"/></g><path d="M200 90v150" stroke="#795660" stroke-width="4"/></svg>';
+  }
+  document.addEventListener?.('error',recoverCover,true);
   let client;
   function sb() {
     if (window.FormulaXAuthClient) return window.FormulaXAuthClient;
@@ -46,11 +97,11 @@
     const items=Array.isArray(rows)?rows.filter(row=>!subject||row.subject===subject):lessons.map(l=>({...l,subject:'romana'})).filter(row=>!subject||row.subject===subject);
     return items.map(item => {
       const fixed=lessons.find(l=>l.slug===item.slug);
-      const lesson={...item,author:fixed?.author||'Formula X',cover:fixed?.cover};
+      const lesson={...item,...coverInfo(item)};
       const access = item?.access || {state:'locked',allowed:false};
       const note = access.state==='scheduled' ? `Se deschide la ${date(access.startsAt)}.` : access.allowed ? (fixed?'Ai acces la ambele eseuri și la toate imaginile lecției.':'Lecția este disponibilă pentru contul tău.') : 'Profesorul acordă acces individual sau prin grupa din care faci parte.';
       const edit=canEditLesson(staff,lesson)?`<a class="fxl-btn secondary" style="margin-top:10px" href="${editorUrl(lesson.slug)}">✎ Editează lecția</a>`:'';
-      return `<article class="fxl-course">${lesson.cover?`<div class="fxl-cover"><img src="${lesson.cover}" alt="${esc(lesson.title)} — o singură ilustrație" loading="lazy" width="1254" height="1254"></div>`:'<div class="fxl-cover fxl-cover-text" aria-hidden="true">Formula <span>X</span></div>'}<div class="fxl-course-copy"><span class="fxl-badge ${esc(access.state)}">${esc(stateLabel(access))}</span><h3>${esc(lesson.title)}</h3><span class="fxl-note">${esc(lesson.author)}${fixed?' · 2 eseuri · scheme vizuale':''}</span><p>${esc(note)}</p><a class="fxl-btn" href="${lessonUrl(lesson.slug)}">${access.allowed?'Deschide lecția':'Vezi accesul la lecție'} →</a>${edit}</div></article>`;
+      return `<article class="fxl-course">${coverMarkup(lesson)}<div class="fxl-course-copy"><span class="fxl-badge ${esc(access.state)}">${esc(stateLabel(access))}</span><h3>${esc(lesson.title)}</h3><span class="fxl-note">${esc(lesson.author)}${fixed?' · 2 eseuri · scheme vizuale':''}</span><p>${esc(note)}</p><a class="fxl-btn" href="${lessonUrl(lesson.slug)}">${access.allowed?'Deschide lecția':'Vezi accesul la lecție'} →</a>${edit}</div></article>`;
     }).join('') || '<p class="fxl-note">Nu sunt încă lecții pentru materia selectată.</p>';
   }
   let catalogRequest=0;
@@ -89,7 +140,7 @@
     if(bundle.slug!==slug || !bundle.essays?.particularitati || !bundle.essays?.caracterizare) throw new Error('Material invalid');
     return bundle;
   }
-  window.FormulaXLessons={lessons,esc,sb,rpc,linkAccount,lessonUrl,editorUrl,canEditLesson,date,stateLabel,catalogMarkup,refreshCatalog,decode,decryptBundle};
+  window.FormulaXLessons={lessons,esc,sb,rpc,linkAccount,lessonUrl,editorUrl,canEditLesson,date,stateLabel,coverInfo,coverMarkup,catalogMarkup,refreshCatalog,decode,decryptBundle};
   document.querySelectorAll('[data-fxl-catalog]').forEach(el=>{el.innerHTML=catalogMarkup(undefined,el.dataset.fxlSubject);});
   if(document.querySelector('[data-fxl-catalog]')) {
     refreshCatalog();
@@ -97,3 +148,4 @@
     window.addEventListener('pageshow',refreshCatalog);
   }
 })();
+
