@@ -3,7 +3,7 @@
   const lessons = [
     {slug:'harap-alb',title:'Povestea lui Harap-Alb',author:'Ion Creangă',cover:'/assets/lessons/harap-alb/coperta.webp',character:'Harap-Alb'},
     {slug:'moara-cu-noroc',title:'Moara cu noroc',author:'Ioan Slavici',cover:'/assets/lessons/moara-cu-noroc/coperta.webp',character:'Ghiță'},
-    {slug:'ultima-noapte',title:'Ultima noapte de dragoste, întâia noapte de război',author:'Camil Petrescu',cover:'/assets/lessons/ultima-noapte/coperta.webp',character:'Ștefan Gheorghidiu'},
+    {slug:'ultima-noapte',title:'Ultima noapte de dragoste, întâia noapte de război',author:'Camil Petrescu',cover:'/assets/lessons/ultima-noapte/coperta.webp?v=20261111',character:'Ștefan Gheorghidiu'},
   ];
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   // Covers are public catalog artwork, separate from protected lesson contents.
@@ -13,8 +13,8 @@
     {key:'ultima-noapte',subject:'romana',cover:lessons[2].cover,author:'Camil Petrescu',alt:'Ștefan Gheorghidiu între experiența iubirii și cea a războiului'},
     {key:'ion',subject:'romana',cover:'/assets/lessons/ion/Eseul_1_04_Scena_2_Sarutarea_pamantului.webp',author:'Liviu Rebreanu',alt:'Ion și pământul, simbolul patimii sale'},
     {key:'baltagul',subject:'romana',cover:'/assets/lessons/baltagul/vitoria.webp',author:'Mihail Sadoveanu',alt:'Vitoria Lipan, protagonista romanului Baltagul'},
-    {key:'plumb',subject:'romana',cover:'/assets/lessons/plumb/coperta.webp',author:'George Bacovia',alt:'Cavou, sicriu de plumb și flori cenușii în lumina rece'},
-    {key:'luceafarul',subject:'romana',cover:'/assets/lessons/luceafarul/coperta.webp',author:'Mihai Eminescu',alt:'Fata de împărat privește Luceafărul de la fereastra castelului'},
+    {key:'plumb',subject:'romana',cover:'/assets/lessons/plumb/coperta.webp?v=20261111',author:'George Bacovia',alt:'Cavou, sicriu de plumb și flori cenușii în lumina rece'},
+    {key:'luceafarul',subject:'romana',cover:'/assets/lessons/luceafarul/coperta.webp?v=20261111',author:'Mihai Eminescu',alt:'Fata de împărat privește Luceafărul de la fereastra castelului'},
     {key:'progresii',subject:'matematica',cover:'/assets/lesson-covers/progresii.svg',alt:'Șir de trepte și puncte care sugerează creșterea unei progresii'},
   ];
   const coverSubjects = ['romana','matematica','biologie','chimie','fizica','geografie','logica'];

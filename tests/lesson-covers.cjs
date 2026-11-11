@@ -16,11 +16,11 @@ const fx = window.FormulaXLessons;
 const cases = [
   ['harap-alb','Povestea lui Harap-Alb','romana','/assets/lessons/harap-alb/coperta.webp'],
   ['moara-cu-noroc','Moara cu noroc','romana','/assets/lessons/moara-cu-noroc/coperta.webp'],
-  ['ultima-noapte','Ultima noapte de dragoste, întâia noapte de război','romana','/assets/lessons/ultima-noapte/coperta.webp'],
+  ['ultima-noapte','Ultima noapte de dragoste, întâia noapte de război','romana','/assets/lessons/ultima-noapte/coperta.webp?v=20261111'],
   ['baltagul','Baltagul','romana','/assets/lessons/baltagul/vitoria.webp'],
   ['ion','Ion — Liviu Rebreanu','romana','/assets/lessons/ion/Eseul_1_04_Scena_2_Sarutarea_pamantului.webp'],
-  ['import-123','Plumb — George Bacovia','romana','/assets/lessons/plumb/coperta.webp'],
-  ['import-456','Luceafărul — Mihai Eminescu','romana','/assets/lessons/luceafarul/coperta.webp'],
+  ['import-123','Plumb — George Bacovia','romana','/assets/lessons/plumb/coperta.webp?v=20261111'],
+  ['import-456','Luceafărul — Mihai Eminescu','romana','/assets/lessons/luceafarul/coperta.webp?v=20261111'],
   ['progresii-123','Progresii','matematica','/assets/lesson-covers/progresii.svg'],
 ];
 for(const [slug,title,subject,cover] of cases){
