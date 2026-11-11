@@ -42,7 +42,7 @@
   }
   function coverMarkup(item) {
     const art = coverInfo(item);
-    return `<div class="fxl-cover"><img data-fxl-cover data-fxl-fallback="${esc(art.fallback)}" src="${esc(art.cover)}" alt="${esc(art.alt)}" loading="lazy" decoding="async" width="900" height="900" style="width:100%;height:100%;object-fit:contain;object-position:center"></div>`;
+    return `<div class="fxl-cover" style="position:relative;overflow:hidden"><img data-fxl-cover data-fxl-fallback="${esc(art.fallback)}" src="${esc(art.cover)}" alt="${esc(art.alt)}" loading="lazy" decoding="async" width="900" height="900" style="position:absolute;inset:0;display:block;box-sizing:border-box;width:100%;height:100%;min-width:0;min-height:0;max-width:none;max-height:none;padding:18px;object-fit:contain;object-position:center"></div>`;
   }
   function recoverCover(event) {
     const img = event.target;
