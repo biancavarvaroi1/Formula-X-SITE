@@ -48,44 +48,56 @@ async function unzip(file){
 }
 const imageName=s=>/^[a-z0-9-]+\.webp$/i.test(String(s||''))?s:null;
 function validate(d,slug){
- if(!d||d.slug!==slug||!d.title||!d.author||!Array.isArray(d.repere)||d.repere.length!==3)throw Error('Datele lecției '+slug+' nu respectă modelul de 3 repere.');
- if(d.repere.some(r=>!Array.isArray(r.cards)||r.cards.length!==2))throw Error('Lipsesc unele dintre cele 6 secțiuni ilustrate.');
- if(!Array.isArray(d.quiz)||d.quiz.length!==8||d.quiz.some(q=>!Array.isArray(q)||!Array.isArray(q[1])||q[1].length<2||!Number.isInteger(q[2])||q[2]<0||q[2]>=q[1].length))throw Error('Test incomplet în '+slug);
+ if(!d||d.slug!==slug||!d.title||!d.author||!Array.isArray(d.repere)||d.repere.length!==3)throw Error('Lecția '+slug+' nu respectă structura în 3 repere.');
+ if(d.repere.some(r=>!Array.isArray(r.cards)||r.cards.length!==2||r.cards.some(c=>!Array.isArray(c.steps)||c.steps.length<4)))throw Error('Lipsesc explicații detaliate sau secțiunile ilustrate din '+slug);
+ if(!Array.isArray(d.quiz)||d.quiz.length<12||d.quiz.length>25||d.quiz.some(q=>!Array.isArray(q)||!Array.isArray(q[1])||q[1].length!==4||new Set(q[1]).size!==4||!Number.isInteger(q[2])||q[2]<0||q[2]>=4))throw Error('Testul final al lecției '+slug+' trebuie să conțină 12–25 întrebări valide, cu câte 4 variante.');
+ if(!Array.isArray(d.terms)||d.terms.length<4||!Array.isArray(d.recapitulare)||!d.recapitulare.length)throw Error('Lipsesc fișele de înțelegere și recapitulare din '+slug);
  const files=[d.hero,...d.repere.flatMap(r=>r.cards.map(c=>c.image))];
- if(files.some(x=>!imageName(x)))throw Error('Imagine cu denumire invalidă.');
+ if(files.some(x=>!imageName(x)))throw Error('Imagine cu denumire invalidă în '+slug);
  return files;
 }
 const clean=v=>String(v||'').trim();
 function documentFor(d,urls){
  const blocks=[
- {type:'heading',title:'Date esențiale',text:d.author+' · '+d.year+' · '+d.volume+' · '+d.kind},
+ {type:'heading',title:'Înainte de lectură · date esențiale',text:d.author+' · '+d.year+' · '+d.volume+' · '+d.kind},
  {type:'image',image:urls.get(d.hero),alt:'Ilustrație în acuarelă pentru '+d.title},
  {type:'text',text:d.intro},
- {type:'callout',variant:'important',label:'IDEA CENTRALĂ',title:'De reținut',text:d.thesis}
+ {type:'callout',variant:'important',label:'IDEA CENTRALĂ',title:'Ce urmărește această operă?',text:d.thesis}
  ];
- const qsize=d.quiz_sections||[3,3,2];let qi=0;
  d.repere.forEach((rep,index)=>{
   blocks.push({type:'heading',title:'Reperul '+(index+1)+' — '+rep.name,text:rep.lead});
-  rep.cards.forEach((card,n)=>{
-    blocks.push({type:'split',eyebrow:card.label||'EXPLICAȚIE',title:card.title,
-      image:urls.get(card.image),side:n%2===0?'left':'right',
+  rep.cards.forEach((card)=>{
+    blocks.push({type:'split',eyebrow:card.label||'EXPLICAȚIE COMPLETĂ',title:card.title,
+      image:urls.get(card.image),side:'right',
       text:card.steps.map((s,i)=>(i+1)+'. '+clean(s)).join('\n\n')});
     if(card.quote)blocks.push({type:'quote',text:card.quote});
-    if(card.relevance)blocks.push({type:'callout',variant:'important',label:'RELEVANȚĂ',title:'De ce contează?',text:card.relevance});
+    if(card.relevance)blocks.push({type:'callout',variant:'important',label:'RELEVANȚĂ',title:'Legătura cu reperul BAC',text:card.relevance});
   });
-  let limit=Number(qsize[index]||0);
-  for(let j=0;j<limit&&qi<d.quiz.length;j++,qi++){
-    const q=d.quiz[qi];
-    blocks.push({type:'quiz',id:slugQuiz(d.slug,qi),question:clean(q[0]),options:q[1].map(clean),correct:q[2],explanation:clean(q[3])});
-  }
  });
  if(d.extra?.rows?.length){
-  blocks.push({type:'heading',title:'Schemă de sinteză',text:d.extra.title||'Recapitulare'});
+  blocks.push({type:'heading',title:'Schemă vizuală · '+(d.extra.title||'Recapitulare'),text:'Compară ideile înainte de a trece la elementele de sinteză.'});
   blocks.push({type:'cards',title:(d.extra.columns||[]).join(' · '),text:d.extra.rows.map(row=>row.map(clean).join(' — ')).join('\n')});
  }
+ if(d.terms?.length){
+  blocks.push({type:'heading',title:'Dicționarul lecției',text:'Noțiunile pe care trebuie să le explici corect într-un eseu.'});
+  blocks.push({type:'cards',title:'Termeni esențiali',text:d.terms.map(x=>clean(x.term)+' — '+clean(x.definition)).join('\n')});
+ }
+ if(d.common_confusions?.length){
+  blocks.push({type:'heading',title:'Atenție la examen',text:'Confuzii frecvente și clarificări înainte de recapitulare.'});
+  blocks.push({type:'steps',title:'Nu confunda aceste idei',text:d.common_confusions.map(clean).join('\n')});
+ }
+ if(d.recapitulare?.length){
+  blocks.push({type:'heading',title:'Recapitularea celor trei repere',text:'Ce trebuie să poți reproduce fără ajutorul materialului.'});
+  blocks.push({type:'steps',title:'Schema de memorat',text:d.recapitulare.map(clean).join('\n')});
+ }
  if(d.conclusion)blocks.push({type:'callout',variant:'success',label:'CONCLUZIE',title:'Încheierea eseului',text:d.conclusion});
+ blocks.push({type:'divider'});
+ blocks.push({type:'heading',title:'Chestionarul final · '+d.title,text:'Ai parcurs toate reperele, explicațiile și concluzia. Verifică acum ce ai reținut. Răspunsul corect și explicația se afișează după fiecare alegere.'});
+ blocks.push({type:'callout',label:'AUTOEVALUARE',variant:'important',title:d.quiz.length+' întrebări după studierea operei',text:'Fiecare întrebare are patru variante. Pentru un exercițiu corect, încearcă să răspunzi fără să consulți lecția.'});
+ d.quiz.forEach((q,i)=>blocks.push({type:'quiz',id:slugQuiz(d.slug,i),question:clean(q[0]),options:q[1].map(clean),correct:q[2],explanation:clean(q[3])}));
+ if(blocks.length>150)throw Error('Prea multe blocuri pentru lecția '+d.title);
  return {fx_format:'formula-x-blocks-v1',subject:'romana',theme:'rose',title:d.title+' — '+d.author,
- subtitle:d.subtitle+' · 3 repere BAC · imagini și verificare',blocks};
+ subtitle:d.subtitle+' · 3 repere BAC · explicații detaliate · chestionar final',blocks};
 }
 function slugQuiz(slug,i){return slug+'-q'+(i+1)}
 async function rpc(name,params){const {data,error}=await db.rpc(name,params);if(error)throw error;return data;}
