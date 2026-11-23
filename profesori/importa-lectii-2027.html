@@ -34,16 +34,16 @@ footer{font-size:12px;text-align:center;color:#8d7d83;margin-top:40px}
 <main>
 <p class="eyebrow">Administrare · Literatură română · BAC 2027</p>
 <h1>Publicarea lecțiilor, într-un singur loc.</h1>
-<p class="lead">Importă împreună <em>Eu nu strivesc corola de minuni a lumii</em>, <em>Testament</em> și <em>Riga Crypto și lapona Enigel</em>. Textul este salvat numai în Supabase, după autentificarea profesorului; imaginile în acuarelă sunt încărcate integral, fără decupare.</p>
+<p class="lead">Importă cele trei lecții complete, organizate după modelul lecțiilor Harap-Alb și Moara cu noroc. Fiecare are explicații detaliate pe cele trei repere BAC, noțiuni explicate, schemă de memorare și chestionar final. Conținutul este salvat doar în Supabase după autentificarea profesorului, iar imaginile în acuarelă sunt afișate fără decupare.</p>
 <section class="cards" aria-label="Cele trei lecții">
-<article class="card"><span class="num">01 · LUCIAN BLAGA</span><h3>Eu nu strivesc corola de minuni a lumii</h3><small>3 repere · 6 secțiuni ilustrate · 8 întrebări</small><p data-result="eu-nu-strivesc-corola"></p></article>
+<article class="card"><span class="num">01 · LUCIAN BLAGA</span><h3>Eu nu strivesc corola de minuni a lumii</h3><small>3 repere · 6 secțiuni detaliate · 15 întrebări</small><p data-result="eu-nu-strivesc-corola"></p></article>
 <article class="card"><span class="num">02 · TUDOR ARGHEZI</span><h3>Testament</h3><small>3 repere · 6 secțiuni ilustrate · 8 întrebări</small><p data-result="testament"></p></article>
 <article class="card"><span class="num">03 · ION BARBU</span><h3>Riga Crypto și lapona Enigel</h3><small>3 repere · 6 secțiuni ilustrate · 8 întrebări</small><p data-result="riga-crypto-si-lapona-enigel"></p></article>
 </section>
 <section class="panel">
 <h2>Încarcă arhiva lecțiilor</h2>
-<p>Alege arhiva ZIP „Formula_X_Lectii_BAC_2027_previzualizare.zip”. Nu este necesar să extragi imaginile separat.</p>
-<div class="upload"><strong>Arhivă ZIP · 3 lecții și 17 ilustrații</strong><label for="fx-package">Selectează fișierul de pe calculator</label><input type="file" id="fx-package" accept=".zip,application/zip" aria-describedby="fx-state"></div>
+<p>Alege noua arhivă ZIP „Formula_X_Lectii_BAC_2027_EXTINSE.zip” (nu arhiva scurtă din versiunea anterioară). Imaginile sunt incluse; nu trebuie extrase separat.</p>
+<div class="upload"><strong>Arhivă actualizată · 3 lecții ample · 17 ilustrații · 15 întrebări la finalul fiecărei opere</strong><label for="fx-package">Selectează fișierul de pe calculator</label><input type="file" id="fx-package" accept=".zip,application/zip" aria-describedby="fx-state"></div>
 <label class="check"><input type="checkbox" id="fx-update"> Permite actualizarea lecțiilor care există deja (nu schimbă accesul elevilor sau grupele).</label>
 <button type="button" id="fx-import" disabled>Importă toate cele trei lecții</button>
 <div class="status" id="fx-state" role="status" aria-live="polite">Se verifică sesiunea de profesor Formula X…</div>
@@ -57,5 +57,5 @@ footer{font-size:12px;text-align:center;color:#8d7d83;margin-top:40px}
 </main>
 <script defer src="/assets/vendor/supabase.js"></script>
 <script defer src="/cursuri/config.js"></script>
-<script defer src="/assets/fx-import-zip-literatura.js"></script>
+<script defer src="/assets/fx-import-zip-literatura.js?v=20261123-extins-2"></script>
 </body></html>
