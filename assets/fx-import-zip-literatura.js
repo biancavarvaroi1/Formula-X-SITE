@@ -97,7 +97,8 @@ async function uploadImages(zip,lessons){
  const urls=new Map(),bucket=db.storage.from('fx-universal-lesson-media');
  for(let i=0;i<unique.length;i++){
   const name=unique[i],data=zip.get(name);
-  const path='romana/import-2027-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,8)+'/'+name;
+  const uuid=crypto.randomUUID();
+  const path='romana/import-2027/'+uuid+'.webp';
   setStatus('Încarc imaginile în biblioteca Formula X: '+(i+1)+' din '+unique.length+' · '+name);
   const {error}=await bucket.upload(path,new Blob([data],{type:'image/webp'}),{contentType:'image/webp',upsert:false});
   if(error)throw Error('Încărcarea imaginii '+name+' a eșuat: '+error.message);
