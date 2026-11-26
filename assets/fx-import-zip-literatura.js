@@ -62,21 +62,22 @@ function documentFor(d,urls){
  {type:'heading',title:'Înainte de lectură · date esențiale',text:d.author+' · '+d.year+' · '+d.volume+' · '+d.kind},
  {type:'image',image:urls.get(d.hero),alt:'Ilustrație în acuarelă pentru '+d.title},
  {type:'text',text:d.intro},
- {type:'callout',variant:'important',label:'IDEA CENTRALĂ',title:'Ce urmărește această operă?',text:d.thesis}
+ {type:'callout',variant:'important',label:'IDEEA CENTRALĂ',title:'Ideea centrală',text:d.thesis}
  ];
+ if(Array.isArray(d.route))blocks.push({type:'steps',title:'Firul lecturii',text:d.route.map(([term,meaning])=>term+' — '+meaning).join('\n')});
  d.repere.forEach((rep,index)=>{
   blocks.push({type:'heading',title:'Reperul '+(index+1)+' — '+rep.name,text:rep.lead});
   rep.cards.forEach((card)=>{
     blocks.push({type:'split',eyebrow:card.label||'EXPLICAȚIE COMPLETĂ',title:card.title,
-      image:urls.get(card.image),side:'right',
-      text:card.steps.map((s,i)=>(i+1)+'. '+clean(s)).join('\n\n')});
+      image:urls.get(card.image),side:'left',
+      text:card.steps.map(clean).join('\n\n')});
     if(card.quote)blocks.push({type:'quote',text:card.quote});
     if(card.relevance)blocks.push({type:'callout',variant:'important',label:'RELEVANȚĂ',title:'Legătura cu reperul BAC',text:card.relevance});
   });
  });
  if(d.extra?.rows?.length){
   blocks.push({type:'heading',title:'Schemă vizuală · '+(d.extra.title||'Recapitulare'),text:'Compară ideile înainte de a trece la elementele de sinteză.'});
-  blocks.push({type:'cards',title:(d.extra.columns||[]).join(' · '),text:d.extra.rows.map(row=>row.map(clean).join(' — ')).join('\n')});
+  blocks.push({type:'cards',fxPart:'matrix',title:d.extra.title||'Sinteză',columns:d.extra.columns||[],rows:d.extra.rows,text:d.extra.rows.map(row=>row.map(clean).join(' — ')).join('\n')});
  }
  if(d.terms?.length){
   blocks.push({type:'heading',title:'Dicționarul lecției',text:'Noțiunile pe care trebuie să le explici corect într-un eseu.'});
@@ -90,11 +91,19 @@ function documentFor(d,urls){
   blocks.push({type:'heading',title:'Recapitularea celor trei repere',text:'Ce trebuie să poți reproduce fără ajutorul materialului.'});
   blocks.push({type:'steps',title:'Schema de memorat',text:d.recapitulare.map(clean).join('\n')});
  }
+ if(Array.isArray(d.workshop)&&d.workshop.length){
+  blocks.push({type:'heading',title:'De la observație la argument'});
+  ['Observație inițială','Paragraf dezvoltat','Cum este construit argumentul'].forEach((title,i)=>{
+   if(d.workshop[i])blocks.push({type:'callout',label:'ATELIER DE REDACTARE',title,text:d.workshop[i]});
+  });
+ }
  if(d.conclusion)blocks.push({type:'callout',variant:'success',label:'CONCLUZIE',title:'Încheierea eseului',text:d.conclusion});
+ if(Array.isArray(d.essay)&&d.essay.length)blocks.push({type:'heading',title:'Eseu-model'},{type:'text',text:d.essay.map(clean).join('\n\n')});
  blocks.push({type:'divider'});
  blocks.push({type:'heading',title:'Chestionarul final · '+d.title,text:'Ai parcurs toate reperele, explicațiile și concluzia. Verifică acum ce ai reținut. Răspunsul corect și explicația se afișează după fiecare alegere.'});
  blocks.push({type:'callout',label:'AUTOEVALUARE',variant:'important',title:d.quiz.length+' întrebări după studierea operei',text:'Fiecare întrebare are patru variante. Pentru un exercițiu corect, încearcă să răspunzi fără să consulți lecția.'});
  d.quiz.forEach((q,i)=>blocks.push({type:'quiz',id:slugQuiz(d.slug,i),question:clean(q[0]),options:q[1].map(clean),correct:q[2],explanation:clean(q[3])}));
+ if(Array.isArray(d.shorts))d.shorts.forEach(([prompt,guide])=>blocks.push({type:'text',fxPart:'writing',title:prompt,text:guide}));
  if(blocks.length>150)throw Error('Prea multe blocuri pentru lecția '+d.title);
  return {fx_format:'formula-x-blocks-v1',subject:'romana',theme:'rose',title:d.title+' — '+d.author,
  subtitle:d.subtitle+' · 3 repere BAC · explicații detaliate · chestionar final',blocks};

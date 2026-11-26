@@ -61,27 +61,79 @@
     if(isOpen)html+="</article>";
     return html;
   }
+  function poetryLesson(doc) {
+    return doc.subject==="romana" && /^(?:Testament|Eu nu strivesc corola de minuni a lumii|Riga Crypto [șş]i lapona Enigel)(?:\s*[—–-]|\s*$)/i.test(String(doc.title||""));
+  }
+  function assessmentBlock(b) {
+    return b.type==="quiz" || b.fxPart==="writing" || b.fxPart==="key" ||
+      (b.type==="heading" && /^chestionar(?:ul)? final/i.test(b.title||"")) ||
+      (b.type==="callout" && b.label==="AUTOEVALUARE");
+  }
+  function paperContent(doc,preview) {
+    const study=[],questions=[],writing=[];
+    doc.blocks.slice(0,150).forEach((b,i)=>{
+      if(b.type==="quiz")questions.push({b,i});
+      else if(b.fxPart==="writing")writing.push(b);
+      else if(!assessmentBlock(b)){
+        if(b.type==="quote") {
+          study.push('<section class="fxs-block" id="fxs-block-'+i+'"><blockquote class="fxs-quote"><p>'+text(b.text)+'</p></blockquote></section>');
+        } else if(b.fxPart==="matrix" && Array.isArray(b.rows)) {
+          const row=(cells,tag)=>'<tr>'+cells.map(c=>'<'+tag+(tag==="th"?' scope="col"':'')+'>'+text(c)+'</'+tag+'>').join("")+'</tr>';
+          study.push('<section class="fxs-block" id="fxs-block-'+i+'"><h3>'+text(b.title)+'</h3><div class="fxp-table"><table><thead>'+row(b.columns,"th")+'</thead><tbody>'+b.rows.map(r=>row(r,"td")).join("")+'</tbody></table></div></section>');
+        } else if(b.type==="callout" && b.title==="Ce urmărește această operă?") study.push(block(Object.assign({},b,{title:"Ideea centrală"}),i,preview));
+        else study.push(block(b,i,preview));
+      }
+    });
+    if(!questions.length && !writing.length)return study.join("");
+    const keys=questions.map(({b},j)=>'<li><b>'+(j+1)+' · '+String.fromCharCode(65+Number(b.correct))+'</b><span>'+text(b.explanation||"")+'</span></li>').join("");
+    const prompts=writing.map((b,i)=>'<div class="fxp-prompt"><h3>Exercițiu de redactare '+(i+1)+'</h3><p>'+text(b.title)+'</p><div class="fxp-ruled" aria-hidden="true"></div></div>').join("");
+    const guide=writing.length?'<h3>Repere pentru redactare</h3><ol>'+writing.map(b=>'<li>'+text(b.text)+'</li>').join("")+'</ol>':"";
+    return study.join("")+'<section class="fxp-final"><h2>Chestionar final</h2><p>'+questions.length+' întrebări după studierea operei.</p>'+
+      '<button type="button" data-fxp-toggle aria-expanded="false">Deschide chestionarul</button>'+
+      '<div class="fxp-exercises" data-open="false">'+questions.map(({b,i},j)=>block(Object.assign({},b,{question:(j+1)+'. '+b.question}),i,preview)).join("")+
+      prompts+'<button type="button" data-fxp-key aria-expanded="false">Arată răspunsurile explicate</button>'+
+      '<div class="fxp-key" data-open="false"><h2>Răspunsuri explicate</h2><ol class="fxp-key-list">'+keys+'</ol>'+guide+'</div></div></section>';
+  }
   function render(root,doc,meta={},access={},options={}){
     if(!root||!doc||doc.fx_format!==FMT||!Array.isArray(doc.blocks))throw new Error("Format de lecție necunoscut");
     const preview=options.preview===true;
     const variant=["rose","ocean","sage","sand"].includes(doc.theme)?doc.theme:"rose";
     const essay=/^(?:Luceafărul|Plumb)\s*[—–-]/i.test(String(doc.title||"")) && doc.subject==="romana";
-    const titles=doc.blocks.map((b,i)=>({b,i})).filter(({b})=>b.type==="heading"&&b.title);
-    const html='<div class="fxs-studio-view fxs-theme-'+variant+(essay?' fxs-bac-essay':'')+'">'+
+    const paper=poetryLesson(doc);
+    const titles=doc.blocks.map((b,i)=>({b,i})).filter(({b})=>b.type==="heading"&&b.title&&(!paper||!assessmentBlock(b)));
+    const html='<div class="fxs-studio-view fxs-theme-'+variant+(essay?' fxs-bac-essay':'')+(paper?' fxp-paper':'')+'">'+
       '<header class="fxs-hero"><span class="fxs-overline">FORMULA X · LECȚIE INTERACTIVĂ</span>'+
       '<h1>'+text(doc.title||meta.title||"Lecție nouă")+'</h1>'+
       '<p>'+text(doc.subtitle||"Învață logic, vizual și interactiv.")+'</p>'+
       '<div class="fxs-badges"><span>'+esc(doc.subject||meta.subject||"Română")+'</span><span>'+esc(meta.author||"Formula X")+'</span>'+
       (preview?'<span>Previzualizare profesor</span>':access.endsAt?'<span>Acces până la '+esc(new Date(access.endsAt).toLocaleDateString("ro-RO"))+'</span>':"")+
       '</div></header>'+
+      (paper?'<div class="fxp-tools"><button data-fxp-print type="button">Tipărește lecția</button></div>':'')+
       (titles.length?'<nav class="fxs-toc" aria-label="Cuprinsul lecției"><strong>Cuprins</strong>'+titles.map(({b,i})=>'<a href="#fxs-block-'+i+'">'+esc(b.title)+'</a>').join("")+'</nav>':"")+
-      '<div class="fxs-content">'+(essay?renderEssayChapters(doc.blocks,preview):doc.blocks.slice(0,150).map((b,i)=>block(b,i,preview)).join(""))+'</div>'+
+      '<div class="fxs-content">'+(paper?paperContent(doc,preview):essay?renderEssayChapters(doc.blocks,preview):doc.blocks.slice(0,150).map((b,i)=>block(b,i,preview)).join(""))+'</div>'+
       '<footer class="fxs-end">Formula X · Ai parcurs lecția. Revino la reperele importante și verifică-ți cunoștințele!</footer></div>';
     root.innerHTML=html;
     root.__fxStudioDoc=doc;
     if(!root.__fxStudioHandler){
       root.__fxStudioHandler=true;
       root.addEventListener("click",ev=>{
+        const action=ev.target.closest("[data-fxp-print],[data-fxp-toggle],[data-fxp-key]");
+        if(action&&root.contains(action)){
+          if(action.hasAttribute("data-fxp-print")){
+            const current=root.__fxStudioDoc;
+            const images=Array.from(root.querySelectorAll(".fxp-paper img"));
+            images.forEach(img=>{img.loading="eager"});
+            Promise.all(images.map(img=>img.decode?img.decode().catch(()=>{}):Promise.resolve())).then(()=>{
+              if(root.__fxStudioDoc===current && root.contains(action))window.print();
+            });
+          }else{
+            const key=action.hasAttribute("data-fxp-key"),panel=action.nextElementSibling;
+            const opened=panel.dataset.open!=="true";panel.dataset.open=String(opened);
+            action.setAttribute("aria-expanded",String(opened));
+            action.textContent=key?(opened?"Ascunde răspunsurile explicate":"Arată răspunsurile explicate"):(opened?"Restrânge chestionarul":"Deschide chestionarul");
+          }
+          return;
+        }
         const button=ev.target.closest("[data-fxs-choice]");
         if(!button||!root.contains(button))return;
         const parent=button.closest("[data-fxs-quiz]");
