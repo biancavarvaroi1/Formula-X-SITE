@@ -164,6 +164,126 @@ async function importAll(){
  }catch(e){setStatus('Import întrerupt: '+(e?.message||String(e))+'. Dacă unele lecții au fost salvate, verifică-le în Portal profesori înainte de a reîncerca.',true);}
  finally{running=false;button.disabled=!staff||!fileInput.files?.[0];}
 }
+function fxRevisionCode(){
+ // The URL fragment stays in the teacher's browser. Only the existing staff-authenticated RPCs can save a revision.
+ const prefix="#editie=";
+ const hasRevision=location.hash.startsWith(prefix);
+ if(!hasRevision)return;
+ const signature={testament:["Testament","Tudor Arghezi"],"eu-nu-strivesc-corola":["Eu nu strivesc corola de minuni a lumii","Lucian Blaga"],"riga-crypto-si-lapona-enigel":["Riga Crypto și lapona Enigel","Ion Barbu"]};
+ let lessons=null;
+ const revisionButton=document.createElement("button");
+ revisionButton.type="button";revisionButton.textContent="Publică ediția revizuită";revisionButton.disabled=true;
+ button.after(revisionButton);button.hidden=true;
+ const legacyCheck=update.closest("label");
+ if(legacyCheck){legacyCheck.hidden=true;legacyCheck.style.display="none";}
+ const uploadPanel=fileInput.closest("section");
+ const hint=document.createElement("p");
+ hint.className="note";hint.textContent="Se pregătesc cele trei ediții. Dacă lecțiile există deja în Studio, ilustrațiile lor se păstrează automat.";
+ if(uploadPanel){
+  uploadPanel.querySelector("h2").textContent="Publică cele trei ediții revizuite";
+  uploadPanel.querySelector("p").textContent="Textele, exercițiile și eseurile sunt pregătite. După verificarea contului, le poți salva în catalogul de Română.";
+  const drop=uploadPanel.querySelector(".upload");drop.querySelector("strong").textContent="Arhivă cu ilustrații — opțională pentru lecțiile deja ilustrate";
+  uploadPanel.insertBefore(hint,drop);
+ }
+ async function decodeLessons(){
+  const b64=location.hash.slice(prefix.length);
+  if(!/^[A-Za-z0-9_-]{1,85000}$/.test(b64))throw Error("Linkul ediției este incomplet.");
+  if(typeof DecompressionStream!=="function")throw Error("Deschide linkul într-o versiune actuală de Safari, Chrome, Edge sau Firefox.");
+  const binary=atob(b64.replace(/-/g,"+").replace(/_/g,"/")),raw=Uint8Array.from(binary,c=>c.charCodeAt(0));
+  const reader=new Blob([raw]).stream().pipeThrough(new DecompressionStream("gzip")).getReader();
+  let total=0;const chunks=[];
+  for(;;){const v=await reader.read();if(v.done)break;total+=v.value.length;if(total>210000){await reader.cancel();throw Error("Ediția depășește dimensiunea acceptată.");}chunks.push(v.value);}
+  const edition=JSON.parse(await new Blob(chunks).text());
+  if(edition.v!==1||!Array.isArray(edition.lessons)||edition.lessons.length!==specs.length)throw Error("Ediția trebuie să cuprindă cele trei lecții.");
+  const ordered=specs.map(s=>edition.lessons.find(d=>d?.slug===s.slug));
+  for(const d of ordered){
+   if(!d||d.title!==signature[d.slug][0]||d.author!==signature[d.slug][1])throw Error("Titlul sau autorul lecției este incorect.");
+   validate(d,d.slug);
+   if(!Array.isArray(d.essay)||!d.essay.length||!Array.isArray(d.shorts)||d.shorts.length!==3)throw Error("Lipsesc eseul sau exercițiile de redactare.");
+  }
+  return ordered;
+ }
+ const slots=d=>[d.hero,...d.repere.flatMap(rep=>rep.cards.map(c=>c.image))];
+ function imageReference(src){return typeof src==="string"&&(/^(https:\/\/|\/(?!\/))/.test(src))?src:null;}
+ async function openExisting(row){
+  if(!row)return null;
+  const old=await rpc("fx_open_lesson",{p_slug:row.slug});
+  if(!old?.access?.allowed||old.format!=="text"||typeof old.body!=="string")throw Error("Contul nu poate actualiza conținutul lecției "+row.title+".");
+  let blocks=[];try{const obj=JSON.parse(old.body);if(obj?.fx_format==="formula-x-blocks-v1"&&Array.isArray(obj.blocks))blocks=obj.blocks;}catch{}
+  const hero=blocks.find(b=>b.type==="image"&&imageReference(b.image));
+  const illustrations=blocks.filter(b=>b.type==="split").map(b=>imageReference(b.image));
+  const images=hero&&illustrations.length===6&&illustrations.every(Boolean)?[hero.image,...illustrations]:null;
+  return {body:old.body,images};
+ }
+ async function artFromArchive(missing,file){
+  if(!file)throw Error("Pentru "+missing.map(x=>x.d.title).join(", ")+" este necesară arhiva anterioară cu ilustrații. Selecteaz-o în câmpul de pe pagină, apoi apasă din nou Publică.");
+  const zip=await unzip(file);
+  const originals=missing.map(({d})=>{
+   const entry=specs.find(s=>s.slug===d.slug);
+   if(!zip.has(entry.file))throw Error("Arhiva nu conține fișa originală pentru "+d.title+".");
+   const src=JSON.parse(decoder.decode(zip.get(entry.file)));
+   if(src?.slug!==d.slug||!Array.isArray(src.repere)||src.repere.length!==3||src.repere.some(r=>!Array.isArray(r.cards)||r.cards.length!==2))throw Error("Nu pot asocia ilustrațiile pentru "+d.title+".");
+   if(slots(src).some(n=>!imageName(n)||!zip.has(n)))throw Error("Arhiva nu conține toate ilustrațiile pentru "+d.title+".");
+   return src;
+  });
+  const urls=await uploadImages(zip,originals);
+  return originals.map(src=>slots(src).map(n=>urls.get(n)));
+ }
+ async function publish(){
+  if(!lessons||!staff||running)return;
+  running=true;revisionButton.disabled=true;
+  try{
+   const rows=rowsFrom(await rpc("fx_teacher_lesson_catalog"));
+   const records=[];
+   for(const d of lessons){
+    const row=match(rows,d);
+    const original=await openExisting(row);
+    records.push({d,row,original,images:original?.images||null});
+   }
+   const missing=records.filter(x=>!x.images);
+   if(missing.length&&!fileInput.files?.[0]){hint.textContent="Pentru lecțiile fără ilustrații în Studio, alege arhiva Formula X pe care o ai deja. Textele revizuite sunt încărcate din link.";fileInput.focus();throw Error("Selectează arhiva anterioară cu ilustrații pentru "+missing.map(x=>x.d.title).join(", ")+".");}
+   const exist=records.filter(x=>x.row).length,fresh=records.length-exist;
+   const message="Publici cele trei ediții revizuite? "+exist+" lecții existente își păstrează grupele și drepturile."+ (fresh?" Pentru cele "+fresh+" lecții noi vei putea configura accesul în Portal profesori.":"");
+   if(!window.confirm(message))return;
+   if(missing.length){const extracted=await artFromArchive(missing,fileInput.files[0]);missing.forEach((r,i)=>{r.images=extracted[i];});}
+   const planned=records.map(record=>{
+    const map=new Map(slots(record.d).map((k,i)=>[k,record.images[i]]));
+    const doc=documentFor(record.d,map),body=JSON.stringify(doc);
+    if(!body||doc.blocks.length>150||body.length>175000)throw Error("Lecția "+record.d.title+" depășește limitele Studio.");
+    return {...record,doc,body};
+   });
+   let currentRows=rows;
+   for(const {d,row,original,doc,body} of planned){
+    const summary="BAC 2027 · "+d.kind+" · analiză pe trei repere, eseu-model și chestionar final";
+    setStatus("Salvez "+d.title+"…");
+    if(row){
+     const current=await openExisting(row);
+     if(current.body!==original.body&&current.body!==body)throw Error("Lecția "+d.title+" a fost modificată între timp. Verifică noua versiune înainte de a relua.");
+     if(current.body!==body)await rpc("fx_studio_update_lesson",{p_slug:row.slug,p_title:doc.title,p_summary:summary,p_body:body});
+     result(d.slug,"Ediție revizuită. Grupele și drepturile existente s-au păstrat.");
+    }else{
+     currentRows=rowsFrom(await rpc("fx_teacher_lesson_catalog"));
+     if(match(currentRows,d))throw Error(d.title+" a apărut între timp în catalog. Reia pentru a păstra lecția deja creată.");
+     await rpc("fx_create_lesson",{p_subject:"romana",p_title:doc.title,p_summary:summary,p_body:body});
+     currentRows=rowsFrom(await rpc("fx_teacher_lesson_catalog"));
+     const created=match(currentRows,d);if(!created?.slug)throw Error("Verifică în Portal profesori salvarea lecției "+d.title+".");
+     await rpc("fx_set_lesson_enabled",{p_slug:created.slug,p_enabled:false});
+     result(d.slug,"Ediție nouă. Alege grupele și activează accesul din Portal profesori.");
+    }
+   }
+   hint.textContent="Cele trei ediții includ analiza, eseul-model, chestionarul final și formatul A4.";
+   setStatus(fresh?"Cele trei ediții au fost salvate. Configurează în Portal profesori accesul grupelor pentru lecțiile noi.":"Cele trei ediții au fost publicate cu accesul existent al elevilor.",false,true);
+  }catch(error){setStatus(String(error?.message||error),true);}
+  finally{running=false;revisionButton.disabled=!staff||!lessons;}
+ }
+ revisionButton.addEventListener("click",publish);
+ return {async ready(){
+  try{lessons=await decodeLessons();revisionButton.disabled=!staff;hint.textContent="Ediție pregătită. Ilustrațiile se iau din lecțiile existente. Folosește arhiva anterioară numai pentru operele care încă nu au ilustrații în Studio.";
+   setStatus("Cont de profesor verificat. Cele trei texte revizuite sunt pregătite pentru publicare.",false,true);
+  }catch(error){setStatus(String(error?.message||error),true);}
+ }};
+}
+const revisionLink=fxRevisionCode();
 fileInput.addEventListener('change',()=>{button.disabled=!staff||!fileInput.files?.[0]||running});
 button.addEventListener('click',importAll);
 try{
@@ -173,6 +293,7 @@ try{
  if(!session?.user){setStatus('Conectează-te în Portal profesori, apoi revino la această pagină.',true);return;}
  const profile=await rpc('get_my_staff_profile');staff=Array.isArray(profile)?profile[0]:profile;
  if(!(staff&&(staff.role==='admin'||staff.role==='mentor'&&staff.subject==='romana'))){staff=null;setStatus('Importul este permis doar profesorului de Română sau administratorului.',true);return;}
+ if(revisionLink){await revisionLink.ready();return;}
  setStatus('Cont de profesor verificat. Alege arhiva ZIP și apasă „Importă toate cele trei lecții”.',false,true);
 }catch(e){setStatus('Nu s-a putut valida contul: '+(e?.message||e),true)}
 })();
