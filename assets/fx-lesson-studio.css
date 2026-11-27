@@ -192,3 +192,8 @@ body.fxstudio{margin:0;background:var(--fxbg);color:var(--fxink);font:14px/1.55 
  .fxp-paper .fxp-ruled{height:24mm;border-bottom:1px solid #c7bbbf;background:repeating-linear-gradient(to bottom,transparent 0,transparent 5.8mm,#ccc 5.8mm,#ccc 6mm)}
  .fxp-paper .fxp-table{overflow:visible}.fxp-paper tr{break-inside:avoid}
 }
+
+/* Formula X · ilustrații întregi, fără decupare. */
+.fxs-studio-view .fxs-figure .fxs-art,.fxs-studio-view .fxs-split-visual .fxs-art{object-fit:contain;aspect-ratio:auto;max-width:100%;height:auto;max-height:390px;width:auto}
+.fxs-studio-view .fxs-split-visual{background:transparent;overflow:visible}
+@media print{.fxs-studio-view .fxs-figure,.fxs-studio-view .fxs-split-visual{break-inside:avoid}.fxs-studio-view .fxs-art{max-width:100%;object-fit:contain}}

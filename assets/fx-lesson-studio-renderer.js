@@ -11,9 +11,51 @@
     if(preview && /^blob:https?:\/\//.test(s))return s;
     return "";
   };
-  function image(url,alt,preview){
-    const src=safeUrl(url,preview);if(!src)return "";
-    return '<img class="fxs-art" loading="lazy" decoding="async" src="'+esc(src)+'" alt="'+esc(alt||"Imagine pentru lecție")+'">';
+  const artRoot="/assets/lesson-illustrations/";
+  const artPath=name=>artRoot+name+".svg";
+  const normalizeArt=value=>String(value||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g," ").trim();
+  function visualFor(doc,b={}){
+    if(doc.subject!=="romana")return null;
+    const work=normalizeArt(doc.title),title=normalizeArt(b.title),type=b.type;
+    const cover=type==="image" || !type;
+    if(work.startsWith("eu nu strivesc corola")){
+      const rules=[[/prozod|ingamb|versific|versuri libere/,"blaga-prozodie","Versuri libere și ingambament"],[/titlul|titlu /,"blaga-titlu","Corola misterelor universale"],[/iubir|final|ultimele|conclu/,"blaga-iubire","Iubirea tuturor tainelor"],[/lumina|luna|motivul|limbaj/,"blaga-lumina","Lumina care sporește misterul"],[/cunoaster|secvent|ideea poetica/,"blaga-cunoastere","Cunoașterea paradisiacă și luciferică"],[/metafor|modernism/,"blaga-metafora","Metafora revelatorie"]];
+      const found=!cover&&rules.find(([re])=>re.test(title));return found?{url:artPath(found[1]),alt:found[2]}:{url:artPath("blaga-cover"),alt:"Corola de minuni: simbolurile misterului"};
+    }
+    if(work.startsWith("testament")){
+      const rules=[[/urat|convert|transfigur/,"arghezi-urat","Transformarea urâtului în frumusețe"],[/titlu/,"arghezi-titlu","Testamentul literar, moștenirea spirituală"],[/slova|inspir|mestesug|final|faur/,"arghezi-creatie","Inspirație și meșteșug poetic"],[/cartea|treapta|mosten|generat/,"arghezi-carte","Cartea ca treaptă între generații"],[/limbaj|sapa|condei|munca/,"arghezi-limbaj","Munca străbunilor devine creație"],[/metafor|metamorfoz|secvent/,"arghezi-metas","Trudă, cuvânt, artă"]];
+      const found=!cover&&rules.find(([re])=>re.test(title));return found?{url:artPath(found[1]),alt:found[2]}:{url:artPath("arghezi-cover"),alt:"Cartea, condeiul și moștenirea străbunilor"};
+    }
+    if(work.startsWith("riga crypto")){
+      const rules=[[/intelectual|calator|mitur|mitic/,"barbu-intelect","Călătoria lui Enigel spre cunoaștere"],[/genur|epic|dramatic/,"barbu-genuri","Amestecul genurilor literare"],[/titlu/,"barbu-titlu","Cele două personaje din lumi incompatibile"],[/rama|compozit|structur/,"barbu-rama","Povestirea în ramă"],[/final|deznod|pedeaps|a doua secvent/,"barbu-final","Expunerea lui Crypto la soare"],[/chemar|refuz|prima secvent|dialog/,"barbu-chemari","Chemările lui Crypto și refuzul lui Enigel"]];
+      const found=!cover&&rules.find(([re])=>re.test(title));return found?{url:artPath(found[1]),alt:found[2]}:{url:artPath("barbu-cover"),alt:"Crypto și Enigel: umbră și lumină"};
+    }
+    if(work.startsWith("luceafarul"))return {url:"/assets/luceafarul-patru-tablouri.svg",alt:"Cele patru tablouri din Luceafărul"};
+    if(work.startsWith("plumb"))return {url:"/assets/plumb-doua-strofe.svg",alt:"Cele două strofe ale poeziei Plumb"};
+    if(work.startsWith("povestea lui harap alb")||work.startsWith("harap alb"))return {url:"/assets/lessons/harap-alb/coperta.webp",alt:"Ilustrație pentru Harap-Alb"};
+    if(work.startsWith("moara cu noroc"))return {url:"/assets/lessons/moara-cu-noroc/coperta.webp",alt:"Ilustrație pentru Moara cu noroc"};
+    if(work==="ion"||work.startsWith("ion liviu")||work.startsWith("ion particularitati")||work.startsWith("ion caracterizare"))return {url:"/assets/lessons/ion/Eseul_1_04_Scena_2_Sarutarea_pamantului.webp",alt:"Ion și pământul"};
+    if(work.startsWith("baltagul"))return {url:"/assets/lessons/baltagul/vitoria.webp",alt:"Vitoria Lipan"};
+    if(work.startsWith("ultima noapte"))return {url:"/assets/lessons/ultima-noapte/coperta.webp",alt:"Experiența iubirii și a războiului"};
+    return null;
+  }
+  function visualDocument(doc){
+    // Work only on a rendering copy. Never modify the teacher's saved lesson.
+    let blocks=doc.blocks.map(b=>{
+      if(!b||!["image","split"].includes(b.type))return b;
+      const fallback=visualFor(doc,b);
+      if(!fallback)return b;
+      return {...b,fxArtFallback:fallback.url,fxArtAlt:fallback.alt,image:b.image||fallback.url};
+    });
+    const hero=visualFor(doc,{type:"image"});
+    if(hero&&!blocks.some(b=>b&&["image","split"].includes(b.type))) {
+      blocks=[{type:"image",image:hero.url,alt:hero.alt,fxArtFallback:hero.url,fxArtAlt:hero.alt},...blocks];
+    }
+    return {...doc,blocks};
+  }
+  function image(url,alt,preview,fallback,fxAlt,index){
+    const original=safeUrl(url,preview),backup=safeUrl(fallback);const src=original||backup;if(!src)return "";
+    return '<img class="fxs-art" loading="lazy" decoding="async" src="'+esc(src)+'" alt="'+esc((original?alt:fxAlt)||"Imagine pentru lecție")+'"'+(backup?' data-fxs-art-backup="'+esc(backup)+'" data-fxs-art-alt="'+esc(fxAlt||"Ilustrație pentru lecție")+'" data-fxs-art-index="'+index+'"':"")+'>';
   }
   function listItems(value){return String(value||"").split(/\n+/).map(x=>x.trim()).filter(Boolean).slice(0,25)}
   function block(b,index,preview){
@@ -22,8 +64,8 @@
     switch(b.type){
       case "heading":return a+'<h2>'+text(b.title)+'</h2>'+(b.text?'<p class="fxs-muted">'+text(b.text)+'</p>':"")+'</section>';
       case "text":return a+'<div class="fxs-prose">'+text(b.text)+'</div></section>';
-      case "image":return a+'<figure class="fxs-figure">'+image(b.image,b.alt,preview)+(b.caption?'<figcaption>'+text(b.caption)+'</figcaption>':"")+'</figure></section>';
-      case "split":return a+'<div class="fxs-split '+(b.side==="right"?"fxs-reverse":"")+'"><div class="fxs-split-visual">'+image(b.image,b.title,preview)+'</div><div class="fxs-split-copy"><span class="fxs-overline">'+esc(b.eyebrow||"REȚINE")+'</span><h3>'+text(b.title)+'</h3><p>'+text(b.text)+'</p></div></div></section>';
+      case "image":return a+'<figure class="fxs-figure">'+image(b.image,b.alt,preview,b.fxArtFallback,b.fxArtAlt,index)+(b.caption?'<figcaption>'+text(b.caption)+'</figcaption>':"")+'</figure></section>';
+      case "split":return a+'<div class="fxs-split '+(b.side==="right"?"fxs-reverse":"")+'"><div class="fxs-split-visual">'+image(b.image,b.title,preview,b.fxArtFallback,b.fxArtAlt,index)+'</div><div class="fxs-split-copy"><span class="fxs-overline">'+esc(b.eyebrow||"REȚINE")+'</span><h3>'+text(b.title)+'</h3><p>'+text(b.text)+'</p></div></div></section>';
       case "callout":return a+'<aside class="fxs-callout '+(b.variant==="important"?"fxs-important":b.variant==="success"?"fxs-success":"")+'"><div class="fxs-overline">'+esc(b.label||"RELEVANȚĂ")+'</div><h3>'+text(b.title)+'</h3><p>'+text(b.text)+'</p></aside></section>';
       case "quote":return a+'<blockquote class="fxs-quote"><p>“'+text(b.text)+'”</p>'+(b.author?'<cite>'+esc(b.author)+'</cite>':"")+'</blockquote></section>';
       case "steps":return a+'<h3>'+text(b.title)+'</h3><ol class="fxs-steps">'+listItems(b.text).map((x,i)=>'<li><b>'+ (i+1) +'</b><span>'+text(x)+'</span></li>').join("")+'</ol></section>';
@@ -97,6 +139,7 @@
   function render(root,doc,meta={},access={},options={}){
     if(!root||!doc||doc.fx_format!==FMT||!Array.isArray(doc.blocks))throw new Error("Format de lecție necunoscut");
     const preview=options.preview===true;
+    doc=visualDocument(doc);
     const variant=["rose","ocean","sage","sand"].includes(doc.theme)?doc.theme:"rose";
     const essay=/^(?:Luceafărul|Plumb)\s*[—–-]/i.test(String(doc.title||"")) && doc.subject==="romana";
     const paper=poetryLesson(doc);
@@ -113,8 +156,19 @@
       (titles.length?'<nav class="fxs-toc" aria-label="Cuprinsul lecției"><strong>Cuprins</strong>'+titles.map(({b,i})=>'<a href="#fxs-block-'+i+'">'+esc(b.title)+'</a>').join("")+'</nav>':"")+
       '<div class="fxs-content">'+(paper?paperContent(doc,preview):essay?renderEssayChapters(doc.blocks,preview):doc.blocks.slice(0,150).map((b,i)=>block(b,i,preview)).join(""))+'</div>'+
       '<footer class="fxs-end">Formula X · Ai parcurs lecția. Revino la reperele importante și verifică-ți cunoștințele!</footer></div>';
-    root.innerHTML=html;
     root.__fxStudioDoc=doc;
+    if(!root.__fxStudioImageRecovery){
+      root.__fxStudioImageRecovery=true;
+      root.addEventListener("error",ev=>{
+        const img=ev.target,backup=img?.getAttribute?.("data-fxs-art-backup");
+        if(!backup||!root.contains(img)||img.getAttribute("src")===backup)return;
+        img.setAttribute("src",backup);
+        img.setAttribute("alt",img.getAttribute("data-fxs-art-alt")||"Ilustrație pentru lecție");
+        const idx=Number(img.getAttribute("data-fxs-art-index")),b=root.__fxStudioDoc?.blocks?.[idx];
+        if(b&&b.fxArtFallback===backup){b.image=backup;}
+      },true);
+    }
+    root.innerHTML=html;
     if(!root.__fxStudioHandler){
       root.__fxStudioHandler=true;
       root.addEventListener("click",ev=>{

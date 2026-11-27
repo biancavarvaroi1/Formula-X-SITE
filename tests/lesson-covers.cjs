@@ -63,3 +63,8 @@ for(const slug of ['ultima-noapte','plumb','luceafarul']){
   assert.equal(data.toString('ascii',8,12),'WEBP');
 }
 console.log('PASS: known covers, new lessons in every subject, safe URLs, access links and two-stage image recovery.');
+
+for(const [title,path] of [['Eu nu strivesc corola de minuni a lumii — Lucian Blaga','blaga-cover.svg'],['Testament — Tudor Arghezi','arghezi-cover.svg'],['Riga Crypto și lapona Enigel — Ion Barbu','barbu-cover.svg']]){
+ const info=fx.coverInfo({title,slug:'generated',subject:'romana'});
+ assert.equal(info.cover,'/assets/lesson-illustrations/'+path);assert(fs.existsSync(info.cover.slice(1)));
+}

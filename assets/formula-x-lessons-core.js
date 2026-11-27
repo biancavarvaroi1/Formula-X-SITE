@@ -15,6 +15,9 @@
     {key:'baltagul',subject:'romana',cover:'/assets/lessons/baltagul/vitoria.webp',author:'Mihail Sadoveanu',alt:'Vitoria Lipan, protagonista romanului Baltagul'},
     {key:'plumb',subject:'romana',cover:'/assets/lessons/plumb/coperta.webp?v=20261111',author:'George Bacovia',alt:'Cavou, sicriu de plumb și flori cenușii în lumina rece'},
     {key:'luceafarul',subject:'romana',cover:'/assets/lessons/luceafarul/coperta.webp?v=20261111',author:'Mihai Eminescu',alt:'Fata de împărat privește Luceafărul de la fereastra castelului'},
+    {key:'eu-nu-strivesc-corola',subject:'romana',cover:'/assets/lesson-illustrations/blaga-cover.svg',author:'Lucian Blaga',alt:'Corola de minuni și simbolurile misterului'},
+    {key:'testament',subject:'romana',cover:'/assets/lesson-illustrations/arghezi-cover.svg',author:'Tudor Arghezi',alt:'Cartea, condeiul și moștenirea străbunilor'},
+    {key:'riga-crypto-si-lapona-enigel',subject:'romana',cover:'/assets/lesson-illustrations/barbu-cover.svg',author:'Ion Barbu',alt:'Crypto și Enigel, umbra și lumina'},
     {key:'progresii',subject:'matematica',cover:'/assets/lesson-covers/progresii.svg',alt:'Șir de trepte și puncte care sugerează creșterea unei progresii'},
   ];
   const coverSubjects = ['romana','matematica','biologie','chimie','fizica','geografie','logica'];
@@ -35,7 +38,7 @@
     const fallback = '/assets/lesson-covers/'+(coverSubjects.includes(subject) ? subject : 'general')+'.svg';
     return {
       cover:safeCover(item.cover_url) || safeCover(item.cover) || known?.cover || fallback,
-      fallback,
+      fallback:known?.cover || fallback,
       author:item.author || known?.author || 'Formula X',
       alt:known?.alt || 'Ilustrație pentru '+(item.title || 'lecție'),
     };

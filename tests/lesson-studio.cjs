@@ -25,3 +25,14 @@ assert(api.safeUrl('https://example.com/image.webp'));
 assert(api.safeUrl('/assets/lessons/sample/test.webp'));
 assert.equal((target.innerHTML.match(/fxs-block/g)||[]).length>=6,true);
 console.log('Studio renderer: safe markup, sections, quizzes, images OK.');
+
+// Specific artwork, even when the imported URL is absent; existing media and text remain intact.
+for(const [title,needle] of [['Eu nu strivesc corola de minuni a lumii — Lucian Blaga','blaga-prozodie.svg'],['Testament — Tudor Arghezi','arghezi-urat.svg'],['Riga Crypto și lapona Enigel — Ion Barbu','barbu-genuri.svg']]){
+ const section=title.startsWith('Eu')?'Prozodie':title.startsWith('Testament')?'Estetica urâtului':'Amestecul genurilor';
+ const d={fx_format:api.FORMAT,title,subject:'romana',blocks:[{type:'split',title:section,text:'Textul profesorului',image:''}]};
+ const t={innerHTML:'',addEventListener(){}};api.render(t,d);
+ assert(t.innerHTML.includes(needle));assert(t.innerHTML.includes('Textul profesorului'));assert.equal(d.blocks[0].image,'');
+ assert(fs.existsSync('assets/lesson-illustrations/'+needle));
+ d.blocks[0].image='https://example.com/original.webp';api.render(t,d);
+ assert(t.innerHTML.includes('src="https://example.com/original.webp"'));assert(t.innerHTML.includes('data-fxs-art-backup'));
+}
