@@ -100,6 +100,7 @@
     const variant=["rose","ocean","sage","sand"].includes(doc.theme)?doc.theme:"rose";
     const essay=/^(?:Luceafărul|Plumb)\s*[—–-]/i.test(String(doc.title||"")) && doc.subject==="romana";
     const paper=poetryLesson(doc);
+    const canMakePDF=paper && doc.blocks.some(b=>b.type==='heading' && b.title==='Eseu-model') && doc.blocks.some(b=>b.label==='ATELIER DE REDACTARE');
     const titles=doc.blocks.map((b,i)=>({b,i})).filter(({b})=>b.type==="heading"&&b.title&&(!paper||!assessmentBlock(b)));
     const html='<div class="fxs-studio-view fxs-theme-'+variant+(essay?' fxs-bac-essay':'')+(paper?' fxp-paper':'')+'">'+
       '<header class="fxs-hero"><span class="fxs-overline">FORMULA X · LECȚIE INTERACTIVĂ</span>'+
@@ -108,7 +109,7 @@
       '<div class="fxs-badges"><span>'+esc(doc.subject||meta.subject||"Română")+'</span><span>'+esc(meta.author||"Formula X")+'</span>'+
       (preview?'<span>Previzualizare profesor</span>':access.endsAt?'<span>Acces până la '+esc(new Date(access.endsAt).toLocaleDateString("ro-RO"))+'</span>':"")+
       '</div></header>'+
-      (paper?'<div class="fxp-tools"><button data-fxp-print type="button">Tipărește lecția</button></div>':'')+
+      (paper?'<div class="fxp-tools"><button data-fxp-print type="button">Tipărește lecția</button>'+(canMakePDF?' <button data-fxp-pdf type="button">Descarcă fișa PDF</button> <span data-fxp-pdf-status role="status" aria-live="polite"></span>':'')+'</div>':'')+
       (titles.length?'<nav class="fxs-toc" aria-label="Cuprinsul lecției"><strong>Cuprins</strong>'+titles.map(({b,i})=>'<a href="#fxs-block-'+i+'">'+esc(b.title)+'</a>').join("")+'</nav>':"")+
       '<div class="fxs-content">'+(paper?paperContent(doc,preview):essay?renderEssayChapters(doc.blocks,preview):doc.blocks.slice(0,150).map((b,i)=>block(b,i,preview)).join(""))+'</div>'+
       '<footer class="fxs-end">Formula X · Ai parcurs lecția. Revino la reperele importante și verifică-ți cunoștințele!</footer></div>';
@@ -117,9 +118,19 @@
     if(!root.__fxStudioHandler){
       root.__fxStudioHandler=true;
       root.addEventListener("click",ev=>{
-        const action=ev.target.closest("[data-fxp-print],[data-fxp-toggle],[data-fxp-key]");
+        const action=ev.target.closest("[data-fxp-print],[data-fxp-pdf],[data-fxp-toggle],[data-fxp-key]");
         if(action&&root.contains(action)){
-          if(action.hasAttribute("data-fxp-print")){
+          if(action.hasAttribute("data-fxp-pdf")){
+            if(action.disabled)return;
+            const current=root.__fxStudioDoc,status=root.querySelector("[data-fxp-pdf-status]");
+            action.disabled=true;status.textContent="Se pregătește fișa A4…";
+            import("/assets/fx-poezie-fisa.js?v=1").then(()=>window.FormulaXPoetryPDF.pdf(current)).then(file=>{
+              if(root.__fxStudioDoc!==current||!root.contains(action))return;
+              window.FormulaXPoetryPDF.save(new Blob([file.bytes],{type:"application/pdf"}),file.name);
+              status.textContent="Fișa PDF este pregătită.";
+            }).catch(()=>{status.textContent="Pentru această versiune, folosește «Tipărește lecția».";})
+              .finally(()=>{action.disabled=false;});
+          }else if(action.hasAttribute("data-fxp-print")){
             const current=root.__fxStudioDoc;
             const images=Array.from(root.querySelectorAll(".fxp-paper img"));
             images.forEach(img=>{img.loading="eager"});
