@@ -276,9 +276,31 @@ function fxRevisionCode(){
   }catch(error){setStatus(String(error?.message||error),true);}
   finally{running=false;revisionButton.disabled=!staff||!lessons;}
  }
+ const pdfButton=document.createElement("button");
+ pdfButton.type="button";pdfButton.disabled=true;pdfButton.textContent="Descarcă cele trei PDF-uri (ZIP)";
+ revisionButton.after(pdfButton);
+ pdfButton.addEventListener("click",async()=>{
+  if(!staff||!lessons||pdfButton.disabled)return;
+  pdfButton.disabled=true;
+  try{
+   setStatus("Se pregătesc cele trei fișe A4…");
+   await import("/assets/fx-poezie-fisa.js?v=1");
+   const rows=rowsFrom(await rpc("fx_teacher_lesson_catalog"));
+   const documents=[];
+   for(const d of lessons){
+    const row=match(rows,d),old=row?await openExisting(row):null;
+    const urls=new Map(slots(d).map((name,i)=>[name,old?.images?.[i]||""]));
+    documents.push(documentFor(d,urls));
+   }
+   const api=window.FormulaXPoetryPDF,files=await Promise.all(documents.map(doc=>api.pdf(doc)));
+   api.save(api.zip(files),"Formula_X_3_lectii_A4.zip");
+   setStatus("Pachetul conține cele trei fișe PDF pentru elevi.",false,true);
+  }catch(error){setStatus("Fișele PDF nu au putut fi pregătite. "+(error?.message||error),true);}
+  finally{pdfButton.disabled=!staff||!lessons;}
+ });
  revisionButton.addEventListener("click",publish);
  return {async ready(){
-  try{lessons=await decodeLessons();revisionButton.disabled=!staff;hint.textContent="Ediție pregătită. Ilustrațiile se iau din lecțiile existente. Folosește arhiva anterioară numai pentru operele care încă nu au ilustrații în Studio.";
+  try{lessons=await decodeLessons();revisionButton.disabled=!staff;pdfButton.disabled=!staff;hint.textContent="Ediție pregătită. Ilustrațiile se iau din lecțiile existente. Folosește arhiva anterioară numai pentru operele care încă nu au ilustrații în Studio.";
    setStatus("Cont de profesor verificat. Cele trei texte revizuite sunt pregătite pentru publicare.",false,true);
   }catch(error){setStatus(String(error?.message||error),true);}
  }};
