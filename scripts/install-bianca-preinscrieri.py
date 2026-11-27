@@ -18,6 +18,14 @@ if 'id="fx-bianca-preinscrieri"' not in source:
     source=source[:offset]+button+source[offset:]
     home.write_text(source,encoding='utf-8')
 
+# Supplement the static mentor-section link with explicit links on both views.
+source=home.read_text(encoding='utf-8')
+if '/assets/fx-bianca-home-link.js' not in source:
+    source,n=re.subn(r'</body\s*>',lambda m:'<script defer src="/assets/fx-bianca-home-link.js?v=2"></script>'+m.group(0),source,count=1,flags=re.I)
+    if n!=1: raise RuntimeError('Homepage has no closing body')
+    home.write_text(source,encoding='utf-8')
+assert '/assets/fx-bianca-home-link.js?v=2' in source
+
 portal=Path('profesori/index.html')
 source=portal.read_text(encoding='utf-8')
 if 'id="fx-bianca-preinscrieri-profesor"' not in source:

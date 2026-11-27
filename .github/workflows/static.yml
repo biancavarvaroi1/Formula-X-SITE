@@ -144,6 +144,7 @@ jobs:
         run: |
           node --check assets/fx-preinscrieri.js
           node --check assets/fx-preinscrieri-nav.js
+          node --check assets/fx-bianca-home-link.js
           python scripts/install-bianca-preinscrieri.py
       - name: Setup Pages
         uses: actions/configure-pages@v5
