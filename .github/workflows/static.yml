@@ -140,6 +140,11 @@ jobs:
         run: |
           node --check assets/formula-x-install.js
           python scripts/install-phone-app.py
+      - name: Integrate Bianca pre-enrollment navigation in deployed pages
+        run: |
+          node --check assets/fx-preinscrieri.js
+          node --check assets/fx-preinscrieri-nav.js
+          python scripts/install-bianca-preinscrieri.py
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact

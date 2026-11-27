@@ -12,3 +12,5 @@ Linkul este vizibil dacă îl adaugi pentru toți profesorii, însă pagina și 
 7. Respectă politica de confidențialitate Formula X: verifică actualizarea ei pentru noul formular și elimină cererile care nu duc la colaborare conform termenului de păstrare publicat. Tabela permite ștergerea la eliminarea contului de elev; nu implementează automat curățarea periodică.
 
 Limitări: nu am executat SQL-ul în baza live și nu am testat trimiterea reală sau accesul cu conturi reale. Schema este bazată pe fișierele actuale din repository: assets/formula-x-portal.js, formula-x-account.js, profesori/index.html, SUPABASE-INVITATII-GRUPE.sql. Verifică eventuale diferențe între schema live și fișierele versionate înainte de distribuire. Nu sunt modificate fișierele originale din GitHub.
+
+Actualizare: butoanele sunt integrate automat la publicarea GitHub Pages prin scripts/install-bianca-preinscrieri.py. Nu este necesară editarea manuală a indexului sau portalului. Scriptul SQL trebuie totuși executat în proiectul Supabase. Testarea autentificată și notificările e-mail rămân necesare.

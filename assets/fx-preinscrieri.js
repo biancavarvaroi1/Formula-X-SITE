@@ -4,7 +4,13 @@ const labels={noua:'Cerere nouă',contactata:'Contactată',acceptata:'Înscrisă
 const msg=(s,type='')=>{$('notice').textContent=s;$('notice').className='notice '+type;$('notice').hidden=!s;};
 const show=(id,yes=true)=>{$(id).hidden=!yes;};
 const el=(tag,text,cls)=>{const x=document.createElement(tag);if(text!=null)x.textContent=text;if(cls)x.className=cls;return x;};
-const errorText=e=>e?.message||'A apărut o eroare.';
+const errorText=e=>{
+ const code=String(e?.code||'');
+ if(['42P01','42883','PGRST202','PGRST205'].includes(code)||/could not find (?:the table|the function)/i.test(e?.message||'')){
+  return document.body.dataset.mode==='teacher'?'Modulul de preînscriere necesită activarea scriptului SUPABASE-PREINSCRIERI-BIANCA.sql în SQL Editor.':'Preînscrierile nu sunt încă activate. Nu a fost transmisă nicio cerere.';
+ }
+ return e?.message||'A apărut o eroare.';
+};
 let db,user,rows=[],groups=[];
 async function main(){
  if(!window.supabase)throw Error('Biblioteca Supabase lipsește. Verifică assets/vendor/supabase.js.');
