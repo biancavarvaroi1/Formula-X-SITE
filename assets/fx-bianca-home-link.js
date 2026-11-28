@@ -17,7 +17,13 @@
  function install(){
   const nodes=Array.from(document.querySelectorAll('h1,h2,h3,h4,h5,h6,p,span,div,strong,small'));
   const detail=nodes.find(n=>/^h[1-6]$/i.test(n.tagName)&&normalize(n.textContent)==='bianca varvaroi');
-  if(detail)addAfter(detail,'fx-bianca-apply-detail');
+  // The mentor campaign already contains a pre-enrollment link; don't add another.
+  const campaign=document.getElementById('fx-bianca-preinscrieri');
+  const campaignLink=campaign&&campaign.querySelector('a[href="/preinscriere-bianca.html"]');
+  if(campaignLink){
+    const duplicate=document.getElementById('fx-bianca-apply-detail');
+    if(duplicate)duplicate.remove();
+  }else if(detail)addAfter(detail,'fx-bianca-apply-detail');
   const mentor=nodes.find(n=>normalize(n.textContent)==='mentor: bianca varvaroi'&&!Array.from(n.children).some(c=>normalize(c.textContent)==='mentor: bianca varvaroi'));
   if(mentor)addAfter(mentor,'fx-bianca-apply-card');
   // Retain a visible link even if the mentor-card markup is changed in a future release.
